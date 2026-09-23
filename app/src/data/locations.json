@@ -1,0 +1,7213 @@
+{
+  "weeklyFeatured": [
+    {
+      "id": "issue-05",
+      "issue": "第 05 期",
+      "theme": "橫跨天際的工程奇蹟：全球經典橋樑特輯",
+      "date": "2026-09-19 ~ 2026-09-25",
+      "category": "architecture",
+      "categoryName": "🌉 世界經典橋樑",
+      "description": "橫跨江海、連接兩岸的經典地標！精選鋼纜懸索橋、古典石拱橋、跨海大橋與山谷吊橋，收錄 20 處絕景橋樑坐標，享受開闊視野與微風漫步。",
+      "region": "全球精選 (美洲 / 歐洲 / 亞洲)",
+      "socialShareDraft": "【GeoSim 每周精選 第 05 期 🌟 橫跨天際的工程奇蹟：全球經典橋樑特輯】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球【橫跨天際的工程奇蹟：全球經典橋樑特輯】主題座標！🍄 10 處蘑菇 + 🌸 10 處大花點已全部上線！\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/issue-05\n#PikminBloom #皮克敏 #GeoSim #每週精選",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "靈台橋",
+          "city": "精選座標",
+          "location": "靈台橋",
+          "lat": 32.62935,
+          "lng": 130.888114,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-02",
+          "name": "花之丘公園生態池",
+          "city": "精選座標",
+          "location": "花之丘公園生態池",
+          "lat": 35.94427,
+          "lng": 139.589011,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-03",
+          "name": "珊珊露台",
+          "city": "精選座標",
+          "location": "珊珊露台",
+          "lat": 34.700393,
+          "lng": 137.783065,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-04",
+          "name": "龍宮城（日和山海岸）",
+          "city": "精選座標",
+          "location": "龍宮城（日和山海岸）",
+          "lat": 35.659406,
+          "lng": 134.831044,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-05",
+          "name": "Haltnau棧橋",
+          "city": "精選座標",
+          "location": "Haltnau棧橋",
+          "lat": 47.683541,
+          "lng": 9.288053,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-06",
+          "name": "布里奇沃特遺產教堂",
+          "city": "精選座標",
+          "location": "布里奇沃特遺產教堂",
+          "lat": -42.737073,
+          "lng": 147.227838,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-07",
+          "name": "因維克階梯觀景台",
+          "city": "精選座標",
+          "location": "因維克階梯觀景台",
+          "lat": 61.859163,
+          "lng": 6.596478,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-08",
+          "name": "皇家碼頭河船碼頭",
+          "city": "精選座標",
+          "location": "皇家碼頭河船碼頭",
+          "lat": 51.498658,
+          "lng": 0.02527,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-09",
+          "name": "菲耶爾營地涼亭",
+          "city": "精選座標",
+          "location": "菲耶爾營地涼亭",
+          "lat": 67.072731,
+          "lng": 14.309297,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-10",
+          "name": "若戶大橋",
+          "city": "精選座標",
+          "location": "若戶大橋",
+          "lat": 33.9016,
+          "lng": 130.819101,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-11",
+          "name": "太鼓橋",
+          "city": "精選座標",
+          "location": "太鼓橋",
+          "lat": 37.290405,
+          "lng": 140.379954,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-12",
+          "name": "河合交流廣場",
+          "city": "精選座標",
+          "location": "河合交流廣場",
+          "lat": 35.038266,
+          "lng": 137.166303,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-13",
+          "name": "施塔姆斯吊橋",
+          "city": "精選座標",
+          "location": "施塔姆斯吊橋",
+          "lat": 47.285648,
+          "lng": 10.985255,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-14",
+          "name": "觀月橋",
+          "city": "精選座標",
+          "location": "觀月橋",
+          "lat": 37.699074,
+          "lng": 138.828886,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-15",
+          "name": "角島大橋觀景台",
+          "city": "精選座標",
+          "location": "角島大橋觀景台",
+          "lat": 34.347631,
+          "lng": 130.894788,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-16",
+          "name": "臥雲橋",
+          "city": "精選座標",
+          "location": "臥雲橋",
+          "lat": 34.285735,
+          "lng": 133.768177,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-17",
+          "name": "喬治華盛頓大橋",
+          "city": "精選座標",
+          "location": "喬治華盛頓大橋",
+          "lat": 40.849886,
+          "lng": -73.944358,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-18",
+          "name": "錫斯托橋",
+          "city": "精選座標",
+          "location": "錫斯托橋",
+          "lat": 41.892284,
+          "lng": 12.470704,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-19",
+          "name": "阿庇亞大道",
+          "city": "精選座標",
+          "location": "阿庇亞大道",
+          "lat": 43.113264,
+          "lng": 12.388339,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-20",
+          "name": "至美橋",
+          "city": "精選座標",
+          "location": "至美橋",
+          "lat": 23.471856,
+          "lng": 120.292568,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        }
+      ],
+      "coverImage": "/images/weekly/bridge.jpg"
+    },
+    {
+      "id": "issue-04",
+      "issue": "第 04 期",
+      "theme": "神聖莊嚴之美：全球古典教堂與大教堂巡禮",
+      "date": "2026-09-12 ~ 2026-09-18",
+      "category": "culture",
+      "categoryName": "⛪ 古典教堂與建築",
+      "description": "仰望彩繪玻璃與尖塔！本期精選全球哥德式大教堂、古典修道院與鄉村靜謐小禮拜堂，在宏偉石柱與玫瑰花窗下漫步，打蘑菇與開花兼具歷史與心靈沉澱之美。",
+      "region": "全球精選 (歐洲 / 美洲 / 亞洲)",
+      "socialShareDraft": "【GeoSim 每周精選 第 04 期 🌟 神聖莊嚴之美：全球古典教堂與大教堂巡禮】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球【神聖莊嚴之美：全球古典教堂與大教堂巡禮】主題座標！🍄 10 處蘑菇 + 🌸 10 處大花點已全部上線！\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/issue-04\n#PikminBloom #皮克敏 #GeoSim #每週精選",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "穆索聖歐菲米亞小教堂",
+          "city": "精選座標",
+          "location": "穆索聖歐菲米亞小教堂",
+          "lat": 46.118806,
+          "lng": 9.278723,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-02",
+          "name": "佩爾泰利教堂",
+          "city": "精選座標",
+          "location": "佩爾泰利教堂",
+          "lat": 60.446965,
+          "lng": 23.250156,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-03",
+          "name": "珊瑚教會",
+          "city": "精選座標",
+          "location": "珊瑚教會",
+          "lat": 26.687977,
+          "lng": 128.003153,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-04",
+          "name": "孔斯莫小教堂",
+          "city": "精選座標",
+          "location": "孔斯莫小教堂",
+          "lat": 64.8848,
+          "lng": 12.437688,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-05",
+          "name": "布里奇沃特遺產教堂",
+          "city": "精選座標",
+          "location": "布里奇沃特遺產教堂",
+          "lat": -42.737073,
+          "lng": 147.227838,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-06",
+          "name": "環形教堂",
+          "city": "精選座標",
+          "location": "環形教堂",
+          "lat": 50.07738,
+          "lng": 8.229207,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-07",
+          "name": "聖露西亞教堂",
+          "city": "精選座標",
+          "location": "聖露西亞教堂",
+          "lat": 50.112556,
+          "lng": 6.20101,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-08",
+          "name": "維庫爾教堂",
+          "city": "精選座標",
+          "location": "維庫爾教堂",
+          "lat": 63.420602,
+          "lng": -19.003228,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-09",
+          "name": "被遺忘的小教堂",
+          "city": "精選座標",
+          "location": "被遺忘的小教堂",
+          "lat": 49.978179,
+          "lng": 17.389871,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-10",
+          "name": "聖托馬斯教堂",
+          "city": "精選座標",
+          "location": "聖托馬斯教堂",
+          "lat": 50.967589,
+          "lng": 11.027465,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-11",
+          "name": "聖科洛曼教堂",
+          "city": "精選座標",
+          "location": "聖科洛曼教堂",
+          "lat": 47.57872,
+          "lng": 10.74939,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-12",
+          "name": "龍科教堂",
+          "city": "精選座標",
+          "location": "龍科教堂",
+          "lat": 45.826738,
+          "lng": 8.381558,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-13",
+          "name": "ART GRACE婚禮廣場大聖堂",
+          "city": "精選座標",
+          "location": "ART GRACE婚禮廣場大聖堂",
+          "lat": 35.164057,
+          "lng": 136.884232,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-14",
+          "name": "好牧羊人教堂",
+          "city": "精選座標",
+          "location": "好牧羊人教堂",
+          "lat": -44.003393,
+          "lng": 170.482453,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-15",
+          "name": "羅馬天主教堂",
+          "city": "精選座標",
+          "location": "羅馬天主教堂",
+          "lat": 45.118242,
+          "lng": 21.301372,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-16",
+          "name": "粉紅教堂",
+          "city": "精選座標",
+          "location": "粉紅教堂",
+          "lat": 37.75022,
+          "lng": 23.530174,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-17",
+          "name": "錫斯托橋",
+          "city": "精選座標",
+          "location": "錫斯托橋",
+          "lat": 41.892284,
+          "lng": 12.470704,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-18",
+          "name": "橫手天主教會",
+          "city": "精選座標",
+          "location": "橫手天主教會",
+          "lat": 39.3118266,
+          "lng": 140.5640924,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-19",
+          "name": "噴泉階梯池",
+          "city": "精選座標",
+          "location": "噴泉階梯池",
+          "lat": -37.80988,
+          "lng": 144.977421,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-20",
+          "name": "努克拱門",
+          "city": "精選座標",
+          "location": "努克拱門",
+          "lat": 64.170499,
+          "lng": -51.742177,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        }
+      ],
+      "coverImage": "/images/weekly/cathedral.jpg"
+    },
+    {
+      "id": "issue-03",
+      "issue": "第 03 期",
+      "theme": "重返中世紀傳奇：世界宏偉城堡與要塞特輯",
+      "date": "2026-09-05 ~ 2026-09-11",
+      "category": "culture",
+      "categoryName": "🏰 歷史城堡與要塞",
+      "description": "踏上騎士與公主的奇幻旅程！本期精選世界各地的著名防禦要塞、護城河石堡與雄偉古城，涵蓋歐洲石砌古堡、日本天守閣與海防砲台，帶你一睹歷史要塞的壯闊風采。",
+      "region": "全球精選 (歐洲 / 日本 / 美洲)",
+      "socialShareDraft": "【GeoSim 每周精選 第 03 期 🌟 重返中世紀傳奇：世界宏偉城堡與要塞特輯】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球【重返中世紀傳奇：世界宏偉城堡與要塞特輯】主題座標！🍄 10 處蘑菇 + 🌸 10 處大花點已全部上線！\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/issue-03\n#PikminBloom #皮克敏 #GeoSim #每週精選",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "甲斐上野城",
+          "city": "精選座標",
+          "location": "甲斐上野城",
+          "lat": 35.567442,
+          "lng": 138.521023,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-02",
+          "name": "新天鵝堡 04 - 城堡",
+          "city": "精選座標",
+          "location": "新天鵝堡 04 - 城堡",
+          "lat": 47.56224,
+          "lng": 10.74215,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-03",
+          "name": "竜宮城（日和山海岸）",
+          "city": "精選座標",
+          "location": "竜宮城（日和山海岸）",
+          "lat": 35.659406,
+          "lng": 134.831044,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-04",
+          "name": "新天鵝堡 - 全景",
+          "city": "精選座標",
+          "location": "新天鵝堡 - 全景",
+          "lat": 47.559384,
+          "lng": 10.739565,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-05",
+          "name": "羅謝爾波爾泰城堡",
+          "city": "精選座標",
+          "location": "羅謝爾波爾泰城堡",
+          "lat": 48.434332,
+          "lng": -1.357689,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-06",
+          "name": "莫斯科納蒂諾",
+          "city": "精選座標",
+          "location": "莫斯科納蒂諾",
+          "lat": 42.814138,
+          "lng": 11.152101,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-07",
+          "name": "賈斯旺薩達陵墓",
+          "city": "精選座標",
+          "location": "賈斯旺薩達陵墓",
+          "lat": 26.304399,
+          "lng": 73.025259,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-08",
+          "name": "萊茵橋",
+          "city": "精選座標",
+          "location": "萊茵橋",
+          "lat": 47.676637,
+          "lng": 8.617979,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-09",
+          "name": "新工程宮殿",
+          "city": "精選座標",
+          "location": "新工程宮殿",
+          "lat": 39.035763,
+          "lng": -8.872782,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-10",
+          "name": "艾倫戴爾城堡",
+          "city": "精選座標",
+          "location": "艾倫戴爾城堡",
+          "lat": 22.312564,
+          "lng": 114.038748,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-11",
+          "name": "新天鵝堡 10 - 城堡",
+          "city": "精選座標",
+          "location": "新天鵝堡 10 - 城堡",
+          "lat": 47.56064,
+          "lng": 10.738789,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-12",
+          "name": "霍格華茲城堡",
+          "city": "精選座標",
+          "location": "霍格華茲城堡",
+          "lat": 28.472262,
+          "lng": -81.473574,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-13",
+          "name": "洲本城跡",
+          "city": "精選座標",
+          "location": "洲本城跡",
+          "lat": 34.337551,
+          "lng": 134.902946,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-14",
+          "name": "熊本城 天守閣",
+          "city": "精選座標",
+          "location": "熊本城 天守閣",
+          "lat": 32.806215,
+          "lng": 130.705864,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-15",
+          "name": "大阪城",
+          "city": "精選座標",
+          "location": "大阪城",
+          "lat": 34.687377,
+          "lng": 135.525828,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-16",
+          "name": "金沢城公園 菱櫓",
+          "city": "精選座標",
+          "location": "金沢城公園 菱櫓",
+          "lat": 36.566089,
+          "lng": 136.659626,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-17",
+          "name": "櫻花日本城堡",
+          "city": "精選座標",
+          "location": "櫻花日本城堡",
+          "lat": 21.030315,
+          "lng": 105.892395,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-18",
+          "name": "琥珀堡觀景點",
+          "city": "精選座標",
+          "location": "琥珀堡觀景點",
+          "lat": 26.983297,
+          "lng": 75.856175,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-19",
+          "name": "米卡米爾的翅膀 @運河步道 秋季",
+          "city": "精選座標",
+          "location": "米卡米爾的翅膀 @運河步道 秋季",
+          "lat": 37.400765,
+          "lng": 126.638283,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-20",
+          "name": "美女與野獸雕像",
+          "city": "精選座標",
+          "location": "美女與野獸雕像",
+          "lat": 35.630551,
+          "lng": 139.877739,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h"
+        }
+      ],
+      "coverImage": "/images/weekly/castle.jpg"
+    },
+    {
+      "id": "issue-02",
+      "issue": "第 02 期",
+      "theme": "【曼巴精神永存】全球 Kobe Bryant 紀念街頭塗鴉與壁畫巡禮",
+      "date": "2026-08-29 ~ 2026-09-04",
+      "category": "art",
+      "categoryName": "🎨 街頭塗鴉與壁畫",
+      "description": "街頭塗鴉與戶外藝術特別企劃：精選橫跨美洲、歐洲與亞洲共 17 處紀念傳奇球星 Kobe Bryant 的大型街頭彩繪壁畫。從洛杉磯經典 Mamba Mural 到羅馬與波隆那的社區球場，每一幅明信片皆乘載著熱血與曼巴精神。",
+      "region": "全球精選 (美洲 / 歐洲 / 亞洲)",
+      "socialShareDraft": "【GeoSim 每周精選 第 02 期 🌟 城市中的巨幅畫布：世界街頭壁畫與公共塗鴉藝術】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球【城市中的巨幅畫布：世界街頭壁畫與公共塗鴉藝術】主題座標！🍄 10 處蘑菇 + 🌸 10 處大花點已全部上線！\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/issue-02\n#PikminBloom #皮克敏 #GeoSim #每週精選",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "Mural de Kobe Bryan",
+          "city": "墨西哥 墨西哥州",
+          "location": "墨西哥 墨西哥州 山谷布拉沃",
+          "lat": 19.199598,
+          "lng": -100.132466,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_01.jpg",
+          "story": "這幅壁畫是為了紀念 Kobe Bryant,是鎮上的一個景點。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-02",
+          "name": "Kobe & Gigi Bryant Mural",
+          "city": "美國 亞利桑那州",
+          "location": "美國 亞利桑那州 皮馬郡",
+          "lat": 32.183494,
+          "lng": -111.003457,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_02.jpg",
+          "story": "由當地藝術家 Jaziel Ortiz 繪製的 Kobe 與 Gigi Bryant 壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-03",
+          "name": "Kobe Bryant Mural (Mamba Mural)",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 33.84234,
+          "lng": -118.298695,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_03.jpg",
+          "story": "由 drippyspray 創作的 Mamba Mural。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-04",
+          "name": "Kobe Bryant Mural",
+          "city": "菲律賓 馬尼拉大都會",
+          "location": "菲律賓 馬尼拉大都會 馬尼拉",
+          "lat": 14.609337,
+          "lng": 120.980904,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_04.jpg",
+          "story": "為紀念 NBA 球員 Kobe Bryant 與女兒 Gianna Bryant 而作。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-05",
+          "name": "Kobe Bryant mural at Rick's",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 34.04583,
+          "lng": -118.264736,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_05.jpg",
+          "story": "Kobe Bryant 紀念壁畫,2020 年 2 月。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-06",
+          "name": "Kobe Bryant Mural",
+          "city": "美國 堪薩斯州",
+          "location": "美國 堪薩斯州 塞奇威克郡 威奇托",
+          "lat": 37.694747,
+          "lng": -97.37554,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_06.jpg",
+          "story": "噴漆塗鴉壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-07",
+          "name": "Geometric Kobe Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 33.878545,
+          "lng": -118.275828,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_07.jpg",
+          "story": "以「低多邊形」(low poly)極簡風格繪製的 Kobe Bryant 壁畫,藝術家為 VelaArt。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-08",
+          "name": "Kobe Bryant Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 34.040519,
+          "lng": -118.259984,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_08.jpg",
+          "story": "紀念已故偉大球星 Kobe Bryant 的壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-09",
+          "name": "Kobe and Nipsey Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 34.021824,
+          "lng": -118.371854,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_09.jpg",
+          "story": "由壁畫家 JustCreatedIt 與 Jayo_V 繪製的 Kobe Bryant 與 Nipsey Hussle 壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-10",
+          "name": "Black Mamba Murales",
+          "city": "義大利 拉齊奧",
+          "location": "義大利 拉齊奧 羅馬",
+          "lat": 41.780877,
+          "lng": 12.434723,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_10.jpg",
+          "story": "獻給不幸因事故逝世的偉大籃球員 Kobe Bryant 的壁畫,位於 Tellene 社區運動中心內。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-11",
+          "name": "Kobe and Gigi Bryant Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 34.064699,
+          "lng": -118.212229,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_11.jpg",
+          "story": "藝術家繪製以紀念已故的 Kobe 與 Gigi Bryant。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-12",
+          "name": "Murales Kobe Bryant",
+          "city": "義大利 艾米利亞-羅馬涅大區",
+          "location": "義大利 艾米利亞-羅馬涅大區 博洛尼亞",
+          "lat": 44.519341,
+          "lng": 11.329334,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_12.jpg",
+          "story": "在同名街頭籃球場上紀念已故冠軍 Kobe Bryant 的壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-13",
+          "name": "Kobe and Gianna Bryant",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 34.033858,
+          "lng": -118.214023,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_13.jpg",
+          "story": "Kobe 剛贏得 2009 年 NBA 總決賽第五場並獲頒 MVP,與女兒慶祝這個里程碑。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-14",
+          "name": "Mural of Kobe Bryant & Gianna",
+          "city": "美國 加州",
+          "location": "美國 加州 洛杉磯郡",
+          "lat": 33.787178,
+          "lng": -118.167532,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_14.jpg",
+          "story": "獻給洛杉磯湖人隊的 Kobe Bryant 與女兒 Gianna 的壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-15",
+          "name": "Kobe Bryant Mural",
+          "city": "美國 田納西州",
+          "location": "美國 田納西州 戴維森郡",
+          "lat": 36.087704,
+          "lng": -86.731606,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_15.jpg",
+          "story": "Jose Fernando Vargas 的壁畫。引用 Kobe 名言:「最重要的是嘗試激勵人們,讓他們能在自己想做的任何事情上達到偉大。」",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-16",
+          "name": "Kobe Bryant Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 橙郡",
+          "lat": 33.832866,
+          "lng": -117.960954,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_16.jpg",
+          "story": "紀念名人堂成員 Kobe Bryant 的壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-17",
+          "name": "Kobe and LeBron Mural",
+          "city": "美國 加州",
+          "location": "美國 加州 文圖拉郡 聖保拉",
+          "lat": 34.34576,
+          "lng": -119.073257,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭壁畫",
+          "image": "/images/postcards/mural/img_17.jpg",
+          "story": "獻給「天使」Kobe Bryant 與「國王」LeBron James 的壁畫。",
+          "recommendedSpeed": "4.0 km/h"
+        }
+      ],
+      "coverImage": "/images/weekly/mural.jpg"
+    },
+    {
+      "id": "issue-01",
+      "issue": "第 01 期",
+      "theme": "古木參天的靜謐祈願：全球神社與歷史寺廟巡禮",
+      "date": "2026-08-22 ~ 2026-08-28",
+      "category": "culture",
+      "categoryName": "⛩️ 宗教與歷史建築",
+      "description": "精選全球各具特色的神社鳥居、山間古寺與祈願石雕！從日本箱根蘆之湖水中鳥居、京都石階古寺到台灣香火鼎盛的歷史廟宇，收錄 10 處蘑菇戰鬥點與 10 處巨型大花點。",
+      "region": "亞洲精選 (日本 / 台灣 / 韓國)",
+      "socialShareDraft": "【GeoSim 每周精選 第 01 期 🌟 古木參天的靜謐祈願：全球神社與歷史寺廟巡禮】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球【古木參天的靜謐祈願：全球神社與歷史寺廟巡禮】主題座標！🍄 10 處蘑菇 + 🌸 10 處大花點已全部上線！\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/issue-01\n#PikminBloom #皮克敏 #GeoSim #每週精選",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "穆索聖尤菲米亞小教堂",
+          "city": "精選座標",
+          "location": "穆索聖尤菲米亞小教堂",
+          "lat": 46.118806,
+          "lng": 9.278723,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-01.jpg"
+        },
+        {
+          "id": "spot-02",
+          "name": "二見浦夫婦岩鳥居",
+          "city": "精選座標",
+          "location": "二見浦夫婦岩鳥居",
+          "lat": 33.639499,
+          "lng": 130.197043,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-02.jpg"
+        },
+        {
+          "id": "spot-03",
+          "name": "神山一乘寺",
+          "city": "精選座標",
+          "location": "神山一乘寺",
+          "lat": 34.524365,
+          "lng": 136.56697,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-03.jpg"
+        },
+        {
+          "id": "spot-04",
+          "name": "清徳寺",
+          "city": "精選座標",
+          "location": "清徳寺",
+          "lat": 35.338594,
+          "lng": 134.343048,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-04.jpg"
+        },
+        {
+          "id": "spot-05",
+          "name": "嚴島神社大鳥居",
+          "city": "精選座標",
+          "location": "嚴島神社大鳥居",
+          "lat": 34.297269,
+          "lng": 132.31814,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-05.jpg"
+        },
+        {
+          "id": "spot-06",
+          "name": "一先宮",
+          "city": "精選座標",
+          "location": "一先宮",
+          "lat": 32.943743,
+          "lng": 130.476016,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-06.jpg"
+        },
+        {
+          "id": "spot-07",
+          "name": "法隆寺",
+          "city": "精選座標",
+          "location": "法隆寺",
+          "lat": 42.354014,
+          "lng": 142.354183,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-07.jpg"
+        },
+        {
+          "id": "spot-08",
+          "name": "秋田駒岳男岳山頂",
+          "city": "精選座標",
+          "location": "秋田駒岳男岳山頂",
+          "lat": 39.757273,
+          "lng": 140.79465,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-08.jpg"
+        },
+        {
+          "id": "spot-09",
+          "name": "阿菲亞神廟（希臘）",
+          "city": "精選座標",
+          "location": "阿菲亞神廟（希臘）",
+          "lat": 37.754422,
+          "lng": 23.53334,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-09.jpg"
+        },
+        {
+          "id": "spot-10",
+          "name": "白石龍神社",
+          "city": "精選座標",
+          "location": "白石龍神社",
+          "lat": 33.906701,
+          "lng": 132.709548,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-10.jpg"
+        },
+        {
+          "id": "spot-11",
+          "name": "琉璃光院",
+          "city": "精選座標",
+          "location": "琉璃光院",
+          "lat": 35.063663,
+          "lng": 135.808479,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-11.jpg"
+        },
+        {
+          "id": "spot-12",
+          "name": "泰國白廟（白龍寺）",
+          "city": "精選座標",
+          "location": "泰國白廟（白龍寺）",
+          "lat": 19.824184,
+          "lng": 99.763842,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-12.jpg"
+        },
+        {
+          "id": "spot-13",
+          "name": "紫陽花寺鐘撞堂",
+          "city": "精選座標",
+          "location": "紫陽花寺鐘撞堂",
+          "lat": 35.607864,
+          "lng": 139.577506,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-13.jpg"
+        },
+        {
+          "id": "spot-14",
+          "name": "富士淺間神社鳥居",
+          "city": "精選座標",
+          "location": "富士淺間神社鳥居",
+          "lat": 35.499407,
+          "lng": 138.800116,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-14.jpg"
+        },
+        {
+          "id": "spot-15",
+          "name": "稻荷神社 鳥居",
+          "city": "精選座標",
+          "location": "稻荷神社 鳥居",
+          "lat": 33.563719,
+          "lng": 131.368601,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-15.jpg"
+        },
+        {
+          "id": "spot-16",
+          "name": "框架藝術裝置",
+          "city": "精選座標",
+          "location": "框架藝術裝置",
+          "lat": 24.437105,
+          "lng": 39.61611,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-16.jpg"
+        },
+        {
+          "id": "spot-17",
+          "name": "日枝神社",
+          "city": "精選座標",
+          "location": "日枝神社",
+          "lat": 35.101205,
+          "lng": 138.868857,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-17.jpg"
+        },
+        {
+          "id": "spot-18",
+          "name": "白鬚神社",
+          "city": "精選座標",
+          "location": "白鬚神社",
+          "lat": 35.72529058069567,
+          "lng": 139.8132824152708,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-18.jpg"
+        },
+        {
+          "id": "spot-19",
+          "name": "圓通寺",
+          "city": "精選座標",
+          "location": "圓通寺",
+          "lat": 35.502876,
+          "lng": 138.767754,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-19.jpg"
+        },
+        {
+          "id": "spot-20",
+          "name": "靈山寺",
+          "city": "精選座標",
+          "location": "靈山寺",
+          "lat": 35.093867,
+          "lng": 138.870541,
+          "region": "global",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "特色景點",
+          "recommendedSpeed": "4.5 km/h",
+          "image": "/images/postcards/shrine/spot-20.jpg"
+        }
+      ],
+      "coverImage": "/images/weekly/shrine.jpg"
+    },
+    {
+      "issue": "特別企劃",
+      "theme": "走進吉卜力之森！全球龍貓與貓巴士明信片特輯",
+      "date": "2026-08-31 ~ 2026-09-06",
+      "description": "本周為各位皮克敏漫遊玩家精選 10 處全球最受喜愛的「吉卜力龍貓」主題明信片！涵蓋台中貓巴士、愛知吉卜力公園、東京官方認證龍貓泡芙、宜蘭童趣站牌到法國海港馬賽克。附真實經緯度、打卡微故事與社群一鍵發文文案！",
+      "region": "全球精選 (台灣 / 日本 / 法國)",
+      "threadsUrl": "https://www.threads.net/share/BAA6uCXTd5/",
+      "socialShareDraft": "【GeoSim 每周精選 特別企劃 🌿 走進吉卜力之森！】\n\n皮友們這周明信片收齊了嗎？本期為大家搜羅全球超稀有「龍貓與貓巴士」主題座標！✨\n\n🏆 精選亮點：\n1️⃣ 台中 LaLaport 橡子共和國「毛茸茸巨型貓巴士」🚌\n2️⃣ 日本愛知 名古屋「超神剪裁！龍貓樹籬綠雕」🌲\n3️⃣ 東京三鷹 白髭泡芙工房「全日唯一宮崎駿認證龍貓泡芙」🥯\n4️⃣ 宜蘭復興社區「下雨等公車童趣彩繪」🎨\n5️⃣ 日本愛知 吉卜力公園「どんぐり堂 5m橡子龍貓遊具」🪵\n6️⃣ 法國海港 Brest「浪漫 Totoro 馬賽克磁磚」🇫🇷\n\n💡 搭配 GeoSim 虛擬漫步，在家也能把稀有吉卜力明信片送給好友！\n\n📍 完整 10 大座標與明信片美照 👉 https://kairosvector.com/geosim/weekly-featured/special-totoro\n\n#PikminBloom #皮克敏 #龍貓 #吉卜力 #貓巴士 #Pikmin明信片 #GeoSim #虛擬漫步",
+      "spots": [
+        {
+          "id": "spot-01",
+          "name": "巨型貓巴士 (橡子共和國)",
+          "city": "台灣台中市東區",
+          "location": "三井 LaLaport 3F 橡子共和國門口",
+          "lat": 24.13517,
+          "lng": 120.691631,
+          "region": "tw",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "官方造景",
+          "image": "/images/postcards/totoro/tw_taichung_catbus.jpg",
+          "story": "全台皮友必備的頂級明信片！三井 LaLaport 門口的等身大毛茸茸貓巴士，車牌標示著「台中」，笑容超具療癒感。配上繽紛大花貼紙，無論送禮或自留都是五星級收藏。",
+          "recommendedSpeed": "4.0 km/h"
+        },
+        {
+          "id": "spot-02",
+          "name": "山田地區會館 龍貓樹籬綠雕",
+          "city": "日本愛知縣名古屋市",
+          "location": "山田地區會館正門旁",
+          "lat": 35.221646,
+          "lng": 136.884999,
+          "region": "jp",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "園藝奇景",
+          "image": "/images/postcards/totoro/jp_nagoya_topiary.jpg",
+          "story": "名古屋當地居民親手修剪維護的「巨大樹籬龍貓」！圓滾滾的綠油油身軀配上兩顆呆萌大白眼，守護在活動中心前。在此打蘑菇時，皮克敏爬上龍貓圓肚的戰鬥畫面超級生動！",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-03",
+          "name": "吉卜力公園 どんぐり堂 (橡子堂遊具)",
+          "city": "日本愛知縣長久手市",
+          "location": "愛・地球博記念公園 (吉卜力之森)",
+          "lat": 35.169715,
+          "lng": 137.093622,
+          "region": "jp",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "主題樂園",
+          "image": "/images/postcards/totoro/jp_aichi_ghiblipark.jpg",
+          "story": "吉卜力公園正統血統！坐落於吉卜力之森後山、高達 5 公尺的巨大木製龍貓遊具。此處是全球吉卜力迷與皮克敏玩家一生必去朝聖的殿堂級蘑菇戰場！",
+          "recommendedSpeed": "5.0 km/h"
+        },
+        {
+          "id": "spot-04",
+          "name": "白髭泡芙工房 (龍貓泡芙專賣店)",
+          "city": "日本東京都武藏野市",
+          "location": "吉祥寺 / 三鷹周邊",
+          "lat": 35.701476,
+          "lng": 139.582618,
+          "region": "jp",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "美食地標",
+          "image": "/images/postcards/totoro/jp_tokyo_creampuff.jpg",
+          "story": "宮崎駿導演親戚經營、全日本唯一由宮崎駿官方正式認可的「龍貓泡芙工房」！原木招牌雕刻著頭戴草帽的小龍貓，每次寄送這張明信片，好友群都會瘋狂追問「這是哪裡！」",
+          "recommendedSpeed": "4.2 km/h"
+        },
+        {
+          "id": "spot-05",
+          "name": "復興社區 龍貓公車站壁畫",
+          "city": "台灣宜蘭縣宜蘭市",
+          "location": "復興社區發展協會旁巷弄",
+          "lat": 24.74792,
+          "lng": 121.752459,
+          "region": "tw",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "社區彩繪",
+          "image": "/images/postcards/totoro/tw_yilan_busstation.jpg",
+          "story": "宜蘭市復興社區的童趣之作，與台南大內、嘉義新港並列台灣三大龍貓彩繪聚落。明信片中配上淡淡粉白花朵邊框，散發出漫步在純樸宜蘭鄉間的悠閒氣息。",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-06",
+          "name": "龍貓等公車 彩繪壁畫",
+          "city": "台灣台中市梧棲區",
+          "location": "永寧里永興路巷內",
+          "lat": 24.225374,
+          "lng": 120.534713,
+          "region": "tw",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "社區彩繪",
+          "image": "/images/postcards/totoro/tw_taichung_rainbus.jpg",
+          "story": "最經典的「下雨天撐傘等公車」名場面！除了大龍貓露出白牙咧嘴笑，腳邊還有藍龍貓、黃龍貓與滿滿灰塵精靈。下雨天派雨傘葉子皮克敏前往打菇氣氛滿分！",
+          "recommendedSpeed": "4.5 km/h"
+        },
+        {
+          "id": "spot-07",
+          "name": "Brest 龍貓馬賽克磁磚 (Totoro en Mosaïque)",
+          "city": "法國布列塔尼",
+          "location": "菲尼斯泰爾省 Brest 街頭",
+          "lat": 48.382801,
+          "lng": -4.538353,
+          "region": "global",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "街頭藝術",
+          "image": "/images/postcards/totoro/fr_brest_mosaic.jpg",
+          "story": "誰說龍貓只出現在亞洲？位於法國西海岸大西洋港城 Brest 街角，藝術家巧手用馬賽克磁磚拼貼出俏皮龍貓。濃濃歐系街景搭上吉卜力靈魂，明信片辨識度突破天際！",
+          "recommendedSpeed": "5.5 km/h"
+        },
+        {
+          "id": "spot-08",
+          "name": "吉卜力的龍貓 (光復大華村彩繪)",
+          "city": "台灣花蓮縣光復鄉",
+          "location": "大華村貨櫃屋牆面",
+          "lat": 23.671687,
+          "lng": 121.423708,
+          "region": "tw",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "花東秘境",
+          "image": "/images/postcards/totoro/tw_hualien_totoro.jpg",
+          "story": "隱身在花東縱谷田野間的貨櫃屋手繪龍貓！純樸白底搭配黑線輪廓，頂著兩隻迷你小龍貓。明信片搭配亮彩糖果郵票與粉紅小菊花，滿滿田園風情！",
+          "recommendedSpeed": "4.8 km/h"
+        },
+        {
+          "id": "spot-09",
+          "name": "道の駅豊平 龍貓石像",
+          "city": "日本廣島縣北廣島町",
+          "location": "道の駅豊平 入口處",
+          "lat": 34.646815,
+          "lng": 132.44468,
+          "region": "jp",
+          "type": "mushroom",
+          "typeName": "蘑菇戰鬥點",
+          "tag": "公路驛站",
+          "image": "/images/postcards/totoro/jp_hiroshima_statue.jpg",
+          "story": "公路休息站門口的巨大立體龍貓石雕像！肚子被旅人們撫摸得圓潤光亮，雙手抱肚在廣島群山環繞間默默守護來往駕駛與皮克敏散步旅人。",
+          "recommendedSpeed": "5.2 km/h"
+        },
+        {
+          "id": "spot-10",
+          "name": "龍貓與快樂小夥伴 社區彩繪",
+          "city": "台灣高雄市鼓山區",
+          "location": "建國里 84 巷大型壁畫",
+          "lat": 22.657664,
+          "lng": 120.2758,
+          "region": "tw",
+          "type": "flower",
+          "typeName": "巨型大花點",
+          "tag": "社區彩繪",
+          "image": "/images/postcards/totoro/tw_kaohsiung_friends.jpg",
+          "story": "高雄陽光巷弄裡的大型壁畫！龍貓露齒燦笑與繽紛植物交織，色彩飽和明亮。南部好天氣拍出的明信片光線極佳，在朋友明信片簿裡永遠是最亮眼的一張！",
+          "recommendedSpeed": "4.5 km/h"
+        }
+      ],
+      "id": "special-totoro",
+      "category": "anime",
+      "categoryName": "🌿 動漫與吉卜力",
+      "coverImage": "/images/postcards/totoro/tw_taichung_catbus.jpg",
+      "lineShareDraft": "嗨皮友們！這期 GeoSim 整理了 10 個超可愛的「龍貓與貓巴士」明信片座標（有台中 LaLaport 巨大貓巴士、愛知吉卜力公園、東京白髭龍貓泡芙）！在家開漫步就能打菇寄給好友，完整 10 大座標與照片看這裡 👉 https://kairosvector.com/geosim/weekly-featured/special-totoro"
+    }
+  ],
+  "countries": [
+    {
+      "id": "all",
+      "name": "全部國家"
+    },
+    {
+      "id": "tw",
+      "name": "台灣 (Taiwan)"
+    },
+    {
+      "id": "jp",
+      "name": "日本 (Japan)"
+    },
+    {
+      "id": "us",
+      "name": "美國 (USA)"
+    },
+    {
+      "id": "uk",
+      "name": "英國 (UK)"
+    },
+    {
+      "id": "fr",
+      "name": "法國 (France)"
+    },
+    {
+      "id": "au",
+      "name": "澳洲 (Australia)"
+    }
+  ],
+  "cities": [
+    {
+      "id": "all",
+      "countryId": "all",
+      "name": "全部縣市"
+    },
+    {
+      "id": "taipei",
+      "countryId": "tw",
+      "name": "台北市"
+    },
+    {
+      "id": "newtaipei",
+      "countryId": "tw",
+      "name": "新北市"
+    },
+    {
+      "id": "taichung",
+      "countryId": "tw",
+      "name": "台中市"
+    },
+    {
+      "id": "kaohsiung",
+      "countryId": "tw",
+      "name": "高雄市"
+    },
+    {
+      "id": "tokyo",
+      "countryId": "jp",
+      "name": "東京都"
+    },
+    {
+      "id": "osaka",
+      "countryId": "jp",
+      "name": "大阪府"
+    },
+    {
+      "id": "kyoto",
+      "countryId": "jp",
+      "name": "京都府"
+    },
+    {
+      "id": "newyork",
+      "countryId": "us",
+      "name": "紐約市"
+    },
+    {
+      "id": "sanfrancisco",
+      "countryId": "us",
+      "name": "舊金山"
+    },
+    {
+      "id": "london",
+      "countryId": "uk",
+      "name": "倫敦"
+    },
+    {
+      "id": "paris",
+      "countryId": "fr",
+      "name": "巴黎"
+    },
+    {
+      "id": "sydney",
+      "countryId": "au",
+      "name": "雪梨"
+    },
+    {
+      "id": "akita",
+      "countryId": "jp",
+      "name": "秋田"
+    },
+    {
+      "id": "aomori",
+      "countryId": "jp",
+      "name": "青森"
+    },
+    {
+      "id": "changhua",
+      "countryId": "tw",
+      "name": "彰化縣"
+    },
+    {
+      "id": "chiayi",
+      "countryId": "tw",
+      "name": "嘉義市"
+    },
+    {
+      "id": "chiayi_county",
+      "countryId": "tw",
+      "name": "嘉義縣"
+    },
+    {
+      "id": "fukushima",
+      "countryId": "jp",
+      "name": "福島"
+    },
+    {
+      "id": "hokkaido",
+      "countryId": "jp",
+      "name": "北海道"
+    },
+    {
+      "id": "hsinchu",
+      "countryId": "tw",
+      "name": "新竹市"
+    },
+    {
+      "id": "hsinchu_county",
+      "countryId": "tw",
+      "name": "新竹縣"
+    },
+    {
+      "id": "hualien",
+      "countryId": "tw",
+      "name": "花蓮縣"
+    },
+    {
+      "id": "keelung",
+      "countryId": "tw",
+      "name": "基隆市"
+    },
+    {
+      "id": "kinmen",
+      "countryId": "tw",
+      "name": "金門縣"
+    },
+    {
+      "id": "miaoli",
+      "countryId": "tw",
+      "name": "苗栗縣"
+    },
+    {
+      "id": "nagoya",
+      "countryId": "jp",
+      "name": "名古屋"
+    },
+    {
+      "id": "nantou",
+      "countryId": "tw",
+      "name": "南投縣"
+    },
+    {
+      "id": "niigata",
+      "countryId": "jp",
+      "name": "新潟"
+    },
+    {
+      "id": "okinawa",
+      "countryId": "jp",
+      "name": "沖繩"
+    },
+    {
+      "id": "penghu",
+      "countryId": "tw",
+      "name": "澎湖縣"
+    },
+    {
+      "id": "pingtung",
+      "countryId": "tw",
+      "name": "屏東縣"
+    },
+    {
+      "id": "shiga",
+      "countryId": "jp",
+      "name": "滋賀"
+    },
+    {
+      "id": "tainan",
+      "countryId": "tw",
+      "name": "台南市"
+    },
+    {
+      "id": "taitung",
+      "countryId": "tw",
+      "name": "台東縣"
+    },
+    {
+      "id": "taoyuan",
+      "countryId": "tw",
+      "name": "桃園市"
+    },
+    {
+      "id": "toyama",
+      "countryId": "jp",
+      "name": "富山"
+    },
+    {
+      "id": "yilan",
+      "countryId": "tw",
+      "name": "宜蘭縣"
+    },
+    {
+      "id": "yokohama",
+      "countryId": "jp",
+      "name": "橫濱"
+    },
+    {
+      "id": "yunlin",
+      "countryId": "tw",
+      "name": "雲林縣"
+    }
+  ],
+  "districts": [
+    {
+      "id": "all",
+      "cityId": "all",
+      "name": "全部行政區"
+    },
+    {
+      "id": "daan",
+      "cityId": "taipei",
+      "name": "大安區"
+    },
+    {
+      "id": "xinyi",
+      "cityId": "taipei",
+      "name": "信義區"
+    },
+    {
+      "id": "zhongzheng",
+      "cityId": "taipei",
+      "name": "中正區"
+    },
+    {
+      "id": "shinjuku",
+      "cityId": "tokyo",
+      "name": "新宿區"
+    },
+    {
+      "id": "shibuya",
+      "cityId": "tokyo",
+      "name": "澀谷區"
+    },
+    {
+      "id": "chiyoda",
+      "cityId": "tokyo",
+      "name": "千代田區"
+    },
+    {
+      "id": "manhattan",
+      "cityId": "newyork",
+      "name": "曼哈頓區"
+    },
+    {
+      "id": "westminster",
+      "cityId": "london",
+      "name": "西敏市"
+    },
+    {
+      "id": "changhua-d002",
+      "cityId": "changhua",
+      "name": "三民里"
+    },
+    {
+      "id": "changhua-d006",
+      "cityId": "changhua",
+      "name": "仁愛里"
+    },
+    {
+      "id": "changhua-d013",
+      "cityId": "changhua",
+      "name": "介壽里"
+    },
+    {
+      "id": "changhua-d015",
+      "cityId": "changhua",
+      "name": "全興村"
+    },
+    {
+      "id": "changhua-d008",
+      "cityId": "changhua",
+      "name": "南平里"
+    },
+    {
+      "id": "changhua-d016",
+      "cityId": "changhua",
+      "name": "和東里"
+    },
+    {
+      "id": "changhua-d014",
+      "cityId": "changhua",
+      "name": "太平里"
+    },
+    {
+      "id": "changhua-d012",
+      "cityId": "changhua",
+      "name": "安東村"
+    },
+    {
+      "id": "changhua-d003",
+      "cityId": "changhua",
+      "name": "曾厝村"
+    },
+    {
+      "id": "changhua-d005",
+      "cityId": "changhua",
+      "name": "番婆村"
+    },
+    {
+      "id": "changhua-d009",
+      "cityId": "changhua",
+      "name": "社頭村"
+    },
+    {
+      "id": "changhua-d011",
+      "cityId": "changhua",
+      "name": "花壇村"
+    },
+    {
+      "id": "changhua-d004",
+      "cityId": "changhua",
+      "name": "茄南里"
+    },
+    {
+      "id": "changhua-d001",
+      "cityId": "changhua",
+      "name": "莊雅村"
+    },
+    {
+      "id": "changhua-d007",
+      "cityId": "changhua",
+      "name": "西興里"
+    },
+    {
+      "id": "changhua-d010",
+      "cityId": "changhua",
+      "name": "頂庄村"
+    },
+    {
+      "id": "chiayi-d003",
+      "cityId": "chiayi",
+      "name": "太平里"
+    },
+    {
+      "id": "chiayi-d002",
+      "cityId": "chiayi",
+      "name": "東區"
+    },
+    {
+      "id": "chiayi-d001",
+      "cityId": "chiayi",
+      "name": "西區"
+    },
+    {
+      "id": "chiayi_county-d004",
+      "cityId": "chiayi_county",
+      "name": "中埔鄉"
+    },
+    {
+      "id": "chiayi_county-d001",
+      "cityId": "chiayi_county",
+      "name": "北斗村"
+    },
+    {
+      "id": "chiayi_county-d002",
+      "cityId": "chiayi_county",
+      "name": "坪頂村"
+    },
+    {
+      "id": "chiayi_county-d013",
+      "cityId": "chiayi_county",
+      "name": "文隆村"
+    },
+    {
+      "id": "chiayi_county-d010",
+      "cityId": "chiayi_county",
+      "name": "柳林村"
+    },
+    {
+      "id": "chiayi_county-d012",
+      "cityId": "chiayi_county",
+      "name": "溪東村"
+    },
+    {
+      "id": "chiayi_county-d009",
+      "cityId": "chiayi_county",
+      "name": "溪西村"
+    },
+    {
+      "id": "chiayi_county-d003",
+      "cityId": "chiayi_county",
+      "name": "福樂村"
+    },
+    {
+      "id": "chiayi_county-d005",
+      "cityId": "chiayi_county",
+      "name": "竹圍里"
+    },
+    {
+      "id": "chiayi_county-d006",
+      "cityId": "chiayi_county",
+      "name": "蒜頭村"
+    },
+    {
+      "id": "chiayi_county-d008",
+      "cityId": "chiayi_county",
+      "name": "西安村"
+    },
+    {
+      "id": "chiayi_county-d007",
+      "cityId": "chiayi_county",
+      "name": "豊稠村"
+    },
+    {
+      "id": "chiayi_county-d011",
+      "cityId": "chiayi_county",
+      "name": "頂崙村"
+    },
+    {
+      "id": "hsinchu-d001",
+      "cityId": "hsinchu",
+      "name": "北區"
+    },
+    {
+      "id": "hsinchu-d002",
+      "cityId": "hsinchu",
+      "name": "東區"
+    },
+    {
+      "id": "hsinchu_county-d004",
+      "cityId": "hsinchu_county",
+      "name": "北埔鄉"
+    },
+    {
+      "id": "hsinchu_county-d003",
+      "cityId": "hsinchu_county",
+      "name": "湖口鄉"
+    },
+    {
+      "id": "hsinchu_county-d005",
+      "cityId": "hsinchu_county",
+      "name": "竹北市"
+    },
+    {
+      "id": "hsinchu_county-d001",
+      "cityId": "hsinchu_county",
+      "name": "竹東鎮"
+    },
+    {
+      "id": "hsinchu_county-d002",
+      "cityId": "hsinchu_county",
+      "name": "關西鎮"
+    },
+    {
+      "id": "hualien-d004",
+      "cityId": "hualien",
+      "name": "國慶里"
+    },
+    {
+      "id": "hualien-d001",
+      "cityId": "hualien",
+      "name": "大漢村"
+    },
+    {
+      "id": "hualien-d002",
+      "cityId": "hualien",
+      "name": "民心里"
+    },
+    {
+      "id": "hualien-d005",
+      "cityId": "hualien",
+      "name": "民族里"
+    },
+    {
+      "id": "hualien-d003",
+      "cityId": "hualien",
+      "name": "民立里"
+    },
+    {
+      "id": "kaohsiung-d014",
+      "cityId": "kaohsiung",
+      "name": "三民區"
+    },
+    {
+      "id": "kaohsiung-d016",
+      "cityId": "kaohsiung",
+      "name": "仁慈里"
+    },
+    {
+      "id": "kaohsiung-d004",
+      "cityId": "kaohsiung",
+      "name": "仁武區"
+    },
+    {
+      "id": "kaohsiung-d023",
+      "cityId": "kaohsiung",
+      "name": "內門區"
+    },
+    {
+      "id": "kaohsiung-d015",
+      "cityId": "kaohsiung",
+      "name": "前金區"
+    },
+    {
+      "id": "kaohsiung-d017",
+      "cityId": "kaohsiung",
+      "name": "前鎮區"
+    },
+    {
+      "id": "kaohsiung-d024",
+      "cityId": "kaohsiung",
+      "name": "大樹區"
+    },
+    {
+      "id": "kaohsiung-d025",
+      "cityId": "kaohsiung",
+      "name": "大社區"
+    },
+    {
+      "id": "kaohsiung-d011",
+      "cityId": "kaohsiung",
+      "name": "寶泰里"
+    },
+    {
+      "id": "kaohsiung-d001",
+      "cityId": "kaohsiung",
+      "name": "岡山區"
+    },
+    {
+      "id": "kaohsiung-d020",
+      "cityId": "kaohsiung",
+      "name": "左營區"
+    },
+    {
+      "id": "kaohsiung-d026",
+      "cityId": "kaohsiung",
+      "name": "彌陀區"
+    },
+    {
+      "id": "kaohsiung-d006",
+      "cityId": "kaohsiung",
+      "name": "旗山區"
+    },
+    {
+      "id": "kaohsiung-d018",
+      "cityId": "kaohsiung",
+      "name": "東燕里"
+    },
+    {
+      "id": "kaohsiung-d002",
+      "cityId": "kaohsiung",
+      "name": "梓官區"
+    },
+    {
+      "id": "kaohsiung-d007",
+      "cityId": "kaohsiung",
+      "name": "楠梓區"
+    },
+    {
+      "id": "kaohsiung-d019",
+      "cityId": "kaohsiung",
+      "name": "橋頭區"
+    },
+    {
+      "id": "kaohsiung-d009",
+      "cityId": "kaohsiung",
+      "name": "湖內區"
+    },
+    {
+      "id": "kaohsiung-d021",
+      "cityId": "kaohsiung",
+      "name": "灣利里"
+    },
+    {
+      "id": "kaohsiung-d005",
+      "cityId": "kaohsiung",
+      "name": "燕巢區"
+    },
+    {
+      "id": "kaohsiung-d012",
+      "cityId": "kaohsiung",
+      "name": "福山里"
+    },
+    {
+      "id": "kaohsiung-d003",
+      "cityId": "kaohsiung",
+      "name": "美濃區"
+    },
+    {
+      "id": "kaohsiung-d010",
+      "cityId": "kaohsiung",
+      "name": "苓雅區"
+    },
+    {
+      "id": "kaohsiung-d013",
+      "cityId": "kaohsiung",
+      "name": "誠智里"
+    },
+    {
+      "id": "kaohsiung-d027",
+      "cityId": "kaohsiung",
+      "name": "路竹區"
+    },
+    {
+      "id": "kaohsiung-d008",
+      "cityId": "kaohsiung",
+      "name": "阿蓮區"
+    },
+    {
+      "id": "kaohsiung-d022",
+      "cityId": "kaohsiung",
+      "name": "龍水里"
+    },
+    {
+      "id": "keelung-d001",
+      "cityId": "keelung",
+      "name": "信義區"
+    },
+    {
+      "id": "kinmen-d003",
+      "cityId": "kinmen",
+      "name": "南門里"
+    },
+    {
+      "id": "kinmen-d004",
+      "cityId": "kinmen",
+      "name": "林湖村"
+    },
+    {
+      "id": "kinmen-d005",
+      "cityId": "kinmen",
+      "name": "汶沙里"
+    },
+    {
+      "id": "kinmen-d002",
+      "cityId": "kinmen",
+      "name": "西口村"
+    },
+    {
+      "id": "kinmen-d001",
+      "cityId": "kinmen",
+      "name": "西門里"
+    },
+    {
+      "id": "miaoli-d006",
+      "cityId": "miaoli",
+      "name": "仁愛里"
+    },
+    {
+      "id": "miaoli-d004",
+      "cityId": "miaoli",
+      "name": "嘉盛里"
+    },
+    {
+      "id": "miaoli-d001",
+      "cityId": "miaoli",
+      "name": "田心里"
+    },
+    {
+      "id": "miaoli-d003",
+      "cityId": "miaoli",
+      "name": "福麗里"
+    },
+    {
+      "id": "miaoli-d007",
+      "cityId": "miaoli",
+      "name": "苑南里"
+    },
+    {
+      "id": "miaoli-d002",
+      "cityId": "miaoli",
+      "name": "頭份市"
+    },
+    {
+      "id": "miaoli-d005",
+      "cityId": "miaoli",
+      "name": "高苗里"
+    },
+    {
+      "id": "nantou-d003",
+      "cityId": "nantou",
+      "name": "三和里"
+    },
+    {
+      "id": "nantou-d004",
+      "cityId": "nantou",
+      "name": "中山里"
+    },
+    {
+      "id": "nantou-d002",
+      "cityId": "nantou",
+      "name": "光明里"
+    },
+    {
+      "id": "nantou-d005",
+      "cityId": "nantou",
+      "name": "坪頂里"
+    },
+    {
+      "id": "nantou-d001",
+      "cityId": "nantou",
+      "name": "富寮里"
+    },
+    {
+      "id": "newtaipei-d003",
+      "cityId": "newtaipei",
+      "name": "三重區"
+    },
+    {
+      "id": "newtaipei-d012",
+      "cityId": "newtaipei",
+      "name": "中和區"
+    },
+    {
+      "id": "newtaipei-d011",
+      "cityId": "newtaipei",
+      "name": "中正里"
+    },
+    {
+      "id": "newtaipei-d009",
+      "cityId": "newtaipei",
+      "name": "嘉新里"
+    },
+    {
+      "id": "newtaipei-d007",
+      "cityId": "newtaipei",
+      "name": "土城區"
+    },
+    {
+      "id": "newtaipei-d005",
+      "cityId": "newtaipei",
+      "name": "宜安里"
+    },
+    {
+      "id": "newtaipei-d010",
+      "cityId": "newtaipei",
+      "name": "新店區"
+    },
+    {
+      "id": "newtaipei-d004",
+      "cityId": "newtaipei",
+      "name": "新莊區"
+    },
+    {
+      "id": "newtaipei-d002",
+      "cityId": "newtaipei",
+      "name": "板橋區"
+    },
+    {
+      "id": "newtaipei-d006",
+      "cityId": "newtaipei",
+      "name": "林口區"
+    },
+    {
+      "id": "newtaipei-d001",
+      "cityId": "newtaipei",
+      "name": "樹林區"
+    },
+    {
+      "id": "newtaipei-d008",
+      "cityId": "newtaipei",
+      "name": "汐止區"
+    },
+    {
+      "id": "penghu-d002",
+      "cityId": "penghu",
+      "name": "西文里"
+    },
+    {
+      "id": "penghu-d001",
+      "cityId": "penghu",
+      "name": "西溪村"
+    },
+    {
+      "id": "pingtung-d019",
+      "cityId": "pingtung",
+      "name": "三星里"
+    },
+    {
+      "id": "pingtung-d002",
+      "cityId": "pingtung",
+      "name": "上福村"
+    },
+    {
+      "id": "pingtung-d010",
+      "cityId": "pingtung",
+      "name": "中正里"
+    },
+    {
+      "id": "pingtung-d011",
+      "cityId": "pingtung",
+      "name": "仙吉村"
+    },
+    {
+      "id": "pingtung-d001",
+      "cityId": "pingtung",
+      "name": "信和里"
+    },
+    {
+      "id": "pingtung-d006",
+      "cityId": "pingtung",
+      "name": "六塊厝"
+    },
+    {
+      "id": "pingtung-d021",
+      "cityId": "pingtung",
+      "name": "前進里"
+    },
+    {
+      "id": "pingtung-d024",
+      "cityId": "pingtung",
+      "name": "四維村"
+    },
+    {
+      "id": "pingtung-d016",
+      "cityId": "pingtung",
+      "name": "城西里"
+    },
+    {
+      "id": "pingtung-d015",
+      "cityId": "pingtung",
+      "name": "大寮區"
+    },
+    {
+      "id": "pingtung-d012",
+      "cityId": "pingtung",
+      "name": "大武里"
+    },
+    {
+      "id": "pingtung-d022",
+      "cityId": "pingtung",
+      "name": "大洲里"
+    },
+    {
+      "id": "pingtung-d018",
+      "cityId": "pingtung",
+      "name": "屏東市"
+    },
+    {
+      "id": "pingtung-d008",
+      "cityId": "pingtung",
+      "name": "崙上村"
+    },
+    {
+      "id": "pingtung-d004",
+      "cityId": "pingtung",
+      "name": "廣興里"
+    },
+    {
+      "id": "pingtung-d017",
+      "cityId": "pingtung",
+      "name": "斯文里"
+    },
+    {
+      "id": "pingtung-d009",
+      "cityId": "pingtung",
+      "name": "新庄村"
+    },
+    {
+      "id": "pingtung-d007",
+      "cityId": "pingtung",
+      "name": "本福村"
+    },
+    {
+      "id": "pingtung-d005",
+      "cityId": "pingtung",
+      "name": "杉福村"
+    },
+    {
+      "id": "pingtung-d013",
+      "cityId": "pingtung",
+      "name": "東津里"
+    },
+    {
+      "id": "pingtung-d014",
+      "cityId": "pingtung",
+      "name": "林園區"
+    },
+    {
+      "id": "pingtung-d003",
+      "cityId": "pingtung",
+      "name": "潭墘"
+    },
+    {
+      "id": "pingtung-d020",
+      "cityId": "pingtung",
+      "name": "田中村"
+    },
+    {
+      "id": "pingtung-d023",
+      "cityId": "pingtung",
+      "name": "維新里"
+    },
+    {
+      "id": "pingtung-d026",
+      "cityId": "pingtung",
+      "name": "網紗里"
+    },
+    {
+      "id": "pingtung-d025",
+      "cityId": "pingtung",
+      "name": "長榮村"
+    },
+    {
+      "id": "taichung-d004",
+      "cityId": "taichung",
+      "name": "北屯區"
+    },
+    {
+      "id": "taichung-d007",
+      "cityId": "taichung",
+      "name": "南區"
+    },
+    {
+      "id": "taichung-d006",
+      "cityId": "taichung",
+      "name": "南屯區"
+    },
+    {
+      "id": "taichung-d009",
+      "cityId": "taichung",
+      "name": "大甲區"
+    },
+    {
+      "id": "taichung-d001",
+      "cityId": "taichung",
+      "name": "大雅區"
+    },
+    {
+      "id": "taichung-d011",
+      "cityId": "taichung",
+      "name": "太平區"
+    },
+    {
+      "id": "taichung-d014",
+      "cityId": "taichung",
+      "name": "東勢區"
+    },
+    {
+      "id": "taichung-d015",
+      "cityId": "taichung",
+      "name": "梧棲區"
+    },
+    {
+      "id": "taichung-d010",
+      "cityId": "taichung",
+      "name": "潭子區"
+    },
+    {
+      "id": "taichung-d012",
+      "cityId": "taichung",
+      "name": "石岡區"
+    },
+    {
+      "id": "taichung-d003",
+      "cityId": "taichung",
+      "name": "神岡區"
+    },
+    {
+      "id": "taichung-d005",
+      "cityId": "taichung",
+      "name": "西區"
+    },
+    {
+      "id": "taichung-d002",
+      "cityId": "taichung",
+      "name": "西屯區"
+    },
+    {
+      "id": "taichung-d008",
+      "cityId": "taichung",
+      "name": "豐原區"
+    },
+    {
+      "id": "taichung-d013",
+      "cityId": "taichung",
+      "name": "霧峰區"
+    },
+    {
+      "id": "tainan-d001",
+      "cityId": "tainan",
+      "name": "七甲里"
+    },
+    {
+      "id": "tainan-d038",
+      "cityId": "tainan",
+      "name": "三慶里"
+    },
+    {
+      "id": "tainan-d033",
+      "cityId": "tainan",
+      "name": "中西區"
+    },
+    {
+      "id": "tainan-d006",
+      "cityId": "tainan",
+      "name": "五王里"
+    },
+    {
+      "id": "tainan-d037",
+      "cityId": "tainan",
+      "name": "仁德里"
+    },
+    {
+      "id": "tainan-d026",
+      "cityId": "tainan",
+      "name": "佳興里"
+    },
+    {
+      "id": "tainan-d034",
+      "cityId": "tainan",
+      "name": "保安里"
+    },
+    {
+      "id": "tainan-d020",
+      "cityId": "tainan",
+      "name": "光文里"
+    },
+    {
+      "id": "tainan-d022",
+      "cityId": "tainan",
+      "name": "六安里"
+    },
+    {
+      "id": "tainan-d035",
+      "cityId": "tainan",
+      "name": "六甲里"
+    },
+    {
+      "id": "tainan-d007",
+      "cityId": "tainan",
+      "name": "北區"
+    },
+    {
+      "id": "tainan-d030",
+      "cityId": "tainan",
+      "name": "南保里"
+    },
+    {
+      "id": "tainan-d015",
+      "cityId": "tainan",
+      "name": "南勢里"
+    },
+    {
+      "id": "tainan-d013",
+      "cityId": "tainan",
+      "name": "南區"
+    },
+    {
+      "id": "tainan-d008",
+      "cityId": "tainan",
+      "name": "國安里"
+    },
+    {
+      "id": "tainan-d011",
+      "cityId": "tainan",
+      "name": "城北里"
+    },
+    {
+      "id": "tainan-d004",
+      "cityId": "tainan",
+      "name": "塩洲里"
+    },
+    {
+      "id": "tainan-d012",
+      "cityId": "tainan",
+      "name": "塩田里"
+    },
+    {
+      "id": "tainan-d036",
+      "cityId": "tainan",
+      "name": "大潭里"
+    },
+    {
+      "id": "tainan-d005",
+      "cityId": "tainan",
+      "name": "安平區"
+    },
+    {
+      "id": "tainan-d027",
+      "cityId": "tainan",
+      "name": "州南里"
+    },
+    {
+      "id": "tainan-d024",
+      "cityId": "tainan",
+      "name": "復國里"
+    },
+    {
+      "id": "tainan-d016",
+      "cityId": "tainan",
+      "name": "怡平里"
+    },
+    {
+      "id": "tainan-d014",
+      "cityId": "tainan",
+      "name": "新和里"
+    },
+    {
+      "id": "tainan-d010",
+      "cityId": "tainan",
+      "name": "新順里"
+    },
+    {
+      "id": "tainan-d018",
+      "cityId": "tainan",
+      "name": "明宜里"
+    },
+    {
+      "id": "tainan-d002",
+      "cityId": "tainan",
+      "name": "東區"
+    },
+    {
+      "id": "tainan-d019",
+      "cityId": "tainan",
+      "name": "東橋里"
+    },
+    {
+      "id": "tainan-d029",
+      "cityId": "tainan",
+      "name": "歸仁里"
+    },
+    {
+      "id": "tainan-d032",
+      "cityId": "tainan",
+      "name": "永就里"
+    },
+    {
+      "id": "tainan-d017",
+      "cityId": "tainan",
+      "name": "永康區"
+    },
+    {
+      "id": "tainan-d031",
+      "cityId": "tainan",
+      "name": "沙崙里"
+    },
+    {
+      "id": "tainan-d023",
+      "cityId": "tainan",
+      "name": "玉田里"
+    },
+    {
+      "id": "tainan-d009",
+      "cityId": "tainan",
+      "name": "理想里"
+    },
+    {
+      "id": "tainan-d028",
+      "cityId": "tainan",
+      "name": "白河里"
+    },
+    {
+      "id": "tainan-d025",
+      "cityId": "tainan",
+      "name": "礁坑里"
+    },
+    {
+      "id": "tainan-d021",
+      "cityId": "tainan",
+      "name": "竹新里"
+    },
+    {
+      "id": "tainan-d003",
+      "cityId": "tainan",
+      "name": "義中里"
+    },
+    {
+      "id": "taipei-d006",
+      "cityId": "taipei",
+      "name": "中正區"
+    },
+    {
+      "id": "taipei-d003",
+      "cityId": "taipei",
+      "name": "內湖區"
+    },
+    {
+      "id": "taipei-d007",
+      "cityId": "taipei",
+      "name": "南港區"
+    },
+    {
+      "id": "taipei-d005",
+      "cityId": "taipei",
+      "name": "士林區"
+    },
+    {
+      "id": "taipei-d002",
+      "cityId": "taipei",
+      "name": "大佳里"
+    },
+    {
+      "id": "taipei-d004",
+      "cityId": "taipei",
+      "name": "大同區"
+    },
+    {
+      "id": "taipei-d008",
+      "cityId": "taipei",
+      "name": "大安區"
+    },
+    {
+      "id": "taipei-d001",
+      "cityId": "taipei",
+      "name": "松山區"
+    },
+    {
+      "id": "taitung-d004",
+      "cityId": "taitung",
+      "name": "中福里"
+    },
+    {
+      "id": "taitung-d003",
+      "cityId": "taitung",
+      "name": "中華里"
+    },
+    {
+      "id": "taitung-d007",
+      "cityId": "taitung",
+      "name": "建農里"
+    },
+    {
+      "id": "taitung-d005",
+      "cityId": "taitung",
+      "name": "成功里"
+    },
+    {
+      "id": "taitung-d008",
+      "cityId": "taitung",
+      "name": "新興村"
+    },
+    {
+      "id": "taitung-d001",
+      "cityId": "taitung",
+      "name": "月眉里"
+    },
+    {
+      "id": "taitung-d006",
+      "cityId": "taitung",
+      "name": "民族里"
+    },
+    {
+      "id": "taitung-d002",
+      "cityId": "taitung",
+      "name": "豐盛里"
+    },
+    {
+      "id": "taoyuan-d005",
+      "cityId": "taoyuan",
+      "name": "三和里"
+    },
+    {
+      "id": "taoyuan-d016",
+      "cityId": "taoyuan",
+      "name": "三民里"
+    },
+    {
+      "id": "taoyuan-d021",
+      "cityId": "taoyuan",
+      "name": "三湖里"
+    },
+    {
+      "id": "taoyuan-d026",
+      "cityId": "taoyuan",
+      "name": "中壢區"
+    },
+    {
+      "id": "taoyuan-d019",
+      "cityId": "taoyuan",
+      "name": "中山里"
+    },
+    {
+      "id": "taoyuan-d015",
+      "cityId": "taoyuan",
+      "name": "仁善里"
+    },
+    {
+      "id": "taoyuan-d008",
+      "cityId": "taoyuan",
+      "name": "仁武里"
+    },
+    {
+      "id": "taoyuan-d013",
+      "cityId": "taoyuan",
+      "name": "健行里"
+    },
+    {
+      "id": "taoyuan-d007",
+      "cityId": "taoyuan",
+      "name": "北埔里"
+    },
+    {
+      "id": "taoyuan-d006",
+      "cityId": "taoyuan",
+      "name": "南門里"
+    },
+    {
+      "id": "taoyuan-d001",
+      "cityId": "taoyuan",
+      "name": "埔心里"
+    },
+    {
+      "id": "taoyuan-d028",
+      "cityId": "taoyuan",
+      "name": "大同里"
+    },
+    {
+      "id": "taoyuan-d002",
+      "cityId": "taoyuan",
+      "name": "宏竹里"
+    },
+    {
+      "id": "taoyuan-d010",
+      "cityId": "taoyuan",
+      "name": "寶山里"
+    },
+    {
+      "id": "taoyuan-d018",
+      "cityId": "taoyuan",
+      "name": "慈文里"
+    },
+    {
+      "id": "taoyuan-d009",
+      "cityId": "taoyuan",
+      "name": "會稽里"
+    },
+    {
+      "id": "taoyuan-d017",
+      "cityId": "taoyuan",
+      "name": "桃園區"
+    },
+    {
+      "id": "taoyuan-d025",
+      "cityId": "taoyuan",
+      "name": "樹林里"
+    },
+    {
+      "id": "taoyuan-d004",
+      "cityId": "taoyuan",
+      "name": "永安里"
+    },
+    {
+      "id": "taoyuan-d024",
+      "cityId": "taoyuan",
+      "name": "泰山里"
+    },
+    {
+      "id": "taoyuan-d023",
+      "cityId": "taoyuan",
+      "name": "瑞豐里"
+    },
+    {
+      "id": "taoyuan-d020",
+      "cityId": "taoyuan",
+      "name": "田心里"
+    },
+    {
+      "id": "taoyuan-d030",
+      "cityId": "taoyuan",
+      "name": "福興里"
+    },
+    {
+      "id": "taoyuan-d012",
+      "cityId": "taoyuan",
+      "name": "華陵里"
+    },
+    {
+      "id": "taoyuan-d003",
+      "cityId": "taoyuan",
+      "name": "蘆竹區"
+    },
+    {
+      "id": "taoyuan-d022",
+      "cityId": "taoyuan",
+      "name": "西門里"
+    },
+    {
+      "id": "taoyuan-d011",
+      "cityId": "taoyuan",
+      "name": "錦興里"
+    },
+    {
+      "id": "taoyuan-d027",
+      "cityId": "taoyuan",
+      "name": "長安里"
+    },
+    {
+      "id": "taoyuan-d029",
+      "cityId": "taoyuan",
+      "name": "龍安里"
+    },
+    {
+      "id": "taoyuan-d014",
+      "cityId": "taoyuan",
+      "name": "龍東里"
+    },
+    {
+      "id": "yilan-d003",
+      "cityId": "yilan",
+      "name": "南澳村"
+    },
+    {
+      "id": "yilan-d004",
+      "cityId": "yilan",
+      "name": "得安村"
+    },
+    {
+      "id": "yilan-d002",
+      "cityId": "yilan",
+      "name": "新城里"
+    },
+    {
+      "id": "yilan-d001",
+      "cityId": "yilan",
+      "name": "漢民里"
+    },
+    {
+      "id": "yilan-d005",
+      "cityId": "yilan",
+      "name": "負郭里"
+    },
+    {
+      "id": "yunlin-d007",
+      "cityId": "yunlin",
+      "name": "中和里"
+    },
+    {
+      "id": "yunlin-d003",
+      "cityId": "yunlin",
+      "name": "中溪里"
+    },
+    {
+      "id": "yunlin-d001",
+      "cityId": "yunlin",
+      "name": "保庄里"
+    },
+    {
+      "id": "yunlin-d004",
+      "cityId": "yunlin",
+      "name": "公正里"
+    },
+    {
+      "id": "yunlin-d008",
+      "cityId": "yunlin",
+      "name": "埔尾村"
+    },
+    {
+      "id": "yunlin-d006",
+      "cityId": "yunlin",
+      "name": "振興里"
+    },
+    {
+      "id": "yunlin-d002",
+      "cityId": "yunlin",
+      "name": "新光里"
+    },
+    {
+      "id": "yunlin-d009",
+      "cityId": "yunlin",
+      "name": "溪洲里"
+    },
+    {
+      "id": "yunlin-d005",
+      "cityId": "yunlin",
+      "name": "興南里"
+    }
+  ],
+  "spotCategories": [
+    {
+      "id": "university",
+      "name": "大學&學院",
+      "icon": "🎓"
+    },
+    {
+      "id": "hill",
+      "name": "山丘",
+      "icon": "⛰️"
+    },
+    {
+      "id": "hardware",
+      "name": "五金行",
+      "icon": "🔧"
+    },
+    {
+      "id": "bus",
+      "name": "公車站",
+      "icon": "🚏"
+    },
+    {
+      "id": "park",
+      "name": "公園",
+      "icon": "🌲"
+    },
+    {
+      "id": "cosmetics",
+      "name": "化妝品",
+      "icon": "💄"
+    },
+    {
+      "id": "stationery",
+      "name": "文具店",
+      "icon": "✏️"
+    },
+    {
+      "id": "waterside",
+      "name": "水邊",
+      "icon": "🌊"
+    },
+    {
+      "id": "themepark",
+      "name": "主題樂園",
+      "icon": "🎡"
+    },
+    {
+      "id": "laundry",
+      "name": "自助洗衣店&乾洗",
+      "icon": "🧺"
+    },
+    {
+      "id": "station",
+      "name": "車站",
+      "icon": "🚉"
+    },
+    {
+      "id": "curry",
+      "name": "咖哩",
+      "icon": "🍛"
+    },
+    {
+      "id": "cafe",
+      "name": "咖啡杯",
+      "icon": "☕"
+    },
+    {
+      "id": "ramen",
+      "name": "拉麵店",
+      "icon": "🍜"
+    },
+    {
+      "id": "apparel",
+      "name": "服裝店",
+      "icon": "👕"
+    },
+    {
+      "id": "convenience",
+      "name": "便利店",
+      "icon": "🏪"
+    },
+    {
+      "id": "salon",
+      "name": "美容院",
+      "icon": "💇"
+    },
+    {
+      "id": "museum",
+      "name": "美術館",
+      "icon": "🖼️"
+    },
+    {
+      "id": "beach",
+      "name": "海灘",
+      "icon": "🏖️"
+    },
+    {
+      "id": "shrine",
+      "name": "神社和寺廟",
+      "icon": "⛩️"
+    },
+    {
+      "id": "zoo",
+      "name": "動物園",
+      "icon": "🦒"
+    },
+    {
+      "id": "dessert",
+      "name": "甜點店",
+      "icon": "🍰"
+    },
+    {
+      "id": "forest",
+      "name": "森林",
+      "icon": "🌲"
+    },
+    {
+      "id": "supermarket",
+      "name": "超市",
+      "icon": "🛒"
+    },
+    {
+      "id": "postoffice",
+      "name": "郵局",
+      "icon": "📮"
+    },
+    {
+      "id": "hotel",
+      "name": "飯店",
+      "icon": "🏨"
+    },
+    {
+      "id": "italian",
+      "name": "義式餐廳",
+      "icon": "🍲"
+    },
+    {
+      "id": "roadside",
+      "name": "路邊",
+      "icon": "🛣️"
+    },
+    {
+      "id": "cinema",
+      "name": "電影院",
+      "icon": "🎬"
+    },
+    {
+      "id": "electronics",
+      "name": "電器行",
+      "icon": "💡"
+    },
+    {
+      "id": "library",
+      "name": "圖書館",
+      "icon": "📚"
+    },
+    {
+      "id": "sushi",
+      "name": "壽司",
+      "icon": "🍣"
+    },
+    {
+      "id": "burger",
+      "name": "漢堡",
+      "icon": "🍔"
+    },
+    {
+      "id": "mexican",
+      "name": "墨西哥餐廳",
+      "icon": "🌮"
+    },
+    {
+      "id": "bridge",
+      "name": "橋樑",
+      "icon": "🌉"
+    },
+    {
+      "id": "airport",
+      "name": "機場",
+      "icon": "✈️"
+    },
+    {
+      "id": "restaurant",
+      "name": "餐廳",
+      "icon": "🍴"
+    },
+    {
+      "id": "korean",
+      "name": "韓國餐廳",
+      "icon": "🥘"
+    },
+    {
+      "id": "pharmacy",
+      "name": "藥局",
+      "icon": "💊"
+    },
+    {
+      "id": "bakery",
+      "name": "麵包店",
+      "icon": "🥐"
+    },
+    {
+      "id": "gym",
+      "name": "體育館",
+      "icon": "🏋️"
+    }
+  ],
+  "spots": [
+    {
+      "id": "spot-1",
+      "name": "國立臺灣大學校總區",
+      "country": "tw",
+      "city": "taipei",
+      "district": "daan",
+      "category": "university",
+      "lat": 25.01734,
+      "lng": 121.539752,
+      "description": "林蔭大道廣闊，校園步道平緩適合各類路線模擬。"
+    },
+    {
+      "id": "spot-2",
+      "name": "台北大安森林公園",
+      "country": "tw",
+      "city": "taipei",
+      "district": "daan",
+      "category": "park",
+      "lat": 25.029864,
+      "lng": 121.535824,
+      "description": "環狀步道完備，適合設定圓形或多邊形慢跑路徑。"
+    },
+    {
+      "id": "spot-3",
+      "name": "象山親山步道六巨石",
+      "country": "tw",
+      "city": "taipei",
+      "district": "xinyi",
+      "category": "hill",
+      "lat": 25.027351,
+      "lng": 121.574632,
+      "description": "俯瞰信義都會天際線，自然山林地形景致。"
+    },
+    {
+      "id": "spot-4",
+      "name": "台北市立美術館",
+      "country": "tw",
+      "city": "taipei",
+      "district": "zhongzheng",
+      "category": "museum",
+      "lat": 25.07223,
+      "lng": 121.524734,
+      "description": "藝術地標與周邊花博公園綠地交會。"
+    },
+    {
+      "id": "spot-5",
+      "name": "台北 101 大樓購物中心",
+      "country": "tw",
+      "city": "taipei",
+      "district": "xinyi",
+      "category": "apparel",
+      "lat": 25.033964,
+      "lng": 121.564472,
+      "description": "信義商圈核心，匯聚各大品牌服飾與餐廳。"
+    },
+    {
+      "id": "spot-6",
+      "name": "東京車站丸之內",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "chiyoda",
+      "category": "station",
+      "lat": 35.681236,
+      "lng": 139.767125,
+      "description": "經典文藝復興式紅磚車站建築，交通大動脈。"
+    },
+    {
+      "id": "spot-7",
+      "name": "東京淺草寺雷門",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "chiyoda",
+      "category": "shrine",
+      "lat": 35.711059,
+      "lng": 139.796335,
+      "description": "東京最古老的寺廟，仲見世商店街散步體驗佳。"
+    },
+    {
+      "id": "spot-8",
+      "name": "澀谷忠犬八公十字路口",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "shibuya",
+      "category": "roadside",
+      "lat": 35.659124,
+      "lng": 139.700547,
+      "description": "全世界最繁忙的十字路口，周邊拉麵店與咖啡館林立。"
+    },
+    {
+      "id": "spot-9",
+      "name": "東京晴空塔 (Skytree)",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "chiyoda",
+      "category": "dessert",
+      "lat": 35.710063,
+      "lng": 139.8107,
+      "description": "世界最高的自立式電波塔，周邊 Solamachi 甜點店密集。"
+    },
+    {
+      "id": "spot-10",
+      "name": "一蘭拉麵新宿中央東口店",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "shinjuku",
+      "category": "ramen",
+      "lat": 35.690852,
+      "lng": 139.702741,
+      "description": "經典豚骨拉麵熱門座標點。"
+    },
+    {
+      "id": "spot-11",
+      "name": "築地場外市場壽司街",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "chiyoda",
+      "category": "sushi",
+      "lat": 35.665486,
+      "lng": 139.770667,
+      "description": "新鮮海產與老字號江戶前壽司店聚集地。"
+    },
+    {
+      "id": "spot-12",
+      "name": "紐約中央公園大草坪",
+      "country": "us",
+      "city": "newyork",
+      "district": "manhattan",
+      "category": "park",
+      "lat": 40.781224,
+      "lng": -73.966514,
+      "description": "曼哈頓綠洲，平坦開闊的長途巡航最佳地點。"
+    },
+    {
+      "id": "spot-13",
+      "name": "紐約大都會藝術博物館 (Met)",
+      "country": "us",
+      "city": "newyork",
+      "district": "manhattan",
+      "category": "museum",
+      "lat": 40.779437,
+      "lng": -73.963244,
+      "description": "世界頂級藝術殿堂，位於中央公園東側。"
+    },
+    {
+      "id": "spot-14",
+      "name": "紐約時代廣場 (Times Square)",
+      "country": "us",
+      "city": "newyork",
+      "district": "manhattan",
+      "category": "cinema",
+      "lat": 40.758896,
+      "lng": -73.98513,
+      "description": "百老匯劇院區與世界娛樂地標中心。"
+    },
+    {
+      "id": "spot-15",
+      "name": "舊金山金門大橋",
+      "country": "us",
+      "city": "sanfrancisco",
+      "district": "all",
+      "category": "bridge",
+      "lat": 37.819929,
+      "lng": -122.478255,
+      "description": "世界著名懸索橋，跨海筆直路線模擬首選。"
+    },
+    {
+      "id": "spot-16",
+      "name": "倫敦大英博物館與羅素廣場",
+      "country": "uk",
+      "city": "london",
+      "district": "westminster",
+      "category": "museum",
+      "lat": 51.519413,
+      "lng": -0.126956,
+      "description": "歷史街區與綠地交織，文化地標。"
+    },
+    {
+      "id": "spot-17",
+      "name": "倫敦西敏寺與大笨鐘",
+      "country": "uk",
+      "city": "london",
+      "district": "westminster",
+      "category": "shrine",
+      "lat": 51.499479,
+      "lng": -0.127305,
+      "description": "泰晤士河畔英國千年王室歷史建築。"
+    },
+    {
+      "id": "spot-18",
+      "name": "倫敦希斯洛國際機場 (LHR)",
+      "country": "uk",
+      "city": "london",
+      "district": "westminster",
+      "category": "airport",
+      "lat": 51.47002,
+      "lng": -0.454295,
+      "description": "全球最繁忙的國際航空樞紐之一。"
+    },
+    {
+      "id": "spot-19",
+      "name": "巴黎艾菲爾鐵塔戰神廣場",
+      "country": "fr",
+      "city": "paris",
+      "district": "all",
+      "category": "landmark",
+      "lat": 48.855639,
+      "lng": 2.298631,
+      "description": "開闊的景觀大道，各方向自由漫遊。"
+    },
+    {
+      "id": "spot-20",
+      "name": "巴黎羅浮宮玻璃金字塔",
+      "country": "fr",
+      "city": "paris",
+      "district": "all",
+      "category": "museum",
+      "lat": 48.860611,
+      "lng": 2.337644,
+      "description": "塞納河右岸世界三大博物館之一。"
+    },
+    {
+      "id": "spot-21",
+      "name": "雪梨歌劇院與皇家植物園",
+      "country": "au",
+      "city": "sydney",
+      "district": "all",
+      "category": "waterside",
+      "lat": -33.856784,
+      "lng": 151.215297,
+      "description": "臨海環狀步道，適合測試曲面路線模擬。"
+    },
+    {
+      "id": "spot-22",
+      "name": "雪梨曼利海灘 (Manly Beach)",
+      "country": "au",
+      "city": "sydney",
+      "district": "all",
+      "category": "beach",
+      "lat": -33.79685,
+      "lng": 151.28841,
+      "description": "金黃色沙灘與海濱長廊，衝浪與度假聖地。"
+    },
+    {
+      "id": "pure-airport-01",
+      "name": "桃機一航廈一號停車場",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d001",
+      "category": "airport",
+      "lat": 25.083131,
+      "lng": 121.238149,
+      "description": "【機場】桃機一航廈一號停車場，位於桃園市 / 埔心里。"
+    },
+    {
+      "id": "pure-airport-02",
+      "name": "西溪202路段",
+      "country": "tw",
+      "city": "penghu",
+      "district": "penghu-d001",
+      "category": "airport",
+      "lat": 23.584187,
+      "lng": 119.635551,
+      "description": "【機場】西溪202路段，位於澎湖縣 / 西溪村。"
+    },
+    {
+      "id": "pure-airport-03",
+      "name": "桃園機場",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d001",
+      "category": "airport",
+      "lat": 25.085595,
+      "lng": 121.243784,
+      "description": "【機場】桃園機場，位於桃園市 / 埔心里。"
+    },
+    {
+      "id": "pure-airport-04",
+      "name": "致遠路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d001",
+      "category": "airport",
+      "lat": 22.793487,
+      "lng": 120.25841,
+      "description": "【機場】致遠路，位於高雄市 / 岡山區。"
+    },
+    {
+      "id": "pure-airport-05",
+      "name": "海軍桃園基地(已廢)",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d002",
+      "category": "airport",
+      "lat": 25.04673,
+      "lng": 121.24788,
+      "description": "【機場】海軍桃園基地(已廢)，位於桃園市 / 宏竹里。"
+    },
+    {
+      "id": "pure-airport-06",
+      "name": "軍營往七星潭",
+      "country": "tw",
+      "city": "hualien",
+      "district": "hualien-d001",
+      "category": "airport",
+      "lat": 24.039701,
+      "lng": 121.621317,
+      "description": "【機場】軍營往七星潭，位於花蓮縣 / 大漢村。"
+    },
+    {
+      "id": "pure-airport-07",
+      "name": "屏東市往九如路邊機場純點",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d001",
+      "category": "airport",
+      "lat": 22.706348,
+      "lng": 120.490937,
+      "description": "【機場】屏東市往九如路邊機場純點，位於屏東縣 / 信和里。"
+    },
+    {
+      "id": "pure-airport-08",
+      "name": "新竹空軍基地",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d001",
+      "category": "airport",
+      "lat": 24.821391,
+      "lng": 120.952048,
+      "description": "【機場】新竹空軍基地，位於新竹市 / 北區。"
+    },
+    {
+      "id": "pure-airport-09",
+      "name": "小琉球機場舊跑道",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d002",
+      "category": "airport",
+      "lat": 22.34992,
+      "lng": 120.37591,
+      "description": "【機場】小琉球機場舊跑道，位於屏東縣 / 上福村。"
+    },
+    {
+      "id": "pure-airport-10",
+      "name": "環河路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d003",
+      "category": "airport",
+      "lat": 22.670752,
+      "lng": 120.446276,
+      "description": "【機場】環河路，位於屏東縣 / 潭墘。"
+    },
+    {
+      "id": "pure-airport-11",
+      "name": "古松巷",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d004",
+      "category": "airport",
+      "lat": 22.69643,
+      "lng": 120.47875,
+      "description": "【機場】古松巷，位於屏東縣 / 廣興里。"
+    },
+    {
+      "id": "pure-airport-12",
+      "name": "屏南機場",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d003",
+      "category": "airport",
+      "lat": 22.67826,
+      "lng": 120.46196,
+      "description": "【機場】屏南機場，位於屏東縣 / 潭墘。"
+    },
+    {
+      "id": "pure-airport-13",
+      "name": "復興路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d005",
+      "category": "airport",
+      "lat": 22.350093,
+      "lng": 120.373125,
+      "description": "【機場】復興路，位於屏東縣 / 杉福村。"
+    },
+    {
+      "id": "pure-airport-14",
+      "name": "新屏42",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d006",
+      "category": "airport",
+      "lat": 22.668461,
+      "lng": 120.46619,
+      "description": "【機場】新屏42，位於屏東縣 / 六塊厝。"
+    },
+    {
+      "id": "pure-airport-15",
+      "name": "機場",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d007",
+      "category": "airport",
+      "lat": 22.352556,
+      "lng": 120.377968,
+      "description": "【機場】機場，位於屏東縣 / 本福村。"
+    },
+    {
+      "id": "pure-airport-16",
+      "name": "臺北松山機場",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d001",
+      "category": "airport",
+      "lat": 25.067658,
+      "lng": 121.553418,
+      "description": "【機場】臺北松山機場，位於臺北市 / 松山區。"
+    },
+    {
+      "id": "pure-airport-17",
+      "name": "八股路366-370",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d003",
+      "category": "airport",
+      "lat": 25.053044,
+      "lng": 121.253185,
+      "description": "【機場】八股路366-370，位於桃園市 / 蘆竹區。"
+    },
+    {
+      "id": "pure-airport-18",
+      "name": "松江路581巷19號",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d002",
+      "category": "airport",
+      "lat": 25.070075,
+      "lng": 121.538408,
+      "description": "【機場】松江路581巷19號，位於臺北市 / 大佳里。"
+    },
+    {
+      "id": "pure-airport-19",
+      "name": "歸仁機場",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d001",
+      "category": "airport",
+      "lat": 22.981668,
+      "lng": 120.279843,
+      "description": "【機場】歸仁機場，位於臺南市 / 七甲里。"
+    },
+    {
+      "id": "pure-airport-20",
+      "name": "和平新路98-132",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d001",
+      "category": "airport",
+      "lat": 24.242841,
+      "lng": 120.633311,
+      "description": "【機場】和平新路98-132，位於臺中市 / 大雅區。"
+    },
+    {
+      "id": "pure-bakery-01",
+      "name": "崇學國小後面操場旁馬路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "bakery",
+      "lat": 22.978673,
+      "lng": 120.225239,
+      "description": "【麵包店】崇學國小後面操場旁馬路，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-bakery-02",
+      "name": "竹東麵包店",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d001",
+      "category": "bakery",
+      "lat": 24.748315,
+      "lng": 121.07929,
+      "description": "【麵包店】竹東麵包店，位於新竹縣 / 竹東鎮。"
+    },
+    {
+      "id": "pure-bakery-03",
+      "name": "錢都專用停車場",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d004",
+      "category": "bakery",
+      "lat": 24.998776,
+      "lng": 121.305414,
+      "description": "【麵包店】錢都專用停車場，位於桃園市 / 永安里。"
+    },
+    {
+      "id": "pure-bakery-04",
+      "name": "旺萊山民雄工業店",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d001",
+      "category": "bakery",
+      "lat": 23.518609,
+      "lng": 120.452245,
+      "description": "【麵包店】旺萊山民雄工業店，位於嘉義縣 / 北斗村。"
+    },
+    {
+      "id": "pure-bakery-05",
+      "name": "裕芳食品田心店",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d001",
+      "category": "bakery",
+      "lat": 24.41105,
+      "lng": 120.659395,
+      "description": "【麵包店】裕芳食品田心店，位於苗栗縣 / 田心里。"
+    },
+    {
+      "id": "pure-bakery-06",
+      "name": "土地公廟旁",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d002",
+      "category": "bakery",
+      "lat": 24.791222,
+      "lng": 121.182917,
+      "description": "【麵包店】土地公廟旁，位於新竹縣 / 關西鎮。"
+    },
+    {
+      "id": "pure-bakery-07",
+      "name": "固執廚師甜點",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d003",
+      "category": "bakery",
+      "lat": 23.326602,
+      "lng": 120.255074,
+      "description": "【麵包店】固執廚師甜點，位於臺南市 / 義中里。"
+    },
+    {
+      "id": "pure-bakery-08",
+      "name": "進興餅店",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d001",
+      "category": "bakery",
+      "lat": 24.036218,
+      "lng": 120.505862,
+      "description": "【麵包店】進興餅店，位於彰化縣 / 莊雅村。"
+    },
+    {
+      "id": "pure-bakery-09",
+      "name": "通安路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d002",
+      "category": "bakery",
+      "lat": 22.729746,
+      "lng": 120.251437,
+      "description": "【麵包店】通安路，位於高雄市 / 梓官區。"
+    },
+    {
+      "id": "pure-bakery-10",
+      "name": "滿金商行客家手工年糕",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d003",
+      "category": "bakery",
+      "lat": 22.89024,
+      "lng": 120.54185,
+      "description": "【麵包店】滿金商行客家手工年糕，位於高雄市 / 美濃區。"
+    },
+    {
+      "id": "pure-bakery-11",
+      "name": "法國麵包純點",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d002",
+      "category": "bakery",
+      "lat": 24.209364,
+      "lng": 120.616068,
+      "description": "【麵包店】法國麵包純點，位於臺中市 / 西屯區。"
+    },
+    {
+      "id": "pure-bakery-12",
+      "name": "嘉冠喜手工造餅坊",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "bakery",
+      "lat": 23.448343,
+      "lng": 120.440532,
+      "description": "【麵包店】嘉冠喜手工造餅坊，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-bakery-13",
+      "name": "中興路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d008",
+      "category": "bakery",
+      "lat": 22.691281,
+      "lng": 120.534884,
+      "description": "【麵包店】中興路，位於屏東縣 / 崙上村。"
+    },
+    {
+      "id": "pure-bakery-14",
+      "name": "大漢街142巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d003",
+      "category": "bakery",
+      "lat": 24.252446,
+      "lng": 120.700343,
+      "description": "【麵包店】大漢街142巷，位於臺中市 / 神岡區。"
+    },
+    {
+      "id": "pure-bakery-15",
+      "name": "萬新路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d009",
+      "category": "bakery",
+      "lat": 22.5648,
+      "lng": 120.485777,
+      "description": "【麵包店】萬新路，位於屏東縣 / 新庄村。"
+    },
+    {
+      "id": "pure-bakery-16",
+      "name": "中正路688巷",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d010",
+      "category": "bakery",
+      "lat": 22.688305,
+      "lng": 120.499996,
+      "description": "【麵包店】中正路688巷，位於屏東縣 / 中正里。"
+    },
+    {
+      "id": "pure-bakery-17",
+      "name": "仙吉路42巷1弄",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d011",
+      "category": "bakery",
+      "lat": 22.541332,
+      "lng": 120.460941,
+      "description": "【麵包店】仙吉路42巷1弄，位於屏東縣 / 仙吉村。"
+    },
+    {
+      "id": "pure-bakery-18",
+      "name": "武愛街",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d012",
+      "category": "bakery",
+      "lat": 22.658691,
+      "lng": 120.478865,
+      "description": "【麵包店】武愛街，位於屏東縣 / 大武里。"
+    },
+    {
+      "id": "pure-bakery-19",
+      "name": "船頭路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d013",
+      "category": "bakery",
+      "lat": 22.463589,
+      "lng": 120.458865,
+      "description": "【麵包店】船頭路，位於屏東縣 / 東津里。"
+    },
+    {
+      "id": "pure-bakery-20",
+      "name": "和窯文創園區",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d005",
+      "category": "bakery",
+      "lat": 24.850771,
+      "lng": 121.170526,
+      "description": "【麵包店】和窯文創園區，位於桃園市 / 三和里。"
+    },
+    {
+      "id": "pure-bridge-01",
+      "name": "行善路高架",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d003",
+      "category": "bridge",
+      "lat": 25.065619,
+      "lng": 121.586146,
+      "description": "【橋樑】行善路高架，位於臺北市 / 內湖區。"
+    },
+    {
+      "id": "pure-bridge-02",
+      "name": "田中",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d002",
+      "category": "bridge",
+      "lat": 23.867542,
+      "lng": 120.56483,
+      "description": "【橋樑】田中，位於彰化縣 / 三民里。"
+    },
+    {
+      "id": "pure-bridge-03",
+      "name": "溪口橋",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d002",
+      "category": "bridge",
+      "lat": 23.605691,
+      "lng": 120.405185,
+      "description": "【橋樑】溪口橋，位於嘉義縣 / 坪頂村。"
+    },
+    {
+      "id": "pure-bridge-04",
+      "name": "秀中街無名早餐店",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d003",
+      "category": "bridge",
+      "lat": 24.02283,
+      "lng": 120.506236,
+      "description": "【橋樑】秀中街無名早餐店，位於彰化縣 / 曾厝村。"
+    },
+    {
+      "id": "pure-bridge-05",
+      "name": "BURNing美式碳烤牛排",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d001",
+      "category": "bridge",
+      "lat": 24.785701,
+      "lng": 121.034215,
+      "description": "【橋樑】BURNing美式碳烤牛排，位於新竹縣 / 竹東鎮。"
+    },
+    {
+      "id": "pure-bridge-06",
+      "name": "崇德十路二段74下",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d004",
+      "category": "bridge",
+      "lat": 24.200549,
+      "lng": 120.67616,
+      "description": "【橋樑】崇德十路二段74下，位於臺中市 / 北屯區。"
+    },
+    {
+      "id": "pure-bridge-07",
+      "name": "三鶯二橋",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d001",
+      "category": "bridge",
+      "lat": 24.954252,
+      "lng": 121.374216,
+      "description": "【橋樑】三鶯二橋，位於新北市 / 樹林區。"
+    },
+    {
+      "id": "pure-bridge-08",
+      "name": "民雄工業區污水處理廠",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d003",
+      "category": "bridge",
+      "lat": 23.519699,
+      "lng": 120.449266,
+      "description": "【橋樑】民雄工業區污水處理廠，位於嘉義縣 / 福樂村。"
+    },
+    {
+      "id": "pure-bridge-09",
+      "name": "國一橋",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d004",
+      "category": "bridge",
+      "lat": 25.077502,
+      "lng": 121.517078,
+      "description": "【橋樑】國一橋，位於臺北市 / 大同區。"
+    },
+    {
+      "id": "pure-bridge-10",
+      "name": "崁頂溪橋",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d001",
+      "category": "bridge",
+      "lat": 23.026384,
+      "lng": 121.156899,
+      "description": "【橋樑】崁頂溪橋，位於臺東縣 / 月眉里。"
+    },
+    {
+      "id": "pure-bridge-11",
+      "name": "仁武交流道",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d004",
+      "category": "bridge",
+      "lat": 22.7077,
+      "lng": 120.36052,
+      "description": "【橋樑】仁武交流道，位於高雄市 / 仁武區。"
+    },
+    {
+      "id": "pure-bridge-12",
+      "name": "中山高速公路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d005",
+      "category": "bridge",
+      "lat": 22.78767,
+      "lng": 120.32076,
+      "description": "【橋樑】中山高速公路，位於高雄市 / 燕巢區。"
+    },
+    {
+      "id": "pure-bridge-13",
+      "name": "地景橋",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d006",
+      "category": "bridge",
+      "lat": 22.884015,
+      "lng": 120.486495,
+      "description": "【橋樑】地景橋，位於高雄市 / 旗山區。"
+    },
+    {
+      "id": "pure-bridge-14",
+      "name": "雙園大橋",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d014",
+      "category": "bridge",
+      "lat": 22.4978,
+      "lng": 120.41238,
+      "description": "【橋樑】雙園大橋，位於屏東縣 / 林園區。"
+    },
+    {
+      "id": "pure-bridge-15",
+      "name": "萬大大橋",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d015",
+      "category": "bridge",
+      "lat": 22.59306,
+      "lng": 120.44222,
+      "description": "【橋樑】萬大大橋，位於屏東縣 / 大寮區。"
+    },
+    {
+      "id": "pure-bridge-16",
+      "name": "援中港大橋",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d007",
+      "category": "bridge",
+      "lat": 22.717393,
+      "lng": 120.278183,
+      "description": "【橋樑】援中港大橋，位於高雄市 / 楠梓區。"
+    },
+    {
+      "id": "pure-bridge-17",
+      "name": "鳳旗路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d005",
+      "category": "bridge",
+      "lat": 22.753353,
+      "lng": 120.353316,
+      "description": "【橋樑】鳳旗路，位於高雄市 / 燕巢區。"
+    },
+    {
+      "id": "pure-bridge-18",
+      "name": "嶺拔林街",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d008",
+      "category": "bridge",
+      "lat": 22.847263,
+      "lng": 120.313098,
+      "description": "【橋樑】嶺拔林街，位於高雄市 / 阿蓮區。"
+    },
+    {
+      "id": "pure-bridge-19",
+      "name": "岡山北路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d001",
+      "category": "bridge",
+      "lat": 22.81451,
+      "lng": 120.276745,
+      "description": "【橋樑】岡山北路，位於高雄市 / 岡山區。"
+    },
+    {
+      "id": "pure-bridge-20",
+      "name": "防汛用路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d009",
+      "category": "bridge",
+      "lat": 22.91354,
+      "lng": 120.22683,
+      "description": "【橋樑】防汛用路，位於高雄市 / 湖內區。"
+    },
+    {
+      "id": "pure-burger-01",
+      "name": "Home炸雞",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d006",
+      "category": "burger",
+      "lat": 24.988133,
+      "lng": 121.305654,
+      "description": "【漢堡】Home炸雞，位於桃園市 / 南門里。"
+    },
+    {
+      "id": "pure-burger-02",
+      "name": "漢陽南路65巷",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d002",
+      "category": "burger",
+      "lat": 22.743272,
+      "lng": 121.1383,
+      "description": "【漢堡】漢陽南路65巷，位於臺東縣 / 豐盛里。"
+    },
+    {
+      "id": "pure-burger-03",
+      "name": "板橋區忠孝路48巷9弄17號、19號",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d002",
+      "category": "burger",
+      "lat": 25.000457,
+      "lng": 121.461926,
+      "description": "【漢堡】板橋區忠孝路48巷9弄17號、19號，位於新北市 / 板橋區。"
+    },
+    {
+      "id": "pure-burger-04",
+      "name": "光復路一段108巷",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d003",
+      "category": "burger",
+      "lat": 25.050963,
+      "lng": 121.470981,
+      "description": "【漢堡】光復路一段108巷，位於新北市 / 三重區。"
+    },
+    {
+      "id": "pure-burger-05",
+      "name": "愛買",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d004",
+      "category": "burger",
+      "lat": 23.034972,
+      "lng": 120.228335,
+      "description": "【漢堡】愛買，位於臺南市 / 塩洲里。"
+    },
+    {
+      "id": "pure-burger-06",
+      "name": "四維三路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d010",
+      "category": "burger",
+      "lat": 22.618408,
+      "lng": 120.307083,
+      "description": "【漢堡】四維三路，位於高雄市 / 苓雅區。"
+    },
+    {
+      "id": "pure-burger-07",
+      "name": "自立街95巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d005",
+      "category": "burger",
+      "lat": 24.141022,
+      "lng": 120.669225,
+      "description": "【漢堡】自立街95巷，位於臺中市 / 西區。"
+    },
+    {
+      "id": "pure-burger-08",
+      "name": "復興路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d016",
+      "category": "burger",
+      "lat": 22.007105,
+      "lng": 120.740502,
+      "description": "【漢堡】復興路，位於屏東縣 / 城西里。"
+    },
+    {
+      "id": "pure-burger-09",
+      "name": "中山北路六段758巷",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d005",
+      "category": "burger",
+      "lat": 25.114574,
+      "lng": 121.528886,
+      "description": "【漢堡】中山北路六段758巷，位於臺北市 / 士林區。"
+    },
+    {
+      "id": "pure-burger-10",
+      "name": "縱貫公路1252-1",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d002",
+      "category": "burger",
+      "lat": 24.693353,
+      "lng": 120.915104,
+      "description": "【漢堡】縱貫公路1252-1，位於苗栗縣 / 頭份市。"
+    },
+    {
+      "id": "pure-burger-11",
+      "name": "鼎記食品有限公司",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d001",
+      "category": "burger",
+      "lat": 23.706075,
+      "lng": 120.516484,
+      "description": "【漢堡】鼎記食品有限公司，位於雲林縣 / 保庄里。"
+    },
+    {
+      "id": "pure-burger-12",
+      "name": "義昌路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d011",
+      "category": "burger",
+      "lat": 22.641468,
+      "lng": 120.333178,
+      "description": "【漢堡】義昌路，位於高雄市 / 寶泰里。"
+    },
+    {
+      "id": "pure-burger-13",
+      "name": "民族一路901巷32",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d012",
+      "category": "burger",
+      "lat": 22.681208,
+      "lng": 120.31826,
+      "description": "【漢堡】民族一路901巷32，位於高雄市 / 福山里。"
+    },
+    {
+      "id": "pure-burger-14",
+      "name": "內山公路142號",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d017",
+      "category": "burger",
+      "lat": 22.681912,
+      "lng": 120.489334,
+      "description": "【漢堡】內山公路142號，位於屏東縣 / 斯文里。"
+    },
+    {
+      "id": "pure-burger-15",
+      "name": "公園肉燥飯",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d018",
+      "category": "burger",
+      "lat": 22.679541,
+      "lng": 120.496789,
+      "description": "【漢堡】公園肉燥飯，位於屏東縣 / 屏東市。"
+    },
+    {
+      "id": "pure-burger-16",
+      "name": "鳳東路423-385",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d013",
+      "category": "burger",
+      "lat": 22.621484,
+      "lng": 120.376945,
+      "description": "【漢堡】鳳東路423-385，位於高雄市 / 誠智里。"
+    },
+    {
+      "id": "pure-coffee-01",
+      "name": "草民早午餐",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d003",
+      "category": "cafe",
+      "lat": 22.762096,
+      "lng": 121.156407,
+      "description": "【咖啡杯】草民早午餐，位於臺東縣 / 中華里。"
+    },
+    {
+      "id": "pure-coffee-02",
+      "name": "帆風公證入口處",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "cafe",
+      "lat": 22.662284,
+      "lng": 120.315046,
+      "description": "【咖啡杯】帆風公證入口處，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-coffee-03",
+      "name": "蜉蝣咖啡",
+      "country": "tw",
+      "city": "kinmen",
+      "district": "kinmen-d001",
+      "category": "cafe",
+      "lat": 24.438074,
+      "lng": 118.320828,
+      "description": "【咖啡杯】蜉蝣咖啡，位於金門縣 / 西門里。"
+    },
+    {
+      "id": "pure-coffee-04",
+      "name": "溪口玉津咖啡",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d002",
+      "category": "cafe",
+      "lat": 23.604215,
+      "lng": 120.401374,
+      "description": "【咖啡杯】溪口玉津咖啡，位於嘉義縣 / 坪頂村。"
+    },
+    {
+      "id": "pure-coffee-05",
+      "name": "光州七街111-135",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d005",
+      "category": "cafe",
+      "lat": 22.992877,
+      "lng": 120.160522,
+      "description": "【咖啡杯】光州七街111-135，位於臺南市 / 安平區。"
+    },
+    {
+      "id": "pure-coffee-06",
+      "name": "新竹市咖啡店",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d001",
+      "category": "cafe",
+      "lat": 24.801785,
+      "lng": 120.95768,
+      "description": "【咖啡杯】新竹市咖啡店，位於新竹市 / 北區。"
+    },
+    {
+      "id": "pure-coffee-07",
+      "name": "IKEA",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d006",
+      "category": "cafe",
+      "lat": 24.148705,
+      "lng": 120.642907,
+      "description": "【咖啡杯】IKEA，位於臺中市 / 南屯區。"
+    },
+    {
+      "id": "pure-coffee-08",
+      "name": "彰泰三街",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d004",
+      "category": "cafe",
+      "lat": 24.095142,
+      "lng": 120.54716,
+      "description": "【咖啡杯】彰泰三街，位於彰化縣 / 茄南里。"
+    },
+    {
+      "id": "pure-coffee-09",
+      "name": "中平路26巷",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d004",
+      "category": "cafe",
+      "lat": 25.04314,
+      "lng": 121.445872,
+      "description": "【咖啡杯】中平路26巷，位於新北市 / 新莊區。"
+    },
+    {
+      "id": "pure-coffee-10",
+      "name": "SOSL COFFEE",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d007",
+      "category": "cafe",
+      "lat": 25.023536,
+      "lng": 121.292946,
+      "description": "【咖啡杯】SOSL COFFEE，位於桃園市 / 北埔里。"
+    },
+    {
+      "id": "pure-coffee-11",
+      "name": "茶の魔手門口",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d001",
+      "category": "cafe",
+      "lat": 22.785271,
+      "lng": 120.303777,
+      "description": "【咖啡杯】茶の魔手門口，位於高雄市 / 岡山區。"
+    },
+    {
+      "id": "pure-coffee-12",
+      "name": "中華二路206巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d006",
+      "category": "cafe",
+      "lat": 23.009069,
+      "lng": 120.234928,
+      "description": "【咖啡杯】中華二路206巷，位於臺南市 / 五王里。"
+    },
+    {
+      "id": "pure-coffee-13",
+      "name": "咖啡杯",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "cafe",
+      "lat": 22.986475,
+      "lng": 120.224988,
+      "description": "【咖啡杯】咖啡杯，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-coffee-14",
+      "name": "文賢路313巷34弄",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d007",
+      "category": "cafe",
+      "lat": 23.00772,
+      "lng": 120.192554,
+      "description": "【咖啡杯】文賢路313巷34弄，位於臺南市 / 北區。"
+    },
+    {
+      "id": "pure-coffee-15",
+      "name": "國安街236巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d008",
+      "category": "cafe",
+      "lat": 23.022504,
+      "lng": 120.185878,
+      "description": "【咖啡杯】國安街236巷，位於臺南市 / 國安里。"
+    },
+    {
+      "id": "pure-coffee-16",
+      "name": "海佃路二段102巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d009",
+      "category": "cafe",
+      "lat": 23.031555,
+      "lng": 120.19113,
+      "description": "【咖啡杯】海佃路二段102巷，位於臺南市 / 理想里。"
+    },
+    {
+      "id": "pure-coffee-17",
+      "name": "頂安街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d010",
+      "category": "cafe",
+      "lat": 23.04342,
+      "lng": 120.215738,
+      "description": "【咖啡杯】頂安街，位於臺南市 / 新順里。"
+    },
+    {
+      "id": "pure-coffee-18",
+      "name": "安中路六段500巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d011",
+      "category": "cafe",
+      "lat": 23.061719,
+      "lng": 120.132318,
+      "description": "【咖啡杯】安中路六段500巷，位於臺南市 / 城北里。"
+    },
+    {
+      "id": "pure-coffee-19",
+      "name": "鹽田路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d012",
+      "category": "cafe",
+      "lat": 23.033651,
+      "lng": 120.146762,
+      "description": "【咖啡杯】鹽田路，位於臺南市 / 塩田里。"
+    },
+    {
+      "id": "pure-coffee-20",
+      "name": "萬皇路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d013",
+      "category": "cafe",
+      "lat": 22.94065,
+      "lng": 120.182585,
+      "description": "【咖啡杯】萬皇路，位於臺南市 / 南區。"
+    },
+    {
+      "id": "pure-curry-01",
+      "name": "國華國中",
+      "country": "tw",
+      "city": "yilan",
+      "district": "yilan-d001",
+      "category": "curry",
+      "lat": 24.678009,
+      "lng": 121.761125,
+      "description": "【咖哩】國華國中，位於宜蘭縣 / 漢民里。"
+    },
+    {
+      "id": "pure-curry-02",
+      "name": "長興街二段",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d008",
+      "category": "curry",
+      "lat": 24.903976,
+      "lng": 121.283215,
+      "description": "【咖哩】長興街二段，位於桃園市 / 仁武里。"
+    },
+    {
+      "id": "pure-curry-03",
+      "name": "光明街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d014",
+      "category": "curry",
+      "lat": 23.074794,
+      "lng": 120.288682,
+      "description": "【咖哩】光明街，位於臺南市 / 新和里。"
+    },
+    {
+      "id": "pure-curry-04",
+      "name": "前金國小",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d015",
+      "category": "curry",
+      "lat": 22.626544,
+      "lng": 120.293828,
+      "description": "【咖哩】前金國小，位於高雄市 / 前金區。"
+    },
+    {
+      "id": "pure-curry-05",
+      "name": "三城路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d019",
+      "category": "curry",
+      "lat": 22.544323,
+      "lng": 120.550343,
+      "description": "【咖哩】三城路，位於屏東縣 / 三星里。"
+    },
+    {
+      "id": "pure-curry-06",
+      "name": "昌平路三段50巷11",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d004",
+      "category": "curry",
+      "lat": 24.20239,
+      "lng": 120.675855,
+      "description": "【咖哩】昌平路三段50巷11，位於臺中市 / 北屯區。"
+    },
+    {
+      "id": "pure-curry-07",
+      "name": "安樂路143巷20",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d005",
+      "category": "curry",
+      "lat": 24.996928,
+      "lng": 121.513355,
+      "description": "【咖哩】安樂路143巷20，位於新北市 / 宜安里。"
+    },
+    {
+      "id": "pure-curry-08",
+      "name": "蝦皮店到店",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d006",
+      "category": "curry",
+      "lat": 25.084404,
+      "lng": 121.379448,
+      "description": "【咖哩】蝦皮店到店，位於新北市 / 林口區。"
+    },
+    {
+      "id": "pure-curry-09",
+      "name": "工學五街117巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d007",
+      "category": "curry",
+      "lat": 24.117472,
+      "lng": 120.6625,
+      "description": "【咖哩】工學五街117巷，位於臺中市 / 南區。"
+    },
+    {
+      "id": "pure-curry-10",
+      "name": "仁慈八街31-27號",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d016",
+      "category": "curry",
+      "lat": 22.67516,
+      "lng": 120.35811,
+      "description": "【咖哩】仁慈八街31-27號，位於高雄市 / 仁慈里。"
+    },
+    {
+      "id": "pure-curry-11",
+      "name": "建武路157-147",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "curry",
+      "lat": 22.643878,
+      "lng": 120.330083,
+      "description": "【咖哩】建武路157-147，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-dessert-01",
+      "name": "義豐蔥油派",
+      "country": "tw",
+      "city": "yilan",
+      "district": "yilan-d002",
+      "category": "dessert",
+      "lat": 24.621857,
+      "lng": 121.815472,
+      "description": "【甜點店】義豐蔥油派，位於宜蘭縣 / 新城里。"
+    },
+    {
+      "id": "pure-dessert-02",
+      "name": "蝦皮智取斗南延平店",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d002",
+      "category": "dessert",
+      "lat": 23.690357,
+      "lng": 120.480307,
+      "description": "【甜點店】蝦皮智取斗南延平店，位於雲林縣 / 新光里。"
+    },
+    {
+      "id": "pure-dessert-03",
+      "name": "興一街65巷5弄",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d009",
+      "category": "dessert",
+      "lat": 25.015479,
+      "lng": 121.315527,
+      "description": "【甜點店】興一街65巷5弄，位於桃園市 / 會稽里。"
+    },
+    {
+      "id": "pure-dessert-04",
+      "name": "慶益企業社",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d003",
+      "category": "dessert",
+      "lat": 23.724332,
+      "lng": 120.453843,
+      "description": "【甜點店】慶益企業社，位於雲林縣 / 中溪里。"
+    },
+    {
+      "id": "pure-dessert-05",
+      "name": "詠宸手工銀絲卷專賣店",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d002",
+      "category": "dessert",
+      "lat": 25.042588,
+      "lng": 121.243556,
+      "description": "【甜點店】詠宸手工銀絲卷專賣店，位於桃園市 / 宏竹里。"
+    },
+    {
+      "id": "pure-dessert-06",
+      "name": "公道五路二段",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d002",
+      "category": "dessert",
+      "lat": 24.803709,
+      "lng": 120.996749,
+      "description": "【甜點店】公道五路二段，位於新竹市 / 東區。"
+    },
+    {
+      "id": "pure-dessert-07",
+      "name": "鼎盛街",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d015",
+      "category": "dessert",
+      "lat": 22.632233,
+      "lng": 120.289637,
+      "description": "【甜點店】鼎盛街，位於高雄市 / 前金區。"
+    },
+    {
+      "id": "pure-dessert-08",
+      "name": "南園街127巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d007",
+      "category": "dessert",
+      "lat": 23.007097,
+      "lng": 120.226829,
+      "description": "【甜點店】南園街127巷，位於臺南市 / 北區。"
+    },
+    {
+      "id": "pure-dessert-09",
+      "name": "詔安街",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d006",
+      "category": "dessert",
+      "lat": 25.024928,
+      "lng": 121.514248,
+      "description": "【甜點店】詔安街，位於臺北市 / 中正區。"
+    },
+    {
+      "id": "pure-dessert-10",
+      "name": "甜點",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "dessert",
+      "lat": 22.979187,
+      "lng": 120.216265,
+      "description": "【甜點店】甜點，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-dessert-11",
+      "name": "瑞興街",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d017",
+      "category": "dessert",
+      "lat": 22.608947,
+      "lng": 120.33143,
+      "description": "【甜點店】瑞興街，位於高雄市 / 前鎮區。"
+    },
+    {
+      "id": "pure-dessert-12",
+      "name": "姜䒕鴨薑母鴨專賣店",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d015",
+      "category": "dessert",
+      "lat": 23.190285,
+      "lng": 120.254266,
+      "description": "【甜點店】姜䒕鴨薑母鴨專賣店，位於臺南市 / 南勢里。"
+    },
+    {
+      "id": "pure-dessert-13",
+      "name": "富和路31-21號",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d004",
+      "category": "dessert",
+      "lat": 23.443049,
+      "lng": 120.471725,
+      "description": "【甜點店】富和路31-21號，位於嘉義縣 / 中埔鄉。"
+    },
+    {
+      "id": "pure-dessert-14",
+      "name": "中華路153-45號",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d018",
+      "category": "dessert",
+      "lat": 22.795685,
+      "lng": 120.367819,
+      "description": "【甜點店】中華路153-45號，位於高雄市 / 東燕里。"
+    },
+    {
+      "id": "pure-dessert-15",
+      "name": "會稽一街27-1號",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d010",
+      "category": "dessert",
+      "lat": 25.015038,
+      "lng": 121.314467,
+      "description": "【甜點店】會稽一街27-1號，位於桃園市 / 寶山里。"
+    },
+    {
+      "id": "pure-dessert-16",
+      "name": "西部濱海公路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d013",
+      "category": "dessert",
+      "lat": 22.467067,
+      "lng": 120.463357,
+      "description": "【甜點店】西部濱海公路，位於屏東縣 / 東津里。"
+    },
+    {
+      "id": "pure-dessert-17",
+      "name": "光復路一段385巷1",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d002",
+      "category": "dessert",
+      "lat": 24.782544,
+      "lng": 121.016495,
+      "description": "【甜點店】光復路一段385巷1，位於新竹市 / 東區。"
+    },
+    {
+      "id": "pure-dessert-18",
+      "name": "建平十一街327-2",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d016",
+      "category": "dessert",
+      "lat": 22.99536,
+      "lng": 120.176381,
+      "description": "【甜點店】建平十一街327-2，位於臺南市 / 怡平里。"
+    },
+    {
+      "id": "pure-dessert-19",
+      "name": "新中街213-203",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d017",
+      "category": "dessert",
+      "lat": 23.038148,
+      "lng": 120.242844,
+      "description": "【甜點店】新中街213-203，位於臺南市 / 永康區。"
+    },
+    {
+      "id": "pure-dessert-20",
+      "name": "中華路281-223",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d020",
+      "category": "dessert",
+      "lat": 22.637901,
+      "lng": 120.517489,
+      "description": "【甜點店】中華路281-223，位於屏東縣 / 田中村。"
+    },
+    {
+      "id": "pure-electronics-01",
+      "name": "泰飛園 Thai Flight",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d004",
+      "category": "electronics",
+      "lat": 23.704181,
+      "lng": 120.547102,
+      "description": "【電器行】泰飛園 Thai Flight，位於雲林縣 / 公正里。"
+    },
+    {
+      "id": "pure-electronics-02",
+      "name": "全國電子南崁館",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d011",
+      "category": "electronics",
+      "lat": 25.049574,
+      "lng": 121.290798,
+      "description": "【電器行】全國電子南崁館，位於桃園市 / 錦興里。"
+    },
+    {
+      "id": "pure-electronics-03",
+      "name": "無",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d007",
+      "category": "electronics",
+      "lat": 24.987158,
+      "lng": 121.468901,
+      "description": "【電器行】無，位於新北市 / 土城區。"
+    },
+    {
+      "id": "pure-electronics-04",
+      "name": "三民路",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d004",
+      "category": "electronics",
+      "lat": 23.048829,
+      "lng": 121.162228,
+      "description": "【電器行】三民路，位於臺東縣 / 中福里。"
+    },
+    {
+      "id": "pure-electronics-05",
+      "name": "中山北路252巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d001",
+      "category": "electronics",
+      "lat": 24.220561,
+      "lng": 120.646697,
+      "description": "【電器行】中山北路252巷，位於臺中市 / 大雅區。"
+    },
+    {
+      "id": "pure-electronics-06",
+      "name": "全國電子",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d008",
+      "category": "electronics",
+      "lat": 24.23827,
+      "lng": 120.70365,
+      "description": "【電器行】全國電子，位於臺中市 / 豐原區。"
+    },
+    {
+      "id": "pure-electronics-07",
+      "name": "統合電器",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d009",
+      "category": "electronics",
+      "lat": 24.33675,
+      "lng": 120.61932,
+      "description": "【電器行】統合電器，位於臺中市 / 大甲區。"
+    },
+    {
+      "id": "pure-electronics-08",
+      "name": "得天街",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d010",
+      "category": "electronics",
+      "lat": 24.196191,
+      "lng": 120.701741,
+      "description": "【電器行】得天街，位於臺中市 / 潭子區。"
+    },
+    {
+      "id": "pure-electronics-09",
+      "name": "新平路一段",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d011",
+      "category": "electronics",
+      "lat": 24.133729,
+      "lng": 120.71632,
+      "description": "【電器行】新平路一段，位於臺中市 / 太平區。"
+    },
+    {
+      "id": "pure-electronics-10",
+      "name": "建興北路17巷19弄",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d011",
+      "category": "electronics",
+      "lat": 24.131745,
+      "lng": 120.721658,
+      "description": "【電器行】建興北路17巷19弄，位於臺中市 / 太平區。"
+    },
+    {
+      "id": "pure-electronics-11",
+      "name": "豐勢路458巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d012",
+      "category": "electronics",
+      "lat": 24.269644,
+      "lng": 120.800196,
+      "description": "【電器行】豐勢路458巷，位於臺中市 / 石岡區。"
+    },
+    {
+      "id": "pure-electronics-12",
+      "name": "寺前巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d012",
+      "category": "electronics",
+      "lat": 24.268978,
+      "lng": 120.80332,
+      "description": "【電器行】寺前巷，位於臺中市 / 石岡區。"
+    },
+    {
+      "id": "pure-electronics-13",
+      "name": "順發3C",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d005",
+      "category": "electronics",
+      "lat": 24.04541,
+      "lng": 120.45821,
+      "description": "【電器行】順發3C，位於彰化縣 / 番婆村。"
+    },
+    {
+      "id": "pure-electronics-14",
+      "name": "和卿路",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d006",
+      "category": "electronics",
+      "lat": 24.110064,
+      "lng": 120.494572,
+      "description": "【電器行】和卿路，位於彰化縣 / 仁愛里。"
+    },
+    {
+      "id": "pure-electronics-15",
+      "name": "金馬路三段539巷",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d007",
+      "category": "electronics",
+      "lat": 24.077961,
+      "lng": 120.531028,
+      "description": "【電器行】金馬路三段539巷，位於彰化縣 / 西興里。"
+    },
+    {
+      "id": "pure-electronics-16",
+      "name": "電器行",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d008",
+      "category": "electronics",
+      "lat": 23.973485,
+      "lng": 120.569963,
+      "description": "【電器行】電器行，位於彰化縣 / 南平里。"
+    },
+    {
+      "id": "pure-electronics-17",
+      "name": "圳仔巷",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d009",
+      "category": "electronics",
+      "lat": 23.900365,
+      "lng": 120.586423,
+      "description": "【電器行】圳仔巷，位於彰化縣 / 社頭村。"
+    },
+    {
+      "id": "pure-electronics-18",
+      "name": "燦坤3C",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d005",
+      "category": "electronics",
+      "lat": 23.45872,
+      "lng": 120.24155,
+      "description": "【電器行】燦坤3C，位於嘉義縣 / 竹圍里。"
+    },
+    {
+      "id": "pure-electronics-19",
+      "name": "蒜頭活動中心",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d006",
+      "category": "electronics",
+      "lat": 23.493925,
+      "lng": 120.29101,
+      "description": "【電器行】蒜頭活動中心，位於嘉義縣 / 蒜頭村。"
+    },
+    {
+      "id": "pure-electronics-20",
+      "name": "松延護理之家",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "electronics",
+      "lat": 23.47693,
+      "lng": 120.426799,
+      "description": "【電器行】松延護理之家，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-forest-01",
+      "name": "住家",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d010",
+      "category": "forest",
+      "lat": 24.139379,
+      "lng": 120.464667,
+      "description": "【森林】住家，位於彰化縣 / 頂庄村。"
+    },
+    {
+      "id": "pure-forest-02",
+      "name": "嘉義市忠孝路森林",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d002",
+      "category": "forest",
+      "lat": 23.503635,
+      "lng": 120.448689,
+      "description": "【森林】嘉義市忠孝路森林，位於嘉義市 / 東區。"
+    },
+    {
+      "id": "pure-forest-03",
+      "name": "興家利傢俱",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d011",
+      "category": "forest",
+      "lat": 24.019257,
+      "lng": 120.537776,
+      "description": "【森林】興家利傢俱，位於彰化縣 / 花壇村。"
+    },
+    {
+      "id": "pure-forest-04",
+      "name": "長虹雲端科技大樓",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d003",
+      "category": "forest",
+      "lat": 25.061516,
+      "lng": 121.600292,
+      "description": "【森林】長虹雲端科技大樓，位於臺北市 / 內湖區。"
+    },
+    {
+      "id": "pure-forest-05",
+      "name": "拉拉山遊客中心",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d012",
+      "category": "forest",
+      "lat": 24.680086,
+      "lng": 121.384509,
+      "description": "【森林】拉拉山遊客中心，位於桃園市 / 華陵里。"
+    },
+    {
+      "id": "pure-forest-06",
+      "name": "東興森林純點",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d013",
+      "category": "forest",
+      "lat": 24.950242,
+      "lng": 121.228852,
+      "description": "【森林】東興森林純點，位於桃園市 / 健行里。"
+    },
+    {
+      "id": "pure-forest-07",
+      "name": "台1線（林西路附近）",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d019",
+      "category": "forest",
+      "lat": 22.773393,
+      "lng": 120.302248,
+      "description": "【森林】台1線（林西路附近），位於高雄市 / 橋頭區。"
+    },
+    {
+      "id": "pure-forest-08",
+      "name": "屏東加工區一號門路邊",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d021",
+      "category": "forest",
+      "lat": 22.642437,
+      "lng": 120.452947,
+      "description": "【森林】屏東加工區一號門路邊，位於屏東縣 / 前進里。"
+    },
+    {
+      "id": "pure-forest-09",
+      "name": "森林",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d014",
+      "category": "forest",
+      "lat": 24.934636,
+      "lng": 121.25418,
+      "description": "【森林】森林，位於桃園市 / 龍東里。"
+    },
+    {
+      "id": "pure-forest-10",
+      "name": "轉角遇見你 霧峰店",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d013",
+      "category": "forest",
+      "lat": 24.057619,
+      "lng": 120.709064,
+      "description": "【森林】轉角遇見你 霧峰店，位於臺中市 / 霧峰區。"
+    },
+    {
+      "id": "pure-forest-11",
+      "name": "全國加油站後巷子",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d018",
+      "category": "forest",
+      "lat": 23.23413,
+      "lng": 120.175062,
+      "description": "【森林】全國加油站後巷子，位於臺南市 / 明宜里。"
+    },
+    {
+      "id": "pure-forest-12",
+      "name": "森林純點",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d019",
+      "category": "forest",
+      "lat": 23.02354,
+      "lng": 120.230521,
+      "description": "【森林】森林純點，位於臺南市 / 東橋里。"
+    },
+    {
+      "id": "pure-forest-13",
+      "name": "屏東工業區四號門",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d022",
+      "category": "forest",
+      "lat": 22.636341,
+      "lng": 120.454944,
+      "description": "【森林】屏東工業區四號門，位於屏東縣 / 大洲里。"
+    },
+    {
+      "id": "pure-forest-14",
+      "name": "嘉年華冰果店",
+      "country": "tw",
+      "city": "kinmen",
+      "district": "kinmen-d002",
+      "category": "forest",
+      "lat": 24.435782,
+      "lng": 118.238374,
+      "description": "【森林】嘉年華冰果店，位於金門縣 / 西口村。"
+    },
+    {
+      "id": "pure-forest-15",
+      "name": "隆鼎實業",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d012",
+      "category": "forest",
+      "lat": 24.037831,
+      "lng": 120.506968,
+      "description": "【森林】隆鼎實業，位於彰化縣 / 安東村。"
+    },
+    {
+      "id": "pure-forest-16",
+      "name": "自由路",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "forest",
+      "lat": 23.485624,
+      "lng": 120.440721,
+      "description": "【森林】自由路，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-forest-17",
+      "name": "虎尾全人關懷中心",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d005",
+      "category": "forest",
+      "lat": 23.693647,
+      "lng": 120.43686,
+      "description": "【森林】虎尾全人關懷中心，位於雲林縣 / 興南里。"
+    },
+    {
+      "id": "pure-forest-18",
+      "name": "台積電F25",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d001",
+      "category": "forest",
+      "lat": 24.216783,
+      "lng": 120.614346,
+      "description": "【森林】台積電F25，位於臺中市 / 大雅區。"
+    },
+    {
+      "id": "pure-forest-19",
+      "name": "勞動部勞動及職業衛生研究所",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d008",
+      "category": "forest",
+      "lat": 25.051004,
+      "lng": 121.631263,
+      "description": "【森林】勞動部勞動及職業衛生研究所，位於新北市 / 汐止區。"
+    },
+    {
+      "id": "pure-forest-20",
+      "name": "酒廠前馬路",
+      "country": "tw",
+      "city": "hualien",
+      "district": "hualien-d002",
+      "category": "forest",
+      "lat": 24.020816,
+      "lng": 121.633783,
+      "description": "【森林】酒廠前馬路，位於花蓮縣 / 民心里。"
+    },
+    {
+      "id": "pure-gym-01",
+      "name": "仁和棒球場",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d015",
+      "category": "gym",
+      "lat": 24.91266,
+      "lng": 121.283832,
+      "description": "【體育館】仁和棒球場，位於桃園市 / 仁善里。"
+    },
+    {
+      "id": "pure-gym-02",
+      "name": "體育館",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d003",
+      "category": "gym",
+      "lat": 24.562806,
+      "lng": 120.814306,
+      "description": "【體育館】體育館，位於苗栗縣 / 福麗里。"
+    },
+    {
+      "id": "pure-gym-03",
+      "name": "經國路四段",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d004",
+      "category": "gym",
+      "lat": 24.57723,
+      "lng": 120.84152,
+      "description": "【體育館】經國路四段，位於苗栗縣 / 嘉盛里。"
+    },
+    {
+      "id": "pure-gym-04",
+      "name": "中正路",
+      "country": "tw",
+      "city": "nantou",
+      "district": "nantou-d001",
+      "category": "gym",
+      "lat": 23.979509,
+      "lng": 120.693572,
+      "description": "【體育館】中正路，位於南投縣 / 富寮里。"
+    },
+    {
+      "id": "pure-gym-05",
+      "name": "中興游泳池",
+      "country": "tw",
+      "city": "nantou",
+      "district": "nantou-d002",
+      "category": "gym",
+      "lat": 23.941666,
+      "lng": 120.699196,
+      "description": "【體育館】中興游泳池，位於南投縣 / 光明里。"
+    },
+    {
+      "id": "pure-gym-06",
+      "name": "浯江北堤路",
+      "country": "tw",
+      "city": "kinmen",
+      "district": "kinmen-d003",
+      "category": "gym",
+      "lat": 24.4299,
+      "lng": 118.313503,
+      "description": "【體育館】浯江北堤路，位於金門縣 / 南門里。"
+    },
+    {
+      "id": "pure-gym-07",
+      "name": "體育館",
+      "country": "tw",
+      "city": "kinmen",
+      "district": "kinmen-d004",
+      "category": "gym",
+      "lat": 24.430208,
+      "lng": 118.242899,
+      "description": "【體育館】體育館，位於金門縣 / 林湖村。"
+    },
+    {
+      "id": "pure-gym-08",
+      "name": "民權路",
+      "country": "tw",
+      "city": "hualien",
+      "district": "hualien-d003",
+      "category": "gym",
+      "lat": 23.98593,
+      "lng": 121.624987,
+      "description": "【體育館】民權路，位於花蓮縣 / 民立里。"
+    },
+    {
+      "id": "pure-gym-09",
+      "name": "四維高中",
+      "country": "tw",
+      "city": "hualien",
+      "district": "hualien-d004",
+      "category": "gym",
+      "lat": 24.000892,
+      "lng": 121.592886,
+      "description": "【體育館】四維高中，位於花蓮縣 / 國慶里。"
+    },
+    {
+      "id": "pure-gym-10",
+      "name": "新生路",
+      "country": "tw",
+      "city": "penghu",
+      "district": "penghu-d002",
+      "category": "gym",
+      "lat": 23.569119,
+      "lng": 119.57895,
+      "description": "【體育館】新生路，位於澎湖縣 / 西文里。"
+    },
+    {
+      "id": "pure-gym-11",
+      "name": "室內綜合球場",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "gym",
+      "lat": 22.64743,
+      "lng": 120.32658,
+      "description": "【體育館】室內綜合球場，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-gym-12",
+      "name": "建國三路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "gym",
+      "lat": 22.638729,
+      "lng": 120.299093,
+      "description": "【體育館】建國三路，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-gym-13",
+      "name": "楠海路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d007",
+      "category": "gym",
+      "lat": 22.70589,
+      "lng": 120.27627,
+      "description": "【體育館】楠海路，位於高雄市 / 楠梓區。"
+    },
+    {
+      "id": "pure-gym-14",
+      "name": "宏毅二路南十二巷",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d007",
+      "category": "gym",
+      "lat": 22.70956,
+      "lng": 120.306794,
+      "description": "【體育館】宏毅二路南十二巷，位於高雄市 / 楠梓區。"
+    },
+    {
+      "id": "pure-gym-15",
+      "name": "海軍大操場",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d020",
+      "category": "gym",
+      "lat": 22.69141,
+      "lng": 120.28766,
+      "description": "【體育館】海軍大操場，位於高雄市 / 左營區。"
+    },
+    {
+      "id": "pure-gym-16",
+      "name": "清水街",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d003",
+      "category": "gym",
+      "lat": 22.865366,
+      "lng": 120.532893,
+      "description": "【體育館】清水街，位於高雄市 / 美濃區。"
+    },
+    {
+      "id": "pure-gym-17",
+      "name": "彰化審計室停車場門口",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d013",
+      "category": "gym",
+      "lat": 24.070699,
+      "lng": 120.550746,
+      "description": "【體育館】彰化審計室停車場門口，位於彰化縣 / 介壽里。"
+    },
+    {
+      "id": "pure-gym-18",
+      "name": "桃園體育館",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d016",
+      "category": "gym",
+      "lat": 24.992927,
+      "lng": 121.323229,
+      "description": "【體育館】桃園體育館，位於桃園市 / 三民里。"
+    },
+    {
+      "id": "pure-gym-19",
+      "name": "嘉義縣健康生活館",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d007",
+      "category": "gym",
+      "lat": 23.448429,
+      "lng": 120.277784,
+      "description": "【體育館】嘉義縣健康生活館，位於嘉義縣 / 豊稠村。"
+    },
+    {
+      "id": "pure-gym-20",
+      "name": "體育管",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d004",
+      "category": "gym",
+      "lat": 24.57796,
+      "lng": 120.842194,
+      "description": "【體育館】體育管，位於苗栗縣 / 嘉盛里。"
+    },
+    {
+      "id": "pure-korean-01",
+      "name": "夯臭豆腐",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d001",
+      "category": "korean",
+      "lat": 24.809643,
+      "lng": 120.955038,
+      "description": "【韓國餐廳】夯臭豆腐，位於新竹市 / 北區。"
+    },
+    {
+      "id": "pure-korean-02",
+      "name": "安平韓國餐廳",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d005",
+      "category": "korean",
+      "lat": 22.991564,
+      "lng": 120.178461,
+      "description": "【韓國餐廳】安平韓國餐廳，位於臺南市 / 安平區。"
+    },
+    {
+      "id": "pure-korean-03",
+      "name": "南港車站",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d007",
+      "category": "korean",
+      "lat": 25.053771,
+      "lng": 121.609742,
+      "description": "【韓國餐廳】南港車站，位於臺北市 / 南港區。"
+    },
+    {
+      "id": "pure-korean-04",
+      "name": "復興路",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d008",
+      "category": "korean",
+      "lat": 23.558501,
+      "lng": 120.425925,
+      "description": "【韓國餐廳】復興路，位於嘉義縣 / 西安村。"
+    },
+    {
+      "id": "pure-korean-05",
+      "name": "民權路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d020",
+      "category": "korean",
+      "lat": 23.131012,
+      "lng": 120.29779,
+      "description": "【韓國餐廳】民權路，位於臺南市 / 光文里。"
+    },
+    {
+      "id": "pure-korean-06",
+      "name": "居仁國中",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d005",
+      "category": "korean",
+      "lat": 24.136961,
+      "lng": 120.678723,
+      "description": "【韓國餐廳】居仁國中，位於臺中市 / 西區。"
+    },
+    {
+      "id": "pure-korean-07",
+      "name": "忠孝路96-98號",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d018",
+      "category": "korean",
+      "lat": 22.673836,
+      "lng": 120.485236,
+      "description": "【韓國餐廳】忠孝路96-98號，位於屏東縣 / 屏東市。"
+    },
+    {
+      "id": "pure-korean-08",
+      "name": "三元花園韓式餐廳",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d002",
+      "category": "korean",
+      "lat": 24.183018,
+      "lng": 120.598504,
+      "description": "【韓國餐廳】三元花園韓式餐廳，位於臺中市 / 西屯區。"
+    },
+    {
+      "id": "pure-korean-09",
+      "name": "友和路80號",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "korean",
+      "lat": 23.480726,
+      "lng": 120.43228,
+      "description": "【韓國餐廳】友和路80號，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-korean-10",
+      "name": "民有三街540-61",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d017",
+      "category": "korean",
+      "lat": 25.014811,
+      "lng": 121.313328,
+      "description": "【韓國餐廳】民有三街540-61，位於桃園市 / 桃園區。"
+    },
+    {
+      "id": "pure-korean-11",
+      "name": "民安街22巷14-2",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d009",
+      "category": "korean",
+      "lat": 25.001402,
+      "lng": 121.479701,
+      "description": "【韓國餐廳】民安街22巷14-2，位於新北市 / 嘉新里。"
+    },
+    {
+      "id": "pure-korean-12",
+      "name": "立志街31巷15-1",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d021",
+      "category": "korean",
+      "lat": 22.6518,
+      "lng": 120.326506,
+      "description": "【韓國餐廳】立志街31巷15-1，位於高雄市 / 灣利里。"
+    },
+    {
+      "id": "pure-korean-13",
+      "name": "新生路550-562",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d003",
+      "category": "korean",
+      "lat": 23.491717,
+      "lng": 120.458157,
+      "description": "【韓國餐廳】新生路550-562，位於嘉義市 / 太平里。"
+    },
+    {
+      "id": "pure-korean-14",
+      "name": "寶中路97巷",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d010",
+      "category": "korean",
+      "lat": 24.980747,
+      "lng": 121.549674,
+      "description": "【韓國餐廳】寶中路97巷，位於新北市 / 新店區。"
+    },
+    {
+      "id": "pure-korean-15",
+      "name": "三民路21-19號",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d011",
+      "category": "korean",
+      "lat": 24.971741,
+      "lng": 121.539218,
+      "description": "【韓國餐廳】三民路21-19號，位於新北市 / 中正里。"
+    },
+    {
+      "id": "pure-korean-16",
+      "name": "西部濱海公路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d022",
+      "category": "korean",
+      "lat": 22.656265,
+      "lng": 120.29201,
+      "description": "【韓國餐廳】西部濱海公路，位於高雄市 / 龍水里。"
+    },
+    {
+      "id": "pure-library-01",
+      "name": "溪口國小藝耀圖書館",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d009",
+      "category": "library",
+      "lat": 23.604122,
+      "lng": 120.394157,
+      "description": "【圖書館】溪口國小藝耀圖書館，位於嘉義縣 / 溪西村。"
+    },
+    {
+      "id": "pure-library-02",
+      "name": "東勢許良宇圖書館",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d014",
+      "category": "library",
+      "lat": 24.249964,
+      "lng": 120.834869,
+      "description": "【圖書館】東勢許良宇圖書館，位於臺中市 / 東勢區。"
+    },
+    {
+      "id": "pure-library-03",
+      "name": "圖書館",
+      "country": "tw",
+      "city": "nantou",
+      "district": "nantou-d003",
+      "category": "library",
+      "lat": 23.901951,
+      "lng": 120.691499,
+      "description": "【圖書館】圖書館，位於南投縣 / 三和里。"
+    },
+    {
+      "id": "pure-library-04",
+      "name": "三山國王廟",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d005",
+      "category": "library",
+      "lat": 24.552842,
+      "lng": 120.814327,
+      "description": "【圖書館】三山國王廟，位於苗栗縣 / 高苗里。"
+    },
+    {
+      "id": "pure-library-05",
+      "name": "南澳鄉綜合運動場",
+      "country": "tw",
+      "city": "yilan",
+      "district": "yilan-d003",
+      "category": "library",
+      "lat": 24.46599,
+      "lng": 121.79948,
+      "description": "【圖書館】南澳鄉綜合運動場，位於宜蘭縣 / 南澳村。"
+    },
+    {
+      "id": "pure-library-06",
+      "name": "迷你書",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d006",
+      "category": "library",
+      "lat": 24.685841,
+      "lng": 120.912631,
+      "description": "【圖書館】迷你書，位於苗栗縣 / 仁愛里。"
+    },
+    {
+      "id": "pure-library-07",
+      "name": "溪湖藝文館後面",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d014",
+      "category": "library",
+      "lat": 23.96225,
+      "lng": 120.478817,
+      "description": "【圖書館】溪湖藝文館後面，位於彰化縣 / 太平里。"
+    },
+    {
+      "id": "pure-library-08",
+      "name": "南投縣草屯鎮公所",
+      "country": "tw",
+      "city": "nantou",
+      "district": "nantou-d004",
+      "category": "library",
+      "lat": 23.973525,
+      "lng": 120.680188,
+      "description": "【圖書館】南投縣草屯鎮公所，位於南投縣 / 中山里。"
+    },
+    {
+      "id": "pure-library-09",
+      "name": "四維三路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d010",
+      "category": "library",
+      "lat": 22.620326,
+      "lng": 120.313187,
+      "description": "【圖書館】四維三路，位於高雄市 / 苓雅區。"
+    },
+    {
+      "id": "pure-library-10",
+      "name": "高雄市三民區河堤國民小學",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "library",
+      "lat": 22.662656,
+      "lng": 120.31532,
+      "description": "【圖書館】高雄市三民區河堤國民小學，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-library-11",
+      "name": "仁義巷",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d004",
+      "category": "library",
+      "lat": 22.700396,
+      "lng": 120.347303,
+      "description": "【圖書館】仁義巷，位於高雄市 / 仁武區。"
+    },
+    {
+      "id": "pure-library-12",
+      "name": "中正路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d023",
+      "category": "library",
+      "lat": 22.917834,
+      "lng": 120.455624,
+      "description": "【圖書館】中正路，位於高雄市 / 內門區。"
+    },
+    {
+      "id": "pure-library-13",
+      "name": "海功路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d020",
+      "category": "library",
+      "lat": 22.692556,
+      "lng": 120.297,
+      "description": "【圖書館】海功路，位於高雄市 / 左營區。"
+    },
+    {
+      "id": "pure-library-14",
+      "name": "溪埔路3巷",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d024",
+      "category": "library",
+      "lat": 22.729679,
+      "lng": 120.4443,
+      "description": "【圖書館】溪埔路3巷，位於高雄市 / 大樹區。"
+    },
+    {
+      "id": "pure-library-15",
+      "name": "中石化大社廠資訊課圖書館",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d025",
+      "category": "library",
+      "lat": 22.72528,
+      "lng": 120.340447,
+      "description": "【圖書館】中石化大社廠資訊課圖書館，位於高雄市 / 大社區。"
+    },
+    {
+      "id": "pure-library-16",
+      "name": "南安國小",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d026",
+      "category": "library",
+      "lat": 22.763954,
+      "lng": 120.244867,
+      "description": "【圖書館】南安國小，位於高雄市 / 彌陀區。"
+    },
+    {
+      "id": "pure-library-17",
+      "name": "中和街",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d027",
+      "category": "library",
+      "lat": 22.8559,
+      "lng": 120.258036,
+      "description": "【圖書館】中和街，位於高雄市 / 路竹區。"
+    },
+    {
+      "id": "pure-library-18",
+      "name": "中華路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d027",
+      "category": "library",
+      "lat": 22.8553,
+      "lng": 120.251309,
+      "description": "【圖書館】中華路，位於高雄市 / 路竹區。"
+    },
+    {
+      "id": "pure-library-19",
+      "name": "圖書館",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d010",
+      "category": "library",
+      "lat": 23.43466,
+      "lng": 120.416236,
+      "description": "【圖書館】圖書館，位於嘉義縣 / 柳林村。"
+    },
+    {
+      "id": "pure-library-20",
+      "name": "縣立苑裡高中",
+      "country": "tw",
+      "city": "miaoli",
+      "district": "miaoli-d007",
+      "category": "library",
+      "lat": 24.439312,
+      "lng": 120.656103,
+      "description": "【圖書館】縣立苑裡高中，位於苗栗縣 / 苑南里。"
+    },
+    {
+      "id": "pure-mexican-01",
+      "name": "台中西區",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d005",
+      "category": "mexican",
+      "lat": 24.152065,
+      "lng": 120.65673,
+      "description": "【墨西哥餐廳】台中西區，位於臺中市 / 西區。"
+    },
+    {
+      "id": "pure-mexican-02",
+      "name": "tasi taco's",
+      "country": "tw",
+      "city": "keelung",
+      "district": "keelung-d001",
+      "category": "mexican",
+      "lat": 25.115596,
+      "lng": 121.75579,
+      "description": "【墨西哥餐廳】tasi taco's，位於基隆市 / 信義區。"
+    },
+    {
+      "id": "pure-mexican-03",
+      "name": "建八路130巷",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d012",
+      "category": "mexican",
+      "lat": 24.997451,
+      "lng": 121.489041,
+      "description": "【墨西哥餐廳】建八路130巷，位於新北市 / 中和區。"
+    },
+    {
+      "id": "pure-mexican-04",
+      "name": "大同路一段",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d008",
+      "category": "mexican",
+      "lat": 25.058754,
+      "lng": 121.636381,
+      "description": "【墨西哥餐廳】大同路一段，位於新北市 / 汐止區。"
+    },
+    {
+      "id": "pure-mexican-05",
+      "name": "三民街300巷8弄7",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d003",
+      "category": "mexican",
+      "lat": 25.068098,
+      "lng": 121.477812,
+      "description": "【墨西哥餐廳】三民街300巷8弄7，位於新北市 / 三重區。"
+    },
+    {
+      "id": "pure-ramen-01",
+      "name": "富野渡假酒店旁邊停車場🅿️",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d005",
+      "category": "ramen",
+      "lat": 22.749983,
+      "lng": 121.153596,
+      "description": "【拉麵店】富野渡假酒店旁邊停車場🅿️，位於臺東縣 / 成功里。"
+    },
+    {
+      "id": "pure-ramen-02",
+      "name": "休息區",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d021",
+      "category": "ramen",
+      "lat": 23.339438,
+      "lng": 120.313176,
+      "description": "【拉麵店】休息區，位於臺南市 / 竹新里。"
+    },
+    {
+      "id": "pure-ramen-03",
+      "name": "西螺休息站",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d006",
+      "category": "ramen",
+      "lat": 23.789012,
+      "lng": 120.479877,
+      "description": "【拉麵店】西螺休息站，位於雲林縣 / 振興里。"
+    },
+    {
+      "id": "pure-ramen-04",
+      "name": "喜福萊餐廳",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d003",
+      "category": "ramen",
+      "lat": 24.902319,
+      "lng": 121.032584,
+      "description": "【拉麵店】喜福萊餐廳，位於新竹縣 / 湖口鄉。"
+    },
+    {
+      "id": "pure-ramen-05",
+      "name": "博愛路到自強街口一帶 (莎凡思髮型屋前方附近)",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d007",
+      "category": "ramen",
+      "lat": 23.56668,
+      "lng": 120.30334,
+      "description": "【拉麵店】博愛路到自強街口一帶 (莎凡思髮型屋前方附近)，位於雲林縣 / 中和里。"
+    },
+    {
+      "id": "pure-ramen-06",
+      "name": "品皇咖啡轉彎處（成功路上）",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d023",
+      "category": "ramen",
+      "lat": 22.673356,
+      "lng": 120.48185,
+      "description": "【拉麵店】品皇咖啡轉彎處（成功路上），位於屏東縣 / 維新里。"
+    },
+    {
+      "id": "pure-ramen-07",
+      "name": "四維國小",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d024",
+      "category": "ramen",
+      "lat": 22.59507,
+      "lng": 120.488966,
+      "description": "【拉麵店】四維國小，位於屏東縣 / 四維村。"
+    },
+    {
+      "id": "pure-ramen-08",
+      "name": "拉麵",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "ramen",
+      "lat": 23.468744,
+      "lng": 120.428366,
+      "description": "【拉麵店】拉麵，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-ramen-09",
+      "name": "全家福客家菜館",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d018",
+      "category": "ramen",
+      "lat": 25.008266,
+      "lng": 121.301259,
+      "description": "【拉麵店】全家福客家菜館，位於桃園市 / 慈文里。"
+    },
+    {
+      "id": "pure-ramen-10",
+      "name": "正氣路",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d006",
+      "category": "ramen",
+      "lat": 22.758088,
+      "lng": 121.14548,
+      "description": "【拉麵店】正氣路，位於臺東縣 / 民族里。"
+    },
+    {
+      "id": "pure-ramen-11",
+      "name": "花崗國中籃排運動場",
+      "country": "tw",
+      "city": "hualien",
+      "district": "hualien-d005",
+      "category": "ramen",
+      "lat": 23.97729,
+      "lng": 121.61251,
+      "description": "【拉麵店】花崗國中籃排運動場，位於花蓮縣 / 民族里。"
+    },
+    {
+      "id": "pure-ramen-12",
+      "name": "三民路16巷",
+      "country": "tw",
+      "city": "kinmen",
+      "district": "kinmen-d005",
+      "category": "ramen",
+      "lat": 24.490134,
+      "lng": 118.414594,
+      "description": "【拉麵店】三民路16巷，位於金門縣 / 汶沙里。"
+    },
+    {
+      "id": "pure-ramen-13",
+      "name": "神龍路",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d019",
+      "category": "ramen",
+      "lat": 24.870036,
+      "lng": 121.218102,
+      "description": "【拉麵店】神龍路，位於桃園市 / 中山里。"
+    },
+    {
+      "id": "pure-ramen-14",
+      "name": "信義路102巷2弄",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d020",
+      "category": "ramen",
+      "lat": 24.884102,
+      "lng": 121.29151,
+      "description": "【拉麵店】信義路102巷2弄，位於桃園市 / 田心里。"
+    },
+    {
+      "id": "pure-ramen-15",
+      "name": "新美街73巷",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d009",
+      "category": "ramen",
+      "lat": 24.342519,
+      "lng": 120.618749,
+      "description": "【拉麵店】新美街73巷，位於臺中市 / 大甲區。"
+    },
+    {
+      "id": "pure-ramen-16",
+      "name": "崇明十三街十巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "ramen",
+      "lat": 22.97375,
+      "lng": 120.225054,
+      "description": "【拉麵店】崇明十三街十巷，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-ramen-17",
+      "name": "田園牛肉麵",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d021",
+      "category": "ramen",
+      "lat": 24.907596,
+      "lng": 121.109873,
+      "description": "【拉麵店】田園牛肉麵，位於桃園市 / 三湖里。"
+    },
+    {
+      "id": "pure-ramen-18",
+      "name": "超盛號烘培手作早食",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d005",
+      "category": "ramen",
+      "lat": 22.98739,
+      "lng": 120.18096,
+      "description": "【拉麵店】超盛號烘培手作早食，位於臺南市 / 安平區。"
+    },
+    {
+      "id": "pure-ramen-19",
+      "name": "進學路250巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d022",
+      "category": "ramen",
+      "lat": 23.16425,
+      "lng": 120.175917,
+      "description": "【拉麵店】進學路250巷，位於臺南市 / 六安里。"
+    },
+    {
+      "id": "pure-ramen-20",
+      "name": "中山路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d023",
+      "category": "ramen",
+      "lat": 23.12051,
+      "lng": 120.463158,
+      "description": "【拉麵店】中山路，位於臺南市 / 玉田里。"
+    },
+    {
+      "id": "pure-shrine-01",
+      "name": "大通寺, 八丁目中寺",
+      "country": "jp",
+      "city": "osaka",
+      "district": "all",
+      "category": "shrine",
+      "lat": 34.670639,
+      "lng": 135.522312,
+      "description": "【神社和寺廟】大通寺, 八丁目中寺。"
+    },
+    {
+      "id": "pure-shrine-02",
+      "name": "鳩谷八幡神社",
+      "country": "jp",
+      "city": "toyama",
+      "district": "all",
+      "category": "shrine",
+      "lat": 36.265372,
+      "lng": 136.900917,
+      "description": "【神社和寺廟】鳩谷八幡神社。"
+    },
+    {
+      "id": "pure-shrine-03",
+      "name": "切田八幡神社",
+      "country": "jp",
+      "city": "aomori",
+      "district": "all",
+      "category": "shrine",
+      "lat": 40.57978,
+      "lng": 141.20629,
+      "description": "【神社和寺廟】切田八幡神社。"
+    },
+    {
+      "id": "pure-shrine-04",
+      "name": "名古屋寶田社",
+      "country": "jp",
+      "city": "nagoya",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.12237,
+      "lng": 136.88471,
+      "description": "【神社和寺廟】名古屋寶田社。"
+    },
+    {
+      "id": "pure-shrine-05",
+      "name": "秋田火產靈神社",
+      "country": "jp",
+      "city": "akita",
+      "district": "all",
+      "category": "shrine",
+      "lat": 39.738019,
+      "lng": 140.161841,
+      "description": "【神社和寺廟】秋田火產靈神社。"
+    },
+    {
+      "id": "pure-shrine-06",
+      "name": "旭川市念法寺",
+      "country": "jp",
+      "city": "hokkaido",
+      "district": "all",
+      "category": "shrine",
+      "lat": 43.793043,
+      "lng": 142.376271,
+      "description": "【神社和寺廟】旭川市念法寺。"
+    },
+    {
+      "id": "pure-shrine-07",
+      "name": "北海道帶廣神社",
+      "country": "jp",
+      "city": "hokkaido",
+      "district": "all",
+      "category": "shrine",
+      "lat": 42.931823,
+      "lng": 143.209487,
+      "description": "【神社和寺廟】北海道帶廣神社。"
+    },
+    {
+      "id": "pure-shrine-08",
+      "name": "東京都傳通院",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.712419,
+      "lng": 139.746871,
+      "description": "【神社和寺廟】東京都傳通院。"
+    },
+    {
+      "id": "pure-shrine-09",
+      "name": "日本東京都八王子市",
+      "country": "jp",
+      "city": "tokyo",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.697806,
+      "lng": 139.318779,
+      "description": "【神社和寺廟】日本東京都八王子市。"
+    },
+    {
+      "id": "pure-shrine-10",
+      "name": "愛知縣日泰寺",
+      "country": "jp",
+      "city": "nagoya",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.171164,
+      "lng": 136.955649,
+      "description": "【神社和寺廟】愛知縣日泰寺。"
+    },
+    {
+      "id": "pure-shrine-11",
+      "name": "京都北區大德寺",
+      "country": "jp",
+      "city": "kyoto",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.043885,
+      "lng": 135.746032,
+      "description": "【神社和寺廟】京都北區大德寺。"
+    },
+    {
+      "id": "pure-shrine-12",
+      "name": "京都勧修寺",
+      "country": "jp",
+      "city": "kyoto",
+      "district": "all",
+      "category": "shrine",
+      "lat": 34.962482,
+      "lng": 135.807192,
+      "description": "【神社和寺廟】京都勧修寺。"
+    },
+    {
+      "id": "pure-shrine-13",
+      "name": "沖繩縣金武觀音寺",
+      "country": "jp",
+      "city": "okinawa",
+      "district": "all",
+      "category": "shrine",
+      "lat": 26.455021,
+      "lng": 127.921454,
+      "description": "【神社和寺廟】沖繩縣金武觀音寺。"
+    },
+    {
+      "id": "pure-shrine-14",
+      "name": "石垣寶來寶來神社",
+      "country": "jp",
+      "city": "okinawa",
+      "district": "all",
+      "category": "shrine",
+      "lat": 24.356832,
+      "lng": 124.166069,
+      "description": "【神社和寺廟】石垣寶來寶來神社。"
+    },
+    {
+      "id": "pure-shrine-15",
+      "name": "神社和寺廟",
+      "country": "jp",
+      "city": "fukushima",
+      "district": "all",
+      "category": "shrine",
+      "lat": 37.50269,
+      "lng": 139.865401,
+      "description": "【神社和寺廟】神社和寺廟。"
+    },
+    {
+      "id": "pure-shrine-16",
+      "name": "神社和寺廟",
+      "country": "jp",
+      "city": "niigata",
+      "district": "all",
+      "category": "shrine",
+      "lat": 37.186918,
+      "lng": 138.949365,
+      "description": "【神社和寺廟】神社和寺廟。"
+    },
+    {
+      "id": "pure-shrine-17",
+      "name": "橫濱市",
+      "country": "jp",
+      "city": "yokohama",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.422832,
+      "lng": 139.478475,
+      "description": "【神社和寺廟】橫濱市。"
+    },
+    {
+      "id": "pure-shrine-18",
+      "name": "會津若松市",
+      "country": "jp",
+      "city": "fukushima",
+      "district": "all",
+      "category": "shrine",
+      "lat": 37.51873,
+      "lng": 139.907136,
+      "description": "【神社和寺廟】會津若松市。"
+    },
+    {
+      "id": "pure-shrine-19",
+      "name": "惠庭市",
+      "country": "jp",
+      "city": "hokkaido",
+      "district": "all",
+      "category": "shrine",
+      "lat": 42.88558,
+      "lng": 141.569275,
+      "description": "【神社和寺廟】惠庭市。"
+    },
+    {
+      "id": "pure-shrine-20",
+      "name": "草津市",
+      "country": "jp",
+      "city": "shiga",
+      "district": "all",
+      "category": "shrine",
+      "lat": 35.056253,
+      "lng": 135.935301,
+      "description": "【神社和寺廟】草津市。"
+    },
+    {
+      "id": "pure-stationery-01",
+      "name": "民雄頂崙村崙仔頂柑仔店",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d011",
+      "category": "stationery",
+      "lat": 23.566848,
+      "lng": 120.437106,
+      "description": "【文具店】民雄頂崙村崙仔頂柑仔店，位於嘉義縣 / 頂崙村。"
+    },
+    {
+      "id": "pure-stationery-02",
+      "name": "愛菲爾股份有限公司",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d015",
+      "category": "stationery",
+      "lat": 24.180462,
+      "lng": 120.493748,
+      "description": "【文具店】愛菲爾股份有限公司，位於彰化縣 / 全興村。"
+    },
+    {
+      "id": "pure-stationery-03",
+      "name": "橋頭金玉堂",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d019",
+      "category": "stationery",
+      "lat": 22.750612,
+      "lng": 120.309239,
+      "description": "【文具店】橋頭金玉堂，位於高雄市 / 橋頭區。"
+    },
+    {
+      "id": "pure-stationery-04",
+      "name": "小品雅集",
+      "country": "tw",
+      "city": "taipei",
+      "district": "taipei-d008",
+      "category": "stationery",
+      "lat": 25.031536,
+      "lng": 121.541196,
+      "description": "【文具店】小品雅集，位於臺北市 / 大安區。"
+    },
+    {
+      "id": "pure-stationery-05",
+      "name": "南華街",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d022",
+      "category": "stationery",
+      "lat": 24.99455,
+      "lng": 121.306711,
+      "description": "【文具店】南華街，位於桃園市 / 西門里。"
+    },
+    {
+      "id": "pure-stationery-06",
+      "name": "文具",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "stationery",
+      "lat": 22.641291,
+      "lng": 120.320009,
+      "description": "【文具店】文具，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-stationery-07",
+      "name": "南大路550巷",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d002",
+      "category": "stationery",
+      "lat": 24.79565,
+      "lng": 120.963658,
+      "description": "【文具店】南大路550巷，位於新竹市 / 東區。"
+    },
+    {
+      "id": "pure-stationery-08",
+      "name": "境福街",
+      "country": "tw",
+      "city": "hsinchu",
+      "district": "hsinchu-d001",
+      "category": "stationery",
+      "lat": 24.817106,
+      "lng": 120.961108,
+      "description": "【文具店】境福街，位於新竹市 / 北區。"
+    },
+    {
+      "id": "pure-stationery-09",
+      "name": "大公路",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d001",
+      "category": "stationery",
+      "lat": 22.793549,
+      "lng": 120.285547,
+      "description": "【文具店】大公路，位於高雄市 / 岡山區。"
+    },
+    {
+      "id": "pure-stationery-10",
+      "name": "臥龍路23巷",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "stationery",
+      "lat": 22.637824,
+      "lng": 120.329246,
+      "description": "【文具店】臥龍路23巷，位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-stationery-11",
+      "name": "豐田二路",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d023",
+      "category": "stationery",
+      "lat": 24.927645,
+      "lng": 121.288751,
+      "description": "【文具店】豐田二路，位於桃園市 / 瑞豐里。"
+    },
+    {
+      "id": "pure-stationery-12",
+      "name": "潮州街",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d024",
+      "category": "stationery",
+      "lat": 24.98809,
+      "lng": 121.299319,
+      "description": "【文具店】潮州街，位於桃園市 / 泰山里。"
+    },
+    {
+      "id": "pure-stationery-13",
+      "name": "宏昌十三街",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d019",
+      "category": "stationery",
+      "lat": 24.98424,
+      "lng": 121.290894,
+      "description": "【文具店】宏昌十三街，位於桃園市 / 中山里。"
+    },
+    {
+      "id": "pure-stationery-14",
+      "name": "仁德街",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d025",
+      "category": "stationery",
+      "lat": 25.051808,
+      "lng": 121.120375,
+      "description": "【文具店】仁德街，位於桃園市 / 樹林里。"
+    },
+    {
+      "id": "pure-stationery-15",
+      "name": "民主街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d023",
+      "category": "stationery",
+      "lat": 23.12375,
+      "lng": 120.463446,
+      "description": "【文具店】民主街，位於臺南市 / 玉田里。"
+    },
+    {
+      "id": "pure-stationery-16",
+      "name": "復華五街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d024",
+      "category": "stationery",
+      "lat": 23.01113,
+      "lng": 120.245411,
+      "description": "【文具店】復華五街，位於臺南市 / 復國里。"
+    },
+    {
+      "id": "pure-stationery-17",
+      "name": "台南高爾夫球場",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d025",
+      "category": "stationery",
+      "lat": 23.03473,
+      "lng": 120.338706,
+      "description": "【文具店】台南高爾夫球場，位於臺南市 / 礁坑里。"
+    },
+    {
+      "id": "pure-stationery-18",
+      "name": "台南高爾夫球場",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d025",
+      "category": "stationery",
+      "lat": 23.033544,
+      "lng": 120.34298,
+      "description": "【文具店】台南高爾夫球場，位於臺南市 / 礁坑里。"
+    },
+    {
+      "id": "pure-stationery-19",
+      "name": "大智街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d023",
+      "category": "stationery",
+      "lat": 23.122868,
+      "lng": 120.464819,
+      "description": "【文具店】大智街，位於臺南市 / 玉田里。"
+    },
+    {
+      "id": "pure-stationery-20",
+      "name": "南24",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d026",
+      "category": "stationery",
+      "lat": 23.190614,
+      "lng": 120.18808,
+      "description": "【文具店】南24，位於臺南市 / 佳興里。"
+    },
+    {
+      "id": "pure-supermarket-01",
+      "name": "州南五街73號",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d027",
+      "category": "supermarket",
+      "lat": 23.055807,
+      "lng": 120.217597,
+      "description": "【超市】州南五街73號，位於臺南市 / 州南里。"
+    },
+    {
+      "id": "pure-supermarket-02",
+      "name": "自由聯盟",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d004",
+      "category": "supermarket",
+      "lat": 24.702582,
+      "lng": 121.054407,
+      "description": "【超市】自由聯盟，位於新竹縣 / 北埔鄉。"
+    },
+    {
+      "id": "pure-supermarket-03",
+      "name": "美廉社溪口店",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d012",
+      "category": "supermarket",
+      "lat": 23.602965,
+      "lng": 120.397235,
+      "description": "【超市】美廉社溪口店，位於嘉義縣 / 溪東村。"
+    },
+    {
+      "id": "pure-supermarket-04",
+      "name": "娘娘抖團購（河堤鼎中店）",
+      "country": "tw",
+      "city": "kaohsiung",
+      "district": "kaohsiung-d014",
+      "category": "supermarket",
+      "lat": 22.666019,
+      "lng": 120.317491,
+      "description": "【超市】娘娘抖團購（河堤鼎中店），位於高雄市 / 三民區。"
+    },
+    {
+      "id": "pure-supermarket-05",
+      "name": "高鐵站前東路一段33",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d026",
+      "category": "supermarket",
+      "lat": 25.012882,
+      "lng": 121.217347,
+      "description": "【超市】高鐵站前東路一段33，位於桃園市 / 中壢區。"
+    },
+    {
+      "id": "pure-supermarket-06",
+      "name": "嘉市四維路全聯",
+      "country": "tw",
+      "city": "chiayi",
+      "district": "chiayi-d001",
+      "category": "supermarket",
+      "lat": 23.487512,
+      "lng": 120.42774,
+      "description": "【超市】嘉市四維路全聯，位於嘉義市 / 西區。"
+    },
+    {
+      "id": "pure-supermarket-07",
+      "name": "美廉社",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d027",
+      "category": "supermarket",
+      "lat": 25.004801,
+      "lng": 121.303219,
+      "description": "【超市】美廉社，位於桃園市 / 長安里。"
+    },
+    {
+      "id": "pure-supermarket-08",
+      "name": "楊新北路188巷16號",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d028",
+      "category": "supermarket",
+      "lat": 24.912053,
+      "lng": 121.153793,
+      "description": "【超市】楊新北路188巷16號，位於桃園市 / 大同里。"
+    },
+    {
+      "id": "pure-supermarket-09",
+      "name": "龍平八街",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d029",
+      "category": "supermarket",
+      "lat": 24.931715,
+      "lng": 121.256227,
+      "description": "【超市】龍平八街，位於桃園市 / 龍安里。"
+    },
+    {
+      "id": "pure-supermarket-10",
+      "name": "全聯高樹信義店",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d025",
+      "category": "supermarket",
+      "lat": 22.823142,
+      "lng": 120.600466,
+      "description": "【超市】全聯高樹信義店，位於屏東縣 / 長榮村。"
+    },
+    {
+      "id": "pure-supermarket-11",
+      "name": "美聯社超市",
+      "country": "tw",
+      "city": "newtaipei",
+      "district": "newtaipei-d004",
+      "category": "supermarket",
+      "lat": 25.040666,
+      "lng": 121.457566,
+      "description": "【超市】美聯社超市，位於新北市 / 新莊區。"
+    },
+    {
+      "id": "pure-supermarket-12",
+      "name": "長和路二段",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d027",
+      "category": "supermarket",
+      "lat": 23.06349,
+      "lng": 120.219766,
+      "description": "【超市】長和路二段，位於臺南市 / 州南里。"
+    },
+    {
+      "id": "pure-supermarket-13",
+      "name": "白河全聯",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d028",
+      "category": "supermarket",
+      "lat": 23.345109,
+      "lng": 120.41418,
+      "description": "【超市】白河全聯，位於臺南市 / 白河里。"
+    },
+    {
+      "id": "pure-supermarket-14",
+      "name": "裕英街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "supermarket",
+      "lat": 22.986605,
+      "lng": 120.242632,
+      "description": "【超市】裕英街，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-supermarket-15",
+      "name": "台中市立梧棲曲棍球場",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d015",
+      "category": "supermarket",
+      "lat": 24.247507,
+      "lng": 120.551367,
+      "description": "【超市】台中市立梧棲曲棍球場，位於臺中市 / 梧棲區。"
+    },
+    {
+      "id": "pure-supermarket-16",
+      "name": "全聯忠孝北店",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d029",
+      "category": "supermarket",
+      "lat": 22.970124,
+      "lng": 120.301054,
+      "description": "【超市】全聯忠孝北店，位於臺南市 / 歸仁里。"
+    },
+    {
+      "id": "pure-supermarket-17",
+      "name": "祥和三街（偏果菜市場）",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d015",
+      "category": "supermarket",
+      "lat": 23.150924,
+      "lng": 120.175372,
+      "description": "【超市】祥和三街（偏果菜市場），位於臺南市 / 南勢里。"
+    },
+    {
+      "id": "pure-supermarket-18",
+      "name": "全聯福利中心文化店",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d030",
+      "category": "supermarket",
+      "lat": 22.970663,
+      "lng": 120.285369,
+      "description": "【超市】全聯福利中心文化店，位於臺南市 / 南保里。"
+    },
+    {
+      "id": "pure-supermarket-19",
+      "name": "農聯社",
+      "country": "tw",
+      "city": "taoyuan",
+      "district": "taoyuan-d030",
+      "category": "supermarket",
+      "lat": 24.933081,
+      "lng": 121.284717,
+      "description": "【超市】農聯社，位於桃園市 / 福興里。"
+    },
+    {
+      "id": "pure-supermarket-20",
+      "name": "和美成功牛排附近",
+      "country": "tw",
+      "city": "changhua",
+      "district": "changhua-d016",
+      "category": "supermarket",
+      "lat": 24.109187,
+      "lng": 120.498308,
+      "description": "【超市】和美成功牛排附近，位於彰化縣 / 和東里。"
+    },
+    {
+      "id": "pure-university-01",
+      "name": "國立中興大學",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d007",
+      "category": "university",
+      "lat": 24.12099,
+      "lng": 120.676724,
+      "description": "【大學&學院】國立中興大學，位於臺中市 / 南區。"
+    },
+    {
+      "id": "pure-university-02",
+      "name": "台東大學知本校區",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d007",
+      "category": "university",
+      "lat": 22.737445,
+      "lng": 121.069035,
+      "description": "【大學&學院】台東大學知本校區，位於臺東縣 / 建農里。"
+    },
+    {
+      "id": "pure-university-03",
+      "name": "國立嘉義大學民雄校區",
+      "country": "tw",
+      "city": "chiayi_county",
+      "district": "chiayi_county-d013",
+      "category": "university",
+      "lat": 23.541968,
+      "lng": 120.423609,
+      "description": "【大學&學院】國立嘉義大學民雄校區，位於嘉義縣 / 文隆村。"
+    },
+    {
+      "id": "pure-university-04",
+      "name": "陽明交通大學台南校區",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d031",
+      "category": "university",
+      "lat": 22.926431,
+      "lng": 120.299972,
+      "description": "【大學&學院】陽明交通大學台南校區，位於臺南市 / 沙崙里。"
+    },
+    {
+      "id": "pure-university-05",
+      "name": "中華路53巷",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d032",
+      "category": "university",
+      "lat": 23.064715,
+      "lng": 120.297744,
+      "description": "【大學&學院】中華路53巷，位於臺南市 / 永就里。"
+    },
+    {
+      "id": "pure-university-06",
+      "name": "自強網球場",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 22.999838,
+      "lng": 120.22313,
+      "description": "【大學&學院】自強網球場，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-07",
+      "name": "大學路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 23.003358,
+      "lng": 120.216698,
+      "description": "【大學&學院】大學路，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-08",
+      "name": "大學路",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 22.998596,
+      "lng": 120.217174,
+      "description": "【大學&學院】大學路，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-09",
+      "name": "台南醫院",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d033",
+      "category": "university",
+      "lat": 22.996397,
+      "lng": 120.207762,
+      "description": "【大學&學院】台南醫院，位於臺南市 / 中西區。"
+    },
+    {
+      "id": "pure-university-10",
+      "name": "航太系館",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 22.994909,
+      "lng": 120.22332,
+      "description": "【大學&學院】航太系館，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-11",
+      "name": "新樓街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 22.98967,
+      "lng": 120.214266,
+      "description": "【大學&學院】新樓街，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-12",
+      "name": "南寧街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d033",
+      "category": "university",
+      "lat": 22.984895,
+      "lng": 120.19919,
+      "description": "【大學&學院】南寧街，位於臺南市 / 中西區。"
+    },
+    {
+      "id": "pure-university-13",
+      "name": "國立臺南大學榮譽教學中心",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d002",
+      "category": "university",
+      "lat": 22.977317,
+      "lng": 120.217486,
+      "description": "【大學&學院】國立臺南大學榮譽教學中心，位於臺南市 / 東區。"
+    },
+    {
+      "id": "pure-university-14",
+      "name": "嘉南藥理大學",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d034",
+      "category": "university",
+      "lat": 22.920379,
+      "lng": 120.227153,
+      "description": "【大學&學院】嘉南藥理大學，位於臺南市 / 保安里。"
+    },
+    {
+      "id": "pure-university-15",
+      "name": "操場",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d034",
+      "category": "university",
+      "lat": 22.923167,
+      "lng": 120.230388,
+      "description": "【大學&學院】操場，位於臺南市 / 保安里。"
+    },
+    {
+      "id": "pure-university-16",
+      "name": "成功大學歸仁校區",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d035",
+      "category": "university",
+      "lat": 22.935386,
+      "lng": 120.273342,
+      "description": "【大學&學院】成功大學歸仁校區，位於臺南市 / 六甲里。"
+    },
+    {
+      "id": "pure-university-17",
+      "name": "中正南路一段",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d035",
+      "category": "university",
+      "lat": 22.937888,
+      "lng": 120.277026,
+      "description": "【大學&學院】中正南路一段，位於臺南市 / 六甲里。"
+    },
+    {
+      "id": "pure-university-18",
+      "name": "長榮大學",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d036",
+      "category": "university",
+      "lat": 22.900036,
+      "lng": 120.272494,
+      "description": "【大學&學院】長榮大學，位於臺南市 / 大潭里。"
+    },
+    {
+      "id": "pure-university-19",
+      "name": "文華一街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d037",
+      "category": "university",
+      "lat": 22.959694,
+      "lng": 120.243798,
+      "description": "【大學&學院】文華一街，位於臺南市 / 仁德里。"
+    },
+    {
+      "id": "pure-university-20",
+      "name": "文華一街",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d037",
+      "category": "university",
+      "lat": 22.962303,
+      "lng": 120.242702,
+      "description": "【大學&學院】文華一街，位於臺南市 / 仁德里。"
+    },
+    {
+      "id": "pure-zoo-01",
+      "name": "潭子區農會",
+      "country": "tw",
+      "city": "taichung",
+      "district": "taichung-d010",
+      "category": "zoo",
+      "lat": 24.216093,
+      "lng": 120.687393,
+      "description": "【動物園】潭子區農會，位於臺中市 / 潭子區。"
+    },
+    {
+      "id": "pure-zoo-02",
+      "name": "南6",
+      "country": "tw",
+      "city": "tainan",
+      "district": "tainan-d038",
+      "category": "zoo",
+      "lat": 23.2802,
+      "lng": 120.209244,
+      "description": "【動物園】南6，位於臺南市 / 三慶里。"
+    },
+    {
+      "id": "pure-zoo-03",
+      "name": "下湖路",
+      "country": "tw",
+      "city": "yilan",
+      "district": "yilan-d004",
+      "category": "zoo",
+      "lat": 24.646179,
+      "lng": 121.744527,
+      "description": "【動物園】下湖路，位於宜蘭縣 / 得安村。"
+    },
+    {
+      "id": "pure-zoo-04",
+      "name": "竹北外勞管理中心",
+      "country": "tw",
+      "city": "hsinchu_county",
+      "district": "hsinchu_county-d005",
+      "category": "zoo",
+      "lat": 24.852471,
+      "lng": 120.982858,
+      "description": "【動物園】竹北外勞管理中心，位於新竹縣 / 竹北市。"
+    },
+    {
+      "id": "pure-zoo-05",
+      "name": "雲70",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d008",
+      "category": "zoo",
+      "lat": 23.750637,
+      "lng": 120.54732,
+      "description": "【動物園】雲70，位於雲林縣 / 埔尾村。"
+    },
+    {
+      "id": "pure-zoo-06",
+      "name": "科加六路",
+      "country": "tw",
+      "city": "yunlin",
+      "district": "yunlin-d009",
+      "category": "zoo",
+      "lat": 23.744273,
+      "lng": 120.546514,
+      "description": "【動物園】科加六路，位於雲林縣 / 溪洲里。"
+    },
+    {
+      "id": "pure-zoo-07",
+      "name": "木柵動物園區",
+      "country": "tw",
+      "city": "taitung",
+      "district": "taitung-d008",
+      "category": "zoo",
+      "lat": 23.11202,
+      "lng": 121.19462,
+      "description": "【動物園】木柵動物園區，位於臺東縣 / 新興村。"
+    },
+    {
+      "id": "pure-zoo-08",
+      "name": "泰山路86巷4弄",
+      "country": "tw",
+      "city": "yilan",
+      "district": "yilan-d005",
+      "category": "zoo",
+      "lat": 24.755796,
+      "lng": 121.744588,
+      "description": "【動物園】泰山路86巷4弄，位於宜蘭縣 / 負郭里。"
+    },
+    {
+      "id": "pure-zoo-09",
+      "name": "恆公路",
+      "country": "tw",
+      "city": "pingtung",
+      "district": "pingtung-d026",
+      "category": "zoo",
+      "lat": 22.012225,
+      "lng": 120.741216,
+      "description": "【動物園】恆公路，位於屏東縣 / 網紗里。"
+    },
+    {
+      "id": "pure-zoo-10",
+      "name": "九九峰動物樂園",
+      "country": "tw",
+      "city": "nantou",
+      "district": "nantou-d005",
+      "category": "zoo",
+      "lat": 23.961265,
+      "lng": 120.706507,
+      "description": "【動物園】九九峰動物樂園，位於南投縣 / 坪頂里。"
+    }
+  ]
+}

@@ -1,0 +1,1198 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import locationsData from '../../../data/locations.json';
+import products from '../../../data/products.json';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+// 各期實景圖出處（public 下的 _sources.json，建置期用 node:fs 讀，不進前端 bundle）。
+// Vite 不允許從 public/ import，所以這裡走檔案系統。
+// 新增一批圖時（如 castle/church/bridge）：照同格式放 _sources.json，這裡加一行進陣列。
+function readSources(folder: string): any[] {
+  try {
+    const p = join(process.cwd(), 'public', 'images', 'postcards', folder, '_sources.json');
+    if (!existsSync(p)) return [];
+    const parsed = JSON.parse(readFileSync(p, 'utf-8'));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function getStaticPaths() {
+  return locationsData.weeklyFeatured.map((issue) => ({
+    params: { issue: issue.id },
+    props: { currentIssue: issue }
+  }));
+}
+
+const { currentIssue } = Astro.props;
+const product = products.find((p) => p.id === 'geosim')!;
+
+// 出處聚合：key = 存檔路徑。沒有出處檔的期別自動隱藏整區，
+// 所以舊期（Threads 截圖時代）不受影響。
+const creditSources = [...readSources('shrine')];
+const creditByPath = new Map(creditSources.map((s) => [s.saved, s]));
+const creditEntries = (currentIssue.spots || [])
+  .map((s) => {
+    const c = s.image ? creditByPath.get(s.image) : null;
+    return c ? { ...c, spotName: s.name } : null;
+  })
+  .filter((c) => c !== null)
+  .filter((c, i, arr) => arr.findIndex((x) => x.saved === c.saved) === i);
+
+// Generate all coordinates in line-by-line format for GeoSim batch import
+const allCoordsString = currentIssue.spots
+  ? currentIssue.spots.map((s) => `${s.lat},${s.lng}`).join('\n')
+  : '';
+
+// Default share drafts if missing
+const lineDraft = currentIssue.lineShareDraft || `嗨皮友們！這期 GeoSim 整理了【${currentIssue.theme}】的精選座標，在家漫遊就能打菇寄給好友，完整座標看這裡 👉 https://kairosvector.com/geosim/weekly-featured/${currentIssue.id}`;
+const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${currentIssue.issue} 🌟 ${currentIssue.theme}】\n\n本期完整座標看這裡 👉 https://kairosvector.com/geosim/weekly-featured/${currentIssue.id}\n#GeoSim #PikminBloom #皮克敏`;
+---
+
+<BaseLayout
+  title={`${currentIssue.issue}：${currentIssue.theme} | 每周精選專欄 — GeoSim`}
+  description={`GeoSim 官方每周精選探索地點：${currentIssue.theme}。包含真實明信片相片、景點微故事、推薦巡航速度與一鍵分享給好友文案。`}
+  ogTitle={`${currentIssue.issue}：${currentIssue.theme}`}
+  ogDescription={currentIssue.description}
+>
+  <div class="weekly-detail-page">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb" aria-label="導覽路徑">
+        <a href="/">首頁</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="/geosim">GeoSim</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="/geosim/weekly-featured">每周精選專欄</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">{currentIssue.issue}</span>
+      </nav>
+
+      <!-- Page Header -->
+      <header class="issue-header" data-animate>
+        <div class="issue-header__badge-row">
+          <a href="/geosim/weekly-featured" class="badge badge--geosim" style="text-decoration: none;">
+            🌟 每周精選專欄
+          </a>
+          <span class="issue-header__number">{currentIssue.issue} • {currentIssue.date}</span>
+          {currentIssue.region && (
+            <span class="badge badge--outline">{currentIssue.region}</span>
+          )}
+          {currentIssue.categoryName && (
+            <span class="badge badge--outline">{currentIssue.categoryName}</span>
+          )}
+        </div>
+        <h1 class="issue-header__title">{currentIssue.theme}</h1>
+        <p class="issue-header__lead">{currentIssue.description}</p>
+
+        <!-- Quick Action Bar -->
+        <div class="issue-quick-actions">
+          <button
+            id="copy-all-coords-btn"
+            class="btn btn--primary btn--sm"
+            data-coords={allCoordsString}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            </svg>
+            一鍵複製本期全部座標 (GeoSim 格式)
+          </button>
+          <a href="#share-hub-section" class="btn btn--outline btn--sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+              <polyline points="16 6 12 2 8 6"></polyline>
+              <line x1="12" y1="2" x2="12" y2="15"></line>
+            </svg>
+            一鍵轉發推薦給皮友 🎁
+          </a>
+          <a href="/geosim/weekly-featured" class="btn btn--outline btn--sm">
+            ← 返回專欄總覽
+          </a>
+        </div>
+      </header>
+
+      {currentIssue.coverImage && (
+        <div class="issue-cover-banner" data-animate>
+          <img
+            src={currentIssue.coverImage}
+            alt={currentIssue.theme}
+            class="issue-cover-banner__img"
+            loading="eager"
+          />
+          <div class="issue-cover-banner__overlay">
+            <span class="badge badge--geosim">📸 {currentIssue.issue} 精選專欄封面</span>
+            <span class="issue-cover-banner__tagline">{currentIssue.theme}</span>
+          </div>
+        </div>
+      )}
+
+      <!-- Filter Toolbar -->
+      {currentIssue.spots && currentIssue.spots.length > 3 && (
+        <div class="filter-toolbar" data-animate>
+          <span class="filter-label">篩選類別：</span>
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">全部 ({currentIssue.spots.length})</button>
+            <button class="filter-tab" data-filter="mushroom">🍄 蘑菇戰鬥點</button>
+            <button class="filter-tab" data-filter="flower">🌸 巨型大花點</button>
+            {currentIssue.spots.some(s => s.region === 'tw') && <button class="filter-tab" data-filter="tw">🇹🇼 台灣</button>}
+            {currentIssue.spots.some(s => s.region === 'jp') && <button class="filter-tab" data-filter="jp">🇯🇵 日本</button>}
+            {currentIssue.spots.some(s => s.region === 'global') && <button class="filter-tab" data-filter="global">🌍 國際其他</button>}
+          </div>
+        </div>
+      )}
+
+      <!-- Spots Grid -->
+      <section class="weekly-spots-section" data-animate>
+        <div class="spots-grid">
+          {currentIssue.spots && currentIssue.spots.map((spot, idx) => (
+            <article
+              class="card spot-postcard-card"
+              data-region={spot.region || 'global'}
+              data-type={spot.type || 'flower'}
+            >
+              <!-- Postcard Photo Frame -->
+              <div class="postcard-frame">
+                {spot.image ? (
+                  <img
+                    src={spot.image}
+                    alt={spot.name}
+                    class="postcard-img"
+                    loading={idx < 4 ? 'eager' : 'lazy'}
+                  />
+                ) : (
+                  <div class="postcard-img-placeholder">
+                    <span style="font-size: 32px; margin-bottom: 8px;">{spot.type === 'mushroom' ? '🍄' : '🌸'}</span>
+                    <span>{spot.name}</span>
+                  </div>
+                )}
+                <div class="postcard-badges-overlay">
+                  {spot.type === 'mushroom' ? (
+                    <span class="type-badge type-badge--mushroom">🍄 蘑菇戰鬥點</span>
+                  ) : (
+                    <span class="type-badge type-badge--flower">🌸 巨型大花點</span>
+                  )}
+                  {/* postcards/ 目錄 = 實景照片（Wikimedia/Openverse），與皮克敏遊戲截圖區分 */}
+                  {spot.image?.includes('/postcards/') && (
+                    <span class="type-badge photo-badge">📷 實景圖</span>
+                  )}
+                  {spot.region === 'tw' && <span class="region-badge">🇹🇼 台灣</span>}
+                  {spot.region === 'jp' && <span class="region-badge">🇯🇵 日本</span>}
+                  {spot.region === 'global' && <span class="region-badge">🌍 國際</span>}
+                </div>
+              </div>
+
+              <!-- Postcard Details -->
+              <div class="spot-card-body">
+                <div class="spot-card-header">
+                  <div class="spot-card-num-title">
+                    <span class="spot-seq-num">#{String(idx + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3 class="spot-card-title">{spot.name}</h3>
+                      <div class="spot-card-location">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>{spot.city} {spot.location ? `• ${spot.location}` : ''}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {spot.tag && <span class="spot-tag-pill">{spot.tag}</span>}
+                </div>
+
+                <!-- Story / Commentary -->
+                {(spot.story || spot.highlight) && (
+                  <div class="spot-card-story">
+                    <div class="story-icon">🌿</div>
+                    <p class="story-text">{spot.story || spot.highlight}</p>
+                  </div>
+                )}
+
+                <!-- Meta Bar -->
+                <div class="spot-card-meta-bar">
+                  <div class="meta-coord-block">
+                    <span class="meta-label">經緯度座標：</span>
+                    <code class="meta-coord-code">{spot.lat}, {spot.lng}</code>
+                  </div>
+                  {spot.recommendedSpeed && (
+                    <div class="meta-speed-block">
+                      <span class="meta-label">推薦巡航：</span>
+                      <span class="meta-speed-text">{spot.recommendedSpeed}</span>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Actions -->
+                <div class="spot-card-footer">
+                  <button
+                    class="btn btn--geosim-glow btn--sm copy-single-coord-btn"
+                    data-coord={`${spot.lat}, ${spot.lng}`}
+                    title="複製經緯度到剪貼簿"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    複製座標
+                  </button>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${spot.lat},${spot.lng}`}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn--outline btn--sm"
+                  >
+                    Google 地圖 ↗
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Upgraded Social Share Hub (全民轉發與社群推薦神器) -->
+      <section id="share-hub-section" class="social-share-hub" data-animate>
+        <div class="card social-share-card">
+          <div class="social-share-card__header">
+            <div class="social-share-card__title-group">
+              <span class="badge badge--geosim">🎁 全民社群推薦神器</span>
+              <h2 class="social-share-card__title">覺得這期很讚？一鍵分享給皮友與揪團群！</h2>
+              <p class="social-share-card__desc">
+                免自己打字排版！我們為你準備好了「LINE 群聊親切版」與「Threads 深度推薦版」，點擊按鈕即可直接喚醒 App 或一鍵複製！
+              </p>
+            </div>
+
+            <!-- Tab Buttons for Line vs Threads -->
+            <div class="share-mode-toggle">
+              <button id="tab-line-mode" class="share-mode-btn active">
+                💬 LINE 聊天群推薦版
+              </button>
+              <button id="tab-threads-mode" class="share-mode-btn">
+                🧵 Threads / 社群貼文版
+              </button>
+            </div>
+          </div>
+
+          <!-- LINE Box Content -->
+          <div id="line-content-panel" class="share-panel">
+            <div class="draft-preview-box">
+              <div class="draft-preview-header">
+                <span class="draft-preview-tag">💬 適合發至 LINE 皮克敏群組、好友私訊</span>
+                <span class="draft-char-count">口氣親切 • 包含專屬連結</span>
+              </div>
+              <pre class="draft-text" id="line-draft-text">{lineDraft}</pre>
+            </div>
+
+            <div class="share-panel-actions">
+              <button class="btn btn--primary btn--md" id="copy-line-btn" data-text={lineDraft}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                複製 LINE 文案
+              </button>
+              <a
+                href={`https://line.me/R/msg/text/?${encodeURIComponent(lineDraft)}`}
+                target="_blank"
+                rel="noopener"
+                class="btn btn--outline btn--md btn--line-action"
+              >
+                📲 直接喚醒 LINE 傳送 ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- Threads Box Content -->
+          <div id="threads-content-panel" class="share-panel" style="display: none;">
+            <div class="draft-preview-box">
+              <div class="draft-preview-header">
+                <span class="draft-preview-tag">🧵 適合發至 Threads、IG、FB 社團</span>
+                <span class="draft-char-count">條列重點 • 自帶熱門 Hashtag</span>
+              </div>
+              <pre class="draft-text" id="threads-draft-text">{threadsDraft}</pre>
+            </div>
+
+            <div class="share-panel-actions">
+              <button class="btn btn--primary btn--md" id="copy-threads-btn" data-text={threadsDraft}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                複製 Threads 文案
+              </button>
+              <a
+                href={`https://threads.net/intent/post?text=${encodeURIComponent(threadsDraft)}`}
+                target="_blank"
+                rel="noopener"
+                class="btn btn--outline btn--md"
+              >
+                🧵 打開發布到 Threads ↗
+              </a>
+              {currentIssue.threadsUrl && (
+                <a
+                  href={currentIssue.threadsUrl}
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn--outline btn--md"
+                >
+                  查看原串討論 ↗
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Navigation Links -->
+      <section class="weekly-bottom-nav" data-animate>
+        <div class="card weekly-promo-card">
+          <div class="weekly-promo-card__content">
+            <h3>想查看更多往期特輯？</h3>
+            <p>返回每周精選專欄總覽，隨時回顧全球各大城市、文化景觀與自然海濱專題路線。</p>
+          </div>
+          <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+            <a href="/geosim/weekly-featured" class="btn btn--primary btn--lg">
+              ← 返回專欄總覽列表
+            </a>
+            <a href="/geosim/spot-map" class="btn btn--outline btn--lg">
+              前往純點地圖庫 🗺️
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 圖片出處（CC 授權要求署名）。沒有出處資料的期別不顯示，
+          所以 Threads 截圖時代的舊期不受影響。 */}
+      {creditEntries.length > 0 && (
+        <section class="photo-credits" data-animate>
+          <details>
+            <summary>📷 本期實景圖來源（{creditEntries.length}）</summary>
+            <ul>
+              {creditEntries.map((c) => (
+                <li>
+                  <span class="photo-credits__work">{c.spotName}</span>
+                  <span class="photo-credits__by"> — {c.artist} · </span>
+                  <a href={c.license_url} target="_blank" rel="noopener">
+                    {c.license}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </section>
+      )}
+
+      <!-- Back Link -->
+      <div style="text-align: center; margin-top: var(--space-10);">
+        <a href="/geosim" class="btn btn--outline">
+          ← 返回 GeoSim 產品專頁
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Universal Toast Notification -->
+  <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
+    <span id="toast-icon">✅</span>
+    <span id="toast-message">座標已成功複製到剪貼簿！</span>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  function showToast(message, icon = '✅') {
+    const toast = document.getElementById('copy-toast');
+    const msgEl = document.getElementById('toast-message');
+    const iconEl = document.getElementById('toast-icon');
+    if (toast && msgEl) {
+      msgEl.textContent = message;
+      if (iconEl) iconEl.textContent = icon;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2800);
+    }
+  }
+
+  // 1. Single coordinate copy
+  document.querySelectorAll('.copy-single-coord-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const coord = btn.getAttribute('data-coord');
+      if (coord) {
+        try {
+          await navigator.clipboard.writeText(coord);
+          showToast(`已複製座標：${coord}，可直接貼入 GeoSim！`, '📍');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+  });
+
+  // 2. Batch all coordinates copy
+  const copyAllBtn = document.getElementById('copy-all-coords-btn');
+  if (copyAllBtn) {
+    copyAllBtn.addEventListener('click', async () => {
+      const coords = copyAllBtn.getAttribute('data-coords');
+      if (coords) {
+        try {
+          await navigator.clipboard.writeText(coords);
+          showToast('已複製本期全部座標！可直接貼入 GeoSim 巡航路線', '🚀');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+  }
+
+  // 3. Social share toggle (LINE vs Threads)
+  const tabLine = document.getElementById('tab-line-mode');
+  const tabThreads = document.getElementById('tab-threads-mode');
+  const panelLine = document.getElementById('line-content-panel');
+  const panelThreads = document.getElementById('threads-content-panel');
+
+  if (tabLine && tabThreads && panelLine && panelThreads) {
+    tabLine.addEventListener('click', () => {
+      tabLine.classList.add('active');
+      tabThreads.classList.remove('active');
+      panelLine.style.display = 'block';
+      panelThreads.style.display = 'none';
+    });
+
+    tabThreads.addEventListener('click', () => {
+      tabThreads.classList.add('active');
+      tabLine.classList.remove('active');
+      panelThreads.style.display = 'block';
+      panelLine.style.display = 'none';
+    });
+  }
+
+  // 4. Copy LINE draft
+  const copyLineBtn = document.getElementById('copy-line-btn');
+  if (copyLineBtn) {
+    copyLineBtn.addEventListener('click', async () => {
+      const text = copyLineBtn.getAttribute('data-text');
+      if (text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('💬 LINE 文案已複製！直接貼到群組聊天室即可分享！', '📲');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+  }
+
+  // 5. Copy Threads draft
+  const copyThreadsBtn = document.getElementById('copy-threads-btn');
+  if (copyThreadsBtn) {
+    copyThreadsBtn.addEventListener('click', async () => {
+      const text = copyThreadsBtn.getAttribute('data-text');
+      if (text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('🧵 Threads 文案已複製！直接貼上即可發布！', '📢');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+  }
+
+  // 6. Region filter tabs
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.spot-postcard-card');
+
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filterVal = tab.getAttribute('data-filter');
+      cards.forEach((card) => {
+        const region = card.getAttribute('data-region');
+        const type = card.getAttribute('data-type');
+        if (filterVal === 'all' || region === filterVal || type === filterVal) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .weekly-detail-page {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-20);
+    position: relative;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-geosim);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border);
+  }
+
+  .breadcrumb__current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .issue-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .issue-header__badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .issue-header__number {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+
+  .issue-header__title {
+    font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+    line-height: 1.25;
+    margin-bottom: var(--space-4);
+    font-weight: 800;
+  }
+
+  .issue-header__lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 860px;
+    margin-bottom: var(--space-6);
+  }
+
+  .issue-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Issue Cover Banner */
+  .issue-cover-banner {
+    position: relative;
+    width: 100%;
+    max-height: 420px;
+    aspect-ratio: 21 / 9;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    margin-bottom: var(--space-10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
+    background: #0f172a;
+  }
+
+  .issue-cover-banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  .issue-cover-banner:hover .issue-cover-banner__img {
+    transform: scale(1.02);
+  }
+
+  .issue-cover-banner__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-6) var(--space-8);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.5) 60%, transparent 100%);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .issue-cover-banner__tagline {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  @media (max-width: 768px) {
+    .issue-cover-banner {
+      aspect-ratio: 16 / 9;
+      max-height: 240px;
+      margin-bottom: var(--space-6);
+    }
+    .issue-cover-banner__overlay {
+      padding: var(--space-3) var(--space-4);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+    .issue-cover-banner__tagline {
+      font-size: var(--text-xs);
+    }
+  }
+
+  /* Filter Toolbar */
+  .filter-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+    background: var(--color-surface);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .filter-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-text-secondary);
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .filter-tab {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .filter-tab:hover {
+    color: var(--color-text);
+    border-color: var(--color-geosim);
+  }
+
+  .filter-tab.active {
+    background: var(--color-geosim);
+    color: #ffffff;
+    border-color: var(--color-geosim);
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Spots Grid */
+  .spots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-16);
+  }
+
+  .spot-postcard-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .spot-postcard-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .postcard-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9.6;
+    background: #111827;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .postcard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .spot-postcard-card:hover .postcard-img {
+    transform: scale(1.03);
+  }
+
+  .postcard-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1e293b;
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+  }
+
+  .postcard-badges-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .type-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .type-badge--mushroom {
+    background: rgba(147, 51, 234, 0.88);
+    color: #ffffff;
+    border: 1px solid rgba(192, 132, 252, 0.5);
+  }
+
+  .type-badge--flower {
+    background: rgba(234, 88, 12, 0.88);
+    color: #ffffff;
+    border: 1px solid rgba(251, 146, 60, 0.5);
+  }
+
+  .region-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(15, 23, 42, 0.85);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+  }
+
+  /* 實景圖標記：暖蜜色，與蘑菇紫/花朵橘/地區灰都不撞 */
+  .photo-badge {
+    background: rgba(30, 25, 15, 0.82);
+    color: #FDE68A;
+    border: 1px solid rgba(253, 230, 138, 0.45);
+  }
+
+  /* 圖片出處：折疊收納，不搶主內容版面 */
+  .photo-credits {
+    margin-bottom: var(--space-8);
+  }
+
+  .photo-credits details {
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-bg-subtle);
+  }
+
+  .photo-credits summary {
+    cursor: pointer;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text-secondary);
+  }
+
+  .photo-credits ul {
+    margin-top: var(--space-3);
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .photo-credits__work {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+
+  .photo-credits a {
+    color: var(--color-geosim);
+  }
+
+  .spot-card-body {
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .spot-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .spot-card-num-title {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .spot-seq-num {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--color-geosim);
+    opacity: 0.85;
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+
+  .spot-card-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+
+  .spot-card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-top: 4px;
+  }
+
+  .spot-tag-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-subtle);
+    white-space: nowrap;
+  }
+
+  .spot-card-story {
+    display: flex;
+    gap: var(--space-2);
+    background: var(--color-bg-subtle);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-3);
+    border-left: 3px solid var(--color-geosim);
+    flex: 1;
+  }
+
+  .story-icon {
+    font-size: var(--text-lg);
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  .story-text {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .spot-card-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    margin-bottom: var(--space-3);
+    border-top: 1px dashed var(--color-border-subtle);
+    border-bottom: 1px dashed var(--color-border-subtle);
+  }
+
+  .meta-coord-block, .meta-speed-block {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .meta-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .meta-coord-code {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-geosim);
+    font-weight: 700;
+    background: rgba(59, 130, 246, 0.08);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+  }
+
+  .meta-speed-text {
+    font-size: var(--text-xs);
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .spot-card-footer {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .btn--geosim-glow {
+    background: var(--color-geosim);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.25);
+  }
+
+  .btn--geosim-glow:hover {
+    background: #2563eb;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  }
+
+  /* Social Share Hub */
+  .social-share-hub {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-16);
+  }
+
+  .social-share-card {
+    padding: var(--space-8);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.98) 100%);
+    border: 1.5px solid rgba(59, 130, 246, 0.4);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.5);
+  }
+
+  .social-share-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .social-share-card__title-group {
+    max-width: 680px;
+  }
+
+  .social-share-card__title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    color: var(--color-text);
+  }
+
+  .social-share-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .share-mode-toggle {
+    display: flex;
+    background: #0f172a;
+    padding: 4px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .share-mode-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .share-mode-btn.active {
+    background: var(--color-geosim);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  .share-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .draft-preview-box {
+    background: #0b0f17;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+  }
+
+  .draft-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .draft-preview-tag {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: #60a5fa;
+  }
+
+  .draft-char-count {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .draft-text {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: #e2e8f0;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+  }
+
+  .share-panel-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn--line-action {
+    color: #10B981;
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+
+  .btn--line-action:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: #10B981;
+    color: #34D399;
+  }
+
+  .weekly-promo-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-8);
+    gap: var(--space-6);
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-subtle) 100%);
+    border: 1px solid var(--color-geosim);
+    border-radius: var(--radius-xl);
+  }
+
+  .weekly-promo-card__content h3 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .weekly-promo-card__content p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .copy-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s var(--ease-out);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .copy-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .spots-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+    .social-share-card__header {
+      flex-direction: column;
+    }
+    .weekly-promo-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    .weekly-promo-card .btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .spots-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

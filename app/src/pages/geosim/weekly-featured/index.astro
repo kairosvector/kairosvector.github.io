@@ -1,0 +1,745 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import locationsData from '../../../data/locations.json';
+import products from '../../../data/products.json';
+
+const product = products.find((p) => p.id === 'geosim')!;
+const allIssues = locationsData.weeklyFeatured;
+const latestIssue = allIssues[0];
+
+// Extract categories
+const categories = [
+  { id: 'all', name: '全部主題' },
+  { id: 'architecture', name: '🌉 橋樑建築' },
+  { id: 'culture', name: '⛩️ 宗教、城堡與教堂' },
+  { id: 'art', name: '🎨 街頭塗鴉與壁畫' },
+  { id: 'anime', name: '🌿 動漫特別企劃' }
+];
+
+const latestCoords = latestIssue.spots
+  ? latestIssue.spots.map((s) => `${s.lat},${s.lng}`).join('\n')
+  : '';
+---
+
+<BaseLayout
+  title="每周精選專欄總覽 | GeoSim — Kairos Vector Studio"
+  description="GeoSim 官方每周精選探索地點與皮克敏明信片特輯總覽。探索各期主題路線、景點微故事、真實明信片照片與一鍵複製經緯度座標。"
+  ogTitle="GeoSim 每周精選地點專欄總覽"
+  ogDescription="探索全球熱門景點、動漫主題明信片與精選巡航座標，隨時掌握每週最新推薦。"
+>
+  <div class="weekly-hub-page">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb" aria-label="導覽路徑">
+        <a href="/">首頁</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="/geosim">GeoSim</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">每周精選專欄總覽</span>
+      </nav>
+
+      <!-- Page Header -->
+      <header class="hub-header" data-animate>
+        <div class="hub-header__badge-row">
+          <span class="badge badge--geosim">🌟 每周精選專欄</span>
+          <span class="hub-header__update-note">每週六定期晉升更新</span>
+        </div>
+        <h1 class="hub-header__title">全球探索與皮克敏明信片特輯</h1>
+        <p class="hub-header__lead">
+          每週為你挖掘世界各地的代表性景點、超稀有動漫彩繪與皮克敏花菇打卡點。支援一鍵複製座標、巡航速度建議與社群好友快速分享！
+        </p>
+      </header>
+
+      <!-- Latest Issue Hero Banner -->
+      <section class="latest-hero-section" data-animate>
+        <div class="card latest-hero-card">
+          <div class="latest-hero-card__content">
+            <div class="latest-hero-card__badge-bar">
+              <span class="badge badge--geosim">🏆 本週最新主打</span>
+              <span class="latest-issue-tag">{latestIssue.issue} • {latestIssue.date}</span>
+              {latestIssue.categoryName && (
+                <span class="badge badge--outline">{latestIssue.categoryName}</span>
+              )}
+            </div>
+
+            <h2 class="latest-hero-card__title">
+              <a href={`/geosim/weekly-featured/${latestIssue.id}`}>
+                {latestIssue.theme}
+              </a>
+            </h2>
+
+            <p class="latest-hero-card__desc">{latestIssue.description}</p>
+
+            <!-- Featured Media for Latest Issue -->
+            {latestIssue.spots && latestIssue.spots.slice(0, 3).some((s) => s.image) ? (
+              <div class="latest-hero-thumbnails">
+                {latestIssue.spots.slice(0, 3).map((spot) => (
+                  <div class="hero-thumb-item">
+                    {spot.image ? (
+                      <img src={spot.image} alt={spot.name} class="hero-thumb-img" loading="eager" />
+                    ) : (
+                      <div class="hero-thumb-placeholder">{spot.name}</div>
+                    )}
+                    <span class="hero-thumb-label">{spot.name}</span>
+                  </div>
+                ))}
+              </div>
+            ) : latestIssue.coverImage ? (
+              <div class="latest-hero-cover-wrap">
+                <a href={`/geosim/weekly-featured/${latestIssue.id}`}>
+                  <img src={latestIssue.coverImage} alt={latestIssue.theme} class="latest-hero-cover-img" loading="eager" />
+                  <div class="latest-hero-cover-badge">
+                    <span>✨ 點擊探索本期精選主題 ➔</span>
+                  </div>
+                </a>
+              </div>
+            ) : null}
+
+            <div class="latest-hero-card__actions">
+              <a href={`/geosim/weekly-featured/${latestIssue.id}`} class="btn btn--primary btn--lg">
+                進入本期完整特輯 ({latestIssue.spots ? latestIssue.spots.length : 20} 大景點) ➔
+              </a>
+              <button
+                id="copy-latest-coords-btn"
+                class="btn btn--outline btn--lg"
+                data-coords={latestCoords}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                </svg>
+                一鍵複製全部座標
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Filter Bar -->
+      <section class="archive-section" data-animate>
+        <div class="archive-header">
+          <div>
+            <h2 class="archive-title">歷期精選雜誌庫</h2>
+            <p class="archive-subtitle">點擊卡片閱讀各期獨立專欄，探索各國特色座標</p>
+          </div>
+
+          <div class="category-filter-tabs">
+            {categories.map((cat, idx) => (
+              <button
+                class={`category-tab ${idx === 0 ? 'active' : ''}`}
+                data-category={cat.id}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Issue Cards Grid -->
+        <div class="issue-cards-grid">
+          {allIssues.map((issue) => (
+            <article class="card issue-grid-card" data-category={issue.category || 'culture'}>
+              <a href={`/geosim/weekly-featured/${issue.id}`} class="issue-card-cover-link">
+                {issue.coverImage ? (
+                  <img src={issue.coverImage} alt={issue.theme} class="issue-card-cover-img" loading="lazy" />
+                ) : (
+                  <div class="issue-card-cover-placeholder">
+                    <span style="font-size: 36px;">🗺️</span>
+                  </div>
+                )}
+                <div class="issue-card-badge-overlay">
+                  <span class="badge badge--geosim">{issue.issue}</span>
+                  {issue.categoryName && <span class="badge badge--outline">{issue.categoryName}</span>}
+                </div>
+              </a>
+
+              <div class="issue-card-content">
+                <div class="issue-card-date">{issue.date}</div>
+                <h3 class="issue-card-title">
+                  <a href={`/geosim/weekly-featured/${issue.id}`}>
+                    {issue.theme}
+                  </a>
+                </h3>
+                <p class="issue-card-desc">{issue.description}</p>
+
+                <div class="issue-card-meta">
+                  <span class="spot-count-pill">
+                    📍 {issue.spots ? issue.spots.length : 0} 處座標
+                  </span>
+                  {issue.region && <span class="region-pill">{issue.region}</span>}
+                </div>
+
+                <div class="issue-card-footer">
+                  <a href={`/geosim/weekly-featured/${issue.id}`} class="read-more-link">
+                    閱讀完整專欄
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Bottom Promo Card -->
+      <section class="weekly-bottom-nav" data-animate>
+        <div class="card weekly-promo-card">
+          <div class="weekly-promo-card__content">
+            <h3>想探索更多特定城市與純點座標？</h3>
+            <p>瀏覽我們的完整「純點地圖庫」，依國家、縣市、行政區隨時查詢上百處熱門打卡點。</p>
+          </div>
+          <a href="/geosim/spot-map" class="btn btn--primary btn--lg">
+            前往純點地圖庫 🗺️
+          </a>
+        </div>
+      </section>
+
+      <!-- Back Link -->
+      <div style="text-align: center; margin-top: var(--space-10);">
+        <a href="/geosim" class="btn btn--outline">
+          ← 返回 GeoSim 產品專頁
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
+    <span id="toast-icon">✅</span>
+    <span id="toast-message">座標已複製到剪貼簿！</span>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  function showToast(message, icon = '✅') {
+    const toast = document.getElementById('copy-toast');
+    const msgEl = document.getElementById('toast-message');
+    const iconEl = document.getElementById('toast-icon');
+    if (toast && msgEl) {
+      msgEl.textContent = message;
+      if (iconEl) iconEl.textContent = icon;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  }
+
+  // Copy latest coords
+  const copyLatestBtn = document.getElementById('copy-latest-coords-btn');
+  if (copyLatestBtn) {
+    copyLatestBtn.addEventListener('click', async () => {
+      const coords = copyLatestBtn.getAttribute('data-coords');
+      if (coords) {
+        try {
+          await navigator.clipboard.writeText(coords);
+          showToast('已複製最新一期全部座標！可直接貼入 GeoSim', '🚀');
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    });
+  }
+
+  // Filter category tabs
+  const categoryTabs = document.querySelectorAll('.category-tab');
+  const issueCards = document.querySelectorAll('.issue-grid-card');
+
+  categoryTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      categoryTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filterCat = tab.getAttribute('data-category');
+      issueCards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        if (filterCat === 'all' || cat === filterCat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .weekly-hub-page {
+    padding-top: calc(var(--nav-height) + var(--space-12));
+    padding-bottom: var(--space-20);
+    position: relative;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-8);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-geosim);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border);
+  }
+
+  .breadcrumb__current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .hub-header {
+    margin-bottom: var(--space-10);
+  }
+
+  .hub-header__badge-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .hub-header__update-note {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .hub-header__title {
+    font-size: clamp(var(--text-3xl), 4.5vw, var(--text-4xl));
+    line-height: 1.25;
+    margin-bottom: var(--space-4);
+    font-weight: 800;
+  }
+
+  .hub-header__lead {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 820px;
+  }
+
+  /* Latest Hero Card */
+  .latest-hero-section {
+    margin-bottom: var(--space-16);
+  }
+
+  .latest-hero-card {
+    padding: var(--space-8);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1.5px solid var(--color-geosim);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.15);
+  }
+
+  .latest-hero-card__badge-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .latest-issue-tag {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+
+  .latest-hero-card__title {
+    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-3xl));
+    font-weight: 800;
+    margin-bottom: var(--space-3);
+    line-height: 1.3;
+  }
+
+  .latest-hero-card__title a {
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .latest-hero-card__title a:hover {
+    color: var(--color-geosim);
+  }
+
+  .latest-hero-card__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 860px;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Thumbnails strip */
+  .latest-hero-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-thumb-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    aspect-ratio: 16 / 9;
+    background: #0f172a;
+  }
+
+  .hero-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .hero-thumb-item:hover .hero-thumb-img {
+    transform: scale(1.05);
+  }
+
+  .hero-thumb-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    color: #f1f5f9;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 12px 8px 6px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Latest Hero Cover Wrap */
+  .latest-hero-cover-wrap {
+    margin-bottom: var(--space-8);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.4);
+    background: #0f172a;
+    position: relative;
+    max-height: 320px;
+    aspect-ratio: 21 / 9;
+  }
+
+  .latest-hero-cover-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .latest-hero-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .latest-hero-cover-wrap:hover .latest-hero-cover-img {
+    transform: scale(1.03);
+  }
+
+  .latest-hero-cover-badge {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-4);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .latest-hero-cover-wrap {
+      aspect-ratio: 16 / 9;
+      max-height: 200px;
+    }
+  }
+
+  .latest-hero-card__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* Archive Section */
+  .archive-section {
+    margin-bottom: var(--space-16);
+  }
+
+  .archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .archive-title {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-1);
+  }
+
+  .archive-subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .category-filter-tabs {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .category-tab {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .category-tab:hover {
+    color: var(--color-text);
+    border-color: var(--color-geosim);
+  }
+
+  .category-tab.active {
+    background: var(--color-geosim);
+    color: #ffffff;
+    border-color: var(--color-geosim);
+    box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Issue Cards Grid */
+  .issue-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .issue-grid-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface);
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .issue-grid-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .issue-card-cover-link {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9.6;
+    background: #0f172a;
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .issue-card-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .issue-grid-card:hover .issue-card-cover-img {
+    transform: scale(1.04);
+  }
+
+  .issue-card-cover-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .issue-card-badge-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .issue-card-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .issue-card-date {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .issue-card-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+    line-height: 1.35;
+  }
+
+  .issue-card-title a {
+    color: var(--color-text);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .issue-card-title a:hover {
+    color: var(--color-geosim);
+  }
+
+  .issue-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+    flex: 1;
+  }
+
+  .issue-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .spot-count-pill, .region-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-subtle);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .issue-card-footer {
+    border-top: 1px dashed var(--color-border-subtle);
+    padding-top: var(--space-4);
+  }
+
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-geosim);
+    transition: gap var(--duration-fast) var(--ease-out);
+  }
+
+  .read-more-link:hover {
+    gap: 8px;
+  }
+
+  .weekly-promo-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-8);
+    gap: var(--space-6);
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-subtle) 100%);
+    border: 1px solid var(--color-geosim);
+    border-radius: var(--radius-xl);
+  }
+
+  .weekly-promo-card__content h3 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .weekly-promo-card__content p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .copy-toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+    padding: 12px 24px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s var(--ease-out);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .copy-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .latest-hero-thumbnails {
+      grid-template-columns: 1fr;
+    }
+    .issue-cards-grid {
+      grid-template-columns: 1fr;
+    }
+    .weekly-promo-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    .weekly-promo-card .btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="隱私權政策 (Privacy Policy) — Kairos Vector Studio"
+  description="Kairos Vector Studio 隱私權政策。我們高度重視使用者隱私，所有健康數據與 GPS 模擬運算皆於本地裝置端完成，零伺服器上傳與追蹤。"
+  ogTitle="Kairos Vector Studio 隱私權政策"
+  ogDescription="我們承諾保護您的隱私。PikieWalker 與 GeoSim 均採本地端運作架構，不收集、不上傳任何個人資料。"
+>
+  <div class="legal-page">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+
+    <div class="container container--narrow">
+      <nav class="breadcrumb" aria-label="導覽路徑">
+        <a href="/">首頁</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">隱私權政策</span>
+      </nav>
+
+      <header class="legal-header" data-animate>
+        <span class="badge badge--brand">法律與合規政策</span>
+        <h1 class="legal-header__title">隱私權政策</h1>
+        <p class="legal-header__subtitle">最後更新日期：2026 年 8 月 25 日</p>
+      </header>
+
+      <div class="legal-content card" data-animate>
+        <section class="legal-section">
+          <h2>1. 簡介與核心承諾</h2>
+          <p>
+            歡迎使用 Kairos Vector Studio（以下簡稱「我們」、「本工作室」）所開發之 Android 應用程式（包含 <strong>PikieWalker</strong> 與 <strong>GeoSim</strong>）以及官方網站。
+          </p>
+          <p>
+            我們深知個人隱私的重要性，並堅定採取<strong>「隱私優先、本地運作（Privacy by Design）」</strong>的產品架構。我們的應用程式設計原則是：<strong>除本地裝置運作所需之外，絕不在未經授權下蒐集、儲存或向第三方傳輸您的任何個人敏感資訊。</strong>
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. PikieWalker 專屬隱私條款（Health Connect 整合）</h2>
+          <div class="legal-highlight-box">
+            <strong>核心聲明：</strong>PikieWalker 僅在您的 Android 裝置端透過 Google 官方 <code>Health Connect (健康防護) API</code> 寫入模擬步數數據，<strong>絕不上傳任何健康資料至任何外部伺服器</strong>。
+          </div>
+          <h3>2.1 Health Connect 權限使用說明</h3>
+          <ul>
+            <li><strong>步數寫入權限 (Write Steps)：</strong>用於將您於 App 內自行設定的目標步數與時間記錄，寫入至系統本機的 Health Connect 資料庫。</li>
+            <li><strong>不蒐集個人身份：</strong>本應用程式不會讀取您的姓名、心率、睡眠、病歷或任何其他與步數模擬無關的健康指標。</li>
+            <li><strong>本地儲存：</strong>您的模擬設定（如步數目標、定時排程）僅保存在您的手機內部儲存空間中，解除安裝應用程式時將一併清除。</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. GeoSim 專屬隱私條款（GPS 定位與模擬）</h2>
+          <div class="legal-highlight-box">
+            <strong>核心聲明：</strong>GeoSim 的位置模擬功能完全依賴 Android 原生「模擬位置（Mock Location）」開發者介面於本機端執行，<strong>不會追蹤或記錄您的真實日常行蹤</strong>。
+          </div>
+          <h3>3.1 定位權限使用說明</h3>
+          <ul>
+            <li><strong>模擬位置服務 (Mock Location Service)：</strong>僅用於在系統層級提供自訂的經緯度座標供開發者測試或使用者在地圖上進行路線漫遊。</li>
+            <li><strong>書籤與歷史紀錄：</strong>您所收藏的自訂書籤座標僅保存在手機本地資料庫中。官方精選書籤則是從本站靜態資源讀取，不涉及個人資料交換。</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. 網站訪客資料處理</h2>
+          <p>
+            Kairos Vector Studio 官方網站為靜態網站，採用標準安全協定 (HTTPS)。
+          </p>
+          <ul>
+            <li><strong>偏好設定快取：</strong>網站使用您瀏覽器的 <code>localStorage</code> 僅用於儲存您的主題喜好（例如：🌙 暗夜極客或 ⚡ 活力電氣），該資料保留於您的本機瀏覽器。</li>
+            <li><strong>第三方連結：</strong>網站包含導向 Google Play 商店的連結。當您點擊跳轉至 Google Play 時，將適用 Google 官方的隱私權政策與服務條款。</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>5. 兒童隱私保護</h2>
+          <p>
+            本工作室所有應用程式與網站均不針對 13 歲以下兒童進行行銷，亦不會故意蒐集任何未成年人的個人資訊。
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>6. 政策更新與通知</h2>
+          <p>
+            我們可能會不定期修訂本隱私權政策以符合最新法令與技術標準。任何重大變更均會於本頁面更新並標註生效日期。建議您定期檢視本頁面以掌握最新隱私權保護措施。
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>7. 聯絡我們</h2>
+          <p>
+            若您對本隱私權政策或應用程式之資料處理有任何疑問、建議或行使隱私權利，歡迎透過以下方式與我們聯繫：
+          </p>
+          <div class="contact-card">
+            <div><strong>Kairos Vector Studio 隱私保護小組</strong></div>
+            <div>電子郵件：<a href="mailto:kairosvectordev@gmail.com" class="contact-email">kairosvectordev@gmail.com</a></div>
+            <div>官方網站：<a href="https://kairosvector.com">https://kairosvector.com</a></div>
+          </div>
+        </section>
+      </div>
+
+      <div style="text-align: center; margin-top: var(--space-10);">
+        <a href="/" class="btn btn--outline">
+          ← 返回工作室首頁
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-top: calc(var(--nav-height) + var(--space-10));
+    padding-bottom: var(--space-20);
+    position: relative;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-brand-light);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border);
+  }
+
+  .breadcrumb__current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-10);
+    text-align: center;
+  }
+
+  .legal-header__title {
+    font-size: var(--text-4xl);
+    margin: var(--space-3) 0 var(--space-2);
+  }
+
+  .legal-header__subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .legal-content {
+    padding: var(--space-10);
+  }
+
+  .legal-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .legal-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .legal-section h3 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  .legal-section p {
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .legal-section ul {
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-section li {
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .legal-highlight-box {
+    background: rgba(139, 92, 246, 0.12);
+    border-left: 4px solid var(--color-brand);
+    padding: var(--space-4) var(--space-5);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+
+  .contact-card {
+    background: var(--color-bg-subtle);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+    font-size: var(--text-sm);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  .contact-email {
+    color: #00E5FF;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .legal-content {
+      padding: var(--space-6);
+    }
+  }
+</style>

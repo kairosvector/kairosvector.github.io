@@ -1,0 +1,1061 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import locationsData from '../../data/locations.json';
+import products from '../../data/products.json';
+
+const product = products.find((p) => p.id === 'geosim')!;
+const { countries, cities, districts, spotCategories, spots } = locationsData;
+// 最新一期動態讀，不再手寫期數（手寫會跟資料脫鉤）。
+const latestIssue = locationsData.weeklyFeatured?.[0];
+---
+
+<BaseLayout
+  title="純點列表與全球座標庫 | GeoSim — Kairos Vector Studio"
+  description="GeoSim 官方精選全球純點地圖庫與經緯度清單。支援國家/縣市/行政區層級篩選、40+ 種純點分類多選、一鍵複製座標。"
+  ogTitle="GeoSim 純點列表與全球座標庫"
+  ogDescription="探索 40+ 種純點分類，涵蓋大學、公園、車站、拉麵店、美術館、神社與海灘等精準經緯度座標。"
+>
+  <div class="spot-map-page">
+    <div class="spot-page-bg" aria-hidden="true"></div>
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb" aria-label="導覽路徑">
+        <a href="/">首頁</a>
+        <span class="breadcrumb__separator">/</span>
+        <a href="/geosim">GeoSim</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__current">純點列表</span>
+      </nav>
+
+      <!-- Page Top Header with Total Count -->
+      <div class="spot-list-header" data-animate>
+        <div class="spot-list-header__left">
+          <h1 class="spot-list-header__title">
+            <svg class="spot-list-header__flower" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="7" r="3.2" fill="currentColor" opacity="0.85"/>
+              <circle cx="7" cy="11" r="3.2" fill="currentColor" opacity="0.7"/>
+              <circle cx="17" cy="11" r="3.2" fill="currentColor" opacity="0.7"/>
+              <circle cx="9.2" cy="16" r="3.2" fill="currentColor" opacity="0.85"/>
+              <circle cx="14.8" cy="16" r="3.2" fill="currentColor" opacity="0.85"/>
+              <circle cx="12" cy="12" r="2.4" fill="var(--hz-honey)" />
+            </svg>
+            純點列表
+          </h1>
+          <p class="spot-list-header__sub">像翻手帳一樣，慢慢挑下一朵花要開在哪裡</p>
+        </div>
+        <div class="spot-list-header__right">
+          <span class="spot-total-badge">
+            🌷 共 <strong id="total-count-display">{spots.length}</strong> 個純點
+          </span>
+        </div>
+      </div>
+
+      <!-- Weekly Featured Promo Banner -->
+      <div class="weekly-featured-banner" data-animate>
+        <div class="weekly-featured-banner__left">
+          <span class="weekly-featured-banner__star">🌟</span>
+          <div>
+            <div class="weekly-featured-banner__title">想探索由官方精心挑選的主題路線與稀有皮克敏明信片？</div>
+            {latestIssue && (
+              <div class="weekly-featured-banner__sub">
+                最新{latestIssue.issue}：{latestIssue.theme}（含 {latestIssue.spots ? latestIssue.spots.length : 0} 處真實打卡點）！
+              </div>
+            )}
+          </div>
+        </div>
+        <a href="/geosim/weekly-featured" class="btn btn--primary btn--sm weekly-featured-banner__btn">
+          前往每周精選專欄 ➔
+        </a>
+      </div>
+
+      <!-- Main Multi-Tier Filter Container -->
+      <section class="filter-panel card" data-animate>
+        <!-- Row 1: Dropdown Selectors -->
+        <div class="filter-dropdowns-grid">
+          <!-- Country Filter -->
+          <div class="filter-group">
+            <label class="filter-label" for="select-country">
+              <span class="filter-label__icon">🌍</span> 國家
+            </label>
+            <div class="select-wrapper">
+              <select id="select-country" class="filter-select">
+                {countries.map((c) => (
+                  <option value={c.id}>{c.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- City Filter -->
+          <div class="filter-group">
+            <label class="filter-label" for="select-city">
+              <span class="filter-label__icon">🏙️</span> 縣市
+            </label>
+            <div class="select-wrapper">
+              <select id="select-city" class="filter-select">
+                {cities.map((city) => (
+                  <option value={city.id} data-country={city.countryId}>{city.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- District Filter -->
+          <div class="filter-group">
+            <label class="filter-label" for="select-district">
+              <span class="filter-label__icon">📍</span> 行政區
+            </label>
+            <div class="select-wrapper">
+              <select id="select-district" class="filter-select">
+                {districts.map((d) => (
+                  <option value={d.id} data-city={d.cityId}>{d.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- Keyword Search -->
+          <div class="filter-group">
+            <label class="filter-label" for="search-keyword">
+              <span class="filter-label__icon">🔍</span> 關鍵字搜尋
+            </label>
+            <div class="search-input-wrapper">
+              <input
+                type="text"
+                id="search-keyword"
+                class="filter-input"
+                placeholder="搜尋名稱、地標或特色..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <!-- Row 2: 40+ Pure Spot Category Chips (Multi-Selectable) -->
+        <div class="category-filter-header">
+          <div class="category-filter-title">
+            <span class="category-filter-title__icon">🎁</span>
+            純點種類（可多選）
+          </div>
+          <div class="category-quick-actions">
+            <button id="btn-select-all-cats" class="btn-text-action">全選</button>
+            <span class="action-sep">•</span>
+            <button id="btn-clear-all-cats" class="btn-text-action">清除篩選</button>
+          </div>
+        </div>
+
+        <div class="categories-chips-grid" id="categories-chips-container">
+          {spotCategories.map((cat) => (
+            <button
+              class="cat-chip-btn active"
+              data-cat-id={cat.id}
+              title={`篩選 ${cat.name}`}
+            >
+              <span class="cat-chip-btn__check">✓</span>
+              <span class="cat-chip-btn__icon">{cat.icon}</span>
+              <span class="cat-chip-btn__name">{cat.name}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <!-- Results Info Bar -->
+      <div class="results-bar">
+        <div class="results-bar__text">
+          目前顯示 <strong id="current-count-display">{spots.length}</strong> 筆結果
+        </div>
+        <button id="btn-reset-filters" class="btn btn--outline btn--sm" style="display: none;">
+          重設所有篩選條件
+        </button>
+      </div>
+
+      <!-- Spots Grid Catalog -->
+      <section class="spots-catalog-section">
+        <div class="spots-grid" id="spots-grid">
+          {spots.map((spot) => {
+            const cat = spotCategories.find((c) => c.id === spot.category);
+            const country = countries.find((c) => c.id === spot.country);
+            const city = cities.find((c) => c.id === spot.city);
+            return (
+              <div
+                class="card spot-card"
+                data-spot-id={spot.id}
+                data-country={spot.country}
+                data-city={spot.city}
+                data-district={spot.district}
+                data-category={spot.category}
+                data-name={spot.name}
+                data-desc={spot.description}
+                data-animate
+              >
+                <div class="spot-card__top">
+                  <span class="badge badge--geosim spot-cat-tag">
+                    <span>{cat?.icon}</span>
+                    <span>{cat?.name || '精選'}</span>
+                  </span>
+                  <span class="spot-card__location-label">
+                    {country?.name.split(' ')[0]} • {city?.name}
+                  </span>
+                </div>
+
+                <h3 class="spot-card__name">{spot.name}</h3>
+                <p class="spot-card__desc">{spot.description}</p>
+                
+                <div class="spot-card__coords">
+                  <code class="coord-tag">{spot.lat}, {spot.lng}</code>
+                </div>
+
+                <div class="spot-card__actions">
+                  <button
+                    class="btn btn--primary btn--sm copy-btn"
+                    data-coord={`${spot.lat}, ${spot.lng}`}
+                    title="複製經緯度"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                    </svg>
+                    複製座標
+                  </button>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${spot.lat},${spot.lng}`}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn--outline btn--sm"
+                  >
+                    地圖預覽 ↗
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="no-results-box" class="card no-results-box" style="display: none;">
+          <div class="no-results-box__icon">🌷</div>
+          <h3>這片花田還沒有花</h3>
+          <p>換個條件試試，下一朵花田就在前面。</p>
+          <button id="btn-reset-empty" class="btn btn--vibrant">清除所有篩選</button>
+        </div>
+      </section>
+
+      <!-- How to import in GeoSim Guide -->
+      <section class="import-guide-section card" data-animate>
+        <h3 class="import-guide-section__title">💡 如何在 GeoSim 中使用複製的座標？</h3>
+        <ol class="import-steps">
+          <li>在上方列表點選目標地點，按下「<strong>複製座標</strong>」。</li>
+          <li>打開手機上的 <strong>GeoSim</strong> 應用程式。</li>
+          <li>將座標直接貼上至頂部「<strong>搜尋欄</strong>」，點擊搜尋即可自動將大頭針定位至該位置。</li>
+          <li>點選地圖右側「<strong>⭐ 加入書籤</strong>」即可保存至自訂清單。</li>
+        </ol>
+      </section>
+
+      <!-- Weekly Featured Link Card -->
+      <div class="card weekly-link-card" data-animate>
+        <div>
+          <h4>想查看主題路線與巡航推薦？</h4>
+          <p>前往「每周精選專欄」探索由官方策劃的散步與測試路線。</p>
+        </div>
+        <a href="/geosim/weekly-featured" class="btn btn--outline btn--lg">
+          前往每周精選 🌟
+        </a>
+      </div>
+
+      <!-- Back Link -->
+      <div style="text-align: center; margin-top: var(--space-10);">
+        <a href="/geosim" class="btn btn--outline">
+          ← 返回 GeoSim 產品專頁
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification for Copying -->
+  <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
+    ✅ 座標已成功複製！可直接貼入 GeoSim 搜尋欄
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  // Filter Engine
+  const countrySelect = document.getElementById('select-country');
+  const citySelect = document.getElementById('select-city');
+  const districtSelect = document.getElementById('select-district');
+  const searchInput = document.getElementById('search-keyword');
+  const catChips = document.querySelectorAll('.cat-chip-btn');
+  const spotCards = document.querySelectorAll('.spot-card');
+  const currentCountDisplay = document.getElementById('current-count-display');
+  const noResultsBox = document.getElementById('no-results-box');
+  const resetBtn = document.getElementById('btn-reset-filters');
+  const resetEmptyBtn = document.getElementById('btn-reset-empty');
+  const selectAllCatsBtn = document.getElementById('btn-select-all-cats');
+  const clearAllCatsBtn = document.getElementById('btn-clear-all-cats');
+
+  // Selected Categories Set (defaults to all active)
+  let activeCategories = new Set();
+  catChips.forEach(chip => {
+    activeCategories.add(chip.getAttribute('data-cat-id'));
+  });
+
+  const runFiltering = () => {
+    const selectedCountry = countrySelect?.value || 'all';
+    const selectedCity = citySelect?.value || 'all';
+    const selectedDistrict = districtSelect?.value || 'all';
+    const query = searchInput?.value.trim().toLowerCase() || '';
+
+    let visibleCount = 0;
+
+    spotCards.forEach(card => {
+      const cardCountry = card.getAttribute('data-country');
+      const cardCity = card.getAttribute('data-city');
+      const cardDistrict = card.getAttribute('data-district');
+      const cardCategory = card.getAttribute('data-category');
+      const cardName = (card.getAttribute('data-name') || '').toLowerCase();
+      const cardDesc = (card.getAttribute('data-desc') || '').toLowerCase();
+
+      // Country match
+      const matchCountry = (selectedCountry === 'all' || cardCountry === selectedCountry);
+      // City match
+      const matchCity = (selectedCity === 'all' || cardCity === selectedCity);
+      // District match
+      const matchDistrict = (selectedDistrict === 'all' || cardDistrict === selectedDistrict || cardDistrict === 'all');
+      // Category match
+      const matchCategory = activeCategories.has(cardCategory);
+      // Query match
+      const matchQuery = !query || cardName.includes(query) || cardDesc.includes(query);
+
+      if (matchCountry && matchCity && matchDistrict && matchCategory && matchQuery) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (currentCountDisplay) {
+      currentCountDisplay.textContent = visibleCount.toString();
+    }
+
+    if (noResultsBox) {
+      noResultsBox.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // Toggle Reset button display
+    const isFiltered = selectedCountry !== 'all' || selectedCity !== 'all' || selectedDistrict !== 'all' || query !== '' || activeCategories.size !== catChips.length;
+    if (resetBtn) {
+      resetBtn.style.display = isFiltered ? 'inline-flex' : 'none';
+    }
+  };
+
+  // Event Listeners for Selects
+  countrySelect?.addEventListener('change', () => {
+    const cVal = countrySelect.value;
+    // Filter city options
+    Array.from(citySelect.options).forEach(opt => {
+      const optCountry = opt.getAttribute('data-country');
+      if (cVal === 'all' || opt.value === 'all' || optCountry === cVal) {
+        opt.hidden = false;
+      } else {
+        opt.hidden = true;
+      }
+    });
+    citySelect.value = 'all';
+    districtSelect.value = 'all';
+    runFiltering();
+  });
+
+  citySelect?.addEventListener('change', () => {
+    const cityVal = citySelect.value;
+    Array.from(districtSelect.options).forEach(opt => {
+      const optCity = opt.getAttribute('data-city');
+      if (cityVal === 'all' || opt.value === 'all' || optCity === cityVal) {
+        opt.hidden = false;
+      } else {
+        opt.hidden = true;
+      }
+    });
+    districtSelect.value = 'all';
+    runFiltering();
+  });
+
+  districtSelect?.addEventListener('change', runFiltering);
+  searchInput?.addEventListener('input', runFiltering);
+
+  // Category Chip Toggle
+  catChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const catId = chip.getAttribute('data-cat-id');
+      if (activeCategories.has(catId)) {
+        activeCategories.delete(catId);
+        chip.classList.remove('active');
+      } else {
+        activeCategories.add(catId);
+        chip.classList.add('active');
+      }
+      runFiltering();
+    });
+  });
+
+  // Select All Categories
+  selectAllCatsBtn?.addEventListener('click', () => {
+    catChips.forEach(chip => {
+      const catId = chip.getAttribute('data-cat-id');
+      activeCategories.add(catId);
+      chip.classList.add('active');
+    });
+    runFiltering();
+  });
+
+  // Clear All Categories
+  clearAllCatsBtn?.addEventListener('click', () => {
+    activeCategories.clear();
+    catChips.forEach(chip => chip.classList.remove('active'));
+    runFiltering();
+  });
+
+  // Full Reset
+  const resetAll = () => {
+    countrySelect.value = 'all';
+    citySelect.value = 'all';
+    districtSelect.value = 'all';
+    if (searchInput) searchInput.value = '';
+    activeCategories.clear();
+    catChips.forEach(chip => {
+      const catId = chip.getAttribute('data-cat-id');
+      activeCategories.add(catId);
+      chip.classList.add('active');
+    });
+    runFiltering();
+  };
+
+  resetBtn?.addEventListener('click', resetAll);
+  resetEmptyBtn?.addEventListener('click', resetAll);
+
+  // Copy coordinate handler
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const coord = btn.getAttribute('data-coord');
+      if (coord) {
+        try {
+          await navigator.clipboard.writeText(coord);
+          const toast = document.getElementById('copy-toast');
+          if (toast) {
+            toast.classList.add('show');
+            setTimeout(() => {
+              toast.classList.remove('show');
+            }, 2500);
+          }
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+  /* 手帳風色票（深色=夜晚花園 / vibrant=暖米白）。
+     全頁只用這組 token，不碰全域變數，避免干擾每周精選。 */
+  .spot-map-page {
+    --hz-rose: #E883A8;
+    --hz-rose-deep: #C05A85;
+    --hz-rose-ink: #F7B8CE;
+    --hz-honey: #F6D98B;
+    --hz-sage: #8FBE9D;
+    --hz-card: #33222B;
+    --hz-card-soft: #3A2831;
+    --hz-line: #5E3A4B;
+    --hz-ink: #F9E9EF;
+    --hz-ink-soft: #DDB9C6;
+    --hz-ink-mute: #B98CA0;
+    --hz-chip: #3A2831;
+    --hz-chip-line: #6B4256;
+    --hz-chip-ink: #E3BFD0;
+    --hz-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  html[data-theme="vibrant"] .spot-map-page {
+    --hz-card: #FFFDF8;
+    --hz-card-soft: #FFF6EE;
+    --hz-line: #F0D9E2;
+    --hz-ink: #4A3B42;
+    --hz-ink-soft: #8A5A6E;
+    --hz-ink-mute: #B08A99;
+    --hz-chip: #FFF6EE;
+    --hz-chip-line: #E9C9D4;
+    --hz-chip-ink: #8A5A6E;
+    --hz-rose-ink: #A83A5E;
+    --hz-shadow: 0 10px 26px rgba(232, 131, 168, 0.14);
+  }
+
+  /* 全頁底：夜莓（深）／暖米（淺）。fixed 貼底，不碰全域 body，
+     深 A + 淺 A 定案。 */
+  .spot-page-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 42% at 50% 28%, rgba(232, 131, 168, 0.13), transparent 70%),
+      linear-gradient(180deg, #3A2230 0%, #241419 55%, #160D12 100%);
+  }
+
+  html[data-theme="vibrant"] .spot-page-bg {
+    background:
+      radial-gradient(ellipse 85% 42% at 50% 28%, rgba(232, 131, 168, 0.10), transparent 70%),
+      linear-gradient(180deg, #FFF9F2 0%, #FFEFE0 100%);
+  }
+
+  .spot-map-page {
+    padding-top: calc(var(--nav-height) + var(--space-8));
+    padding-bottom: var(--space-20);
+    position: relative;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--hz-rose-ink);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border);
+  }
+
+  .breadcrumb__current {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  /* Page Top Header */
+  .spot-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .spot-list-header__title {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', ui-rounded, sans-serif;
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--hz-ink);
+  }
+
+  .spot-list-header__flower {
+    width: 34px;
+    height: 34px;
+    color: var(--hz-rose);
+    flex-shrink: 0;
+  }
+
+  .spot-list-header__sub {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--hz-ink-mute);
+  }
+
+  .spot-total-badge {
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+    background: var(--hz-card-soft);
+    border: 1px solid var(--hz-line);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+  }
+
+  .spot-total-badge strong {
+    color: var(--hz-rose-ink);
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+  }
+
+  /* 精選橫幅：奶油/莓果柔光，不再是深藍霓虹 */
+  .weekly-featured-banner {
+    margin-bottom: var(--space-6);
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(135deg, var(--hz-card) 0%, var(--hz-card-soft) 100%);
+    border: 1px solid var(--hz-line);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    box-shadow: var(--hz-shadow);
+  }
+
+  .weekly-featured-banner__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .weekly-featured-banner__star {
+    font-size: 24px;
+  }
+
+  .weekly-featured-banner__title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--hz-ink);
+  }
+
+  .weekly-featured-banner__sub {
+    font-size: var(--text-xs);
+    color: var(--hz-ink-soft);
+    margin-top: 2px;
+  }
+
+  .weekly-featured-banner__btn {
+    white-space: nowrap;
+  }
+
+  /* Filter Panel Box：手帳卡片 */
+  .filter-panel {
+    padding: var(--space-6) var(--space-8);
+    margin-bottom: var(--space-8);
+    background: var(--hz-card);
+    border: 1px solid var(--hz-line);
+    border-radius: 20px;
+    box-shadow: var(--hz-shadow);
+  }
+
+  .filter-dropdowns-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .filter-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--hz-ink-soft);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .select-wrapper,
+  .search-input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .filter-select,
+  .filter-input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--hz-card-soft);
+    border: 1px solid var(--hz-line);
+    border-radius: 14px;
+    color: var(--hz-ink);
+    font-size: var(--text-sm);
+    font-family: inherit;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .filter-select:focus,
+  .filter-input:focus {
+    outline: none;
+    border-color: var(--hz-rose);
+    box-shadow: 0 0 0 3px rgba(232, 131, 168, 0.22);
+  }
+
+  .filter-divider {
+    height: 1px;
+    background: var(--hz-line);
+    opacity: 0.6;
+    margin: var(--space-6) 0;
+  }
+
+  /* Category Filter Area */
+  .category-filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .category-filter-title {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', ui-rounded, sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--hz-ink);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .category-quick-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .btn-text-action {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--hz-rose-ink);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .btn-text-action:hover {
+    color: var(--hz-ink);
+    text-decoration: underline;
+  }
+
+  .action-sep {
+    color: var(--hz-line);
+    font-size: var(--text-xs);
+  }
+
+  /* 40+ Category Chips：奶油底 + 彩色小圖示，選中才上淡粉。
+     霓虹整顆灌藍拿掉了——40 顆高飽和藥丸是本頁「刺眼」的主因。 */
+  .categories-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cat-chip-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 14px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--hz-chip-ink);
+    background: var(--hz-chip);
+    border: 1px solid var(--hz-chip-line);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    user-select: none;
+    opacity: 1;
+  }
+
+  .cat-chip-btn:hover {
+    border-color: var(--hz-rose);
+    transform: translateY(-1px);
+  }
+
+  /* SELECTED：淡粉底 + 粉框 + 莓果字，不再整顆灌藍 */
+  .cat-chip-btn.active {
+    background: rgba(232, 131, 168, 0.16);
+    border-color: var(--hz-rose);
+    color: var(--hz-rose-ink);
+    font-weight: 700;
+    opacity: 1;
+    box-shadow: 0 2px 10px rgba(232, 131, 168, 0.25);
+  }
+
+  .cat-chip-btn.active:hover {
+    background: rgba(232, 131, 168, 0.24);
+    border-color: var(--hz-rose);
+    color: var(--hz-rose-ink);
+    opacity: 1;
+  }
+
+  .cat-chip-btn__check {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--hz-rose);
+    font-size: 10px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-right: 1px;
+  }
+
+  .cat-chip-btn.active .cat-chip-btn__check {
+    display: inline-flex;
+  }
+
+  .cat-chip-btn__icon {
+    font-size: 14px;
+  }
+
+  /* Results Bar */
+  .results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .results-bar__text {
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+  }
+
+  .results-bar__text strong {
+    color: var(--hz-rose-ink);
+    font-weight: 700;
+  }
+
+  /* Spots Grid */
+  .spots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  /* 雜誌小卡：圓角 20 + 柔粉陰影 */
+  .spot-card {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    background: var(--hz-card);
+    border: 1px solid var(--hz-line);
+    border-radius: 20px;
+    box-shadow: var(--hz-shadow);
+  }
+
+  .spot-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  /* 分類小標籤：鼠尾草綠純文字，不再跟人名搶權重 */
+  .spot-map-page .spot-cat-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--hz-sage);
+    font-weight: 700;
+  }
+
+  .spot-card__location-label {
+    font-size: var(--text-xs);
+    color: var(--hz-ink-mute);
+  }
+
+  .spot-card__name {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', ui-rounded, sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--hz-ink);
+    margin-bottom: var(--space-2);
+  }
+
+  .spot-card__desc {
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+    flex-grow: 1;
+  }
+
+  .spot-card__coords {
+    margin-bottom: var(--space-4);
+  }
+
+  .coord-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    background: var(--hz-card-soft);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    color: var(--hz-rose-ink);
+    border: 1px solid var(--hz-line);
+  }
+
+  .spot-card__actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  /* 本頁主 CTA 一律櫻粉：複製座標、前往精選 */
+  .spot-map-page .spot-card__actions .btn--primary,
+  .spot-map-page .weekly-featured-banner__btn,
+  .spot-map-page .weekly-link-card .btn--primary {
+    background: linear-gradient(135deg, var(--hz-rose) 0%, var(--hz-rose-deep) 100%);
+    border-color: transparent;
+    color: #fff;
+  }
+
+  .spot-map-page .spot-card__actions .btn--primary:hover,
+  .spot-map-page .weekly-featured-banner__btn:hover,
+  .spot-map-page .weekly-link-card .btn--primary:hover {
+    filter: brightness(1.06);
+  }
+
+  .spot-map-page .spot-card__actions .btn--outline {
+    border-color: var(--hz-line);
+    color: var(--hz-ink-soft);
+  }
+
+  /* No Results Box */
+  .no-results-box {
+    text-align: center;
+    padding: var(--space-16) var(--space-8);
+    margin-bottom: var(--space-12);
+    background: var(--hz-card);
+    border: 1px dashed var(--hz-line);
+    border-radius: 20px;
+  }
+
+  .no-results-box__icon {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+  }
+
+  .no-results-box h3 {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', ui-rounded, sans-serif;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+    color: var(--hz-ink);
+  }
+
+  .no-results-box p {
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Instruction & Links */
+  .import-guide-section {
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+    background: var(--hz-card-soft);
+    border: 1px solid var(--hz-line);
+    border-left: 4px solid var(--hz-rose);
+    border-radius: 16px;
+  }
+
+  .import-guide-section__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--hz-ink);
+  }
+
+  .import-steps {
+    padding-left: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+    line-height: 1.7;
+  }
+
+  .weekly-link-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-6) var(--space-8);
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    background: var(--hz-card);
+    border: 1px solid var(--hz-line);
+    border-radius: 20px;
+    box-shadow: var(--hz-shadow);
+  }
+
+  .weekly-link-card h4 {
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', ui-rounded, sans-serif;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+    color: var(--hz-ink);
+  }
+
+  .weekly-link-card p {
+    font-size: var(--text-sm);
+    color: var(--hz-ink-soft);
+  }
+
+  /* Toast Notification */
+  .copy-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: var(--hz-card);
+    color: var(--hz-ink);
+    border: 1px solid var(--hz-rose);
+    padding: 10px 20px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    box-shadow: var(--hz-shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s var(--ease-out);
+    z-index: 2000;
+  }
+
+  .copy-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 992px) {
+    .filter-dropdowns-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .filter-dropdowns-grid {
+      grid-template-columns: 1fr;
+    }
+    .filter-panel {
+      padding: var(--space-4);
+    }
+    .weekly-link-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    .weekly-link-card .btn {
+      width: 100%;
+    }
+  }
+</style>

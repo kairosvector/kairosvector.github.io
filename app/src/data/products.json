@@ -1,0 +1,90 @@
+[
+  {
+    "id": "pikiewalker",
+    "name": "PikieWalker",
+    "tagline": "步數模擬與測試助手",
+    "shortDescription": "安全模擬步數，同步至 Health Connect。專為遊戲玩家與開發者測試健康數據功能而打造。",
+    "fullDescription": "PikieWalker 提供精準的步數模擬，原生整合 Android Health Connect。定時定量，時時同步，專為遊戲玩家與開發者測試健康數據功能而打造。",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.kairosvector.pikiewalker",
+    "playStoreId": "com.kairosvector.pikiewalker",
+    "accentColor": "#10B981",
+    "accentColorDark": "#34D399",
+    "iconEmoji": "🚶",
+    "version": "2.0.1",
+    "androidMinVersion": "8.0",
+    "category": "工具",
+    "features": [
+      {
+        "title": "Health Connect 整合",
+        "description": "安全地將模擬步數同步到系統健康資料庫，支援所有讀取 Health Connect 的應用程式。",
+        "icon": "health"
+      },
+      {
+        "title": "精準步數控制",
+        "description": "自訂目標步數，提供穩定精確的數據模擬，支援 Time 與 Steps 兩種模式。",
+        "icon": "precision"
+      },
+      {
+        "title": "背景同步",
+        "description": "設定好即可在背景持續同步，不需要一直開啟 App。",
+        "icon": "sync"
+      },
+      {
+        "title": "隱私保護",
+        "description": "所有數據僅在本地端處理，不上傳任何個人資料到伺服器。",
+        "icon": "privacy"
+      }
+    ],
+    "useCases": [
+      "在健康與步數相關遊戲中累積步數、培育道具",
+      "測試 Android Health Connect API 整合",
+      "驗證步數相關功能的穩定性與時間分佈"
+    ]
+  },
+  {
+    "id": "geosim",
+    "name": "GeoSim",
+    "tagline": "GPS 開發與定位測試",
+    "shortDescription": "GPS 位置模擬、路線模擬、即時搖桿控制。開發測試或是遊戲玩家探索地圖，都能得心應手。",
+    "fullDescription": "GeoSim 是一款 GPS 位置模擬工具，讓你在地圖上自由設定位置、規劃路線、即時操控移動方向。適合需要測試定位功能的 Android 開發者，或是遊戲玩家探索地圖，都能得心應手。",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.kairosvector.geosim",
+    "playStoreId": "com.kairosvector.geosim",
+    "accentColor": "#0284C7",
+    "accentColorDark": "#38BDF8",
+    "iconEmoji": "📍",
+    "version": "1.0.25",
+    "androidMinVersion": "8.0",
+    "category": "工具",
+    "features": [
+      {
+        "title": "全球位置模擬",
+        "description": "在地圖上點擊即可切換 GPS 定位，支援全球任何座標。",
+        "icon": "location"
+      },
+      {
+        "title": "路線模擬",
+        "description": "規劃路線後自動移動，支援步行、騎車、開車不同速度模式。",
+        "icon": "route"
+      },
+      {
+        "title": "搖桿即時控制",
+        "description": "透過懸浮搖桿即時微調移動方向，操作直覺靈活。",
+        "icon": "joystick"
+      },
+      {
+        "title": "書籤與歷史紀錄",
+        "description": "收藏常用位置、瀏覽歷史紀錄，官方雲端書簽，強大的分類與每周精選功能。",
+        "icon": "bookmark"
+      }
+    ],
+    "useCases": [
+      "遊戲玩家探索不同城市的地圖景點與特殊座標",
+      "測試 Android 定位功能與 GPS 相關 API",
+      "模擬移動路線驗證地圖類 App 行為"
+    ],
+    "specialContent": {
+      "bookmarks": true,
+      "weeklyFeatured": true
+    }
+  }
+]

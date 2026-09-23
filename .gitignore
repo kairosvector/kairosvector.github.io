@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output
+app/dist/
+app/.astro/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.*
+
+# Temp / backup
+_edit_backups/
+_external/
+*.zip
+*.log
+
+# Data dumps
+found_index_dirs.txt
+git_all_commits.txt
+git_weekly_commits.txt
+past_weekly_report.txt

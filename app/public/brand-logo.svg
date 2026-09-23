@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="100%" height="100%">
+  <defs>
+    <!-- Cyan to Electric Blue Vector Gradient -->
+    <linearGradient id="logoVGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#1A62FF" />
+    </linearGradient>
+
+    <!-- Drop Shadow for Monogram -->
+    <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00D2FF" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- KV Monogram Symbol (Left) -->
+  <g transform="translate(10, 8) scale(0.15)">
+    <!-- Cyan Vector "V" (Lower checkmark) -->
+    <path 
+      d="M 190 230 L 275 330 L 415 175 L 445 205 L 275 390 L 150 245 Z" 
+      fill="url(#logoVGradient)" 
+      filter="url(#logoGlow)"
+    />
+
+    <!-- Pure White "K" Upper Diagonal Arm -->
+    <path 
+      d="M 175 210 L 310 75 L 355 75 L 225 220 Z" 
+      fill="#FFFFFF" 
+    />
+
+    <!-- Pure White "K" Vertical Left Stem -->
+    <path 
+      d="M 130 50 L 190 105 L 190 310 L 130 365 Z" 
+      fill="#F8FAFC" 
+    />
+  </g>
+
+  <!-- Divider Line -->
+  <line x1="88" y1="20" x2="88" y2="60" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5" />
+
+  <!-- Typography: KAIROS VECTOR -->
+  <text x="106" y="38" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#FFFFFF">KAIROS</text>
+  <text x="106" y="58" font-family="'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700" letter-spacing="6" fill="#00E5FF">VECTOR</text>
+</svg>

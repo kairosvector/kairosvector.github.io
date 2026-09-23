@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import products from '../data/products.json';
+import locationsData from '../data/locations.json';
+
+const latestWeekly = locationsData.weeklyFeatured[0];
+---
+
+<BaseLayout
+  title="Kairos Vector Studio — 好用的 Android 工具，認真做"
+  description="Kairos Vector Studio 打造實用的 Android 工具。PikieWalker 步數模擬、GeoSim GPS 位置模擬，為遊戲玩家與開發者而生。"
+>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero-section">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__eyebrow animate-in">
+          <span class="badge badge--brand">Kairos Vector Studio</span>
+        </div>
+        <h1 class="hero__title animate-in animate-in--delay-1">
+          好用的工具，<br/><span class="hero__title-highlight">認真做。</span>
+        </h1>
+        <p class="hero__subtitle animate-in animate-in--delay-2">
+          為遊戲玩家和 Android 開發者打造的實用工具。<br/>
+          步數模擬、GPS 定位測試，簡單上手、安全可靠。
+        </p>
+        <div class="hero__actions animate-in animate-in--delay-3">
+          <a href="#products" class="btn btn--vibrant btn--lg" id="hero-cta-explore">
+            探索產品
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+          </a>
+          <a href="https://play.google.com/store/apps/developer?id=Kairos+Vector+Studio"
+             target="_blank" rel="noopener"
+             class="btn btn--outline btn--lg" id="hero-cta-playstore">
+            Google Play
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--brand">我們的產品</span>
+        </div>
+        <h2 class="section-header__title">兩款工具，解決實際問題</h2>
+        <p class="section-header__subtitle">
+          每一款都針對真實的使用情境設計，不是花瓶，而是真正能用的實用助手。
+        </p>
+      </div>
+
+      <div class="products-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: var(--space-8);">
+        {products.map((product, i) => (
+          <div class="card product-card" data-animate style={`animation-delay: ${(i + 1) * 0.15}s`}>
+            <div class="product-card__accent" style={`background: ${product.accentColor}`}></div>
+            <div class="product-card__header">
+              <div class="product-card__icon product-card__icon--real" style={`box-shadow: 0 8px 24px ${product.accentColor}33;`}>
+                <img
+                  src={`/images/${product.id}-icon.png`}
+                  alt={`${product.name} App Icon`}
+                  width="64"
+                  height="64"
+                  class="product-card__app-img"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="product-card__name">{product.name}</div>
+                <div class="product-card__tagline">{product.tagline}</div>
+              </div>
+            </div>
+            <p class="product-card__description">{product.shortDescription}</p>
+            <div class="product-card__features">
+              {product.features.slice(0, 3).map(f => (
+                <span class={`badge badge--${product.id}`}>
+                  {f.title}
+                </span>
+              ))}
+            </div>
+            <div class="product-card__actions">
+              <a href={`/${product.id}`} class="btn btn--primary" id={`product-card-learn-${product.id}`}>
+                了解更多
+                <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a href={product.playStoreUrl}
+                 target="_blank" rel="noopener"
+                 class="btn btn--outline" id={`product-card-cta-${product.id}`}>
+                Google Play 下載
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Weekly Featured Spotlight (每周精選專欄最新主打) -->
+  {latestWeekly && (
+    <section class="section weekly-featured-teaser" id="weekly-featured-section" style="padding-top: var(--space-8); padding-bottom: var(--space-8);">
+      <div class="container">
+        <div class="card weekly-teaser-card" data-animate style="padding: var(--space-8); background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid rgba(59, 130, 246, 0.4); border-radius: var(--radius-2xl); box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-6); flex-wrap: wrap;">
+            <div style="max-width: 680px;">
+              <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); flex-wrap: wrap;">
+                <span class="badge badge--geosim">🌟 每周精選專欄 • 本週最新</span>
+                <span style="font-size: var(--text-xs); color: var(--color-text-secondary); font-weight: 600;">{latestWeekly.issue} • {latestWeekly.date}</span>
+                {latestWeekly.categoryName && <span class="badge badge--outline">{latestWeekly.categoryName}</span>}
+              </div>
+              <h2 style="font-size: clamp(var(--text-xl), 3vw, var(--text-2xl)); font-weight: 800; margin-bottom: var(--space-3); line-height: 1.3;">
+                <a href={`/geosim/weekly-featured/${latestWeekly.id}`} style="color: var(--color-text); text-decoration: none;">
+                  {latestWeekly.theme}
+                </a>
+              </h2>
+              <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--space-6);">
+                {latestWeekly.description}
+              </p>
+              <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                <a href={`/geosim/weekly-featured/${latestWeekly.id}`} class="btn btn--primary btn--md">
+                  查看本期 10 大座標與美照 ➔
+                </a>
+                <a href="/geosim/weekly-featured" class="btn btn--outline btn--md">
+                  瀏覽歷期專欄庫 📚
+                </a>
+              </div>
+            </div>
+
+            <!-- Preview Postcard Thumbnails -->
+            {latestWeekly.spots && latestWeekly.spots.length > 0 && (
+              <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+                {latestWeekly.spots.slice(0, 2).map((s) => (
+                  <div style="width: 140px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.15); background: #0f172a;">
+                    {s.image && (
+                      <img src={s.image} alt={s.name} style="width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block;" loading="lazy" />
+                    )}
+                    <div style="padding: 6px 8px; font-size: 11px; font-weight: 600; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;">
+                      {s.name}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Why Section -->
+  <section class="section value-section" id="why-section">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--brand">為什麼選擇我們</span>
+        </div>
+        <h2 class="section-header__title">開發者做的工具，就是不一樣</h2>
+        <p class="section-header__subtitle">
+          不是大公司的副產品，而是獨立開發者為解決自己遇到的問題而打造的工具。
+        </p>
+      </div>
+
+      <div class="value-grid">
+        <div class="value-item" data-animate>
+          <div class="value-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div class="value-item__title">實用優先</div>
+          <p class="value-item__desc">每個功能都來自真實需求，不做多餘的花俏設計。</p>
+        </div>
+        <div class="value-item" data-animate style="animation-delay: 0.1s">
+          <div class="value-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <div class="value-item__title">隱私安全</div>
+          <p class="value-item__desc">資料不上傳、不追蹤，所有操作都在你的裝置上完成。</p>
+        </div>
+        <div class="value-item" data-animate style="animation-delay: 0.2s">
+          <div class="value-item__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <div class="value-item__title">持續更新</div>
+          <p class="value-item__desc">定期改善效能與穩定性，聽取使用者回饋持續優化。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="download-section">
+    <div class="container">
+      <div class="cta-banner__inner" data-animate>
+        <div class="cta-banner__pattern"></div>
+        <div class="cta-banner__content">
+          <h2 class="cta-banner__title">立即開始使用</h2>
+          <p class="cta-banner__desc">
+            在 Google Play 免費下載，幾分鐘內就能上手。
+          </p>
+          <div class="cta-banner__actions">
+            <a href="https://play.google.com/store/apps/details?id=com.kairosvector.pikiewalker"
+               target="_blank" rel="noopener"
+               class="btn btn--white btn--lg" id="cta-banner-pikiewalker">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+              PikieWalker 下載
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.kairosvector.geosim"
+               target="_blank" rel="noopener"
+               class="btn btn--ghost-white btn--lg" id="cta-banner-geosim">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              GeoSim 下載
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .product-card__icon--real {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    flex-shrink: 0;
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .product-card:hover .product-card__icon--real {
+    transform: scale(1.08) rotate(3deg);
+  }
+
+  .product-card__app-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

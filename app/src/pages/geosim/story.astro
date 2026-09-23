@@ -1,0 +1,1104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import products from '../../data/products.json';
+
+const geosim = products.find(p => p.id === 'geosim')!;
+
+const pageTitle = "GeoSim 的一天：手機真的相信自己在別的地方！| Kairos Vector Studio";
+const pageDesc = "別的軟體說「已啟動」，結果根本沒動？GeoSim 證明給你看！白話帶你看懂如何讓手機一秒瞬間移動、像割草機一樣自動巡航、切到遊戲開啟懸浮小搖桿！";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  ogTitle="GeoSim 的一天 — 手機真的相信自己在別的地方！"
+  ogDescription={pageDesc}
+>
+  <!-- Google Fonts for Editorial Narrative Feel -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+
+  <article class="story-wrapper">
+    <!-- Breadcrumb & Nav Bar -->
+    <div class="story-nav">
+      <div class="story-nav__inner">
+        <div class="story-breadcrumb">
+          <a href="/">首頁</a>
+          <span class="story-breadcrumb__sep">/</span>
+          <a href="/geosim">GeoSim</a>
+          <span class="story-breadcrumb__sep">/</span>
+          <span class="story-breadcrumb__current">實戰手記（白話篇）</span>
+        </div>
+        <div class="story-nav__actions">
+          <a href="/geosim" class="btn btn--outline btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            返回 GeoSim 介紹
+          </a>
+          <a href={geosim.playStoreUrl} target="_blank" rel="noopener" class="btn btn--vibrant btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+            </svg>
+            Google Play 下載
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="story-content">
+      
+      <!-- Hero Header -->
+      <header class="story-hero">
+        <div class="story-eyebrow">GEOSIM · 定位模擬測試實戰工具</div>
+        <h1 class="story-title">GeoSim 的一天</h1>
+        <p class="story-standfirst">
+          早上九點，桌上放著一支手機。你在台北的辦公室，但等等要測試的那個門口，在十二公里外的台北 101。<br/>
+          今天我們要幹的只有一件事：<em class="story-beat">給手機戴上一副「傳送門眼鏡」，讓它百分之百相信自己已經到了 101，而且你非常確定它真的信了。</em>
+        </p>
+
+        <!-- Route Simulation Plot (SVG) -->
+        <figure class="story-plot">
+          <svg viewBox="0 0 640 210" role="img" aria-label="一條由五個點組成的模擬路線，目前位置在第三點，外圈是定位精度半徑">
+            <defs>
+              <pattern id="story-grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0H0V40" fill="none" stroke="var(--story-grid)" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="640" height="210" fill="url(#story-grid-pattern)"/>
+
+            <polyline points="58,158 172,112 296,132 420,66 574,92"
+                      fill="none" stroke="var(--story-route)" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+
+            <g fill="var(--story-panel)" stroke="var(--story-route)" stroke-width="2">
+              <circle cx="58" cy="158" r="5.5"/>
+              <circle cx="172" cy="112" r="5.5"/>
+              <circle cx="420" cy="66" r="5.5"/>
+              <circle cx="574" cy="92" r="5.5"/>
+            </g>
+
+            <circle class="story-ping" cx="296" cy="132" r="10" fill="none" stroke="var(--story-signal)" stroke-width="2"/>
+            <circle cx="296" cy="132" r="19" fill="none" stroke="var(--story-signal)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+            <circle cx="296" cy="132" r="7" fill="var(--story-signal)"/>
+
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--story-muted)">
+              <text x="58" y="182" text-anchor="middle">1</text>
+              <text x="172" y="136" text-anchor="middle">2</text>
+              <text x="296" y="168" text-anchor="middle" fill="var(--story-signal)" font-weight="600">3 · 目前位置</text>
+              <text x="420" y="50" text-anchor="middle">4</text>
+              <text x="574" y="116" text-anchor="middle">5</text>
+              <text x="330" y="128" fill="var(--story-signal)" font-weight="600">± 8 m 真實抖動</text>
+            </g>
+          </svg>
+          <figcaption>五點折線 · 1.40 m/s 散步速度 · 循環關閉 · 精度 ±8 m · 每 0.5 秒推進守位</figcaption>
+        </figure>
+      </header>
+
+      <!-- Chapter 00 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">00</span>
+          <h2 class="story-ch__title">序章：別的軟體說「成功」，結果根本沒動？</h2>
+          <span class="story-ch__where">09:12 · 辦公室</span>
+        </div>
+        <p>
+          你一定用過那種定位軟體：按鈕按下去，跳出一個「已啟動」，然後……就沒有然後了。  
+          地圖完全沒動、通知也沒跳。你根本不知道是手機沒理它、是遊戲看穿了你在作弊、還是你自己設定錯了？
+        </p>
+        <p>
+          <strong>GeoSim 的第一招，就是絕不讓你「猜」：</strong>  
+          它把位置送到手機最深處的三道定位核心（連 Google 地圖都在看的那種），然後<em class="story-beat">馬上把手機實際接收到的座標抓回來當場對質</em>！
+        </p>
+
+        <!-- Live Status Pills Demo -->
+        <div class="story-pill-group">
+          <div class="story-pill">
+            <span class="story-pill__dot"></span>
+            <div class="story-pill__txt">
+              <b>🟢 模擬中（正常運作）</b>
+              <span class="story-pill__sub">已生效 · GPS・網路定位・Fused 三道防線全部打勾</span>
+            </div>
+          </div>
+          <div class="story-pill story-pill--warn">
+            <span class="story-pill__dot"></span>
+            <div class="story-pill__txt">
+              <b>🟡 位置好像卡住了？</b>
+              <span class="story-pill__sub">系統已 42 秒沒理人 · GeoSim 正在自動搖醒它重新注入</span>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          這兩行小字就是最讓人安心的儀表板。綠燈時你可以放心去做別的事，亮黃燈時它自己會想辦法修好，
+          你再也不用花一整個下午懷疑是不是自己手機壞掉了。
+        </p>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>模擬即時健檢</dt>
+              <dd>手機深層的三大定位來源有沒有收到？成功的才打勾，絕不騙人<span class="story-tag">免費</span></dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>座標讀回比對</dt>
+              <dd>送出去 101，手機收到的真的是 101 嗎？逐筆核對才算數</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>睡著自動搖醒</dt>
+              <dd>定位如果卡住不動，系統主動跳出提示並自動重新發送修復</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>背景不被殺</dt>
+              <dd>開啟 Android 官方定位常駐服務，就算你跳去滑 IG、玩遊戲也不會被系統偷偷關掉</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 01 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">01</span>
+          <h2 class="story-ch__title">瞬間移動：一秒把自己搬過去</h2>
+          <span class="story-ch__where">09:40 · 台北 101</span>
+        </div>
+        <p>
+          想把自己移到 101，你有三種最偷懶的方法，完全不用辛苦手抄那些幾十個數字的經緯度：
+        </p>
+        <p>
+          1. <strong>在地圖上長按</strong>：手指按哪裡就飛到哪裡。<br/>
+          2. <strong>搜尋地名</strong>：打「台北 101」，從清單挑選正確的那棟樓，不會亂飛。<br/>
+          3. <strong>最神奇的「剪貼簿偷聽」</strong>：朋友在 LINE 傳給你一個 Google 地圖連結，你按了「複製」，一打開 GeoSim，畫面頂部直接貼心問你：<em class="story-beat">「你剛剛複製了這個點對吧？要不要秒飛過去？」</em>  
+          點一下確認，你人就已經站在 101 大門口了！
+        </p>
+
+        <!-- Chapter 1 Screenshots -->
+        <div class="story-figures-grid">
+          <figure class="story-figure">
+            <img src="/images/geosim/clipboard-prompt.jpg" alt="剪貼簿自動偵測彈窗" loading="lazy" class="story-figure__img" />
+            <figcaption>📋 複製好地圖連結切回來，頂部自動跳出詢問框，點一下秒著陸！</figcaption>
+          </figure>
+          <figure class="story-figure">
+            <img src="/images/geosim/single-point.jpg" alt="單點模擬選定畫面" loading="lazy" class="story-figure__img" />
+            <figcaption>📍 選好地點後，下方會顯示距離並提供「換點」與「瞬間移動」</figcaption>
+          </figure>
+        </div>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>剪貼簿自動辨識</dt>
+              <dd>複製文字後自動認出經緯度，兩段式確認才移動，絕不手殘誤飛</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>地圖短網址解析</dt>
+              <dd>朋友傳來的 maps.app.goo.gl 縮網址直接能解出位置，免手動轉換</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>天然 GPS 抖動</dt>
+              <dd>可微調 ±3~8 公尺自然漂移，看起來像真人在戶外，完全不死板</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 02 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">02</span>
+          <h2 class="story-ch__title">散步模式：從門外慢慢走進去</h2>
+          <span class="story-ch__where">10:15 · 走路時速 5 km/h</span>
+        </div>
+        <p>
+          光是瞬間移動站在門口還不夠，有時候 App 要偵測你「跨過大門」的那一瞬間。  
+          這時候在地圖上用手指依序點五個點，一條路徑就畫好了！把速度拉到一般人走路的時速，按下開始。
+        </p>
+        <p>
+          走到一半你覺得走太慢，<em class="story-beat">不必停下來重來</em>，手指拉一下速度條，下一步就自動加足馬力換節奏。<br/>
+          走到店門口想停留 30 秒？你可以設定「原地定住」，也可以開啟「小碎步原地晃動」甚至「繞小圈打轉」——就像真人站在門口滑手機買飲料一樣逼真！
+        </p>
+
+        <!-- Chapter 2 Screenshots -->
+        <div class="story-figures-grid">
+          <figure class="story-figure">
+            <img src="/images/geosim/route-berlin.jpg" alt="地圖折線巡航就緒" loading="lazy" class="story-figure__img" />
+            <figcaption>🗺️ 地圖上依序標號的折線路徑，底下直接顯示距離與速度</figcaption>
+          </figure>
+          <figure class="story-figure">
+            <img src="/images/geosim/route-settings.jpg" alt="各點停留與移動模式設定" loading="lazy" class="story-figure__img" />
+            <figcaption>⚙️ 平滑 vs 跳點、不停留 / 原地停留 / 原地浮動 / 花式繞圈隨你選</figcaption>
+          </figure>
+        </div>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>自訂多點折線</dt>
+              <dd>地圖上隨便點就連成路徑，能隨時加點、刪點、改變順序</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>隨時變速</dt>
+              <dd>移動中直接拉滑桿換速度（走路、慢跑、機車），免暫停重設</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>花式到點停留</dt>
+              <dd>定住停留 / 原地小碎步浮動<span class="story-tag story-tag--pro">Pro</span> / 繞同心圓打轉<span class="story-tag story-tag--pro">Pro</span></dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>來回無限折返</dt>
+              <dd>走到底自動調頭往回走，或是從頭再跑一遍，跑一整天也不累</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 03 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">03</span>
+          <h2 class="story-ch__title">整理收藏：好不容易畫好的路線，存進百寶箱！</h2>
+          <span class="story-ch__where">11:30 · 收藏中心</span>
+        </div>
+        <p>
+          這條路線明天還要測、下週還要跑，總不可能每次都要像傻子一樣重畫一遍吧？  
+          存起來！給它取個名字叫「信義區巡邏」，丟進「我的路線」資料夾裡。<br/>
+          地圖上存過的地點會變成漂亮的小圖標；存太多聚在一起時，還會自動打包成一顆「數字大泡泡」，放大地圖才會一顆顆散開。
+        </p>
+
+        <!-- Chapter 3 Screenshot -->
+        <figure class="story-figure story-figure--single">
+          <img src="/images/geosim/bookmarks.jpg" alt="書籤收藏資料夾清單" loading="lazy" class="story-figure__img" />
+          <figcaption>📁 兩層資料夾分類，包括每周精選、皮克敏純點收集，井井有條！</figcaption>
+        </figure>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>兩層資料夾分類</dt>
+              <dd>地點與整條路線都能存檔，資料夾底下還能再開資料夾</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>地圖自動打包</dt>
+              <dd>太密的地點自動合體成泡泡數字，放大地圖才散開，畫面不眼花</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>GPX 匯入分享</dt>
+              <dd>朋友傳來的 GPX 軌跡檔一鍵吃進去，過密點位自動智慧抽稀簡化<span class="story-tag story-tag--pro">Pro</span></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 04 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">04</span>
+          <h2 class="story-ch__title">換邊玩：切到遊戲畫面，螢幕旁邊多了一顆透明小搖桿！</h2>
+          <span class="story-ch__where">14:00 · 邊開遊戲邊控</span>
+        </div>
+        <p>
+          真正要用的是別的遊戲或 App，不是 GeoSim 自己。所以你一定會切出畫面。  
+          當你打開遊戲時，神奇的事情發生了：  
+          螢幕角落飄著一顆<em class="story-beat">透明的虛擬小搖桿</em>！手指往哪推、人就往哪走，推一下還會有舒服的微震動回饋！
+        </p>
+        <p>
+          如果你暫時不碰它，小搖桿會自己變淡、縮成右邊螢幕邊緣的一顆小圓點，完全不擋你看風景。
+          桌面上還有專屬 Widget，連打開 App 都不用，看桌面就知道走到哪了！
+        </p>
+
+        <!-- Chapter 4 Screenshots -->
+        <div class="story-figures-grid">
+          <figure class="story-figure">
+            <img src="/images/geosim/overlay-game-joystick.jpg" alt="在遊戲中懸浮的 360 度方向搖桿" loading="lazy" class="story-figure__img" />
+            <figcaption>🎮 在皮克敏遊戲畫面上飄著 360° 方向搖桿與目前時速，推哪走哪！</figcaption>
+          </figure>
+          <figure class="story-figure">
+            <img src="/images/geosim/overlay-collapsed.jpg" alt="放開手後搖桿自動收縮淡出" loading="lazy" class="story-figure__img" />
+            <figcaption>✨ 閒置幾秒後自己縮成右側小圓點，視野清爽不擋路！</figcaption>
+          </figure>
+        </div>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>360° 懸浮搖桿</dt>
+              <dd>浮在任何遊戲或 App 之上，推動就走，帶有細緻震動回饋<span class="story-tag story-tag--pro">Pro</span></dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>自動隱身收縮</dt>
+              <dd>放手不碰自動半透明淡出，縮成邊緣小圖標，絕不擋螢幕<span class="story-tag story-tag--pro">Pro</span></dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>桌面大圖標 Widget</dt>
+              <dd>放在 Android 手機桌面，深淺兩色，看一眼就知道進度</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 05 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">05</span>
+          <h2 class="story-ch__title">夜班：睡前叫它像割草機一樣自動巡航！</h2>
+          <span class="story-ch__where">18:45 · 幾何大師上線</span>
+        </div>
+        <p>
+          準備下班回家了，但你想讓手機整晚都在某個商圈裡繞來繞去自動測試。  
+          自己手動畫一千個點會瘋掉，這時只要點開<em class="story-beat">「進階形狀」</em>：  
+          選個中心點、拉一下半徑，叫它**「自動繞圓圈」**、**「像蚊香一樣往外螺旋」**，或是**「像割草機一樣把這區來回掃一遍」**！
+        </p>
+        <p>
+          連星星、愛心、多邊形都能自動生成！設定好讓它循環整夜，**你回家睡覺，手機自己通宵勤奮逛街**。
+        </p>
+
+        <!-- Chapter 5 Screenshot -->
+        <figure class="story-figure story-figure--single">
+          <img src="/images/geosim/geometry-patterns.jpg" alt="進階形狀幾何自動巡航設定" loading="lazy" class="story-figure__img" />
+          <figcaption>📐 圓繞圈、方繞方、螺旋、割草機掃描、星形愛心，拉一下半徑立刻開跑！</figcaption>
+        </figure>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>圓圈與漸開螺旋</dt>
+              <dd>中心點設好，自動生成平滑正圓或向外擴散的巡邏路徑</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>割草機矩形掃描</dt>
+              <dd>像割草機一樣整整齊齊等距來回梳理整塊區域，不漏任何角落</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>特殊多邊形與圖案</dt>
+              <dd>正多邊形、星星、愛心圖形自動算點跑測<span class="story-tag story-tag--pro">Pro</span></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 06 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">06</span>
+          <h2 class="story-ch__title">步數換算：走幾公尺，就真的算幾步！</h2>
+          <span class="story-ch__where">Health Connect 健康同步</span>
+        </div>
+        <p>
+          有些健康或手遊不只要看 GPS 定位，還看你今天走了幾萬步。  
+          GeoSim 直接把走的距離自動換算成步數（大約走 0.75 公尺算一步），定時寫進 Android 的 Health Connect 系統裡！
+        </p>
+        <p>
+          重點是：<em class="story-beat">它只負責幫你填寫步數，絕對不偷看你的任何隱私健康數據！</em>隨時可在手機設定裡撤銷，清清白白。
+        </p>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>距離自動換算步數</dt>
+              <dd>模擬巡航多遠就換算多少步，一魚兩吃<span class="story-tag story-tag--pro">Pro</span><span class="story-tag story-tag--soon">規劃中</span></dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>每分鐘防爆上限</dt>
+              <dd>每分鐘預設最多寫 250 步，絕不瞬間暴增引人起疑</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>只寫不讀隱私承諾</dt>
+              <dd>只要求寫入權限，不偷看你的體重、心率等個人隱私</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Chapter 07 -->
+      <section class="story-ch">
+        <div class="story-ch__head">
+          <span class="story-ch__num">07</span>
+          <h2 class="story-ch__title">時間到了嗎？清楚明白，不藏貓膩</h2>
+          <span class="story-ch__where">21:00 · 輕鬆免費玩</span>
+        </div>
+        <p>
+          GeoSim 免費版是「倒數時鐘制」——不是每天限制你只能點幾次，而是時間內隨你愛怎麼跑就怎麼跑！  
+          時間快到了看個短廣告就能充值加時，要到期前 3 分鐘還會貼心跳通知提醒你，絕不會在半路突然無聲斷線。
+        </p>
+        <p>
+          喜歡的話也可以升級 Pro 版，廣告全消失、搖桿與進階形狀全開，所有書籤資料都安安心心留在你的手機裡，不用登入也不會上傳伺服器。
+        </p>
+
+        <div class="story-ledger">
+          <div class="story-ledger__cap">這一幕最厲害的地方</div>
+          <dl>
+            <div class="story-ledger__row">
+              <dt>能量時鐘倒數</dt>
+              <dd>時段內功能全開放自由玩，看廣告加時，每日可免費領取</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>GeoSim Pro 暢玩</dt>
+              <dd>全面免廣告、解鎖搖桿與進階形狀，換手機隨 Google 帳號自動還原</dd>
+            </div>
+            <div class="story-ledger__row">
+              <dt>資料全在手機裡</dt>
+              <dd>你的路線與書籤只存在本機，沒有雲端伺服器在偷偷記錄你的行蹤</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Epilogue -->
+      <section class="story-ch story-ch--epilogue">
+        <div class="story-ch__head">
+          <span class="story-ch__num">—</span>
+          <h2 class="story-ch__title">尾聲：開發者的真心話</h2>
+        </div>
+        <p>
+          晚上十一點，看著螢幕上整整齊齊的綠色勾勾，你很清楚今天所有的定位測試都精準過關了。
+        </p>
+        <p class="story-statement">
+          這就是 GeoSim 的執著：<br/>
+          <em class="story-beat">別的工具只敢說「已啟動」，GeoSim 證明給你看。</em>
+        </p>
+
+        <!-- Compliance & Legal Boundaries Notice -->
+        <div class="story-bound">
+          <div class="story-bound__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 8v4M12 16h.01"/>
+            </svg>
+          </div>
+          <div class="story-bound__content">
+            <b>溫馨使用守則與界線聲明：</b>
+            <p>
+              GeoSim 使用 Android 官方標準設計的「模擬位置」開發者功能，目的是讓開發者方便測試自己寫的 App 與地理圍欄流程。
+              裝置需先在「開發人員選項」中手動指定 GeoSim。請大家遵守各大遊戲與第三方服務的使用規定，
+              不要用於惡意作弊、規避考勤定位或任何不當用途喔！
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Download Callout -->
+      <section class="story-cta">
+        <div class="story-cta__inner">
+          <div class="story-cta__badge">
+            <span class="badge badge--geosim">立即上手體驗</span>
+          </div>
+          <h2 class="story-cta__title">讓每次定位測試，都精準可證</h2>
+          <p class="story-cta__desc">
+            無需 Root、無隱藏收費。在 Google Play 免費下載 GeoSim，親自體驗三來源注入驗證與多點路線巡航。
+          </p>
+          <div class="story-cta__actions">
+            <a href={geosim.playStoreUrl} target="_blank" rel="noopener" class="btn btn--vibrant btn--lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              Google Play 免費下載
+            </a>
+            <a href="/geosim/spot-map" class="btn btn--outline btn--lg">
+              探索全球純點地圖庫
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Meta Footer -->
+      <footer class="story-footer">
+        <div>GeoSim · Kairos Vector Studio 出品</div>
+        <div>支援 Android 8.0 以上 · 需啟用開發人員選項 · 所有位置數據均不離開本機裝置</div>
+      </footer>
+
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* =======================================================
+     Theme Color Mapping for Story Editorial Layout
+     Supports Cyber Dark (default) & Electric Prism (vibrant)
+     ======================================================= */
+  :root,
+  html[data-theme="dark"] {
+    --story-ground: var(--color-bg);
+    --story-panel: var(--color-surface);
+    --story-panel-2: #161C2C;
+    --story-ink: var(--color-text);
+    --story-ink-soft: var(--color-text-secondary);
+    --story-muted: var(--color-text-muted);
+    --story-rule: var(--color-border);
+    --story-grid: rgba(255, 255, 255, 0.05);
+    
+    --story-signal: #3FD6A0;
+    --story-signal-soft: rgba(63, 214, 160, 0.16);
+    --story-route: #38BDF8;
+    --story-route-soft: rgba(56, 189, 248, 0.16);
+    --story-warn: #F59E0B;
+    --story-warn-soft: rgba(245, 158, 11, 0.14);
+    
+    --story-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+
+  html[data-theme="vibrant"] {
+    --story-ground: var(--color-bg);
+    --story-panel: #FFFFFF;
+    --story-panel-2: #F8FAFC;
+    --story-ink: var(--color-text);
+    --story-ink-soft: var(--color-text-secondary);
+    --story-muted: var(--color-text-muted);
+    --story-rule: var(--color-border);
+    --story-grid: rgba(0, 0, 0, 0.05);
+    
+    --story-signal: #0B7E5E;
+    --story-signal-soft: #D6EDE4;
+    --story-route: #0284C7;
+    --story-route-soft: #E0F2FE;
+    --story-warn: #D97706;
+    --story-warn-soft: #FEF3C7;
+    
+    --story-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  /* Typography Variables */
+  .story-wrapper {
+    --story-serif: "Noto Serif TC", Georgia, serif;
+    --story-sans: var(--font-body);
+    --story-mono: "IBM Plex Mono", var(--font-mono);
+    --story-measure: 44rem;
+
+    background-color: var(--story-ground);
+    background-image:
+      linear-gradient(var(--story-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--story-grid) 1px, transparent 1px);
+    background-size: 56px 56px, 56px 56px;
+    background-position: -1px -1px;
+    min-height: 100vh;
+    padding-top: var(--nav-height);
+  }
+
+  /* Breadcrumb & Sub-navigation */
+  .story-nav {
+    border-bottom: 1px solid var(--story-rule);
+    background: rgba(var(--story-ground), 0.85);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 40;
+  }
+
+  .story-nav__inner {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .story-breadcrumb {
+    font-family: var(--story-mono);
+    font-size: 0.8125rem;
+    color: var(--story-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .story-breadcrumb a {
+    color: var(--story-muted);
+    transition: color var(--duration-fast);
+  }
+
+  .story-breadcrumb a:hover {
+    color: var(--color-brand);
+  }
+
+  .story-breadcrumb__sep {
+    opacity: 0.4;
+  }
+
+  .story-breadcrumb__current {
+    color: var(--story-ink);
+    font-weight: 500;
+  }
+
+  .story-nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* Container */
+  .story-content {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.2rem, 4vw, 2.5rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  /* Hero Section */
+  .story-hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .story-eyebrow {
+    font-family: var(--story-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-geosim);
+    font-weight: 600;
+  }
+
+  .story-title {
+    font-family: var(--story-serif);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+    line-height: 1.25;
+    color: var(--story-ink);
+    margin: 0;
+  }
+
+  .story-standfirst {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: var(--story-ink-soft);
+    margin: 0;
+  }
+
+  .story-beat {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--story-ink);
+    box-shadow: inset 0 -0.45em 0 var(--story-signal-soft);
+    padding: 0 2px;
+  }
+
+  /* SVG Plot Component */
+  .story-plot {
+    background: var(--story-panel);
+    border: 1px solid var(--story-rule);
+    border-radius: var(--radius-md);
+    box-shadow: var(--story-shadow);
+    padding: 1rem 1rem 0.6rem;
+    overflow-x: auto;
+    margin: var(--space-4) 0 0;
+  }
+
+  .story-plot svg {
+    display: block;
+    min-width: 480px;
+    width: 100%;
+    height: auto;
+  }
+
+  .story-plot figcaption {
+    font-family: var(--story-mono);
+    font-size: 0.75rem;
+    color: var(--story-muted);
+    letter-spacing: 0.04em;
+    padding: 0.7rem 0.4rem 0.2rem;
+    border-top: 1px solid var(--story-rule);
+    margin-top: 0.6rem;
+  }
+
+  @keyframes pingAnim {
+    0%   { r: 10; opacity: 0.65; }
+    100% { r: 32; opacity: 0; }
+  }
+
+  .story-ping {
+    animation: pingAnim 2.6s ease-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-ping {
+      animation: none;
+      opacity: 0.3;
+    }
+  }
+
+  /* Chapter Section */
+  .story-ch {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .story-ch__head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    border-top: 2px solid var(--story-ink);
+    padding-top: var(--space-3);
+  }
+
+  .story-ch__num {
+    font-family: var(--story-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--story-signal);
+    letter-spacing: 0.08em;
+    flex: none;
+  }
+
+  .story-ch__title {
+    font-family: var(--story-serif);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 3.2vw, 1.75rem);
+    line-height: 1.4;
+    color: var(--story-ink);
+    margin: 0;
+  }
+
+  .story-ch__where {
+    font-family: var(--story-mono);
+    font-size: 0.75rem;
+    color: var(--story-muted);
+    letter-spacing: 0.05em;
+    margin-left: auto;
+    flex: none;
+  }
+
+  .story-ch p {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: var(--story-ink-soft);
+  }
+
+  /* Image Figures & Grids */
+  .story-figures-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    margin: var(--space-5) 0;
+  }
+
+  .story-figure {
+    background: var(--story-panel);
+    border: 1px solid var(--story-rule);
+    border-radius: 18px;
+    overflow: hidden;
+    margin: var(--space-2) 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    max-width: 230px;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--duration-fast), box-shadow var(--duration-fast);
+  }
+
+  .story-figure:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .story-figure--single {
+    max-width: 240px;
+    margin: var(--space-5) auto;
+  }
+
+  .story-figure__img {
+    width: 100%;
+    max-height: 460px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-bottom: 1px solid var(--story-rule);
+  }
+
+  .story-figure figcaption {
+    font-family: var(--story-sans);
+    font-size: 0.78rem;
+    color: var(--story-muted);
+    padding: 0.65rem 0.85rem;
+    line-height: 1.45;
+    background: var(--story-panel-2);
+    text-align: center;
+  }
+
+  /* Status Pills */
+  .story-pill-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: var(--space-2) 0;
+  }
+
+  .story-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--story-panel);
+    border: 1px solid var(--story-rule);
+    border-left: 4px solid var(--story-signal);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    box-shadow: var(--story-shadow);
+    max-width: var(--story-measure);
+  }
+
+  .story-pill--warn {
+    border-left-color: var(--story-warn);
+  }
+
+  .story-pill__dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--story-signal);
+    flex: none;
+    box-shadow: 0 0 0 4px var(--story-signal-soft);
+  }
+
+  .story-pill--warn .story-pill__dot {
+    background: var(--story-warn);
+    box-shadow: 0 0 0 4px var(--story-warn-soft);
+  }
+
+  .story-pill__txt {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .story-pill__txt b {
+    font-size: 0.95rem;
+    color: var(--story-ink);
+    letter-spacing: 0.02em;
+  }
+
+  .story-pill__sub {
+    font-family: var(--story-mono);
+    font-size: 0.75rem;
+    color: var(--story-muted);
+  }
+
+  /* Ledger Table Component */
+  .story-ledger {
+    border: 1px solid var(--story-rule);
+    border-radius: var(--radius-md);
+    background: var(--story-panel);
+    box-shadow: var(--story-shadow);
+    overflow: hidden;
+    margin-top: var(--space-2);
+  }
+
+  .story-ledger__cap {
+    font-family: var(--story-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--story-muted);
+    padding: 0.65rem 1rem;
+    background: var(--story-panel-2);
+    border-bottom: 1px solid var(--story-rule);
+    font-weight: 500;
+  }
+
+  .story-ledger dl {
+    margin: 0;
+  }
+
+  .story-ledger__row {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: 0.5rem 1.2rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--story-rule);
+    align-items: baseline;
+  }
+
+  .story-ledger__row:last-child {
+    border-bottom: 0;
+  }
+
+  .story-ledger dt {
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--story-ink);
+  }
+
+  .story-ledger dd {
+    margin: 0;
+    color: var(--story-ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* Feature Tags */
+  .story-tag {
+    display: inline-block;
+    font-family: var(--story-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    vertical-align: 0.1em;
+    margin-left: 0.4rem;
+    background: var(--story-route-soft);
+    color: var(--story-route);
+    font-weight: 600;
+  }
+
+  .story-tag--pro {
+    background: var(--story-warn-soft);
+    color: var(--story-warn);
+  }
+
+  .story-tag--soon {
+    background: var(--story-panel-2);
+    color: var(--story-muted);
+    border: 1px solid var(--story-rule);
+  }
+
+  /* Epilogue & Boundary Box */
+  .story-statement {
+    font-size: 1.18rem !important;
+    line-height: 1.9 !important;
+    color: var(--story-ink) !important;
+    margin: var(--space-2) 0 !important;
+  }
+
+  .story-bound {
+    border: 1px solid var(--story-warn);
+    background: var(--story-warn-soft);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 1.4rem;
+    color: var(--story-ink);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  .story-bound__icon {
+    color: var(--story-warn);
+    flex: none;
+    margin-top: 2px;
+  }
+
+  .story-bound__content b {
+    color: var(--story-warn);
+    font-size: 1rem;
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  .story-bound__content p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--story-ink-soft);
+  }
+
+  /* Bottom Call to Action */
+  .story-cta {
+    margin-top: var(--space-8);
+  }
+
+  .story-cta__inner {
+    background: var(--story-panel);
+    border: 1px solid var(--story-rule);
+    border-radius: var(--radius-xl);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+    box-shadow: var(--story-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .story-cta__title {
+    font-family: var(--story-serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    color: var(--story-ink);
+    margin: 0;
+  }
+
+  .story-cta__desc {
+    max-width: 32rem;
+    color: var(--story-ink-soft);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .story-cta__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+
+  /* Story Meta Footer */
+  .story-footer {
+    border-top: 1px solid var(--story-rule);
+    padding-top: var(--space-6);
+    color: var(--story-muted);
+    font-family: var(--story-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    line-height: 2;
+    text-align: center;
+  }
+
+  /* Responsive Adjustments for Mobile */
+  @media (max-width: 640px) {
+    .story-content {
+      padding: var(--space-6) var(--space-4) var(--space-16);
+      gap: var(--space-8);
+    }
+    .story-figures-grid {
+      gap: var(--space-5);
+    }
+    .story-figure {
+      max-width: 260px; /* On mobile: comfortable hand-held proportion with legible text */
+      margin: 0 auto;
+    }
+    .story-figure--single {
+      max-width: 260px;
+    }
+    .story-figure__img {
+      max-height: 520px;
+    }
+    .story-ledger__row {
+      grid-template-columns: 1fr;
+      padding: 0.75rem 0.85rem;
+      gap: 0.25rem;
+    }
+    .story-ch__where {
+      display: none;
+    }
+    .story-nav__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .story-nav__actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .story-bound {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

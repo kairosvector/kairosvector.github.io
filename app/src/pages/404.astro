@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — 找不到此頁面 | Kairos Vector Studio"
+  description="抱歉，您所尋找的頁面不存在或已被移動。歡迎返回首頁或探索我們的 Android 實用工具。"
+>
+  <div class="not-found-page">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+
+    <div class="container container--narrow">
+      <div class="not-found-card card" data-animate>
+        <div class="not-found-code">404</div>
+        <h1 class="not-found-title">找不到此座標</h1>
+        <p class="not-found-desc">
+          看來您漫遊到了一個尚未被探索的未知區域。<br/>
+          請檢查網址是否正確，或透過下方快速連結回到主要頁面。
+        </p>
+
+        <div class="not-found-actions">
+          <a href="/" class="btn btn--vibrant btn--lg">
+            返回工作室首頁 🏠
+          </a>
+          <a href="/geosim/spot-map" class="btn btn--outline btn--lg">
+            瀏覽純點地圖庫 🗺️
+          </a>
+        </div>
+
+        <div class="not-found-links">
+          <div class="not-found-links__title">快速前往熱門頁面：</div>
+          <div class="not-found-links__grid">
+            <a href="/pikiewalker" class="link-pill">🚶 PikieWalker (步數模擬)</a>
+            <a href="/geosim" class="link-pill">📍 GeoSim (GPS 定位測試)</a>
+            <a href="/geosim/weekly-featured" class="link-pill">🌟 每周精選專欄</a>
+            <a href="/privacy" class="link-pill">🛡️ 隱私權政策</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found-page {
+    padding-top: calc(var(--nav-height) + var(--space-16));
+    padding-bottom: var(--space-20);
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .not-found-card {
+    text-align: center;
+    padding: var(--space-12) var(--space-8);
+  }
+
+  .not-found-code {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    background: var(--btn-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--space-2);
+  }
+
+  .not-found-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .not-found-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0 auto var(--space-8);
+    max-width: 48ch;
+  }
+
+  .not-found-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-12);
+  }
+
+  .not-found-links {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .not-found-links__title {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    letter-spacing: 0.05em;
+  }
+
+  .not-found-links__grid {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .link-pill {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .link-pill:hover {
+    border-color: var(--color-brand);
+    color: var(--color-text);
+  }
+</style>

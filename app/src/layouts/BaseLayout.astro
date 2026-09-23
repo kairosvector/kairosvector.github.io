@@ -1,0 +1,284 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  canonicalUrl?: string;
+  schemaJson?: object;
+}
+
+const {
+  title,
+  description = 'Kairos Vector Studio — 好用的 Android 工具，認真做。步數模擬、GPS 定位測試，為遊戲玩家與開發者打造。',
+  ogTitle,
+  ogDescription,
+  canonicalUrl,
+  schemaJson,
+} = Astro.props;
+
+const siteTitle = title.includes('Kairos') ? title : `${title} | Kairos Vector Studio`;
+
+// Default Organization Structured Data
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kairos Vector Studio",
+  "url": "https://kairosvector.com",
+  "logo": "https://kairosvector.com/favicon.svg",
+  "description": description,
+  "sameAs": [
+    "https://play.google.com/store/apps/developer?id=Kairos+Vector+Studio"
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{siteTitle}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={ogTitle || siteTitle} />
+  <meta property="og:description" content={ogDescription || description} />
+  <meta property="og:site_name" content="Kairos Vector Studio" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:image" content="https://kairosvector.pages.dev/og-cover.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle || siteTitle} />
+  <meta name="twitter:description" content={ogDescription || description} />
+  <meta name="twitter:image" content="https://kairosvector.pages.dev/og-cover.png" />
+
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Schema.org JSON-LD Structured Data for Google Search -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJson || defaultSchema)} />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand" id="nav-brand">
+        <img src="/favicon.svg" alt="Kairos Vector Studio" class="nav__brand-logo" width="36" height="36" />
+        <div class="nav__brand-text">
+          <span class="nav__brand-name">KAIROS</span>
+          <span class="nav__brand-suffix">VECTOR</span>
+        </div>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="/" class="nav__link" id="nav-home">首頁</a></li>
+        <li><a href="/pikiewalker" class="nav__link" id="nav-pikiewalker">PikieWalker</a></li>
+        <li><a href="/geosim" class="nav__link" id="nav-geosim">GeoSim</a></li>
+        <li><a href="/geosim/spot-map" class="nav__link" id="nav-spot-map">純點列表</a></li>
+        <li><a href="/geosim/weekly-featured" class="nav__link" id="nav-weekly">每周精選 🌟</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile-menu" id="nav-mobile-menu">
+      <ul class="nav__mobile-links">
+        <li><a href="/" class="nav__mobile-link">首頁</a></li>
+        <li><a href="/pikiewalker" class="nav__mobile-link">PikieWalker (步數模擬)</a></li>
+        <li><a href="/geosim" class="nav__mobile-link">GeoSim (GPS 定位測試)</a></li>
+        <li><a href="/geosim/spot-map" class="nav__mobile-link">純點列表</a></li>
+        <li><a href="/geosim/weekly-featured" class="nav__mobile-link">每周精選專欄</a></li>
+        <li><a href="/privacy" class="nav__mobile-link">隱私權政策</a></li>
+        <li><a href="/terms" class="nav__mobile-link">服務條款</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Slot -->
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid" style="grid-template-columns: 1.8fr 1fr 1fr 1.2fr;">
+        <!-- Col 1: Brand Info -->
+        <div>
+          <div class="footer__brand-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: var(--space-3);">
+            <img src="/favicon.svg" alt="Kairos Vector" width="30" height="30" style="border-radius: 8px;" />
+            <div class="footer__brand-name" style="margin-bottom: 0; font-size: var(--text-base); letter-spacing: 0.08em;">
+              <span>KAIROS</span> <span style="color: #00E5FF;">VECTOR</span>
+            </div>
+          </div>
+          <p class="footer__brand-desc">
+            好用的 Android 工具，認真做。<br/>
+            為遊戲玩家與 Android 開發者打造的實用測試助手。
+          </p>
+          <div style="margin-top: var(--space-4); font-size: var(--text-xs); color: var(--color-text-muted);">
+            官方信箱：<a href="mailto:kairosvectordev@gmail.com" style="color: #00E5FF; font-weight: 600;">kairosvectordev@gmail.com</a>
+          </div>
+        </div>
+
+        <!-- Col 2: Products & Hubs -->
+        <div>
+          <div class="footer__col-title">產品與功能</div>
+          <ul class="footer__links">
+            <li><a href="/pikiewalker" class="footer__link" id="footer-pikiewalker">PikieWalker (步數模擬)</a></li>
+            <li><a href="/geosim" class="footer__link" id="footer-geosim">GeoSim (GPS 定位測試)</a></li>
+            <li><a href="/geosim/spot-map" class="footer__link" id="footer-spot-map">純點列表 / 地圖庫</a></li>
+            <li><a href="/geosim/weekly-featured" class="footer__link" id="footer-weekly">每周精選專欄</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Support -->
+        <div>
+          <div class="footer__col-title">法律與條款</div>
+          <ul class="footer__links">
+            <li><a href="/privacy" class="footer__link" id="footer-privacy">🛡️ 隱私權政策</a></li>
+            <li><a href="/terms" class="footer__link" id="footer-terms">📜 服務條款與免責</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Google Play Download -->
+        <div>
+          <div class="footer__col-title">Google Play 下載</div>
+          <ul class="footer__links">
+            <li>
+              <a href="https://play.google.com/store/apps/details?id=com.kairosvector.pikiewalker"
+                 class="footer__link" target="_blank" rel="noopener" id="footer-cta-pikiewalker">
+                PikieWalker — 下載應用程式 ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://play.google.com/store/apps/details?id=com.kairosvector.geosim"
+                 class="footer__link" target="_blank" rel="noopener" id="footer-cta-geosim">
+                GeoSim — 下載應用程式 ↗
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copyright">
+          © {new Date().getFullYear()} Kairos Vector Studio. All rights reserved.
+        </span>
+        <span class="footer__copyright">Android, Google Play, Health Connect 是 Google LLC 的商標。</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Theme Switcher Widget (2 Options: 🌙 暗夜極客 & ⚡ 活力電氣) -->
+  <aside class="theme-switcher" id="theme-switcher-widget" aria-label="視覺主題配色切換">
+    <span class="theme-switcher__label">🎨 主題：</span>
+    <button class="theme-btn active" data-theme-target="dark" title="暗夜極客 (Cyber Dark — 深色霓虹)">
+      <span class="theme-btn__dot" style="background: linear-gradient(135deg, #8B5CF6, #06B6D4);"></span>
+      🌙 暗夜極客
+    </button>
+    <button class="theme-btn" data-theme-target="vibrant" title="活力電氣 (Electric Prism — 亮色活力)">
+      <span class="theme-btn__dot" style="background: linear-gradient(135deg, #7C3AED, #06B6D4);"></span>
+      ⚡ 活力電氣
+    </button>
+  </aside>
+
+  <script is:inline>
+    // Theme Switcher Logic (Default to Cyber Dark)
+    const savedTheme = localStorage.getItem('kv_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const updateThemeButtons = (activeTheme) => {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        const target = btn.getAttribute('data-theme-target');
+        btn.classList.toggle('active', target === activeTheme);
+      });
+    };
+
+    updateThemeButtons(savedTheme);
+
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.getAttribute('data-theme-target');
+        if (theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('kv_theme', theme);
+          updateThemeButtons(theme);
+        }
+      });
+    });
+
+    // Navigation scroll effect
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav?.classList.add('scrolled');
+      } else {
+        nav?.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('nav-mobile-menu');
+    
+    toggle?.addEventListener('click', () => {
+      const isOpen = mobileMenu?.classList.toggle('open');
+      toggle?.classList.toggle('active', isOpen);
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav__mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.remove('open');
+        toggle?.classList.remove('active');
+      });
+    });
+
+    // Scroll-triggered animations
+    const observeElements = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', observeElements);
+    } else {
+      observeElements();
+    }
+
+    // Track Google Play CTA clicks
+    document.querySelectorAll('a[href*="play.google.com"]').forEach(link => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const productId = href.includes('pikiewalker') ? 'pikiewalker' : 'geosim';
+        console.log(`[Analytics Event] CTA Clicked: ${productId} -> ${href}`);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import products from '../data/products.json';
+import allTips from '../data/tips.json';
+
+const product = products.find(p => p.id === 'pikiewalker')!;
+const productTips = allTips.filter(t => t.productId === 'pikiewalker');
+
+const tutorials = [
+  {
+    step: "01",
+    title: "安裝並開啟 PikieWalker",
+    desc: "從 Google Play 下載安裝後開啟應用程式。"
+  },
+  {
+    step: "02",
+    title: "連結 Android Health Connect",
+    desc: "依照畫面指引授權 PikieWalker 寫入步數資料至 Health Connect。"
+  },
+  {
+    step: "03",
+    title: "設定模擬目標與模式",
+    desc: "選擇「時間模式 (Time)」或「步數模式 (Steps)」，自訂你想同步的目標步數與速率。"
+  },
+  {
+    step: "04",
+    title: "啟動同步與查看遊戲成長",
+    desc: "點擊開始同步，步數將自動寫入健康資料庫，健康與步數相關應用程式即可順利讀取。"
+  }
+];
+---
+
+<BaseLayout
+  title="PikieWalker — 步數模擬與測試助手 | Kairos Vector Studio"
+  description="PikieWalker 專為 Android Health Connect 整合與步數測試設計。精準步數，定時定量，時時同步 Health Connect。"
+  ogTitle="PikieWalker: 步數模擬與測試助手"
+  ogDescription="精準步數，定時定量，時時同步 Health Connect。專為遊戲玩家與開發者測試健康數據功能而打造。"
+>
+
+  <!-- Product Hero -->
+  <section class="product-hero">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+    <div class="container">
+      <div class="product-hero__content">
+        <div class="product-hero__text">
+          <div class="product-hero__badge" style="display: flex; align-items: center; gap: 12px;">
+            <img src="/images/pikiewalker-icon.png" alt="PikieWalker App Icon" width="38" height="38" style="border-radius: 10px; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4); border: 1px solid rgba(255,255,255,0.15);" />
+            <span class="badge badge--pikiewalker">Android 工具 v{product.version}</span>
+          </div>
+          <!-- Approved Copy Revision A -->
+          <h1 class="product-hero__title">
+            精準步數，定時定量，<br/>
+            <span style="color: var(--color-pikiewalker);">時時同步 Health Connect。</span>
+          </h1>
+          <!-- Approved Copy Revision B -->
+          <p class="product-hero__desc">
+            專為遊戲玩家與開發者測試健康數據功能而打造。提供穩定可靠的步數數據模擬，原生整合 Android Health Connect，簡單安全、保護隱私。
+          </p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href={product.playStoreUrl} target="_blank" rel="noopener" class="btn btn--vibrant btn--lg" id="pikiewalker-hero-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              Google Play 下載
+            </a>
+            <a href="#tutorial" class="btn btn--outline btn--lg">
+              查看使用教學
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Slot: Official Screen in Modern Titanium Phone Frame -->
+        <div class="product-hero__visual">
+          <div class="product-hero__mockup-wrapper" id="pikiewalker-asset-container">
+            <div class="phone-frame phone-frame--pikiewalker">
+              <div class="phone-frame__island"></div>
+              <div class="phone-frame__screen">
+                <img 
+                  src="/images/pikiewalker-screen.png" 
+                  alt="PikieWalker Android 應用程式實機運行畫面" 
+                  class="phone-frame__image"
+                  width="290" 
+                  height="600"
+                />
+                <div class="phone-frame__glare"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Highlights -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--pikiewalker">核心特色</span>
+        </div>
+        <h2 class="section-header__title">簡單、安全、無縫整合</h2>
+        <p class="section-header__subtitle">
+          直覺的設定介面與強大的背景同步機制，滿足日常測試與遊戲需求。
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        {product.features.map((feat) => (
+          <div class="feature-item" data-animate>
+            <div class="feature-item__icon" style="background: var(--badge-pikiewalker-bg); color: var(--badge-pikiewalker-text); border: 1px solid var(--badge-pikiewalker-border)">
+              {feat.icon === 'health' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+              )}
+              {feat.icon === 'precision' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="6"/>
+                  <circle cx="12" cy="12" r="2"/>
+                </svg>
+              )}
+              {feat.icon === 'sync' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="23 4 23 10 17 10"/>
+                  <polyline points="1 20 1 14 7 14"/>
+                  <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                </svg>
+              )}
+              {feat.icon === 'privacy' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="feature-item__title">{feat.title}</h3>
+            <p class="feature-item__desc">{feat.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Beginner Tutorial -->
+  <section class="section value-section" id="tutorial">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--pikiewalker">使用教學</span>
+        </div>
+        <h2 class="section-header__title">4 步驟開始模擬步數</h2>
+        <p class="section-header__subtitle">
+          只要完成 Health Connect 授權，就能隨時自訂同步步數。
+        </p>
+      </div>
+
+      <div class="tutorial-steps">
+        {tutorials.map((item) => (
+          <div class="tutorial-step card" data-animate>
+            <div class="tutorial-step__number" style="background: var(--color-pikiewalker);">
+              {item.step}
+            </div>
+            <div class="tutorial-step__content">
+              <h3 class="tutorial-step__title">{item.title}</h3>
+              <p class="tutorial-step__desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog / Tutorial Articles Grid (部落格專欄形式) -->
+  <section class="section" id="tips">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--pikiewalker">精選教學與專欄</span>
+        </div>
+        <h2 class="section-header__title">實用技巧與深度指南</h2>
+        <p class="section-header__subtitle">
+          點擊文章卡片閱讀完整圖文教學與深入實踐技巧。
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {productTips.map((tip) => (
+          <a href={`/tips/${tip.slug}`} class="card blog-card" data-animate>
+            <div class="blog-card__header">
+              <span class="badge badge--pikiewalker">{tip.category}</span>
+              <span class="blog-card__readtime">{tip.readTime}</span>
+            </div>
+            <h3 class="blog-card__title">{tip.title}</h3>
+            <p class="blog-card__summary">{tip.summary}</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__link">
+                閱讀完整文章
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner" data-animate>
+        <div class="cta-banner__pattern"></div>
+        <div class="cta-banner__content">
+          <h2 class="cta-banner__title">開始輕鬆管理你的模擬步數</h2>
+          <p class="cta-banner__desc">
+            立即在 Google Play 免費下載 PikieWalker。
+          </p>
+          <div class="cta-banner__actions">
+            <a href={product.playStoreUrl} target="_blank" rel="noopener" class="btn btn--white btn--lg" id="pikiewalker-bottom-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              前往 Google Play 下載
+            </a>
+            <a href="/" class="btn btn--ghost-white btn--lg">
+              返回工作室首頁
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .blog-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    cursor: pointer;
+  }
+
+  .blog-card:hover .blog-card__title {
+    color: var(--color-pikiewalker);
+  }
+
+  .blog-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+
+  .blog-card__readtime {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .blog-card__summary {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    flex-grow: 1;
+  }
+
+  .blog-card__footer {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .blog-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-brand-light);
+    transition: gap var(--duration-fast) var(--ease-out);
+  }
+
+  .blog-card:hover .blog-card__link {
+    gap: var(--space-3);
+    color: var(--color-pikiewalker);
+  }
+</style>

@@ -1,0 +1,698 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import products from '../data/products.json';
+import allTips from '../data/tips.json';
+
+const product = products.find(p => p.id === 'geosim')!;
+const productTips = allTips.filter(t => t.productId === 'geosim');
+
+const tutorials = [
+  {
+    step: "01",
+    title: "啟用 Android 開發人員選項",
+    desc: "進入手機「設定」→「關於手機」，連續點擊「版本號碼」7 次以開啟開發人員選項。",
+    link: "/tips/geosim-setup-beginner-guide",
+    linkText: "看圖文教學"
+  },
+  {
+    step: "02",
+    title: "設定模擬位置應用程式",
+    desc: "在「開發人員選項」中找到「選取模擬位置應用程式」，並在彈窗清單中勾選「GeoSim」。",
+    link: "/tips/geosim-setup-beginner-guide",
+    linkText: "看詳細圖解"
+  },
+  {
+    step: "03",
+    title: "在地圖上選取目標位置",
+    desc: "打開 GeoSim，在搜尋框輸入地點、長按地圖或複製座標，點擊「瞬間移動」。",
+    link: "/tips/geosim-single-point-teleport-guide",
+    linkText: "看定位攻略"
+  },
+  {
+    step: "04",
+    title: "使用懸浮搖桿或路線模式",
+    desc: "開啟懸浮搖桿即時推動方向，或在地圖上點選多個轉角進行自訂時速自動巡航。",
+    link: "/tips/geosim-route-and-joystick-guide",
+    linkText: "看巡航指南"
+  }
+];
+
+const featuredBookmarks = [
+  { name: "東京車站周邊", tag: "交通/商圈", desc: "適合探索各類都市型特殊地標與商業區" },
+  { name: "倫敦大英博物館", tag: "文化/景點", desc: "文化與藝術主題收藏點與觀光巡航" },
+  { name: "紐約中央公園", tag: "大型綠地", desc: "長距離路線模擬與開闊地形開展測試" }
+];
+---
+
+<BaseLayout
+  title="GeoSim — GPS 開發與定位測試助手 | Kairos Vector Studio"
+  description="GeoSim 為 Android 開發者與遊戲玩家提供強大的 GPS 定位模擬、路線巡航與即時搖桿控制功能。簡單設定，精準穩定。"
+  ogTitle="GeoSim: GPS 開發與定位測試"
+  ogDescription="全球 GPS 位置模擬、自訂路線與搖桿微調，開發測試或是遊戲玩家探索地圖，都能得心應手。"
+>
+
+  <!-- Product Hero -->
+  <section class="product-hero">
+    <div class="hero__bg"></div>
+    <div class="hero__grid-pattern"></div>
+    <div class="container">
+      <div class="product-hero__content">
+        <div class="product-hero__text">
+          <div class="product-hero__badge" style="display: flex; align-items: center; gap: 12px;">
+            <img src="/images/geosim-icon.png" alt="GeoSim App Icon" width="38" height="38" style="border-radius: 10px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4); border: 1px solid rgba(255,255,255,0.15);" />
+            <span class="badge badge--geosim">Android 工具 v{product.version}</span>
+          </div>
+          <h1 class="product-hero__title">
+            自由定位，<br/>
+            <span style="color: var(--color-geosim);">探索無界限。</span>
+          </h1>
+          <!-- Approved Copy Revision Item 4 -->
+          <p class="product-hero__desc">
+            GeoSim 提供直覺的 GPS 位置模擬、多點路線自動巡航與懸浮搖桿微調控制。無論是 Android 開發者測試位置服務，或是遊戲玩家探索地圖，都能得心應手。
+          </p>
+          <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+            <a href={product.playStoreUrl} target="_blank" rel="noopener" class="btn btn--vibrant btn--lg" id="geosim-hero-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              Google Play 下載
+            </a>
+            <a href="/geosim/story" class="btn btn--outline btn--lg">
+              📖 閱讀《GeoSim 的一天》
+            </a>
+            <a href="#tutorial" class="btn btn--ghost btn--lg">
+              查看新手教學
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Slot: Official Screen in Modern Titanium Phone Frame -->
+        <div class="product-hero__visual">
+          <div class="product-hero__mockup-wrapper" id="geosim-asset-container">
+            <div class="phone-frame phone-frame--geosim">
+              <div class="phone-frame__island"></div>
+              <div class="phone-frame__screen">
+                <img 
+                  src="/images/geosim/hero-route-40p.jpg" 
+                  alt="GeoSim Android 應用程式實機運行畫面（40點巡航路線）" 
+                  class="phone-frame__image"
+                  width="290" 
+                  height="600"
+                />
+                <div class="phone-frame__glare"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Highlights -->
+  <section class="section features-section-compact" id="features">
+    <div class="container">
+      <div class="section-header section-header--compact" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--geosim">核心功能</span>
+        </div>
+        <h2 class="section-header__title" style="font-size: var(--text-2xl);">精準、靈活的定位工具箱</h2>
+        <p class="section-header__subtitle" style="font-size: var(--text-sm); margin-bottom: 0;">
+          不管是單點切換、路徑巡航還是搖桿即時控制，所有功能一應俱全。
+        </p>
+      </div>
+
+      <div class="feature-grid-row">
+        {product.features.map((feat) => (
+          <div class="feature-item-compact" data-animate>
+            <div class="feature-item-compact__header">
+              <div class="feature-item-compact__icon" style="background: var(--badge-geosim-bg); color: var(--badge-geosim-text); border: 1px solid var(--badge-geosim-border)">
+                {feat.icon === 'location' && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                )}
+                {feat.icon === 'route' && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="6" cy="19" r="3"/>
+                    <path d="M9 19h8.5a4.5 4.5 0 000-9H5"/>
+                    <circle cx="18" cy="5" r="3"/>
+                  </svg>
+                )}
+                {feat.icon === 'joystick' && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a10 10 0 0110 10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                )}
+                {feat.icon === 'bookmark' && (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="feature-item-compact__title">{feat.title}</h3>
+            </div>
+            <p class="feature-item-compact__desc">{feat.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Story Showcase -->
+  <section class="section story-spotlight-section" id="story-spotlight">
+    <div class="container">
+      <div class="card story-spotlight-card" data-animate>
+        <div class="story-spotlight-card__body">
+          <div class="story-spotlight-card__header">
+            <span class="badge badge--geosim">深度實戰專欄</span>
+            <span class="story-spotlight-card__reading-time">約 6 分鐘閱讀 · 8 幕情境拆解</span>
+          </div>
+          <h2 class="story-spotlight-card__title">
+            《GeoSim 的一天》：別的工具告訴你「已啟動」，GeoSim 證明給你看
+          </h2>
+          <p class="story-spotlight-card__desc">
+            透過一位 Android 工程師從上午九點到晚上十一點的完整工作實錄，深入探索 GPS・NETWORK・Fused 三來源注入驗證、剪貼簿兩段式瞬移、Haversine 即時調速折線巡航、繞圓停留與 30+ 項進階測試技巧。
+          </p>
+
+          <div class="story-spotlight-card__pills">
+            <div class="story-spotlight-pill">
+              <span class="story-spotlight-pill__dot"></span>
+              <span><b>三來源注入驗證</b> · GPS / NETWORK / Fused 座標即時讀回比對</span>
+            </div>
+            <div class="story-spotlight-pill story-spotlight-pill--warn">
+              <span class="story-spotlight-pill__dot"></span>
+              <span><b>自動防凍結修復</b> · 異常停止更新主動報警並重新注入</span>
+            </div>
+          </div>
+
+          <div class="story-spotlight-card__actions">
+            <a href="/geosim/story" class="btn btn--primary btn--md">
+              閱讀完整實戰手記
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/geosim/weekly-featured" class="btn btn--outline btn--md">
+              查看每周推薦巡航路線
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beginner Tutorial -->
+  <section class="section value-section tutorial-section-compact" id="tutorial">
+    <div class="container">
+      <div class="section-header section-header--compact" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--geosim">快速上手</span>
+        </div>
+        <h2 class="section-header__title" style="font-size: var(--text-2xl);">4 步驟快速上手 GeoSim</h2>
+        <p class="section-header__subtitle" style="font-size: var(--text-sm); margin-bottom: 0;">
+          首次使用只需在 Android「開發人員選項」中勾選一次模擬位置，即可暢快使用。
+        </p>
+      </div>
+
+      <div class="tutorial-steps-compact">
+        {tutorials.map((item) => (
+          <div class="tutorial-step-compact card" data-animate>
+            <div class="tutorial-step-compact__top">
+              <span class="tutorial-step-compact__badge" style="background: var(--color-geosim);">{item.step}</span>
+              <h3 class="tutorial-step-compact__title">{item.title}</h3>
+            </div>
+            <p class="tutorial-step-compact__desc">{item.desc}</p>
+            {item.link && (
+              <a href={item.link} class="tutorial-step-compact__link">
+                {item.linkText || "圖文教學"}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog / Tutorial Articles Grid (部落格專欄形式) -->
+  <section class="section" id="tips">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--geosim">精選教學與專欄</span>
+        </div>
+        <h2 class="section-header__title">進階使用技巧與深度指南</h2>
+        <p class="section-header__subtitle">
+          點擊文章卡片閱讀完整圖文教學與深入實踐技巧。
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        {productTips.map((tip) => (
+          <a href={`/tips/${tip.slug}`} class="card blog-card" data-animate>
+            <div class="blog-card__header">
+              <span class="badge badge--geosim">{tip.category}</span>
+              <span class="blog-card__readtime">{tip.readTime}</span>
+            </div>
+            <h3 class="blog-card__title">{tip.title}</h3>
+            <p class="blog-card__summary">{tip.summary}</p>
+            <div class="blog-card__footer">
+              <span class="blog-card__link">
+                閱讀完整文章
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Featured Locations & Dedicated Hubs (每周精選 & 純點地圖) -->
+  <section class="section value-section" id="featured-locations">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <div class="section-header__eyebrow">
+          <span class="badge badge--geosim">精選地點與書籤</span>
+        </div>
+        <h2 class="section-header__title">官方精選推薦地點專欄</h2>
+        <p class="section-header__subtitle">
+          探索由官方整理的推薦探索路線與全球熱門經緯度座標庫。
+        </p>
+      </div>
+
+      <!-- 2 Major Dedicated Hub Cards -->
+      <div class="location-hubs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8); margin-bottom: var(--space-12);">
+        <div class="card hub-entry-card" data-animate style="padding: var(--space-8); border: 1.5px solid var(--color-geosim); display: flex; flex-direction: column;">
+          <div style="font-size: 36px; margin-bottom: var(--space-4);">🌟</div>
+          <span class="badge badge--geosim" style="align-self: flex-start; margin-bottom: var(--space-3);">每周定期更新</span>
+          <h3 style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-3);">每周精選專欄</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--space-6); flex-grow: 1;">
+            由官方每週策劃的全球主題散步路線與皮克敏明信片特輯（含吉卜力龍貓特別企劃）。包含真實明信片照片、推薦巡航速度與一鍵社群轉發！
+          </p>
+          <a href="/geosim/weekly-featured" class="btn btn--vibrant btn--lg" style="width: 100%;">
+            探索每周精選專欄 ➔
+          </a>
+        </div>
+
+        <div class="card hub-entry-card" data-animate style="padding: var(--space-8); border: 1.5px solid var(--color-border); display: flex; flex-direction: column;">
+          <div style="font-size: 36px; margin-bottom: var(--space-4);">🗺️</div>
+          <span class="badge badge--geosim" style="align-self: flex-start; margin-bottom: var(--space-3);">全球座標庫</span>
+          <h3 style="font-size: var(--text-2xl); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-3);">純點地圖庫</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--space-6); flex-grow: 1;">
+            整理全球都市地標、文化古蹟、大型公園與交通樞紐清單。支援分類篩選、一鍵複製精確經緯度，直接貼入 GeoSim 快速切換。
+          </p>
+          <a href="/geosim/spot-map" class="btn btn--outline btn--lg" style="width: 100%;">
+            瀏覽純點地圖庫 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Spot Teaser Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6);">
+        {featuredBookmarks.map((bm) => (
+          <div class="card" data-animate style="padding: var(--space-6);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2);">
+              <h4 style="font-size: var(--text-lg); font-weight: 700; color: var(--color-text);">{bm.name}</h4>
+              <span class="badge badge--geosim">
+                {bm.tag}
+              </span>
+            </div>
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6;">
+              {bm.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner" data-animate>
+        <div class="cta-banner__pattern"></div>
+        <div class="cta-banner__content">
+          <h2 class="cta-banner__title">準備好開始模擬定位了嗎？</h2>
+          <p class="cta-banner__desc">
+            立即在 Google Play 免費下載 GeoSim，開始你的探索與測試。
+          </p>
+          <div class="cta-banner__actions">
+            <a href={product.playStoreUrl} target="_blank" rel="noopener" class="btn btn--white btn--lg" id="geosim-bottom-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              前往 Google Play 下載
+            </a>
+            <a href="/" class="btn btn--ghost-white btn--lg">
+              返回工作室首頁
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .blog-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    cursor: pointer;
+  }
+
+  .blog-card:hover .blog-card__title {
+    color: var(--color-geosim);
+  }
+
+  .blog-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+
+  .blog-card__readtime {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .blog-card__summary {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    flex-grow: 1;
+  }
+
+  .blog-card__footer {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .blog-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-brand-light);
+    transition: gap var(--duration-fast) var(--ease-out);
+  }
+
+  .blog-card:hover .blog-card__link {
+    gap: var(--space-3);
+    color: var(--color-geosim);
+  }
+
+  /* Story Spotlight Section */
+  .story-spotlight-card {
+    padding: clamp(var(--space-6), 4vw, var(--space-10));
+    background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.08), transparent 70%), var(--color-surface);
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-spotlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-geosim);
+  }
+
+  .story-spotlight-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .story-spotlight-card__reading-time {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .story-spotlight-card__title {
+    font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+
+  .story-spotlight-card__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.75;
+    max-width: 54rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .story-spotlight-card__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .story-spotlight-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: var(--radius-full);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .story-spotlight-pill b {
+    color: var(--color-text);
+  }
+
+  .story-spotlight-pill__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #34D399;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
+  }
+
+  .story-spotlight-pill--warn {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.25);
+  }
+
+  .story-spotlight-pill--warn .story-spotlight-pill__dot {
+    background: #F59E0B;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  }
+
+  .story-spotlight-card__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Compact Features Section - 1 Single Row */
+  .features-section-compact {
+    padding: var(--space-12) 0 !important;
+  }
+
+  .feature-grid-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 1024px) {
+    .feature-grid-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .feature-grid-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-item-compact {
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-item-compact:hover {
+    border-color: var(--color-geosim);
+    transform: translateY(-2px);
+  }
+
+  .feature-item-compact__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .feature-item-compact__icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-item-compact__title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .feature-item-compact__desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Compact Tutorial Section */
+  .tutorial-section-compact {
+    padding: var(--space-12) 0 !important;
+  }
+
+  .section-header--compact {
+    margin-bottom: var(--space-8);
+  }
+
+  .tutorial-steps-compact {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 1024px) {
+    .tutorial-steps-compact {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tutorial-steps-compact {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tutorial-step-compact {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    transition: transform var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .tutorial-step-compact:hover {
+    border-color: var(--color-geosim);
+    transform: translateY(-2px);
+  }
+
+  .tutorial-step-compact__top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .tutorial-step-compact__badge {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--text-xs);
+    color: white;
+  }
+
+  .tutorial-step-compact__title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .tutorial-step-compact__desc {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin-bottom: var(--space-3);
+    flex-grow: 1;
+  }
+
+  .tutorial-step-compact__link {
+    font-size: var(--text-xs);
+    color: var(--color-geosim);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all var(--duration-fast) var(--ease-out);
+    margin-top: auto;
+  }
+
+  .tutorial-step-compact__link:hover {
+    color: var(--color-brand-light);
+    transform: translateX(2px);
+  }
+</style>
