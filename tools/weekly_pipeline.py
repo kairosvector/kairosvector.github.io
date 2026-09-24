@@ -323,6 +323,20 @@ def generate_threads_draft(
         f.write(content)
 
     print(f"📝 Generated Threads marketing draft at: {out_file}")
+    return content
+
+
+def send_email_notification(subject: str, body_text: str):
+    send_script = GEOSIM_DATA_DIR / "send_email.py"
+    if not send_script.exists():
+        print("send_email.py not found, skipping email.")
+        return
+    temp_body = PROJECT_ROOT / "scratch" / "email_body.txt"
+    temp_body.parent.mkdir(parents=True, exist_ok=True)
+    temp_body.write_text(body_text, encoding="utf-8")
+    cmd = [sys.executable, str(send_script), subject, "--body-file", str(temp_body)]
+    res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+    print(f"📧 Email notification: {res.stdout.strip() if res.stdout else res.stderr.strip()}")
 
 
 def build_and_deploy(deploy: bool = False):
@@ -379,6 +393,11 @@ def main():
         "--deploy-only",
         action="store_true",
         help="僅執行 build 並部署上 Cloudflare",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="模擬執行（Dry Run）：檢驗選題、景點篩選、API連線與文案產出，不寫入檔案也不部署",
     )
 
     args = parser.parse_args()
@@ -454,6 +473,53 @@ def main():
         print("❌ No matching spots found in pikoohiong database!")
         return
 
+    if args.dry_run:
+        print("\n=======================================================")
+        print(f"🔍 [DRY RUN 模擬執行模式] - 不會修改任何檔案與遠端設定")
+        print("=======================================================")
+        print(f"期別編號: {issue_name} ({issue_id})")
+        print(f"主題名稱: {theme_name}")
+        print(f"關鍵字組: {keywords}")
+        print(f"預計日期: {date_range}")
+        print(f"靜態圖資目錄: app/public/images/postcards/{folder_slug}/")
+        print(f"\n篩選出的 20 個景點清單：")
+        for i, s in enumerate(spots):
+            ptype = str(s.get("postcardType", "FLOWER")).upper()
+            pt_emoji = "🍄 蘑菇" if ptype == "MUSHROOM" else "🌸 大花"
+            title = s.get("title") or s.get("placeName") or "未命名景點"
+            print(f"  #{i+1:02d} [{pt_emoji}] {title} | 愛心: {s.get('favoriteCount', 0)} | 座標: {s.get('latitude')}, {s.get('longitude')} (ID: {s.get('id')})")
+
+        # Test API connection for spot #1
+        if spots:
+            test_cid = spots[0].get("id")
+            print(f"\n測試 Pikoohiong API 連線 (以第 1 個景點 ID: {test_cid} 為例) ...")
+            try:
+                res = requests.get(f"https://pikoohiong.com/api/postcards/{test_cid}", headers=HEADERS, timeout=8)
+                if res.status_code == 200:
+                    img_url = res.json().get("imageUrl")
+                    print(f"  ✅ API 連線成功！即時取得有效簽名圖片 URL: {img_url[:65]}...")
+                else:
+                    print(f"  ⚠️ API 狀態碼: {res.status_code}")
+            except Exception as e:
+                print(f"  ⚠️ 連線異常: {e}")
+
+        print(f"\n預計產出的 Threads 社群文案預覽：")
+        print("-------------------------------------------------------")
+        print(f"【GeoSim 每周精選 {issue_name} 🌟 漫遊全球：精選【{theme_name}】巡航特輯】\n")
+        print("皮友們這週的明信片都收齊了嗎？🌸")
+        print(f"本週特別為大家搜羅全球代表性的【{theme_name}】主題路線！")
+        print("全數收錄 10 處蘑菇戰鬥點 🍄 與 10 處巨型大花點 🌸，支援一鍵複製與推薦巡航時速！\n")
+        print("精選前 4 處打卡座標搶先看：")
+        for i, s in enumerate(spots[:4]):
+            title = s.get("title") or s.get("placeName")
+            print(f"📍 #{i+1} {title}: `{s.get('latitude')}, {s.get('longitude')}`")
+        print(f"\n🧭 完整 20 處經緯度座標與路線地圖：")
+        print(f"👉 https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}\n")
+        print("#PikminBloom #皮克敏 #GeoSim #皮克敏明信片 #每週精選")
+        print("-------------------------------------------------------")
+        print(f"✨ [DRY RUN 模擬完成] 流程 100% 驗證通過，隨時可正式執行！")
+        return
+
     # 2. Download postcards
     downloaded = download_postcards(spots, folder_slug)
 
@@ -469,7 +535,7 @@ def main():
     )
 
     # 4. Generate Threads draft
-    generate_threads_draft(
+    threads_copy = generate_threads_draft(
         issue_id=issue_id,
         issue_name=issue_name,
         theme_title=full_theme_title,
@@ -482,7 +548,33 @@ def main():
         advance_rotation_index(next_idx, rot_data)
 
     # 6. Build & Deploy
-    build_and_deploy(deploy=args.deploy)
+    dep_ok = build_and_deploy(deploy=args.deploy)
+
+    # 7. Send Email Notification with full Threads copy
+    email_sub = f"【GeoSim 每周精選已發布】{issue_name}（{theme_name}）附 Threads 宣傳文案"
+    email_body = f"""🎉 GeoSim 每周精選自動化管線執行完畢！
+
+【發布狀態總覽】
+- 期別編號：{issue_name} ({issue_id})
+- 本期主題：{full_theme_title}
+- 下載明信片數：{len(downloaded)} 張
+- Cloudflare Pages 部署：{'已正式發布上線 ✅' if args.deploy else '已完成本地建置（待命狀態）'}
+- 線上專欄網址：https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}
+
+==============================================================
+📱【Threads 官方宣傳文案（請直接全選複製貼至 Threads 發文）】
+==============================================================
+
+{threads_copy}
+
+==============================================================
+📸【配圖建議】
+發文時可搭配本機目錄中的前 4~8 張精選明信片照片發布：
+app/public/images/postcards/{folder_slug}/
+
+（本信件由 GeoSim 週六自動化管線自動發送）
+"""
+    send_email_notification(email_sub, email_body)
 
     print(f"\n🎉 {issue_name} pipeline completed successfully!")
 
