@@ -747,7 +747,14 @@ def main():
     # 6. Build & Deploy
     dep_ok = build_and_deploy(deploy=args.deploy)
 
-    # 7. Send Email Notification with full Threads copy
+    # 7. Commit changes to local git
+    try:
+        subprocess.run(["git", "add", "app/src/data/locations.json", "app/public/images/"], cwd=PROJECT_ROOT)
+        subprocess.run(["git", "commit", "-m", f"release: {issue_name} ({theme_name})"], cwd=PROJECT_ROOT)
+    except Exception as e:
+        print(f"Git commit notice: {e}")
+
+    # 8. Send Email Notification with full Threads copy
     email_sub = f"【GeoSim 每周精選已發布】{issue_name}（{theme_name}）附 Threads 宣傳文案"
     email_body = f"""🎉 GeoSim 每周精選自動化管線執行完畢！
 
