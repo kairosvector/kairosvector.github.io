@@ -552,6 +552,84 @@ def build_and_deploy(deploy: bool = False):
     return True
 
 
+def sync_geosim_data_github(theme_name: str, keywords: str, dry_run: bool = False):
+    remote_dir = GEOSIM_DATA_DIR / "remote"
+    if not remote_dir.exists():
+        print(f"⚠️ {remote_dir} not found, skipping geosim-data GitHub sync.")
+        return
+
+    print("\n📦 [geosim-data GitHub 同步]")
+    # Step 0: git pull
+    print("  Step 0: 在 remote 目錄執行 git pull origin main ...")
+    subprocess.run(["git", "-C", str(remote_dir), "pull", "origin", "main"], check=False)
+
+    if dry_run:
+        print("  [DRY RUN] 略過書籤生成、正式版晉升與 GitHub push。")
+        return
+
+    # Step 1a: promote old staging to production
+    print("  Step 1a: 將上週 Staging 晉升為正式版 official_bookmarks.json ...")
+    staging_remote = remote_dir / "official_bookmarks.staging.json"
+    prod_remote = remote_dir / "official_bookmarks.json"
+    demo_staging = GEOSIM_DATA_DIR / "bookmark_staging.json"
+
+    import shutil
+    if staging_remote.exists():
+        shutil.copy2(staging_remote, prod_remote)
+        shutil.copy2(staging_remote, demo_staging)
+
+    # Step 2: update staging with new theme
+    print(f"  Step 2: 執行 fill_bookmark.py 產出【{theme_name}】書籤 ...")
+    fill_cmd = [
+        sys.executable,
+        "fill_bookmark.py",
+        "--folder", "folder_weekly_featured",
+        "--name", f"0.[每周精選] 主題:{theme_name}",
+        "--keywords", keywords,
+        "--limit", "20",
+        "--weekly"
+    ]
+    subprocess.run(fill_cmd, cwd=GEOSIM_DATA_DIR, check=False)
+
+    # Step 2.5: translate non-Chinese names in bookmark_staging.json
+    print("  Step 2.5: 繁體中文翻譯書籤名稱 ...")
+    try:
+        with open(demo_staging, "r", encoding="utf-8") as f:
+            bdata = json.load(f)
+
+        featured_fids = {f["id"] for f in bdata.get("folders", []) if "folder_weekly_featured" in f.get("id", "")}
+        to_trans_bookmarks = [
+            b for b in bdata.get("bookmarks", [])
+            if b.get("folderId") in featured_fids and not is_mostly_chinese(b.get("name", ""))
+        ]
+
+        if to_trans_bookmarks:
+            mock_spots = [{"title": b["name"], "placeName": ""} for b in to_trans_bookmarks]
+            res = translate_spots_with_opencode(mock_spots)
+            trans_map = {s["title"]: s.get("translated_title", s["title"]) for s in res}
+            for b in to_trans_bookmarks:
+                if b["name"] in trans_map:
+                    b["name"] = trans_map[b["name"]]
+
+            with open(demo_staging, "w", encoding="utf-8") as f:
+                json.dump(bdata, f, ensure_ascii=False, indent=2)
+
+        # Step 3: copy back to remote staging
+        shutil.copy2(demo_staging, staging_remote)
+
+        # Step 4: commit & push to GitHub
+        print("  Step 4: Commit 並 Push 書籤至 GitHub main ...")
+        subprocess.run(["git", "-C", str(remote_dir), "add", "official_bookmarks.json", "official_bookmarks.staging.json"], check=False)
+        commit_res = subprocess.run(["git", "-C", str(remote_dir), "commit", "-m", f"Update weekly featured ({theme_name})"], capture_output=True, text=True)
+        if commit_res.stdout:
+            print(f"    Git commit: {commit_res.stdout.strip()}")
+        push_res = subprocess.run(["git", "-C", str(remote_dir), "push", "origin", "main"], capture_output=True, text=True)
+        print(f"    Git push: {push_res.stdout.strip() or push_res.stderr.strip() or 'OK'}")
+        print("  ✅ geosim-data 書籤庫成功同步至 GitHub！")
+    except Exception as e:
+        print(f"  ⚠️ 書籤同步至 GitHub 過程發生警告: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="GeoSim 每周精選自動化管線工具"
@@ -749,6 +827,7 @@ def main():
 ==============================================================
 ✨ 本次為 DRY-RUN 模擬測試，系統未修改任何本機設定與 GitHub/Cloudflare，請安心查閱。
 """
+        sync_geosim_data_github(theme_name, keywords, dry_run=True)
         send_email_notification(email_sub, email_body)
         print(f"📧 已發送 DRY-RUN 測試信件至管理者信箱！")
         print(f"✨ [DRY RUN 模擬完成] 流程 100% 驗證通過，隨時可正式執行！")
@@ -782,7 +861,10 @@ def main():
     if args.auto:
         advance_rotation_index(next_idx, rot_data)
 
-    # 6. Build & Deploy
+    # 6. Sync geosim-data Bookmarks to GitHub (Promote previous week + new staging + git push)
+    sync_geosim_data_github(theme_name, keywords, dry_run=False)
+
+    # 7. Build & Deploy Web to Cloudflare Pages
     dep_ok = build_and_deploy(deploy=args.deploy)
 
     # 7. Commit changes to local git
