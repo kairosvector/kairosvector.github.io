@@ -541,7 +541,7 @@ def build_and_deploy(deploy: bool = False):
 
     if deploy:
         print("\n🚀 Deploying to Cloudflare Pages (Production) ...")
-        dep_cmd = "npx wrangler pages deploy dist --project-name=kairosvector --branch=main --commit-dirty=true"
+        dep_cmd = "npx --yes wrangler pages deploy dist --project-name=kairosvector --branch=main --commit-dirty=true"
         dep_res = subprocess.run(dep_cmd, cwd=APP_DIR, shell=True)
         if dep_res.returncode == 0:
             print("🎉 Deployment to Cloudflare Pages completed successfully!")
