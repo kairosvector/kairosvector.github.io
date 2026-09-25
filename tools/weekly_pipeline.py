@@ -147,22 +147,27 @@ def translate_spots_with_opencode(spots: list) -> list:
         except Exception as e:
             print(f"  ⚠️ 模型 {model} 呼叫失敗或逾時: {e}")
 
-    # Apply translations back to spots
+    # Apply translations back ONLY to spots that needed translation
     for s in spots:
         title = s.get("title") or s.get("placeName") or ""
+        if title not in need_trans:
+            s["translated_title"] = title
+            continue
+
+        translated = None
         if title in translations:
-            s["translated_title"] = translations[title]
+            translated = translations[title]
+        else:
+            for k, v in translations.items():
+                if k.strip().lower() == title.strip().lower():
+                    translated = v
+                    break
+
+        if translated and translated != title:
+            s["translated_title"] = translated
             s["original_title"] = title
         else:
-            found = False
-            for k, v in translations.items():
-                if k.lower() == title.lower() or k.lower() in title.lower():
-                    s["translated_title"] = v
-                    s["original_title"] = title
-                    found = True
-                    break
-            if not found:
-                s["translated_title"] = title
+            s["translated_title"] = title
 
     return spots
 
@@ -700,19 +705,52 @@ def main():
         print(f"\n測試 OpenCode LLM 創作宣傳文案...")
         creative_intro = generate_social_intro_with_opencode(theme_name)
 
-        print(f"\n預計產出的 Threads 社群文案預覽：")
-        print("-------------------------------------------------------")
-        print(f"【GeoSim 每周精選 {issue_name} 🌟 漫遊全球：精選【{theme_name}】巡航特輯】\n")
-        print(f"{creative_intro}\n")
-        print("全數收錄 10 處蘑菇戰鬥點 🍄 與 10 處巨型大花點 🌸，支援一鍵複製與推薦巡航時速！\n")
-        print("精選前 4 處打卡座標搶先看：")
-        for i, s in enumerate(spots_translated[:4]):
-            title = s.get("translated_title") or s.get("title") or s.get("placeName")
-            print(f"📍 #{i+1} {title}: `{s.get('latitude')}, {s.get('longitude')}`")
-        print(f"\n🧭 完整 20 處經緯度座標與路線地圖：")
-        print(f"👉 https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}\n")
-        print("#PikminBloom #皮克敏 #GeoSim #皮克敏明信片 #每週精選")
-        print("-------------------------------------------------------")
+        # Build dry-run threads copy
+        coords_sample = "\n".join(
+            [
+                f"📍 #{idx+1} {s.get('translated_title') or s.get('title')}: `{s.get('latitude')}, {s.get('longitude')}`"
+                for idx, s in enumerate(spots_translated[:8])
+            ]
+        )
+
+        threads_dry_run = f"""【GeoSim 每周精選 {issue_name} 🌟 漫遊全球：精選【{theme_name}】巡航特輯】
+
+{creative_intro}
+
+全數收錄 10 處蘑菇戰鬥點 🍄 與 10 處巨型大花點 🌸，支援一鍵複製與推薦巡航時速！
+
+精選前 8 處打卡座標搶先看：
+{coords_sample}
+
+🧭 完整 20 處經緯度座標與路線地圖：
+👉 https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}
+
+#PikminBloom #皮克敏 #GeoSim #皮克敏明信片 #每週精選 #AR遊戲 #散步養成"""
+
+        # Send Dry Run Email Notification
+        email_sub = f"【GeoSim 每周精選 DRY-RUN 測試信】{issue_name}（{theme_name}）附 Threads 宣傳文案"
+        email_body = f"""🔍 GeoSim 每周精選【DRY-RUN 模擬執行】測試信
+
+【模擬狀態總覽（未實際變更檔案、未修改輪替、未發布）】
+- 期別編號：{issue_name} ({issue_id})
+- 本期主題：漫遊全球：精選【{theme_name}】巡航特輯
+- 關鍵字組：{keywords}
+- 預計日期：{date_range}
+- 篩選景點數：20 處（已完成 OpenCode 繁體中文翻譯與文案創作）
+- 靜態圖資目錄：app/public/images/postcards/{folder_slug}/
+- 線上專欄網址預覽：https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}
+
+==============================================================
+📱【Threads 官方宣傳文案預覽（OpenCode 創作）】
+==============================================================
+
+{threads_dry_run}
+
+==============================================================
+✨ 本次為 DRY-RUN 模擬測試，系統未修改任何本機設定與 GitHub/Cloudflare，請安心查閱。
+"""
+        send_email_notification(email_sub, email_body)
+        print(f"📧 已發送 DRY-RUN 測試信件至管理者信箱！")
         print(f"✨ [DRY RUN 模擬完成] 流程 100% 驗證通過，隨時可正式執行！")
         return
 
