@@ -436,6 +436,40 @@ def update_locations_json(
     issue_desc = description or f"{creative_intro} 本期為您精選全球 {len(formatted_spots)} 處必訪明信片打卡座標！支援一鍵複製與巡航速度建議。"
     social_draft = f"【GeoSim 每周精選 {issue_name} 🌟 {theme_title}】\n\n{creative_intro}\n\n📍 完整 20 大座標與路線 👉 https://kairosvector.pages.dev/geosim/weekly-featured/{issue_id}\n#PikminBloom #皮克敏 #GeoSim #每週精選"
 
+    # Determine cover image: check English mapping, folder_slug, or fallback to first spot's image
+    theme_slug_map = {
+        "神社": "shrine",
+        "神社/寺廟": "shrine",
+        "寺廟": "shrine",
+        "壁畫": "mural",
+        "城堡": "castle",
+        "海灘": "beach",
+        "海灘/海洋": "beach",
+        "教堂": "cathedral",
+        "橋樑": "bridge",
+        "燈塔": "lighthouse",
+        "雕像": "statue",
+        "雕像/雕塑": "statue",
+        "富士山": "fuji",
+        "瀑布": "waterfall",
+        "龍貓": "totoro",
+        "龍貓/吉卜力": "totoro",
+        "櫻花": "sakura",
+        "迪士尼": "disney",
+        "瑪利歐": "mario",
+        "任天堂/瑪利歐": "mario",
+        "咖啡店": "cafe",
+    }
+    eng_slug = theme_slug_map.get(folder_slug, folder_slug)
+    if (WEEKLY_IMAGES_DIR / f"{eng_slug}.jpg").exists():
+        cover_image_path = f"/images/weekly/{eng_slug}.jpg"
+    elif (WEEKLY_IMAGES_DIR / f"{folder_slug}.jpg").exists():
+        cover_image_path = f"/images/weekly/{folder_slug}.jpg"
+    elif formatted_spots and formatted_spots[0].get("image"):
+        cover_image_path = formatted_spots[0]["image"]
+    else:
+        cover_image_path = f"/images/weekly/{eng_slug}.jpg"
+
     new_issue = {
         "id": issue_id,
         "issue": issue_name,
@@ -445,7 +479,7 @@ def update_locations_json(
         "categoryName": category_name,
         "description": issue_desc,
         "region": "全球精選巡航",
-        "coverImage": f"/images/weekly/{folder_slug}.jpg",
+        "coverImage": cover_image_path,
         "socialShareDraft": social_draft,
         "spots": formatted_spots,
     }
