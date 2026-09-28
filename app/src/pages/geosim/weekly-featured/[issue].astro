@@ -20,10 +20,18 @@ function readSources(folder: string): any[] {
 }
 
 export async function getStaticPaths() {
-  return locationsData.weeklyFeatured.map((issue) => ({
+  const paths = locationsData.weeklyFeatured.map((issue) => ({
     params: { issue: issue.id },
     props: { currentIssue: issue }
   }));
+  // 固定最新一期永久別名：/geosim/weekly-featured/latest
+  if (locationsData.weeklyFeatured.length > 0) {
+    paths.push({
+      params: { issue: 'latest' },
+      props: { currentIssue: locationsData.weeklyFeatured[0] }
+    });
+  }
+  return paths;
 }
 
 const { currentIssue } = Astro.props;
