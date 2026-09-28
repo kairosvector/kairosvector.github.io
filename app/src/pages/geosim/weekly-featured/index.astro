@@ -346,6 +346,12 @@ const latestCoords = latestIssue.spots
     box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.15);
   }
 
+  html[data-theme="vibrant"] .latest-hero-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    border-color: #bae6fd;
+    box-shadow: 0 12px 32px -8px rgba(2, 132, 199, 0.12), 0 0 15px rgba(2, 132, 199, 0.05);
+  }
+
   .latest-hero-card__badge-bar {
     display: flex;
     align-items: center;
@@ -358,6 +364,10 @@ const latestCoords = latestIssue.spots
     font-size: var(--text-xs);
     color: var(--color-text-secondary);
     font-weight: 600;
+  }
+
+  html[data-theme="vibrant"] .latest-issue-tag {
+    color: #64748b;
   }
 
   .latest-hero-card__title {
@@ -376,12 +386,24 @@ const latestCoords = latestIssue.spots
     color: var(--color-geosim);
   }
 
+  html[data-theme="vibrant"] .latest-hero-card__title a {
+    color: #0f172a;
+  }
+
+  html[data-theme="vibrant"] .latest-hero-card__title a:hover {
+    color: var(--color-geosim);
+  }
+
   .latest-hero-card__desc {
     font-size: var(--text-base);
     color: var(--color-text-secondary);
     line-height: 1.7;
     max-width: 860px;
     margin-bottom: var(--space-6);
+  }
+
+  html[data-theme="vibrant"] .latest-hero-card__desc {
+    color: #334155;
   }
 
   /* Thumbnails strip */
@@ -399,6 +421,11 @@ const latestCoords = latestIssue.spots
     border: 1px solid rgba(255, 255, 255, 0.12);
     aspect-ratio: 16 / 9;
     background: #0f172a;
+  }
+
+  html[data-theme="vibrant"] .hero-thumb-item {
+    border-color: rgba(0, 0, 0, 0.08);
+    background: #e2e8f0;
   }
 
   .hero-thumb-img {
@@ -438,6 +465,12 @@ const latestCoords = latestIssue.spots
     position: relative;
     max-height: 320px;
     aspect-ratio: 21 / 9;
+  }
+
+  html[data-theme="vibrant"] .latest-hero-cover-wrap {
+    border-color: rgba(0, 0, 0, 0.08);
+    background: #f1f5f9;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.1);
   }
 
   .latest-hero-cover-link {
@@ -720,6 +753,13 @@ const latestCoords = latestIssue.spots
     display: flex;
     align-items: center;
     gap: var(--space-2);
+  }
+
+  html[data-theme="vibrant"] .copy-toast {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #0284c7;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12), 0 0 15px rgba(2, 132, 199, 0.15);
   }
 
   .copy-toast.show {
