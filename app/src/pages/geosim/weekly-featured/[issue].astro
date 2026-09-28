@@ -53,7 +53,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
 <BaseLayout
   title={`${currentIssue.issue}：${currentIssue.theme} | 每周精選專欄 — GeoSim`}
-  description={`GeoSim 官方每周精選探索地點：${currentIssue.theme}。包含真實明信片相片、景點微故事、推薦巡航速度與一鍵分享給好友文案。`}
+  description={`GeoSim 官方每周精選探索地點：${currentIssue.theme}。包含精美明信片相片、景點微故事、精確經緯度座標與一鍵分享給好友文案。`}
   ogTitle={`${currentIssue.issue}：${currentIssue.theme}`}
   ogDescription={currentIssue.description}
 >
@@ -177,13 +177,8 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                   ) : (
                     <span class="type-badge type-badge--flower">🌸 巨型大花點</span>
                   )}
-                  {/* postcards/ 目錄 = 實景照片（Wikimedia/Openverse），與皮克敏遊戲截圖區分 */}
-                  {spot.image?.includes('/postcards/') && (
-                    <span class="type-badge photo-badge">📷 實景圖</span>
-                  )}
                   {spot.region === 'tw' && <span class="region-badge">🇹🇼 台灣</span>}
                   {spot.region === 'jp' && <span class="region-badge">🇯🇵 日本</span>}
-                  {spot.region === 'global' && <span class="region-badge">🌍 國際</span>}
                 </div>
               </div>
 
@@ -220,12 +215,6 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                     <span class="meta-label">經緯度座標：</span>
                     <code class="meta-coord-code">{spot.lat}, {spot.lng}</code>
                   </div>
-                  {spot.recommendedSpeed && (
-                    <div class="meta-speed-block">
-                      <span class="meta-label">推薦巡航：</span>
-                      <span class="meta-speed-text">{spot.recommendedSpeed}</span>
-                    </div>
-                  )}
                 </div>
 
                 <!-- Actions -->
@@ -389,7 +378,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
       )}
 
       <!-- Back Link -->
-      <div style="text-align: center; margin-top: var(--space-10);">
+      <div class="back-to-geosim-wrap" style="text-align: center; margin-top: var(--space-10);">
         <a href="/geosim" class="btn btn--outline">
           ← 返回 GeoSim 產品專頁
         </a>

@@ -101,7 +101,10 @@ const defaultSchema = {
     html.is-embed #main-nav,
     html.is-embed .footer,
     html.is-embed .breadcrumb,
-    html.is-embed .weekly-promo-card {
+    html.is-embed .weekly-promo-card,
+    html.is-embed .weekly-bottom-nav,
+    html.is-embed .back-to-geosim-wrap,
+    html.is-embed a[href="/geosim"] {
       display: none !important;
     }
 
@@ -236,16 +239,16 @@ const defaultSchema = {
     </div>
   </footer>
 
-  <!-- Floating Theme Switcher Widget (2 Options: 🌙 暗夜極客 & ⚡ 活力電氣) -->
+  <!-- Floating Theme Switcher Widget (2 Options: 暗夜黑 & 質感白) -->
   <aside class="theme-switcher" id="theme-switcher-widget" aria-label="視覺主題配色切換">
-    <span class="theme-switcher__label">🎨 主題：</span>
-    <button class="theme-btn active" data-theme-target="dark" title="暗夜極客 (Cyber Dark — 深色霓虹)">
+    <span class="theme-switcher__label">主題：</span>
+    <button class="theme-btn active" data-theme-target="dark" title="暗夜黑 (深色模式)">
       <span class="theme-btn__dot" style="background: linear-gradient(135deg, #8B5CF6, #06B6D4);"></span>
-      🌙 暗夜極客
+      暗夜黑
     </button>
-    <button class="theme-btn" data-theme-target="vibrant" title="活力電氣 (Electric Prism — 亮色活力)">
+    <button class="theme-btn" data-theme-target="vibrant" title="質感白 (淺色模式)">
       <span class="theme-btn__dot" style="background: linear-gradient(135deg, #7C3AED, #06B6D4);"></span>
-      ⚡ 活力電氣
+      質感白
     </button>
   </aside>
 
