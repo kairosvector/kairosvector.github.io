@@ -25,7 +25,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-01.jpg",
-          "story": "原名「Harbor Lighthouse」。位於 Marquette 的代表性打卡點，適合散步巡航探索。"
+          "story": "位於密西根州蘇必略湖畔的著名紅色砂岩八角燈塔，守護五大湖百年航海歲月，黃昏晚霞美不勝收。"
         },
         {
           "id": "spot-02",
@@ -40,7 +40,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-02.jpg",
-          "story": "位於 Bø 的代表性打卡點，適合散步巡航探索。"
+          "story": "挪威羅弗敦群島的經典紅木燈塔，矗立於北極圈奇幻峽灣與海天一色的純淨荒野之中。"
         },
         {
           "id": "spot-03",
@@ -55,7 +55,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-03.jpg",
-          "story": "綠島燈塔"
+          "story": "綠島最著名的純白高聳燈塔，由美國紅十字會捐建，矗立於碧海藍天與綠草如茵的珊瑚礁海岸。"
         },
         {
           "id": "spot-04",
@@ -70,7 +70,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-04.jpg",
-          "story": "原名「Lighthouse」。位於 Múlaþing 的代表性打卡點，適合散步巡航探索。"
+          "story": "冰島東部都皮沃古爾港口的亮橘色金字塔形燈塔，襯托著北極圈壯麗的峽灣與純淨雪山風光。"
         },
         {
           "id": "spot-05",
@@ -85,7 +85,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-05.jpg",
-          "story": "原名「Eldred Rock Lighthouse」。位於 Haines Borough 的代表性打卡點，適合散步巡航探索。"
+          "story": "阿拉斯加最古老的海上木造八角燈塔，孤立於林恩運河的險峻岩礁上，背景為雄偉冰川雪山。"
         },
         {
           "id": "spot-06",
@@ -100,7 +100,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-06.jpg",
-          "story": "原名「Harmaja Lighthouse」。位於 Helsinki 的代表性打卡點，適合散步巡航探索。"
+          "story": "芬蘭赫爾辛基外海的百年歷史燈塔，是航行於波羅的海船隻進出芬蘭灣的重要指引座標。"
         },
         {
           "id": "spot-07",
@@ -115,7 +115,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-07.jpg",
-          "story": "原名「Lighthouse Of Rethymno」。位於 Rethymno 的代表性打卡點，適合散步巡航探索。"
+          "story": "希臘克里特島威尼斯舊港的古老石造燈塔，散發濃郁的愛琴海古文明歷史風情與浪漫氣息。"
         },
         {
           "id": "spot-08",
@@ -130,7 +130,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-08.jpg",
-          "story": "燈塔"
+          "story": "坐落於佛羅里達礁島群私人俱樂部的濱海燈塔，享有溫暖碧藍的大西洋礁岩海景與熱帶風光。"
         },
         {
           "id": "spot-09",
@@ -145,7 +145,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-09.jpg",
-          "story": "原名「Nassau Lighthouse」。位於 New Providence 的代表性打卡點，適合散步巡航探索。"
+          "story": "巴哈馬拿騷港入口處的殖民時期歷史燈塔，俯瞰加勒比海清澈見底的藍綠色漸層珊瑚水域。"
         },
         {
           "id": "spot-10",
@@ -160,7 +160,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-10.jpg",
-          "story": "原名「Belleriver Lighthouse」。位於 Belle River 的代表性打卡點，適合散步巡航探索。"
+          "story": "位於加拿大安大略聖克萊爾湖畔的可愛小燈塔，是當地居民與船友散步欣賞湖面落日的溫馨地標。"
         },
         {
           "id": "spot-11",
@@ -175,7 +175,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-11.jpg",
-          "story": "航行人的明燈"
+          "story": "高雄彌陀海岸最迷人的打卡地標，鮮豔的紅燈塔延伸於防波堤外，黃昏落日時分格外耀眼。"
         },
         {
           "id": "spot-12",
@@ -190,7 +190,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-12.jpg",
-          "story": "位於 Hong Kong 的代表性打卡點，適合散步巡航探索。"
+          "story": "位於香港最南端蒲台島的 126 號燈塔，坐擁南中國海 270 度的無敵開闊海景與海浪拍岸聲。"
         },
         {
           "id": "spot-13",
@@ -205,7 +205,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-13.jpg",
-          "story": "位於 Hong Kong 的代表性打卡點，適合散步巡航探索。"
+          "story": "屹立於維多利亞港東面入口近一個世紀的石造燈塔，在夕陽下與穿梭的漁船構成動人剪影。"
         },
         {
           "id": "spot-14",
@@ -220,7 +220,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-14.jpg",
-          "story": "萬里漁港紅色燈塔"
+          "story": "新北北海岸萬里港口的亮紅色引航燈塔，背倚陽明山系、面迎浩瀚太平洋，氣勢磅礴。"
         },
         {
           "id": "spot-15",
@@ -235,7 +235,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-15.jpg",
-          "story": "位於 Tainan 的代表性打卡點，適合散步巡航探索。"
+          "story": "台南安平港德陽艦園區內的觀景燈塔造型地標，結合軍艦歷史文化與安平濱海夕陽風光。"
         },
         {
           "id": "spot-16",
@@ -250,7 +250,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-16.jpg",
-          "story": "位於 Hong Kong 的代表性打卡點，適合散步巡航探索。"
+          "story": "隱藏於港島南區舂坎角海邊的純白小型引航燈塔，是欣賞南區寧靜海岸線與落日餘暉的私房景點。"
         },
         {
           "id": "spot-17",
@@ -265,7 +265,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/燈塔/spot-17.jpg",
-          "story": "原名「Phare Du Port」。位於 La Tour-de-Peilz 的代表性打卡點，適合散步巡航探索。"
+          "story": "瑞士雷夢湖（日內瓦湖）畔的精緻石造小燈塔，遠眺壯麗的阿爾卑斯雪山倒影與波光粼粼。"
         },
         {
           "id": "spot-18",
@@ -280,7 +280,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-18.jpg",
-          "story": "燈塔"
+          "story": "威斯康辛州內陸湖岬角上的親切木造燈塔，伴隨清晨薄霧與湖畔微風，洋溢寧靜的北國森林情調。"
         },
         {
           "id": "spot-19",
@@ -295,7 +295,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-19.jpg",
-          "story": "蔚州郡著名的艮絕岬燈塔（Ganjeolgot Lighthouse）。此地位於朝鮮半島東海岸，是每年迎接第一道曙光的熱門景點。園區內設有巨大的「希望郵筒」及遼闊的海景步道，燈塔內部亦設有展示館，適合旅客漫步欣賞。"
+          "story": "韓國蔚山海岸著名的純白幾何造型現代燈塔，迎著朝鮮半島的第一道曙光，寧靜而優美。"
         },
         {
           "id": "spot-20",
@@ -310,7 +310,7 @@
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/燈塔/spot-20.jpg",
-          "story": "原名「Menagerie Island Lighthouse」。位於 Houghton Township 的代表性打卡點，適合散步巡航探索。"
+          "story": "密西根州皇家島國家公園外海偏遠小島上的八角石造燈塔，孤高守護蘇必略湖深處的原始荒原。"
         }
       ]
     },

@@ -69,18 +69,26 @@ const defaultSchema = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Embed Mode Detection for Android WebView / In-App Browser -->
+  <!-- Embed Mode Detection for Android WebView / In-App Browser & Theme Init -->
   <script is:inline>
     (function () {
       try {
         var params = new URLSearchParams(window.location.search);
-        if (
+        var isEmbed = (
           params.get('embed') === 'true' ||
           params.get('app') === 'true' ||
           navigator.userAgent.indexOf('GeoSimApp') !== -1
-        ) {
+        );
+        if (isEmbed) {
           document.documentElement.classList.add('is-embed');
         }
+
+        // Theme initialization:
+        // When in embed mode, default to 'vibrant' (質感白 / 淺色模式) unless overridden
+        var urlTheme = params.get('theme');
+        var defaultTheme = isEmbed ? 'vibrant' : 'dark';
+        var activeTheme = urlTheme || localStorage.getItem('kv_theme') || defaultTheme;
+        document.documentElement.setAttribute('data-theme', activeTheme);
       } catch (e) {}
     })();
 
@@ -104,8 +112,16 @@ const defaultSchema = {
     html.is-embed .weekly-promo-card,
     html.is-embed .weekly-bottom-nav,
     html.is-embed .back-to-geosim-wrap,
-    html.is-embed a[href="/geosim"] {
+    html.is-embed a[href="/geosim"],
+    html.is-embed .issue-header-back,
+    html.is-embed .btn--line-action,
+    html.is-embed .btn--threads-action {
       display: none !important;
+    }
+
+    html.is-embed .issue-header__badge-row a.badge--geosim {
+      pointer-events: none;
+      cursor: default;
     }
 
     html.is-embed body {
@@ -253,9 +269,8 @@ const defaultSchema = {
   </aside>
 
   <script is:inline>
-    // Theme Switcher Logic (Default to Cyber Dark)
-    const savedTheme = localStorage.getItem('kv_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    // Theme Switcher Logic
+    const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('kv_theme') || 'dark';
     
     const updateThemeButtons = (activeTheme) => {
       document.querySelectorAll('.theme-btn').forEach(btn => {
@@ -264,7 +279,7 @@ const defaultSchema = {
       });
     };
 
-    updateThemeButtons(savedTheme);
+    updateThemeButtons(currentTheme);
 
     document.querySelectorAll('.theme-btn').forEach(btn => {
       btn.addEventListener('click', () => {

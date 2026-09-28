@@ -117,9 +117,9 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
               <polyline points="16 6 12 2 8 6"></polyline>
               <line x1="12" y1="2" x2="12" y2="15"></line>
             </svg>
-            一鍵轉發推薦給皮友 🎁
+            一鍵轉發給朋友 🎁
           </a>
-          <a href="/geosim/weekly-featured" class="btn btn--outline btn--sm">
+          <a href="/geosim/weekly-featured" class="btn btn--outline btn--sm issue-header-back">
             ← 返回專欄總覽
           </a>
         </div>
@@ -259,7 +259,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
           <div class="social-share-card__header">
             <div class="social-share-card__title-group">
               <span class="badge badge--geosim">🎁 全民社群推薦神器</span>
-              <h2 class="social-share-card__title">覺得這期很讚？一鍵分享給皮友與揪團群！</h2>
+              <h2 class="social-share-card__title">覺得這期很讚？一鍵分享給朋友群！</h2>
               <p class="social-share-card__desc">
                 免自己打字排版！我們為你準備好了「LINE 群聊親切版」與「Threads 深度推薦版」，點擊按鈕即可直接喚醒 App 或一鍵複製！
               </p>
@@ -327,7 +327,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                 href={`https://threads.net/intent/post?text=${encodeURIComponent(threadsDraft)}`}
                 target="_blank"
                 rel="noopener"
-                class="btn btn--outline btn--md"
+                class="btn btn--outline btn--md btn--threads-action"
               >
                 🧵 打開發布到 Threads ↗
               </a>
@@ -336,7 +336,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                   href={currentIssue.threadsUrl}
                   target="_blank"
                   rel="noopener"
-                  class="btn btn--outline btn--md"
+                  class="btn btn--outline btn--md btn--threads-action"
                 >
                   查看原串討論 ↗
                 </a>
