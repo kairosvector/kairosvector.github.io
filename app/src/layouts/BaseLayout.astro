@@ -68,6 +68,58 @@ const defaultSchema = {
   <!-- Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Embed Mode Detection for Android WebView / In-App Browser -->
+  <script is:inline>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (
+          params.get('embed') === 'true' ||
+          params.get('app') === 'true' ||
+          navigator.userAgent.indexOf('GeoSimApp') !== -1
+        ) {
+          document.documentElement.classList.add('is-embed');
+        }
+      } catch (e) {}
+    })();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (document.documentElement.classList.contains('is-embed')) {
+        document.querySelectorAll('a').forEach(function (link) {
+          var href = link.getAttribute('href');
+          if (href && href.indexOf('/geosim/weekly-featured') !== -1 && href.indexOf('embed=') === -1) {
+            link.href = href + (href.indexOf('?') !== -1 ? '&' : '?') + 'embed=true';
+          }
+        });
+      }
+    });
+  </script>
+
+  <style is:global>
+    /* Embed Mode Styles for Android App WebView */
+    html.is-embed #main-nav,
+    html.is-embed .footer,
+    html.is-embed .breadcrumb,
+    html.is-embed .weekly-promo-card {
+      display: none !important;
+    }
+
+    html.is-embed body {
+      padding-top: 0 !important;
+    }
+
+    html.is-embed main {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    html.is-embed .weekly-hub-page,
+    html.is-embed .weekly-detail-page {
+      padding-top: var(--space-4) !important;
+      min-height: 100vh;
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->

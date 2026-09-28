@@ -423,7 +423,22 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   document.querySelectorAll('.copy-single-coord-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const coord = btn.getAttribute('data-coord');
+      const spotCard = btn.closest('.spot-card');
+      const spotName = spotCard ? (spotCard.querySelector('.spot-card__title')?.textContent || '').trim() : '';
       if (coord) {
+        // Android JS Bridge: directly transmit coordinate to GeoSim app
+        if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+          try {
+            const parts = coord.split(',');
+            const lat = parseFloat(parts[0].trim());
+            const lng = parseFloat(parts[1].trim());
+            window.AndroidGeoSim.setCoordinate(lat, lng, spotName);
+            showToast(`已傳送座標至 GeoSim 搖桿：${coord}`, '🎮');
+            return;
+          } catch (e) {
+            console.error('AndroidGeoSim bridge error:', e);
+          }
+        }
         try {
           await navigator.clipboard.writeText(coord);
           showToast(`已複製座標：${coord}，可直接貼入 GeoSim！`, '📍');
@@ -440,6 +455,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     copyAllBtn.addEventListener('click', async () => {
       const coords = copyAllBtn.getAttribute('data-coords');
       if (coords) {
+        if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
+          try {
+            window.AndroidGeoSim.setRoute(coords);
+            showToast('已傳送整期路線至 GeoSim 搖桿！', '🚀');
+            return;
+          } catch (e) {
+            console.error('AndroidGeoSim route bridge error:', e);
+          }
+        }
         try {
           await navigator.clipboard.writeText(coords);
           showToast('已複製本期全部座標！可直接貼入 GeoSim 巡航路線', '🚀');
