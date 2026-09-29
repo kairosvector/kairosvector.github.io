@@ -38,14 +38,23 @@ npm run build
 
 ---
 
-## 📦 部署至 GitHub Pages
+## 📚 系統架構與規格文件 (Specifications)
 
-專案已內建 GitHub Actions 自動化部署工作流程。只要將程式碼推送到 GitHub：
+- **[📱 GeoSim Android App ↔ Web 整合規格說明書 (GEOSIM_ANDROID_SPEC.md)](docs/GEOSIM_ANDROID_SPEC.md)**：
+  - 輕量元資料端點 (`/geosim/weekly-featured/meta.json`)
+  - App 專用無痕嵌入頁面 (`?embed=true`) 與瀑布流模式 (`?view=masonry`)
+  - Android JS Bridge 雙向通訊規範 (`setIssueInfo`、`setCoordinate`、`setRoute`)
+  - 服務中斷、斷網與離線三層容錯降級機制 (Failover & Disaster Recovery)
+- **[📰 每周精選專欄發布標準作業流程 (WEEKLY_RELEASE_SOP.md)](docs/WEEKLY_RELEASE_SOP.md)**：
+  - 每週專欄撰寫、封面圖與明信片相片規格
+  - 各平台社群轉發文案生成與一鍵上線 SOP
+- **[🏗️ 官方網站架構與技術決策 (website_architecture.md)](docs/website_architecture.md)**
 
-```bash
-git add .
-git commit -m "feat: complete production launch readiness with privacy, terms, and sitemap"
-git push origin main
-```
+---
 
-GitHub Actions 會自動執行 Astro 編譯並部署至 GitHub Pages。
+## 📦 部署說明
+
+- **主要生產環境 (Cloudflare Pages)**：
+  目前線上正式網址為 `https://kairosvector.pages.dev/`。
+- **備用生產環境 (GitHub Pages)**：
+  已配置 GitHub Pages 部署能力，作為災害復原與靜態備援站點。

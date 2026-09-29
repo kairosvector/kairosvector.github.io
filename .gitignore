@@ -31,3 +31,7 @@ found_index_dirs.txt
 git_all_commits.txt
 git_weekly_commits.txt
 past_weekly_report.txt
+
+# Python
+__pycache__/
+*.pyc
