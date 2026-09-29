@@ -32,7 +32,7 @@ sequenceDiagram
 
     User->>App: 點擊「每周精選」按鈕
     App->>WebView: 載入 /geosim/weekly-featured/latest?embed=true
-    WebView->>App: 觸發 JS Bridge: setIssueInfo(issueNumber, issueTitle)
+    Note over WebView: 頁面直接渲染（首頁資訊早已由 meta.json 取得，無須 JS Bridge 反向通知）
     
     User->>WebView: 點擊單一卡片「複製座標」
     WebView->>App: 觸發 JS Bridge: setCoordinate(lat, lng, spotName)
@@ -118,24 +118,12 @@ Web 端點於每次 Astro Build 時自動由 `locations.json` 抽取最新一期
 
 Web 頁面已內建原生橋接偵測。若存在 `window.AndroidGeoSim` 物件，會優先呼叫原生方法；若在一般瀏覽器開啟則自動降級為原生剪貼簿 `navigator.clipboard.writeText`。
 
+> 💡 **架構設計決策說明**：  
+> 原先曾評估由網頁載入時主動呼叫 `setIssueInfo` 通知 App，但經評估「由 App 直接在背景透過輕量 `meta.json` 抓取當期資訊」更乾淨、首頁啟動更快且完全解耦。因此 **取消 `setIssueInfo` JS Bridge**，JS Bridge 專注於處理使用者在網頁上的互動操作！
+
 ### 4.1 介面方法清單
 
-#### 方法 1：同步期號與標題 `setIssueInfo`
-* **觸發時機**：網頁載入完成（`DOMContentLoaded` 或立即執行）。
-* **JavaScript 呼叫**：
-  ```javascript
-  window.AndroidGeoSim.setIssueInfo(issueNumber, issueTitle);
-  // 範例: window.AndroidGeoSim.setIssueInfo("06", "漫遊全球：精選【燈塔】巡航特輯");
-  ```
-* **Android 原生接收**：
-  ```java
-  @JavascriptInterface
-  public void setIssueInfo(String issueNumber, String issueTitle) {
-      // 儲存於 SharedPreferences / Room 或更新當前 Activity 標題
-  }
-  ```
-
-#### 方法 2：單點傳送座標 `setCoordinate`
+#### 方法 1：單點傳送座標 `setCoordinate`
 * **觸發時機**：點擊景點卡片上的「複製座標」按鈕。
 * **JavaScript 呼叫**：
   ```javascript
@@ -146,11 +134,12 @@ Web 頁面已內建原生橋接偵測。若存在 `window.AndroidGeoSim` 物件�
   ```java
   @JavascriptInterface
   public void setCoordinate(double lat, double lng, String spotName) {
-      // 直接設定 GeoSim 搖桿當前目標座標，並給予原生震動或 Toast 回饋
+      // 1. 將經緯度填入 GeoSim 懸浮搖桿目標
+      // 2. 原生彈出 Toast 或微震動回饋：「已設定目標：港灣燈塔」
   }
   ```
 
-#### 方法 3：批次傳送整期路線 `setRoute`
+#### 方法 2：批次傳送整期路線 `setRoute`
 * **觸發時機**：點擊頂部「一鍵複製本期全部座標 (GeoSim 格式)」。
 * **JavaScript 呼叫**：
   ```javascript
@@ -161,7 +150,8 @@ Web 頁面已內建原生橋接偵測。若存在 `window.AndroidGeoSim` 物件�
   ```java
   @JavascriptInterface
   public void setRoute(String coordsString) {
-      // 解析多行座標，直接匯入 GeoSim 巡航路線清單
+      // 1. 解析多行座標 (split by newline)
+      // 2. 直接匯入 GeoSim 巡航路線清單並提示使用者
   }
   ```
 
@@ -189,15 +179,15 @@ Web 頁面已內建原生橋接偵測。若存在 `window.AndroidGeoSim` 物件�
 
 ---
 
-## ⚖️ 6. 規格與 Web 現況對比（需決策項目）
+## ⚖️ 6. 規格與 Web 現況對比（已拍板決策記錄）
 
-| 項目 | 本地 Web App 現況 | 本次 Spec 提案 | 決策選項 |
-| :--- | :--- | :--- | :--- |
-| **A. `issue` 期號格式** | `locations.json` 內為 `"第 06 期"`，提取數字後為 `"06"` | Spec 範例為整數 `issue: 1` | **已實作雙支援**：`issue: 6` (int) + `issueFormatted: "第 06 期"` (string)，App 兩種皆可自由使用。 |
-| **B. `meta.json` 產出** | 原本無此檔案 | 於靜態目錄新增 `meta.json` | **已實作自動產出**：已配置 `app/src/pages/geosim/weekly-featured/meta.json.ts`，每次 build 自動從 `locations.json` 產出。 |
-| **C. `publishedAt` 日期** | 原本為區間 `"2026-10-03 ~ 2026-10-09"` | Spec 為單一日期 `"2026-09-29"` | **已實作雙支援**：`publishedAt: "2026-10-03"` (起始日) + `dateRange: "2026-10-03 ~ 2026-10-09"`。 |
-| **D. GitHub Pages 網址** | 尚未建立 GitHub Repo | `https://kairosvector.github.io/...` | **待確認**：取決於您的 GitHub 帳號名稱與儲存庫名稱。若 Repo 名稱為 `kairosVector_web`，URL 通常會帶 Repo 目錄，或需設定自訂 Domain。 |
-| **E. 瀏覽模式 (瀑布流)** | 已在本機實作 View Switcher 支援 | 支援 `?view=masonry` 參數 | **已就緒**：App 亦可直接在 URL 指定 `?view=masonry` 預設以雙欄瀑布流展示。 |
+| 項目 | 本地 Web App 現況 | 決策結果 |
+| :--- | :--- | :--- |
+| **A. 期號與主題獲取** | 早期曾有 `setIssueInfo` JS Bridge 方案 | **已決策取消 `setIssueInfo`**：全面改為 App 直接 GET `meta.json`，解耦乾淨且首頁呈現最即時。 |
+| **B. `issue` 期號格式** | `locations.json` 內為 `"第 06 期"` | **已實作雙支援**：`issue: 6` (int) + `issueFormatted: "第 06 期"` (string)，App 兩種皆可直接取用。 |
+| **C. `meta.json` 產出** | 自動建置 | **已實作自動產出**：已配置 `app/src/pages/geosim/weekly-featured/meta.json.ts`，每次 build 自動從 `locations.json` 產出。 |
+| **D. `publishedAt` 日期** | 專欄為巡航週期 `"2026-10-03 ~ 2026-10-09"` | **已實作雙支援**：`publishedAt: "2026-10-03"` (起始日) + `dateRange: "2026-10-03 ~ 2026-10-09"`。 |
+| **E. 瀏覽模式 (瀑布流)** | 已實作 View Switcher 支援 | **待驗證確認**：支援 `?view=masonry` 參數，App 可直接在 URL 指定 `?view=masonry` 預設以雙欄瀑布流展示。 |
 
 ---
 
@@ -205,12 +195,13 @@ Web 頁面已內建原生橋接偵測。若存在 `window.AndroidGeoSim` 物件�
 
 - [x] **Web 端**：新增 `meta.json.ts` 動態端點，支援自動生成最新專欄元資料。
 - [x] **Web 端**：實作 `[issue].astro` 瀑布流 (Masonry View) 與 `?view=masonry` 支援。
-- [x] **Web 端**：實作 JS Bridge（`setIssueInfo`、`setCoordinate`、`setRoute`）與自動降級。
-- [ ] **GitHub 遠端**：建立遠端 Repository 並執行初次 push。
-- [ ] **GitHub Pages**：配置 GitHub Actions 工作流作為備用站點。
-- [ ] **Cloudflare Pages**：部署最新 Web 版本驗證 `meta.json` 上線。
+- [x] **Web 端**：移除 `setIssueInfo`，保留 `setCoordinate` 與 `setRoute` 並支援剪貼簿自動降級。
+- [x] **GitHub 遠端**：建立遠端 Repository (https://github.com/kevycheng/kairosVector_web) 並推向上線。
+- [x] **GitHub Pages**：配置 `.github/workflows/deploy.yml` 支援自動構建備用站點。
+- [ ] **Cloudflare Pages**：部署最新 Web 版本，使第 06 期與 `meta.json` 正式上線。
 - [ ] **Android App 端**：
   - [ ] 首頁實作 HTTP GET 請求 `meta.json`（OkHttp / Retrofit）。
   - [ ] 首頁按鈕動態綁定文字 `每周精選專欄 ($第N期)` 與主題。
-  - [ ] WebView 加入 `@JavascriptInterface` (GeoSimJsInterface)。
+  - [ ] WebView 加入 `@JavascriptInterface` (`setCoordinate`, `setRoute`)。
   - [ ] WebView 加入 `onReceivedError` 原生錯誤重試頁面。
+

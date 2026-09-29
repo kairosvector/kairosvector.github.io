@@ -58,9 +58,6 @@ const allCoordsString = currentIssue.spots
 const lineDraft = currentIssue.lineShareDraft || `嗨皮友們！這期 GeoSim 整理了【${currentIssue.theme}】的精選座標，在家漫遊就能打菇寄給好友，完整座標看這裡 👉 https://kairosvector.com/geosim/weekly-featured/${currentIssue.id}`;
 const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${currentIssue.issue} 🌟 ${currentIssue.theme}】\n\n本期完整座標看這裡 👉 https://kairosvector.com/geosim/weekly-featured/${currentIssue.id}\n#GeoSim #PikminBloom #皮克敏`;
 
-// Issue metadata for Android JS Bridge
-const issueNum = currentIssue.issue ? currentIssue.issue.replace(/[^0-9]/g, '') : '06';
-const issueTitle = currentIssue.theme;
 ---
 
 <BaseLayout
@@ -425,25 +422,7 @@ const issueTitle = currentIssue.theme;
   </div>
 </BaseLayout>
 
-<script is:inline define:vars={{ issueNum, issueTitle }}>
-  // 0. Auto-notify Android host app about current issue metadata via JS Bridge
-  function notifyAndroidIssue() {
-    if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setIssueInfo === 'function') {
-      try {
-        window.AndroidGeoSim.setIssueInfo(issueNum, issueTitle);
-        console.log('[AndroidGeoSim] setIssueInfo called:', issueNum, issueTitle);
-      } catch (e) {
-        console.error('[AndroidGeoSim] setIssueInfo error:', e);
-      }
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', notifyAndroidIssue);
-  } else {
-    notifyAndroidIssue();
-  }
-
+<script is:inline>
   function showToast(message, icon = '✅') {
     const toast = document.getElementById('copy-toast');
     const msgEl = document.getElementById('toast-message');
