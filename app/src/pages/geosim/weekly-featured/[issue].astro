@@ -158,7 +158,16 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
           <div class="view-mode-toggle" role="group" aria-label="版面檢視模式">
             <span class="filter-label">檢視模式：</span>
             <div class="view-toggle-pills">
-              <button class="view-toggle-btn active" data-view="list" title="詳細列表模式">
+              <button class="view-toggle-btn active" data-view="masonry" title="瀑布流探索模式 (手機雙欄超流暢)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="11" rx="1"></rect>
+                  <rect x="14" y="3" width="7" height="6" rx="1"></rect>
+                  <rect x="14" y="13" width="7" height="8" rx="1"></rect>
+                  <rect x="3" y="17" width="7" height="4" rx="1"></rect>
+                </svg>
+                <span>🧱 瀑布流</span>
+              </button>
+              <button class="view-toggle-btn" data-view="list" title="詳細列表模式">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="8" y1="6" x2="21" y2="6"></line>
                   <line x1="8" y1="12" x2="21" y2="12"></line>
@@ -169,23 +178,14 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                 </svg>
                 <span>詳細列表</span>
               </button>
-              <button class="view-toggle-btn" data-view="masonry" title="瀑布流探索模式 (手機雙欄超流暢)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="7" height="11" rx="1"></rect>
-                  <rect x="14" y="3" width="7" height="6" rx="1"></rect>
-                  <rect x="14" y="13" width="7" height="8" rx="1"></rect>
-                  <rect x="3" y="17" width="7" height="4" rx="1"></rect>
-                </svg>
-                <span>🧱 瀑布流</span>
-              </button>
             </div>
           </div>
         </div>
       )}
 
-      <!-- Spots Grid -->
+      <!-- Spots Grid (Default: RemixAI 雙欄瀑布流) -->
       <section class="weekly-spots-section" data-animate>
-        <div class="spots-grid" id="spots-grid-container">
+        <div class="spots-grid view-masonry" id="spots-grid-container">
           {currentIssue.spots && currentIssue.spots.map((spot, idx) => (
             <article
               class="card spot-postcard-card"
@@ -709,21 +709,19 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     }, 150);
   });
 
-  // Detect URL parameter (?view=masonry) or stored preference
+  // Detect URL parameter (?view=list) or stored preference (預設即為瀑布流)
   const currentUrl = new URL(window.location.href);
   const viewParam = currentUrl.searchParams.get('view');
-  let chosenView = 'list';
-  if (viewParam === 'masonry') {
-    chosenView = 'masonry';
+  let chosenView = 'masonry';
+  if (viewParam === 'list') {
+    chosenView = 'list';
   } else if (!viewParam) {
     try {
       const saved = localStorage.getItem('geosim_weekly_view_mode');
-      if (saved === 'masonry') chosenView = 'masonry';
+      if (saved === 'list') chosenView = 'list';
     } catch (e) {}
   }
-  if (chosenView === 'masonry') {
-    applyViewMode('masonry');
-  }
+  applyViewMode(chosenView);
 
   // 8. Postcard Lightbox Modal (Zoom Photo & View Story)
   const lightbox = document.getElementById('postcard-lightbox');
@@ -1414,7 +1412,8 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   .spots-grid.view-masonry .postcard-frame {
     position: relative;
     width: 100%;
-    height: auto;
+    height: auto !important;
+    aspect-ratio: unset !important;
     background: #0b1120;
     border-bottom: none;
     overflow: hidden;
@@ -1447,44 +1446,59 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
    * RemixAI Strict Vertical Ratios & Dynamic Staggering
    * 左欄與右欄交錯錯開，徹底告別橫式與對齊死板感！
    */
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+1) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(4n+1) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+1) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+1) .postcard-img {
-    aspect-ratio: 9 / 15.5;
+    aspect-ratio: 9 / 15.5 !important;
   }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+2) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(4n+2) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+2) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+2) .postcard-img {
-    aspect-ratio: 3 / 4.6;
+    aspect-ratio: 3 / 4.6 !important;
   }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+3) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(4n+3) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+3) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+3) .postcard-img {
-    aspect-ratio: 9 / 15;
+    aspect-ratio: 9 / 15 !important;
   }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(4n) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n) .postcard-img {
-    aspect-ratio: 3 / 4.4;
+    aspect-ratio: 3 / 4.4 !important;
   }
 
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+1) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:nth-child(4n+1) .postcard-img {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 3 / 4 !important;
   }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+2) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:nth-child(4n+2) .postcard-img {
-    aspect-ratio: 9 / 15.5;
+    aspect-ratio: 9 / 15.5 !important;
   }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+3) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:nth-child(4n+3) .postcard-img {
-    aspect-ratio: 3 / 4.2;
+    aspect-ratio: 3 / 4.2 !important;
   }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:nth-child(4n) .postcard-img {
-    aspect-ratio: 9 / 14.5;
+    aspect-ratio: 9 / 14.5 !important;
   }
 
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n+1) .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:nth-child(3n+1) .postcard-img {
-    aspect-ratio: 9 / 14;
+    aspect-ratio: 9 / 14 !important;
   }
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n+2) .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:nth-child(3n+2) .postcard-img {
-    aspect-ratio: 3 / 4.3;
+    aspect-ratio: 3 / 4.3 !important;
   }
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n) .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:nth-child(3n) .postcard-img {
-    aspect-ratio: 9 / 15;
+    aspect-ratio: 9 / 15 !important;
   }
 
   /* Top-left: subtle circular glass badge (蘑菇/花圖) */
