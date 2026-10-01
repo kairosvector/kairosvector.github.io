@@ -40,6 +40,7 @@ jobs:
           path: app/dist/
 
   deploy:
+    if: github.repository == 'kairosvector/kairosvector.github.io'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
