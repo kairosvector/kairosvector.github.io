@@ -141,43 +141,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
         </div>
       )}
 
-      <!-- Filter Toolbar & View Mode Switcher -->
+      <!-- Filter Toolbar (類別篩選：全部 / 🍄 蘑菇 / 🌸 花點) -->
       {currentIssue.spots && currentIssue.spots.length > 0 && (
         <div class="filter-toolbar" data-animate>
           <div class="filter-toolbar__group">
             <span class="filter-label">篩選類別：</span>
             <div class="filter-tabs">
               <button class="filter-tab active" data-filter="all">全部 ({currentIssue.spots.length})</button>
-              <button class="filter-tab" data-filter="mushroom">🍄 蘑菇戰鬥點</button>
-              <button class="filter-tab" data-filter="flower">🌸 巨型大花點</button>
-              {currentIssue.spots.some(s => s.region === 'tw') && <button class="filter-tab" data-filter="tw">🇹🇼 台灣</button>}
-              {currentIssue.spots.some(s => s.region === 'jp') && <button class="filter-tab" data-filter="jp">🇯🇵 日本</button>}
-              {currentIssue.spots.some(s => s.region === 'global') && <button class="filter-tab" data-filter="global">🌍 國際其他</button>}
-            </div>
-          </div>
-          <div class="view-mode-toggle" role="group" aria-label="版面檢視模式">
-            <span class="filter-label">檢視模式：</span>
-            <div class="view-toggle-pills">
-              <button class="view-toggle-btn active" data-view="masonry" title="瀑布流探索模式 (手機雙欄超流暢)">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="7" height="11" rx="1"></rect>
-                  <rect x="14" y="3" width="7" height="6" rx="1"></rect>
-                  <rect x="14" y="13" width="7" height="8" rx="1"></rect>
-                  <rect x="3" y="17" width="7" height="4" rx="1"></rect>
-                </svg>
-                <span>🧱 瀑布流</span>
-              </button>
-              <button class="view-toggle-btn" data-view="list" title="詳細列表模式">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="8" y1="6" x2="21" y2="6"></line>
-                  <line x1="8" y1="12" x2="21" y2="12"></line>
-                  <line x1="8" y1="18" x2="21" y2="18"></line>
-                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                </svg>
-                <span>詳細列表</span>
-              </button>
+              <button class="filter-tab" data-filter="mushroom">🍄 蘑菇</button>
+              <button class="filter-tab" data-filter="flower">🌸 花點</button>
             </div>
           </div>
         </div>
@@ -446,7 +418,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
             <span id="lightbox-seq" class="lightbox-seq">#01</span>
             <h3 id="lightbox-title" class="lightbox-title">景點名稱</h3>
           </div>
-          <span id="lightbox-badge" class="type-badge type-badge--mushroom">🍄 蘑菇戰鬥點</span>
+          <span id="lightbox-badge" class="type-badge type-badge--mushroom">🍄 蘑菇</span>
         </div>
         <p id="lightbox-story" class="lightbox-story"></p>
         <div class="lightbox-meta">
@@ -601,7 +573,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     });
   }
 
-  // 6. Region & type filter tabs
+  // 6. Type filter tabs (全部 / 🍄 蘑菇 / 🌸 花點)
   const filterTabs = document.querySelectorAll('.filter-tab');
   const cards = document.querySelectorAll('.spot-postcard-card');
 
@@ -612,9 +584,8 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
       const filterVal = tab.getAttribute('data-filter');
       cards.forEach((card) => {
-        const region = card.getAttribute('data-region');
         const type = card.getAttribute('data-type');
-        if (filterVal === 'all' || region === filterVal || type === filterVal) {
+        if (filterVal === 'all' || type === filterVal) {
           card.style.display = '';
         } else {
           card.style.display = 'none';
@@ -623,29 +594,11 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     });
   });
 
-  // 7. View Mode Switcher (Detailed List vs RemixAI 雙欄交錯瀑布流)
-  const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
+  // 7. Masonry Waterfall Engine (雙欄 / 三欄交錯瀑布流，定版唯一模式)
   const spotsGrid = document.getElementById('spots-grid-container');
 
-  function updateWaterfallColumns(mode) {
+  function initWaterfall() {
     if (!spotsGrid) return;
-
-    if (mode === 'list') {
-      const cols = spotsGrid.querySelectorAll('.waterfall-col');
-      if (cols.length > 0) {
-        const allCards = Array.from(spotsGrid.querySelectorAll('.spot-postcard-card'));
-        allCards.sort((a, b) => {
-          const seqA = parseInt(a.getAttribute('data-seq') || '0', 10);
-          const seqB = parseInt(b.getAttribute('data-seq') || '0', 10);
-          return seqA - seqB;
-        });
-        cols.forEach((c) => c.remove());
-        allCards.forEach((c) => spotsGrid.appendChild(c));
-      }
-      return;
-    }
-
-    // mode === 'masonry'
     const isMobile = window.innerWidth < 768;
     const colCount = isMobile ? 2 : 3;
     const existingCols = spotsGrid.querySelectorAll('.waterfall-col');
@@ -674,54 +627,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     cols.forEach((col) => spotsGrid.appendChild(col));
   }
 
-  function applyViewMode(mode) {
-    viewToggleBtns.forEach((btn) => {
-      btn.classList.toggle('active', btn.getAttribute('data-view') === mode);
-    });
-    if (spotsGrid) {
-      if (mode === 'masonry') {
-        spotsGrid.classList.add('view-masonry');
-        updateWaterfallColumns('masonry');
-      } else {
-        spotsGrid.classList.remove('view-masonry');
-        updateWaterfallColumns('list');
-      }
-    }
-    try {
-      localStorage.setItem('geosim_weekly_view_mode', mode);
-    } catch (e) {}
-  }
-
-  viewToggleBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const mode = btn.getAttribute('data-view');
-      applyViewMode(mode);
-    });
-  });
+  initWaterfall();
 
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      if (spotsGrid && spotsGrid.classList.contains('view-masonry')) {
-        updateWaterfallColumns('masonry');
-      }
+      initWaterfall();
     }, 150);
   });
-
-  // Detect URL parameter (?view=list) or stored preference (預設即為瀑布流)
-  const currentUrl = new URL(window.location.href);
-  const viewParam = currentUrl.searchParams.get('view');
-  let chosenView = 'masonry';
-  if (viewParam === 'list') {
-    chosenView = 'list';
-  } else if (!viewParam) {
-    try {
-      const saved = localStorage.getItem('geosim_weekly_view_mode');
-      if (saved === 'list') chosenView = 'list';
-    } catch (e) {}
-  }
-  applyViewMode(chosenView);
 
   // 8. Postcard Lightbox Modal (Zoom Photo & View Story)
   const lightbox = document.getElementById('postcard-lightbox');
@@ -761,10 +675,10 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     if (lightboxBadge) {
       if (type === 'mushroom') {
         lightboxBadge.className = 'type-badge type-badge--mushroom';
-        lightboxBadge.textContent = '🍄 蘑菇戰鬥點';
+        lightboxBadge.textContent = '🍄 蘑菇';
       } else {
         lightboxBadge.className = 'type-badge type-badge--flower';
-        lightboxBadge.textContent = '🌸 巨型大花點';
+        lightboxBadge.textContent = '🌸 花點';
       }
     }
 
