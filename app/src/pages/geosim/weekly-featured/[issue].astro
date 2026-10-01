@@ -1386,6 +1386,41 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     gap: 8px !important;
   }
 
+  /* 手機螢幕極致微邊距 (突破傳統 Web Container 限制，將左右與螢幕 gap 縮至極限 4px) */
+  @media (max-width: 768px) {
+    .weekly-detail-page > .container {
+      padding-left: 4px !important;
+      padding-right: 4px !important;
+    }
+
+    /* 頂部文字、麵包屑與底部功能區塊維持舒適閱讀邊距 */
+    .weekly-detail-page .breadcrumb,
+    .weekly-detail-page .issue-header,
+    .weekly-detail-page .filter-toolbar,
+    .weekly-detail-page .weekly-bottom-nav,
+    .weekly-detail-page .social-share-hub,
+    .weekly-detail-page .photo-credits,
+    .weekly-detail-page .back-to-geosim-wrap {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+
+    /* 封面大圖微邊距圓角對齊 */
+    .weekly-detail-page .issue-cover-banner {
+      margin-left: 4px !important;
+      margin-right: 4px !important;
+      border-radius: 12px !important;
+    }
+
+    .spots-grid.view-masonry {
+      gap: 5px !important;
+    }
+
+    .spots-grid.view-masonry .waterfall-col {
+      gap: 5px !important;
+    }
+  }
+
   /* 柔和微圓角卡片 (Soft Rounded Card with Tactile Spring Micro-interactions) */
   .spots-grid.view-masonry .spot-postcard-card {
     position: relative !important;
