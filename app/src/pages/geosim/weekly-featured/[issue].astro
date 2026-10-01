@@ -20,21 +20,34 @@ function readSources(folder: string): any[] {
 }
 
 export async function getStaticPaths() {
-  const paths = locationsData.weeklyFeatured.map((issue) => ({
+  const issues = locationsData.weeklyFeatured;
+  const currentProductIssueId = (locationsData as any).currentProductIssueId || 'issue-05';
+  const currentStagingIssueId = (locationsData as any).currentStagingIssueId || 'issue-06';
+
+  const productIssue = issues.find((x) => x.id === currentProductIssueId) || issues[1] || issues[0];
+  const stagingIssue = issues.find((x) => x.id === currentStagingIssueId) || issues[0];
+
+  const paths = issues.map((issue) => ({
     params: { issue: issue.id },
-    props: { currentIssue: issue }
+    props: { currentIssue: issue, routeAlias: issue.id }
   }));
-  // 固定最新一期永久別名：/geosim/weekly-featured/latest
-  if (locationsData.weeklyFeatured.length > 0) {
-    paths.push({
-      params: { issue: 'latest' },
-      props: { currentIssue: locationsData.weeklyFeatured[0] }
-    });
-  }
+
+  // 固定當週正式版 (Product / Latest)：/geosim/weekly-featured/latest -> 指向 issue-05
+  paths.push({
+    params: { issue: 'latest' },
+    props: { currentIssue: productIssue, routeAlias: 'latest' }
+  });
+
+  // 固定下週預覽版 (Staging)：/geosim/weekly-featured/staging -> 指向 issue-06
+  paths.push({
+    params: { issue: 'staging' },
+    props: { currentIssue: stagingIssue, routeAlias: 'staging' }
+  });
+
   return paths;
 }
 
-const { currentIssue } = Astro.props;
+const { currentIssue, routeAlias } = Astro.props;
 const product = products.find((p) => p.id === 'geosim')!;
 
 // 出處聚合：key = 存檔路徑。沒有出處檔的期別自動隱藏整區，
@@ -79,7 +92,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
         <span class="breadcrumb__separator">/</span>
         <a href="/geosim/weekly-featured">每周精選專欄</a>
         <span class="breadcrumb__separator">/</span>
-        <span class="breadcrumb__current">{currentIssue.issue}</span>
+        <span class="breadcrumb__current">{routeAlias === 'staging' ? `${currentIssue.issue} (Staging 預覽)` : routeAlias === 'latest' ? `${currentIssue.issue} (當期最新)` : currentIssue.issue}</span>
       </nav>
 
       <!-- Page Header -->
@@ -88,6 +101,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
           <a href="/geosim/weekly-featured" class="badge badge--geosim" style="text-decoration: none;">
             🌟 每周精選專欄
           </a>
+          {routeAlias === 'staging' || currentIssue.status === 'staging' ? (
+            <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); font-weight: 700;">
+              🛠️ 下週提前預覽版 (Staging)
+            </span>
+          ) : routeAlias === 'latest' ? (
+            <span class="badge" style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); font-weight: 700;">
+              🌟 當週正式熱播中 (Latest)
+            </span>
+          ) : null}
           <span class="issue-header__number">{currentIssue.issue} • {currentIssue.date}</span>
           {currentIssue.region && (
             <span class="badge badge--outline">{currentIssue.region}</span>

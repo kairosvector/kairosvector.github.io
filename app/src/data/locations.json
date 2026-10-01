@@ -1,7 +1,10 @@
 {
+  "currentProductIssueId": "issue-05",
+  "currentStagingIssueId": "issue-06",
   "weeklyFeatured": [
     {
       "id": "issue-06",
+      "status": "staging",
       "issue": "第 06 期",
       "theme": "漫遊全球：精選【燈塔】巡航特輯",
       "date": "2026-10-03 ~ 2026-10-09",
@@ -316,6 +319,7 @@
     },
     {
       "id": "issue-05",
+      "status": "published",
       "issue": "第 05 期",
       "theme": "橫跨天際的工程奇蹟：全球經典橋樑特輯",
       "date": "2026-09-26 ~ 2026-10-02",

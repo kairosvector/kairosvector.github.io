@@ -2,21 +2,25 @@ import type { APIRoute } from 'astro';
 import locationsData from '../../../data/locations.json';
 
 export const GET: APIRoute = async () => {
-  const latestIssue = locationsData.weeklyFeatured[0];
-  const rawNum = latestIssue?.issue ? latestIssue.issue.replace(/[^0-9]/g, '') : '06';
-  const issueNum = parseInt(rawNum, 10) || 6;
-  const startDate = latestIssue?.date ? latestIssue.date.split('~')[0].trim() : '2026-10-03';
-  const issueFormatted = latestIssue?.issue || ('第 ' + String(issueNum).padStart(2, '0') + ' 期');
+  const issues = locationsData.weeklyFeatured;
+  const currentProductId = (locationsData as any).currentProductIssueId || 'issue-05';
+  const productIssue = issues.find(x => x.id === currentProductId) || issues[1] || issues[0];
+
+  const rawNum = productIssue?.issue ? productIssue.issue.replace(/[^0-9]/g, '') : '05';
+  const issueNum = parseInt(rawNum, 10) || 5;
+  const startDate = productIssue?.date ? productIssue.date.split('~')[0].trim() : '2026-09-26';
+  const issueFormatted = productIssue?.issue || ('第 ' + String(issueNum).padStart(2, '0') + ' 期');
 
   const body = {
     schemaVersion: 1,
+    status: 'product',
     issue: issueNum,
     issueFormatted: issueFormatted,
-    title: latestIssue?.theme || '',
+    title: productIssue?.theme || '',
     publishedAt: startDate,
-    dateRange: latestIssue?.date || '',
-    category: latestIssue?.categoryName || '',
-    spotsCount: latestIssue?.spots?.length || 0,
+    dateRange: productIssue?.date || '',
+    category: productIssue?.categoryName || '',
+    spotsCount: productIssue?.spots?.length || 0,
     url: 'https://kairosvector.pages.dev/geosim/weekly-featured/latest?embed=true',
     backupUrl: 'https://kairosvector.github.io/geosim/weekly-featured/latest?embed=true'
   };

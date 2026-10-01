@@ -5,7 +5,12 @@ import products from '../../../data/products.json';
 
 const product = products.find((p) => p.id === 'geosim')!;
 const allIssues = locationsData.weeklyFeatured;
-const latestIssue = allIssues[0];
+const currentProductId = (locationsData as any).currentProductIssueId || 'issue-05';
+const currentStagingId = (locationsData as any).currentStagingIssueId || 'issue-06';
+
+const productIssue = allIssues.find((x) => x.id === currentProductId) || allIssues[1] || allIssues[0];
+const stagingIssue = allIssues.find((x) => x.id === currentStagingId) || allIssues[0];
+const latestIssue = productIssue;
 
 // Extract categories
 const categories = [
@@ -53,6 +58,23 @@ const latestCoords = latestIssue.spots
           每週為你挖掘世界各地的代表性景點、超稀有動漫彩繪與皮克敏花菇打卡點。支援一鍵複製座標、巡航速度建議與社群好友快速分享！
         </p>
       </header>
+
+      <!-- Staging Preview Banner (提前一週預演專欄) -->
+      {stagingIssue && (
+        <div class="staging-preview-banner" style="margin-bottom: 24px; padding: 14px 20px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;" data-animate>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.25); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.5); font-weight: 700;">
+              🛠️ 下期預演 Staging
+            </span>
+            <span style="font-size: 14px; color: #f8fafc; font-weight: 500;">
+              {stagingIssue.issue}【{stagingIssue.theme}】（{stagingIssue.date}）已就緒開放搶先預覽！
+            </span>
+          </div>
+          <a href="/geosim/weekly-featured/staging" class="btn btn--outline btn--sm" style="border-color: rgba(245, 158, 11, 0.6); color: #fbbf24; text-decoration: none; font-weight: 600;">
+            搶先看 Staging 專欄 ➔
+          </a>
+        </div>
+      )}
 
       <!-- Latest Issue Hero Banner -->
       <section class="latest-hero-section" data-animate>
@@ -153,6 +175,12 @@ const latestCoords = latestIssue.spots
                 )}
                 <div class="issue-card-badge-overlay">
                   <span class="badge badge--geosim">{issue.issue}</span>
+                  {issue.id === currentProductId && (
+                    <span class="badge" style="background: rgba(16, 185, 129, 0.9); color: #ffffff; font-weight: 700;">🌟 當期主打</span>
+                  )}
+                  {issue.id === currentStagingId && (
+                    <span class="badge" style="background: rgba(245, 158, 11, 0.9); color: #000000; font-weight: 700;">🛠️ 下期預演</span>
+                  )}
                   {issue.categoryName && <span class="badge badge--outline">{issue.categoryName}</span>}
                 </div>
               </a>
