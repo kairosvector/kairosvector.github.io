@@ -486,6 +486,19 @@ def update_locations_json(
 
     # Insert or update
     weekly_list = loc.get("weeklyFeatured", [])
+
+    # Staging vs Product promotion:
+    # Promote previous staging issue to published product
+    old_staging_id = loc.get("currentStagingIssueId")
+    if old_staging_id and old_staging_id != issue_id:
+        loc["currentProductIssueId"] = old_staging_id
+        for itm in weekly_list:
+            if itm.get("id") == old_staging_id:
+                itm["status"] = "published"
+
+    new_issue["status"] = "staging"
+    loc["currentStagingIssueId"] = issue_id
+
     existing_idx = next(
         (i for i, x in enumerate(weekly_list) if x.get("id") == issue_id), None
     )
@@ -498,7 +511,7 @@ def update_locations_json(
     with open(LOCATIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(loc, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ Successfully written {issue_id} into {LOCATIONS_FILE}")
+    print(f"✅ Successfully written {issue_id} into {LOCATIONS_FILE} (Staging: {issue_id}, Product: {loc.get('currentProductIssueId')})")
     return formatted_spots, creative_intro
 
 
