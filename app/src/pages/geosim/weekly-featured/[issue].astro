@@ -1686,45 +1686,65 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /* ========================================================
-     Postcard Lightbox Modal (景點大圖預覽燈箱 - 高對比清晰度修正)
+     Postcard Lightbox Modal (景點大圖預覽燈箱 - 全平台 WebView 相容強化版)
      ======================================================== */
   .postcard-lightbox {
     display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    width: 100vw !important;
+    height: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 99999 !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
   }
 
   .postcard-lightbox.active {
-    display: flex;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .lightbox-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.84);
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.86) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     cursor: pointer;
   }
 
   .lightbox-dialog {
-    position: relative;
-    z-index: 10;
-    max-width: 520px;
-    width: 100%;
-    max-height: 90vh;
+    position: relative !important;
+    z-index: 10 !important;
+    width: 92% !important;
+    max-width: 480px !important;
+    min-width: 290px !important;
+    min-height: 320px !important;
+    max-height: 88vh !important;
+    max-height: 88dvh !important;
     background: #0a0f1d !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
-    border-radius: 20px !important;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
     box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(59, 130, 246, 0.25) !important;
-    animation: lightboxPopIn 0.25s var(--ease-out);
+    animation: lightboxPopIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    -webkit-animation: lightboxPopIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
   }
 
   html[data-theme="vibrant"] .lightbox-dialog {
@@ -1733,13 +1753,24 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   @keyframes lightboxPopIn {
-    from {
+    0% {
       opacity: 0;
-      transform: scale(0.92) translateY(10px);
+      transform: scale(0.96);
     }
-    to {
+    100% {
       opacity: 1;
-      transform: scale(1) translateY(0);
+      transform: scale(1);
+    }
+  }
+
+  @-webkit-keyframes lightboxPopIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: scale(1);
     }
   }
 
@@ -1768,30 +1799,38 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   .lightbox-media {
-    width: 100%;
-    max-height: 52vh;
-    background: #000000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    width: 100% !important;
+    min-height: 180px !important;
+    max-height: 48vh !important;
+    max-height: 48dvh !important;
+    background: #000000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
   .lightbox-media img {
-    width: 100%;
-    height: auto;
-    max-height: 52vh;
-    object-fit: contain;
-    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 48vh !important;
+    max-height: 48dvh !important;
+    object-fit: cover !important;
+    display: block !important;
   }
 
   .lightbox-info {
-    padding: 18px 22px 22px !important;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 14px !important;
+    padding: 16px 18px 20px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
     background: #0a0f1d !important;
+    flex: 1 1 auto !important;
+    min-height: 120px !important;
+    box-sizing: border-box !important;
   }
 
   html[data-theme="vibrant"] .lightbox-info {
