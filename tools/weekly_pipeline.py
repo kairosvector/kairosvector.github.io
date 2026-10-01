@@ -901,12 +901,18 @@ def main():
     # 7. Build & Deploy Web to Cloudflare Pages
     dep_ok = build_and_deploy(deploy=args.deploy)
 
-    # 7. Commit changes to local git
+    # 7. Commit changes to local git & push to GitHub (Auto Backup & Trigger GitHub Pages)
     try:
         subprocess.run(["git", "add", "app/src/data/locations.json", "app/public/images/"], cwd=PROJECT_ROOT)
         subprocess.run(["git", "commit", "-m", f"release: {issue_name} ({theme_name})"], cwd=PROJECT_ROOT)
+        print("🚀 Pushing new issue to GitHub main branch (Cloud Backup)...")
+        push_res = subprocess.run(["git", "push", "origin", "main"], cwd=PROJECT_ROOT, capture_output=True, text=True)
+        if push_res.returncode == 0:
+            print("  ✅ GitHub main push succeeded! (GitHub Pages backup deployment triggered)")
+        else:
+            print(f"  ⚠️ GitHub push notice: {push_res.stderr.strip()}")
     except Exception as e:
-        print(f"Git commit notice: {e}")
+        print(f"Git commit/push notice: {e}")
 
     # 8. Send Email Notification with full Threads copy
     email_sub = f"【GeoSim 每周精選已發布】{issue_name}（{theme_name}）附 Threads 宣傳文案"
