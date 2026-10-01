@@ -1368,13 +1368,13 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
 <style is:global>
   /* ========================================================
-     Masonry / Waterfall View Mode Styles (GLOBAL - Sharp Gallery Waterfall)
+     Masonry / Waterfall View Mode Styles (GLOBAL - Card + Separated Shelf Waterfall)
      ======================================================== */
   .spots-grid.view-masonry {
     display: flex !important;
     flex-direction: row !important;
     align-items: flex-start !important;
-    gap: 6px !important;
+    gap: 8px !important;
     margin-bottom: var(--space-12) !important;
   }
 
@@ -1383,45 +1383,55 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     min-width: 0 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
+    gap: 8px !important;
   }
 
-  /* 邊緣完全無圓角 (Sharp Rectangular Gallery) */
+  /* 柔和微圓角卡片 (Soft Rounded Card with Tactile Spring Micro-interactions) */
   .spots-grid.view-masonry .spot-postcard-card {
     position: relative !important;
     width: 100% !important;
     margin-bottom: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 14px !important;
     overflow: hidden !important;
-    display: block !important;
-    background: #090d16 !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #0d1525 !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
     cursor: pointer !important;
-    transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out) !important;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease !important;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html[data-theme="vibrant"] .spots-grid.view-masonry .spot-postcard-card {
-    background: #0f172a !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18) !important;
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
   }
 
   .spots-grid.view-masonry .spot-postcard-card:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-3px) scale(1.004) !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45) !important;
   }
 
-  /* Postcard frame fills entire card height, no border-radius */
+  /* 觸控與點擊手感微回彈 (Spring feedback on tap/click) */
+  .spots-grid.view-masonry .spot-postcard-card:active {
+    transform: scale(0.97) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  }
+
+  /* Postcard Photo Frame (Top portion of separated card) */
   .spots-grid.view-masonry .postcard-frame {
     position: relative !important;
     width: 100% !important;
     height: auto !important;
-    aspect-ratio: unset !important;
+    aspect-ratio: 9 / 16 !important;
     border-radius: 0 !important;
-    background: #0b1120 !important;
+    background: #080d1a !important;
     border-bottom: none !important;
     overflow: hidden !important;
+    flex-shrink: 0 !important;
   }
 
   .spots-grid.view-masonry .postcard-img {
@@ -1439,7 +1449,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .spots-grid.view-masonry .postcard-img-placeholder {
     width: 100% !important;
-    min-height: 240px !important;
+    min-height: 200px !important;
     border-radius: 0 !important;
     background: #1e293b !important;
     display: flex !important;
@@ -1450,52 +1460,52 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /*
-   * Aspect Ratio Blueprint (一屏約容納 2 ~ 2.5 則超修長直版):
-   * 1. 長版比例提升至 9/19.5 ~ 9/18（高度約為寬度的 2 ~ 2.1 倍）
-   * 2. 右欄僅第一張 (Spot #02) 為開頭破局卡片 (4/3.4)，其餘全為極致長版！
+   * Aspect Ratio Blueprint (~9:16 超人氣修長比例，一屏約 2~2.5 則):
+   * 1. 左右欄主體維持 9/16 與 9/15.2 的微交錯節奏
+   * 2. 右欄第一張 (Spot #02) 作為開頭破局卡 (4/3.2)，營造自然瀑布流階梯感
    */
 
-  /* 左欄：超修長直版 (一屏約容納 2 ~ 2.5 則) */
+  /* 左欄：9:16 ~ 9:15 自然交錯 */
   .waterfall-col-1 .spot-postcard-card:nth-child(even) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(even) .postcard-img {
-    aspect-ratio: 9 / 18 !important;
+    aspect-ratio: 9 / 15 !important;
   }
   .waterfall-col-1 .spot-postcard-card:nth-child(odd) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(odd) .postcard-img,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(odd) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(odd) .postcard-img {
-    aspect-ratio: 9 / 19.5 !important;
+    aspect-ratio: 9 / 16 !important;
   }
 
-  /* 右欄：第一張卡 (Spot #02) 為開頭破局卡 (4/3.4)，其餘全為極致長版！ */
+  /* 右欄：第一張破局卡 (4/3.2)，其餘 9:16 ~ 9:15.2 */
   .waterfall-col-2 .spot-postcard-card:first-child .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:first-child .postcard-img {
-    aspect-ratio: 4 / 3.4 !important;
+    aspect-ratio: 4 / 3.2 !important;
   }
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(even) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(even) .postcard-img {
-    aspect-ratio: 9 / 19 !important;
+    aspect-ratio: 9 / 16 !important;
   }
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(odd) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(odd) .postcard-img {
-    aspect-ratio: 9 / 18.2 !important;
+    aspect-ratio: 9 / 15.2 !important;
   }
 
-  /* 3rd column (for desktop tablet) */
+  /* 3rd column (for desktop/tablet) */
   .waterfall-col-3 .spot-postcard-card:first-child .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:first-child .postcard-img {
-    aspect-ratio: 4 / 3.4 !important;
+    aspect-ratio: 4 / 3.2 !important;
   }
   .waterfall-col-3 .spot-postcard-card:not(:first-child) .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:not(:first-child) .postcard-img {
-    aspect-ratio: 9 / 18.5 !important;
+    aspect-ratio: 9 / 15.6 !important;
   }
 
   /* Top-left: subtle square frosted glass badge */
   .spots-grid.view-masonry .postcard-badges-overlay {
     position: absolute !important;
-    top: 6px !important;
-    left: 6px !important;
+    top: 7px !important;
+    left: 7px !important;
     display: flex !important;
     gap: 4px !important;
     z-index: 5 !important;
@@ -1509,13 +1519,13 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 0 !important;
+    border-radius: 8px !important;
     font-size: 13px !important;
-    background: rgba(15, 23, 42, 0.7) !important;
+    background: rgba(15, 23, 42, 0.72) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
   }
 
   .spots-grid.view-masonry .type-badge .badge-text,
@@ -1523,132 +1533,144 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     display: none !important;
   }
 
-  /* Top-right: subtle square frosted glass button (Google Maps 跳轉) */
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
-    position: absolute !important;
-    top: 6px !important;
-    right: 6px !important;
-    z-index: 5 !important;
-    width: 26px !important;
-    height: 26px !important;
-    min-width: 26px !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(15, 23, 42, 0.7) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
-    cursor: pointer !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
-    background: rgba(59, 130, 246, 0.85) !important;
-    transform: scale(1.06) !important;
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn .map-icon-svg {
-    width: 13px !important;
-    height: 13px !important;
-    margin: 0 !important;
-  }
-
-  .spots-grid.view-masonry .map-link-text-full,
-  .spots-grid.view-masonry .map-link-text-short {
-    display: none !important;
-  }
-
-  /* Bottom Bar (Sharp Edge 俐落微透光選單條) */
+  /* ========================================================
+     圖文分離：圖下資訊底座 (Bottom Content Shelf)
+     ======================================================== */
   .spots-grid.view-masonry .spot-card-body {
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 4 !important;
-    background: rgba(15, 23, 42, 0.78) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 0 !important;
-    padding: 6px 8px !important;
+    position: static !important;
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding: 8px 10px 10px 10px !important;
+    background: #0d1525 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 0 0 14px 14px !important;
+    pointer-events: auto !important;
+    box-shadow: none !important;
+    flex: 1 1 auto !important;
+  }
+
+  html[data-theme="vibrant"] .spots-grid.view-masonry .spot-card-body {
+    background: #ffffff !important;
+    border-top-color: rgba(0, 0, 0, 0.06) !important;
+  }
+
+  /* 標題列 */
+  .spots-grid.view-masonry .spot-card-header {
+    display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    gap: 6px !important;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3) !important;
-    pointer-events: auto !important;
-  }
-
-  .spots-grid.view-masonry .spot-card-header {
+    gap: 4px !important;
     margin-bottom: 0 !important;
-    flex: 1 !important;
-    min-width: 0 !important;
   }
 
   .spots-grid.view-masonry .spot-card-num-title {
     display: flex !important;
-    align-items: center !important;
+    align-items: baseline !important;
     gap: 4px !important;
     min-width: 0 !important;
+    flex: 1 !important;
   }
 
   .spots-grid.view-masonry .spot-seq-num {
     color: #38bdf8 !important;
     font-size: 11px !important;
     font-weight: 800 !important;
-    line-height: 1 !important;
     flex-shrink: 0 !important;
   }
 
   .spots-grid.view-masonry .spot-card-title {
     color: #ffffff !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
     font-weight: 700 !important;
-    line-height: 1.2 !important;
+    line-height: 1.3 !important;
     margin: 0 !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
   }
 
-  .spots-grid.view-masonry .spot-tag-pill,
-  .spots-grid.view-masonry .spot-card-story,
+  html[data-theme="vibrant"] .spots-grid.view-masonry .spot-card-title {
+    color: #0f172a !important;
+  }
+
+  .spots-grid.view-masonry .spot-tag-pill {
+    display: none !important;
+  }
+
+  /* 2 行微故事精選節錄 (小紅書風格 Note Excerpt) */
+  .spots-grid.view-masonry .spot-card-story {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    margin: 1px 0 3px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    color: #94a3b8 !important;
+  }
+
+  .spots-grid.view-masonry .spot-card-story .story-icon {
+    display: none !important;
+  }
+
+  .spots-grid.view-masonry .spot-card-story .story-text {
+    display: inline !important;
+    margin: 0 !important;
+    color: #94a3b8 !important;
+    font-size: 11px !important;
+  }
+
+  html[data-theme="vibrant"] .spots-grid.view-masonry .spot-card-story .story-text {
+    color: #475569 !important;
+  }
+
   .spots-grid.view-masonry .spot-card-meta-bar {
     display: none !important;
   }
 
+  /* 操作功能列 (複製座標 + Google地圖 雙按鈕) */
   .spots-grid.view-masonry .spot-card-footer {
     display: flex !important;
     align-items: center !important;
-    margin: 0 !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
+    padding-top: 6px !important;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08) !important;
     flex-shrink: 0 !important;
   }
 
+  html[data-theme="vibrant"] .spots-grid.view-masonry .spot-card-footer {
+    border-top-color: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* 複製座標按鈕 (Pill primary) */
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn {
-    background: rgba(59, 130, 246, 0.92) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.28) !important;
-    border-radius: 0 !important;
-    padding: 3px 8px !important;
+    flex: 1 1 0% !important;
+    background: rgba(56, 189, 248, 0.15) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.32) !important;
+    border-radius: 6px !important;
+    padding: 4px 6px !important;
     font-size: 11px !important;
     font-weight: 700 !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 3px !important;
+    justify-content: center !important;
+    gap: 4px !important;
     white-space: nowrap !important;
     cursor: pointer !important;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35) !important;
-    transition: background 0.2s, transform 0.15s !important;
+    box-shadow: none !important;
+    transition: all 0.15s ease !important;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn:hover {
-    background: #2563eb !important;
-    transform: scale(1.04) !important;
+    background: #38bdf8 !important;
+    color: #0b1120 !important;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn .coord-icon-svg {
@@ -1662,8 +1684,60 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     font-size: 11px !important;
   }
 
+  /* Google 地圖跳轉按鈕 (Pill subtle) */
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: unset !important;
+    flex: 1 1 0% !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #cbd5e1 !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 6px !important;
+    padding: 4px 6px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
+    background: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+    transform: none !important;
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn .map-icon-svg {
+    width: 11px !important;
+    height: 11px !important;
+    margin: 0 !important;
+  }
+
+  .spots-grid.view-masonry .map-link-text-full {
+    display: none !important;
+  }
+
+  .spots-grid.view-masonry .map-link-text-short {
+    display: inline !important;
+    font-size: 11px !important;
+  }
+
+  html[data-theme="vibrant"] .spots-grid.view-masonry .spot-card-footer .map-link-btn {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+    border-color: #cbd5e1 !important;
+  }
+
   /* ========================================================
-     Proposal 6: Postcard Lightbox Modal (景點大圖預覽燈箱)
+     Postcard Lightbox Modal (景點大圖預覽燈箱 - 高對比清晰度修正)
      ======================================================== */
   .postcard-lightbox {
     display: none;
@@ -1682,7 +1756,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   .lightbox-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0, 0, 0, 0.84);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     cursor: pointer;
@@ -1694,14 +1768,19 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     max-width: 520px;
     width: 100%;
     max-height: 90vh;
-    background: #0f172a;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-2xl);
+    background: #0a0f1d !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 20px !important;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(59, 130, 246, 0.25) !important;
     animation: lightboxPopIn 0.25s var(--ease-out);
+  }
+
+  html[data-theme="vibrant"] .lightbox-dialog {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
   }
 
   @keyframes lightboxPopIn {
@@ -1735,7 +1814,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   .lightbox-close-btn:hover {
-    background: rgba(239, 68, 68, 0.8);
+    background: rgba(239, 68, 68, 0.85);
     transform: scale(1.08);
   }
 
@@ -1758,12 +1837,16 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   .lightbox-info {
-    padding: 16px 20px 20px;
+    padding: 18px 22px 22px !important;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    background: #0f172a;
+    gap: 14px !important;
+    background: #0a0f1d !important;
+  }
+
+  html[data-theme="vibrant"] .lightbox-info {
+    background: #ffffff !important;
   }
 
   .lightbox-header {
@@ -1781,37 +1864,73 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   .lightbox-seq {
-    color: #38bdf8;
+    color: #38bdf8 !important;
     font-size: 14px;
     font-weight: 800;
   }
 
   .lightbox-title {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 800;
-    margin: 0;
+    color: #ffffff !important;
+    font-size: 19px !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  html[data-theme="vibrant"] .lightbox-title {
+    color: #0f172a !important;
+  }
+
+  /* 核心修正：高對比度文字與背景，徹底解決介紹看不清的問題 */
   .lightbox-story {
-    color: var(--color-text-secondary);
-    font-size: 13.5px;
-    line-height: 1.6;
-    margin: 0;
-    background: rgba(255, 255, 255, 0.04);
-    padding: 10px 14px;
-    border-radius: var(--radius-md);
-    border-left: 3px solid #38bdf8;
+    color: #f8fafc !important;
+    font-size: 14.5px !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    padding: 12px 16px !important;
+    border-radius: 10px !important;
+    border-left: 4px solid #38bdf8 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  html[data-theme="vibrant"] .lightbox-story {
+    color: #0f172a !important;
+    background: #f1f5f9 !important;
+    border-left-color: #0284c7 !important;
+    border-color: #e2e8f0 !important;
   }
 
   .lightbox-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    color: #94a3b8 !important;
+  }
+
+  html[data-theme="vibrant"] .lightbox-meta {
+    color: #64748b !important;
+  }
+
+  .lightbox-meta .meta-coord-code {
+    color: #38bdf8 !important;
+    background: rgba(56, 189, 248, 0.12) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+  }
+
+  html[data-theme="vibrant"] .lightbox-meta .meta-coord-code {
+    color: #0284c7 !important;
+    background: rgba(2, 132, 199, 0.08) !important;
+    border-color: rgba(2, 132, 199, 0.25) !important;
   }
 
   .lightbox-actions {
@@ -1824,6 +1943,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   .lightbox-actions .btn {
     flex: 1;
     justify-content: center;
+    border-radius: 8px !important;
   }
 </style>
 
