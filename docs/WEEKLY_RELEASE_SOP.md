@@ -1,56 +1,107 @@
-# GeoSim 每周精選發布與社群推廣 SOP
+# GeoSim 每周精選發布與維運 SOP (Production Guide)
 
-本文件定義 GeoSim 官方網站與社群（Threads）之雙軌發布週期與操作步驟。
+本文件定義 GeoSim 官方專欄的 **GitHub 雙重備份機制**、**每週更新自動化流程** 與 **發布後確認清單**。
 
 ---
 
-## 核心發布時程：每週六「雙軌平行」機制
+## 1. 系統備份架構 (GitHub Backup Architecture)
 
-每逢**週六**（配合 `geosim-data` 產出與更新），執行以下兩組任務：
+為了確保服務高可用性與資料 100% 不丟失，本專案建置了雙重託管與冷熱備援機制：
 
 ```
-                    【每週六 Standard Pipeline】
-  ┌─────────────────────────────────────────────────────────────┐
-  │ 🌟 軌道 A：當週 Product 正式上線（對外發布）                │
-  │  1. 上週寫好的 Staging 內容 → 正式晉升為 Product（商業版）   │
-  │  2. 網站最新文章 → 正式 Deploy 部署上線到 Cloudflare Pages   │
-  │  3. Threads 發布宣傳貼文 → 主打當週 Product 內容 + 照片 + 座標│
-  ├─────────────────────────────────────────────────────────────┤
-  │ 🛠️ 軌道 B：下週 Staging 內容籌備（本地待命）                 │
-  │  1. Staging 產出下週全新主題                                │
-  │  2. 由 AI 為新主題撰寫專欄文章 + 下載對應明信片 + 產出社群文案 │
-  │  3. 在本地端完成 Review，留在本地待命 7 天（等下週六 Deploy）│
-  └─────────────────────────────────────────────────────────────┘
+                              ┌───────────────────────────────────────────────┐
+                              │            本地開發與更新來源                 │
+                              │  (locations.json / postcards / weekly_pipeline)│
+                              └──────────────────────┬────────────────────────┘
+                                                     │
+                          ┌──────────────────────────┴──────────────────────────┐
+                          ▼                                                     ▼
+              【主發布線路 (Primary)】                               【雙重備援線路 (Backup)】
+                 Cloudflare Pages                                          GitHub
+         (kairosvector.pages.dev)                             (github.com/kevycheng/kairosVector_web)
+                          │                                                     │
+                          ▼                                                     ▼
+                 全球高速 Edge CDN                                       1. 程式碼與圖資全量備份
+                 玩家/用戶直接存取                                       2. Release Git Tag 歷史版本保護
+                                                                        3. GitHub Actions 自動建置
+                                                                        4. GitHub Pages 備援站點
+```
+
+### 備份與版本控制要點：
+1. **GitHub 遠端儲存庫**：`https://github.com/kevycheng/kairosVector_web.git`
+2. **基線 Tag 備份**：當前穩定驗證定版已標記為 `v1.0.0-weekly-featured`。日後若有任何緊急狀況，可一鍵 rollback 至此標籤。
+3. **歷史明信片與圖資儲存**：所有期別的 20 張高解析無水印明信片（`app/public/images/postcards/`）均已全量納入 Git 版本控管。
+4. **GitHub Actions 自動備援（Cold Standby）**：
+   - 每次推送到 `main` 分支，`.github/workflows/deploy.yml` 會自動執行 Astro 建置，並發布至 GitHub Pages。
+   - 若 Cloudflare 發生全球性故障，Android App 可立即透過 `meta.json` 切換至 GitHub Pages 備援網址。
+
+---
+
+## 2. 每週更新流程 (Weekly Update Pipeline)
+
+更新週期建議固定於**每週六**（配合玩家週末出遊與社群熱潮）。
+更新作業已高度整合於自動化腳本：`tools/weekly_pipeline.py`。
+
+### 推薦執行方式（三選一）：
+
+#### 模式 A：【最推薦】先模擬驗證，再一鍵發布（安全穩健，約 3 分鐘）
+```bash
+# 步驟 1：Dry-Run 模擬測試（檢查選題、景點篩選、翻譯與文案，不寫入檔案）
+python tools/weekly_pipeline.py --auto --dry-run
+
+# 步驟 2：確認預覽滿意後，正式執行更新並部署
+python tools/weekly_pipeline.py --auto --deploy
+```
+
+#### 模式 B：【全自動化】一鍵全自動更新（極速）
+```bash
+python tools/weekly_pipeline.py --auto --deploy
+```
+*系統將自動：輪替選題 ➔ 抓取 20 景點 ➔ OpenCode 翻譯 ➔ 下載圖片 ➔ 更新 locations.json ➔ 部署 Cloudflare ➔ Git Push 備份 ➔ 寄送 Threads 文案信。*
+
+#### 模式 C：【節慶或自訂主題】指定特定關鍵字
+```bash
+python tools/weekly_pipeline.py --theme "賞櫻特輯" --keywords "sakura,cherry,櫻花,賞櫻" --deploy
 ```
 
 ---
 
-## 期數對照基準（以 2026 年 8~10 月為例）
+## 3. 每週管線自動完成的工作項目清單
 
-| 期別 | 主題 | Product 商業版上線週期 | 當週發布與行銷動作 |
-|:---:|:---:|:---:|:---|
-| **第 01 期** | ⛩️ 神社與歷史寺廟巡禮 | `2026-08-29 ~ 2026-09-04` | 商業版存檔 |
-| **第 02 期** | 🎨 Kobe 街頭壁畫巡禮 | `2026-09-05 ~ 2026-09-11` | 商業版存檔 |
-| **第 03 期** | 🏰 世界宏偉城堡與要塞特輯 | `2026-09-12 ~ 2026-09-18` | 商業版存檔 |
-| **第 04 期** | ⛪ 古典教堂與大教堂巡禮 | `2026-09-19 ~ 2026-09-25` | 商業版現正熱播中 |
-| **第 05 期** | 🌉 全球壯麗橋樑特輯 | `2026-09-26 ~ 2026-10-02` | **本週六（9/26）上線**：Deploy 到 Cloudflare + 發 Threads 宣傳 |
-| **第 06 期** | 🌿 下週新特輯（Staging） | `2026-10-03 ~ 2026-10-09` | **本週六（9/26）撰寫**：本地待命 7 天，10/3 正式 Deploy |
+每次執行 `weekly_pipeline.py` 時，背後會精確依序執行以下 10 道工序：
+
+| 步驟 | 動作名稱 | 說明 |
+|:---:|:---|:---|
+| **1** | **選題輪替** | 自動讀取 `theme_rotation.json`，取得下一個未使用的熱門主題。 |
+| **2** | **精準篩選** | 從資料庫中精選 **10 蘑菇戰鬥點 + 10 巨型大花點**，按愛心數排序並排除重複。 |
+| **3** | **AI 翻譯與創作** | 調用 OpenCode LLM 免費模型，將非中文地名翻譯為優雅繁體中文，並創作專屬微故事。 |
+| **4** | **下載高畫質圖資** | 透過 Pikoohiong API 自動下載 20 張明信片至 `app/public/images/postcards/<slug>/`。 |
+| **5** | **更新專欄資料** | 自動將新期別寫入 `locations.json`，最新一期置頂並同步對應 `/latest` 與 `meta.json`。 |
+| **6** | **同步 App 書籤庫** | 自動將上週書籤晉升為正式版，並將本週新主題寫入 `geosim-data` 官方書籤庫並 Push。 |
+| **7** | **Astro 靜態編譯** | 本地執行 `astro build`，確保 HTML/CSS 語法無錯誤。 |
+| **8** | **Cloudflare Pages 上線** | 自動透過 Wrangler 將 `dist/` 上傳至 Cloudflare Edge，秒級全域生效。 |
+| **9** | **GitHub 雙重備份** | 自動 `git add`、`git commit` 並 `git push origin main`，同時觸發 GitHub Pages 備援建置。 |
+| **10** | **發送行銷郵件** | 自動寄送 Gmail 通知給管理者，信中包含即時可用的 **Threads 行銷貼文草稿與打卡座標**。 |
 
 ---
 
-## 每週六執行清單 Check List
+## 4. 發布後檢核清單 (Post-Release Checklist)
 
-### 軌道 A：Product 商業版對外發布
-- [ ] 執行 `npm run build` 確認本地 static build 通過
-- [ ] 執行 Cloudflare Pages 部署命令（待使用者一聲令下）
-- [ ] 在 Threads 貼文發布當週 Product 內容：
-  - 附上 4~10 張該期精選明信片照片
-  - 附上推薦時速（如 19 km/h）與特色景點小故事
-  - 附上一鍵轉跳專欄完整 20 處座標的連結（`https://kairosvector.pages.dev/geosim/weekly-featured/issue-XX`）
+執行完管線後，只需花 **1~2 分鐘** 進行三點確認：
 
-### 軌道 B：Staging 下週內容籌備
-- [ ] 讀取 `geosim-data/remote/official_bookmarks.staging.json` 中的新主題
-- [ ] 下載精選 20 處明信片照片至 `app/public/images/postcards/<theme>/`
-- [ ] 在 `app/src/data/locations.json` 寫入新期數與景點故事
-- [ ] 產生對應的 16:9 高畫質封面圖
-- [ ] 本地審核（Review），保持在本地端等待下週六上線
+- [ ] **1. 線上專欄巡檢**：
+  打開瀏覽器造訪 [最新一期專欄](https://kairosvector.pages.dev/geosim/weekly-featured/latest)，快速滑動檢查瀑布流排版、隨機點擊 2~3 張卡片確認彈窗正常置中展開且文字清晰。
+- [ ] **2. Android App 實機確認**：
+  在手機 GeoSim 點擊「每週精選」按鈕，確認是否順利讀取最新一期主題與景點。
+- [ ] **3. 社群推廣發文（Threads）**：
+  檢查信箱收到標題為 `【GeoSim 每周精選已發布】...` 的郵件，複製信中的文案，搭配本週明信片精選圖片發布至 Threads。
+
+---
+
+## 5. 常見緊急應變措施 (Troubleshooting)
+
+* **情境 1：手機 App 出現舊快取**
+  * 解法：網址後加上版號測試，如 `.../weekly-featured/latest?v=2`，或在 App 內下拉清除快取。
+* **情境 2：欲緊急回退到先前版本**
+  * 執行：`git checkout v1.0.0-weekly-featured` 並重新執行 `npm run build && npx wrangler pages deploy dist --project-name kairosvector`。
+
