@@ -13,7 +13,6 @@ export const GET: APIRoute = async () => {
 
   const body = {
     schemaVersion: 1,
-    status: 'staging',
     issue: issueNum,
     issueFormatted: issueFormatted,
     title: stagingIssue?.theme || '',
