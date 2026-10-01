@@ -191,6 +191,11 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
               class="card spot-postcard-card"
               data-region={spot.region || 'global'}
               data-type={spot.type || 'flower'}
+              data-image={spot.image || ''}
+              data-name={spot.name}
+              data-seq={String(idx + 1).padStart(2, '0')}
+              data-story={spot.story || spot.highlight || ''}
+              data-coord={`${spot.lat}, ${spot.lng}`}
             >
               <!-- Postcard Photo Frame -->
               <div class="postcard-frame">
@@ -209,9 +214,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                 )}
                 <div class="postcard-badges-overlay">
                   {spot.type === 'mushroom' ? (
-                    <span class="type-badge type-badge--mushroom">🍄 蘑菇戰鬥點</span>
+                    <span class="type-badge type-badge--mushroom" title="🍄 蘑菇戰鬥點">
+                      <span class="badge-icon">🍄</span>
+                      <span class="badge-text"> 蘑菇戰鬥點</span>
+                    </span>
                   ) : (
-                    <span class="type-badge type-badge--flower">🌸 巨型大花點</span>
+                    <span class="type-badge type-badge--flower" title="🌸 巨型大花點">
+                      <span class="badge-icon">🌸</span>
+                      <span class="badge-text"> 巨型大花點</span>
+                    </span>
                   )}
                   {spot.region === 'tw' && <span class="region-badge">🇹🇼 台灣</span>}
                   {spot.region === 'jp' && <span class="region-badge">🇯🇵 日本</span>}
@@ -250,12 +261,14 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                     class="btn btn--geosim-glow btn--sm copy-single-coord-btn"
                     data-coord={`${spot.lat}, ${spot.lng}`}
                     title="複製經緯度到剪貼簿"
+                    type="button"
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    <svg class="coord-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2v4m0 12v4M2 12h4m12 0h4"></path>
+                      <circle cx="12" cy="12" r="7"></circle>
+                      <circle cx="12" cy="12" r="2"></circle>
                     </svg>
-                    <span>複製座標</span>
+                    <span class="copy-btn-text">複製座標</span>
                   </button>
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${spot.lat},${spot.lng}`}
@@ -264,6 +277,10 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
                     class="btn btn--outline btn--sm map-link-btn"
                     title="在 Google 地圖開啟"
                   >
+                    <svg class="map-icon-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
                     <span class="map-link-text-full">Google 地圖 ↗</span>
                     <span class="map-link-text-short">地圖 ↗</span>
                   </a>
@@ -411,6 +428,44 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
         <a href="/geosim" class="btn btn--outline">
           ← 返回 GeoSim 產品專頁
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Postcard Lightbox Modal (景點相片放大預覽與微故事) -->
+  <div id="postcard-lightbox" class="postcard-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-overlay" id="lightbox-backdrop"></div>
+    <div class="lightbox-dialog">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="關閉預覽">✕</button>
+      <div class="lightbox-media">
+        <img id="lightbox-img" src="" alt="" />
+      </div>
+      <div class="lightbox-info">
+        <div class="lightbox-header">
+          <div class="lightbox-title-wrap">
+            <span id="lightbox-seq" class="lightbox-seq">#01</span>
+            <h3 id="lightbox-title" class="lightbox-title">景點名稱</h3>
+          </div>
+          <span id="lightbox-badge" class="type-badge type-badge--mushroom">🍄 蘑菇戰鬥點</span>
+        </div>
+        <p id="lightbox-story" class="lightbox-story"></p>
+        <div class="lightbox-meta">
+          <span class="meta-label">座標：</span>
+          <code id="lightbox-coord" class="meta-coord-code">0.0, 0.0</code>
+        </div>
+        <div class="lightbox-actions">
+          <button id="lightbox-copy-btn" class="btn btn--primary btn--sm" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4m0 12v4M2 12h4m12 0h4"></path>
+              <circle cx="12" cy="12" r="7"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            一鍵複製座標
+          </button>
+          <a id="lightbox-map-link" href="#" target="_blank" rel="noopener" class="btn btn--outline btn--sm">
+            Google 地圖 ↗
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -611,18 +666,106 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     applyViewMode('masonry');
   }
 
-  // 8. Card tap-to-copy in Masonry Mode
-  cards.forEach((card) => {
-    card.addEventListener('click', (e) => {
-      if (spotsGrid && spotsGrid.classList.contains('view-masonry')) {
-        if (e.target.closest('button') || e.target.closest('a')) {
-          return;
+  // 8. Postcard Lightbox Modal (Zoom Photo & View Story)
+  const lightbox = document.getElementById('postcard-lightbox');
+  const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+  const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxSeq = document.getElementById('lightbox-seq');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxBadge = document.getElementById('lightbox-badge');
+  const lightboxStory = document.getElementById('lightbox-story');
+  const lightboxCoord = document.getElementById('lightbox-coord');
+  const lightboxCopyBtn = document.getElementById('lightbox-copy-btn');
+  const lightboxMapLink = document.getElementById('lightbox-map-link');
+
+  let currentModalCoord = '';
+
+  function openLightbox(card) {
+    if (!lightbox) return;
+    const img = card.getAttribute('data-image');
+    const name = card.getAttribute('data-name') || '';
+    const seq = card.getAttribute('data-seq') || '01';
+    const story = card.getAttribute('data-story') || '';
+    const coord = card.getAttribute('data-coord') || '';
+    const type = card.getAttribute('data-type') || 'flower';
+
+    currentModalCoord = coord;
+
+    if (lightboxImg) {
+      lightboxImg.src = img;
+      lightboxImg.alt = name;
+    }
+    if (lightboxSeq) lightboxSeq.textContent = `#${seq}`;
+    if (lightboxTitle) lightboxTitle.textContent = name;
+    if (lightboxStory) lightboxStory.textContent = story || '暫無額外景點介紹。';
+    if (lightboxCoord) lightboxCoord.textContent = coord;
+
+    if (lightboxBadge) {
+      if (type === 'mushroom') {
+        lightboxBadge.className = 'type-badge type-badge--mushroom';
+        lightboxBadge.textContent = '🍄 蘑菇戰鬥點';
+      } else {
+        lightboxBadge.className = 'type-badge type-badge--flower';
+        lightboxBadge.textContent = '🌸 巨型大花點';
+      }
+    }
+
+    if (lightboxMapLink) {
+      lightboxMapLink.href = `https://www.google.com/maps/search/?api=1&query=${coord}`;
+    }
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+  if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  if (lightboxCopyBtn) {
+    lightboxCopyBtn.addEventListener('click', async () => {
+      if (currentModalCoord) {
+        if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+          try {
+            const parts = currentModalCoord.split(',');
+            const lat = parseFloat(parts[0].trim());
+            const lng = parseFloat(parts[1].trim());
+            const name = lightboxTitle ? lightboxTitle.textContent : '';
+            window.AndroidGeoSim.setCoordinate(lat, lng, name);
+            showToast(`已傳送座標至 GeoSim 搖桿：${currentModalCoord}`, '🎮');
+            return;
+          } catch (e) {
+            console.error('AndroidGeoSim bridge error:', e);
+          }
         }
-        const copyBtn = card.querySelector('.copy-single-coord-btn');
-        if (copyBtn) {
-          copyBtn.click();
+        try {
+          await navigator.clipboard.writeText(currentModalCoord);
+          showToast(`已複製座標：${currentModalCoord}，可直接貼入 GeoSim！`, '📍');
+        } catch (err) {
+          console.error(err);
         }
       }
+    });
+  }
+
+  // Open Lightbox when clicking anywhere on the postcard card (except footer action buttons)
+  cards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button') || e.target.closest('a')) {
+        return;
+      }
+      openLightbox(card);
     });
   });
 </script>
@@ -1165,50 +1308,26 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /* ========================================================
-     Masonry / Waterfall View Mode Styles
-     ======================================================== */
-  .spots-grid.view-masonry {
-    display: block;
-    columns: 2;
-    column-gap: 12px;
-    margin-bottom: var(--space-16);
-  }
-
-  @media (min-width: 768px) {
-    .spots-grid.view-masonry {
-      columns: 3;
-      column-gap: 16px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .spots-grid.view-masonry {
-      columns: 4;
-      column-gap: 18px;
-    }
-  }
-
-  /* ========================================================
      Masonry / Waterfall View Mode Styles (Full-Bleed 滿版沉浸大圖)
      ======================================================== */
   .spots-grid.view-masonry {
     display: block;
     columns: 2;
-    column-gap: 12px;
-    margin-bottom: var(--space-16);
+    column-gap: 5px;
+    margin-bottom: var(--space-12);
   }
 
   @media (min-width: 768px) {
     .spots-grid.view-masonry {
       columns: 3;
-      column-gap: 16px;
+      column-gap: 8px;
     }
   }
 
   @media (min-width: 1024px) {
     .spots-grid.view-masonry {
       columns: 4;
-      column-gap: 18px;
+      column-gap: 10px;
     }
   }
 
@@ -1217,40 +1336,45 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 12px;
-    border-radius: var(--radius-xl);
+    margin-bottom: 5px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     display: block;
     background: #090d16;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     cursor: pointer;
     transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
   }
 
   @media (min-width: 768px) {
     .spots-grid.view-masonry .spot-postcard-card {
-      margin-bottom: 16px;
+      margin-bottom: 8px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .spots-grid.view-masonry .spot-postcard-card {
+      margin-bottom: 10px;
     }
   }
 
   html[data-theme="vibrant"] .spots-grid.view-masonry .spot-postcard-card {
     background: #0f172a;
     border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   }
 
   .spots-grid.view-masonry .spot-postcard-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
   }
 
   /* Postcard frame fills entire card height */
   .spots-grid.view-masonry .postcard-frame {
     position: relative;
     width: 100%;
-    height: 100%;
-    min-height: 240px;
+    height: auto;
     background: #0b1120;
     border-bottom: none;
     overflow: hidden;
@@ -1258,21 +1382,33 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .spots-grid.view-masonry .postcard-img {
     width: 100%;
-    height: 100%;
-    min-height: 250px;
-    max-height: 420px;
+    height: auto;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s var(--ease-out);
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  /* Proposal 5: Staggered Heights (交錯不死板) */
+  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+1) .postcard-img {
+    aspect-ratio: 3 / 4;
+  }
+  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+2) .postcard-img {
+    aspect-ratio: 1 / 1;
+  }
+  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+3) .postcard-img {
+    aspect-ratio: 4 / 5;
+  }
+  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n) .postcard-img {
+    aspect-ratio: 16 / 11;
   }
 
   .spots-grid.view-masonry .spot-postcard-card:hover .postcard-img {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 
   .spots-grid.view-masonry .postcard-img-placeholder {
     width: 100%;
-    min-height: 250px;
+    min-height: 180px;
     background: #1e293b;
     display: flex;
     flex-direction: column;
@@ -1281,29 +1417,42 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     color: var(--color-text-secondary);
   }
 
-  /* Badges overlay on top-left of the photo */
+  /* Proposal 1: Badges overlay on top-left - ONLY icon (蘑菇/花圖) */
   .spots-grid.view-masonry .postcard-badges-overlay {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 6px;
+    left: 6px;
     display: flex;
-    gap: 5px;
+    gap: 4px;
     z-index: 5;
     pointer-events: none;
   }
 
-  .spots-grid.view-masonry .type-badge,
-  .spots-grid.view-masonry .region-badge {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: var(--radius-full);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+  .spots-grid.view-masonry .type-badge {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
-  /* Full-bleed bottom gradient overlay (全景懸浮說明層，不佔獨立格子) */
+  .spots-grid.view-masonry .type-badge .badge-text {
+    display: none;
+  }
+
+  .spots-grid.view-masonry .region-badge {
+    display: none;
+  }
+
+  /* Proposal 3: Full-bleed bottom gradient overlay - 只留名字，不留介紹 */
   .spots-grid.view-masonry .spot-card-body {
     position: absolute;
     bottom: 0;
@@ -1312,130 +1461,294 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     z-index: 4;
     background: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.78) 45%,
-      rgba(0, 0, 0, 0.3) 78%,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.55) 55%,
       transparent 100%
     );
-    padding: var(--space-8) var(--space-3) var(--space-3);
+    padding: var(--space-6) 8px 8px 8px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6px;
     pointer-events: auto;
   }
 
   .spots-grid.view-masonry .spot-card-header {
-    margin-bottom: 4px;
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .spots-grid.view-masonry .spot-card-num-title {
     display: flex;
-    align-items: baseline;
-    gap: 6px;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
   }
 
   .spots-grid.view-masonry .spot-seq-num {
     color: #38bdf8;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
+    line-height: 1;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
   }
 
   .spots-grid.view-masonry .spot-card-title {
     color: #ffffff;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.25;
+    margin: 0;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
-  }
-
-  .spots-grid.view-masonry .spot-tag-pill {
-    display: none;
-  }
-
-  .spots-grid.view-masonry .spot-card-story {
-    background: transparent;
-    border-left: none;
-    padding: 0;
-    margin-bottom: 8px;
-    gap: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .spots-grid.view-masonry .story-icon {
-    display: none;
-  }
-
-  .spots-grid.view-masonry .story-text {
-    color: rgba(255, 255, 255, 0.88);
-    font-size: 11px;
-    line-height: 1.4;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-  }
-
+  .spots-grid.view-masonry .spot-tag-pill,
+  .spots-grid.view-masonry .spot-card-story,
   .spots-grid.view-masonry .spot-card-meta-bar {
-    display: none;
+    display: none !important;
   }
 
+  /* Proposal 2: Circular GPS and Map Icon Buttons */
   .spots-grid.view-masonry .spot-card-footer {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 2px;
+    gap: 5px;
+    margin-top: 0;
+    flex-shrink: 0;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn {
-    flex: 1;
-    background: rgba(59, 130, 246, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 6px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    border-radius: var(--radius-full);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
-    white-space: nowrap;
+    background: rgba(59, 130, 246, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn:hover {
     background: #2563eb;
+    transform: scale(1.08);
   }
 
-  .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn svg {
-    width: 12px;
-    height: 12px;
-    flex-shrink: 0;
+  .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn .coord-icon-svg {
+    width: 14px;
+    height: 14px;
+    margin: 0;
   }
 
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.16);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 6px 10px;
-    font-size: 11px;
-    font-weight: 600;
-    border-radius: var(--radius-full);
-    justify-content: center;
-    white-space: nowrap;
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-
-  .spots-grid.view-masonry .map-link-text-full {
+  .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn .copy-btn-text {
     display: none;
   }
 
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
+    background: rgba(255, 255, 255, 0.32);
+    transform: scale(1.08);
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn .map-icon-svg {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+  }
+
+  .spots-grid.view-masonry .map-link-text-full,
   .spots-grid.view-masonry .map-link-text-short {
-    display: inline;
+    display: none;
+  }
+
+  /* ========================================================
+     Proposal 6: Postcard Lightbox Modal (景點大圖預覽燈箱)
+     ======================================================== */
+  .postcard-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .postcard-lightbox.active {
+    display: flex;
+  }
+
+  .lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+  }
+
+  .lightbox-dialog {
+    position: relative;
+    z-index: 10;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(59, 130, 246, 0.2);
+    animation: lightboxPopIn 0.25s var(--ease-out);
+  }
+
+  @keyframes lightboxPopIn {
+    from {
+      opacity: 0;
+      transform: scale(0.92) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .lightbox-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 20;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .lightbox-close-btn:hover {
+    background: rgba(239, 68, 68, 0.8);
+    transform: scale(1.08);
+  }
+
+  .lightbox-media {
+    width: 100%;
+    max-height: 52vh;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .lightbox-media img {
+    width: 100%;
+    height: auto;
+    max-height: 52vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-info {
+    padding: 16px 20px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #0f172a;
+  }
+
+  .lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .lightbox-title-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .lightbox-seq {
+    color: #38bdf8;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .lightbox-title {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .lightbox-story {
+    color: var(--color-text-secondary);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border-left: 3px solid #38bdf8;
+  }
+
+  .lightbox-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .lightbox-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .lightbox-actions .btn {
+    flex: 1;
+    justify-content: center;
   }
 
   /* Social Share Hub */
