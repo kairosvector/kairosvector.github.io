@@ -615,7 +615,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
         const region = card.getAttribute('data-region');
         const type = card.getAttribute('data-type');
         if (filterVal === 'all' || region === filterVal || type === filterVal) {
-          card.style.display = 'flex';
+          card.style.display = '';
         } else {
           card.style.display = 'none';
         }
@@ -623,9 +623,56 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     });
   });
 
-  // 7. View Mode Switcher (Detailed List vs Masonry Waterfall)
+  // 7. View Mode Switcher (Detailed List vs RemixAI 雙欄交錯瀑布流)
   const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
   const spotsGrid = document.getElementById('spots-grid-container');
+
+  function updateWaterfallColumns(mode) {
+    if (!spotsGrid) return;
+
+    if (mode === 'list') {
+      const cols = spotsGrid.querySelectorAll('.waterfall-col');
+      if (cols.length > 0) {
+        const allCards = Array.from(spotsGrid.querySelectorAll('.spot-postcard-card'));
+        allCards.sort((a, b) => {
+          const seqA = parseInt(a.getAttribute('data-seq') || '0', 10);
+          const seqB = parseInt(b.getAttribute('data-seq') || '0', 10);
+          return seqA - seqB;
+        });
+        cols.forEach((c) => c.remove());
+        allCards.forEach((c) => spotsGrid.appendChild(c));
+      }
+      return;
+    }
+
+    // mode === 'masonry'
+    const isMobile = window.innerWidth < 768;
+    const colCount = isMobile ? 2 : 3;
+    const existingCols = spotsGrid.querySelectorAll('.waterfall-col');
+    if (existingCols.length === colCount) return;
+
+    const allCards = Array.from(spotsGrid.querySelectorAll('.spot-postcard-card'));
+    allCards.sort((a, b) => {
+      const seqA = parseInt(a.getAttribute('data-seq') || '0', 10);
+      const seqB = parseInt(b.getAttribute('data-seq') || '0', 10);
+      return seqA - seqB;
+    });
+
+    existingCols.forEach((c) => c.remove());
+
+    const cols = [];
+    for (let i = 0; i < colCount; i++) {
+      const col = document.createElement('div');
+      col.className = `waterfall-col waterfall-col-${i + 1}`;
+      cols.push(col);
+    }
+
+    allCards.forEach((card, idx) => {
+      cols[idx % colCount].appendChild(card);
+    });
+
+    cols.forEach((col) => spotsGrid.appendChild(col));
+  }
 
   function applyViewMode(mode) {
     viewToggleBtns.forEach((btn) => {
@@ -634,8 +681,10 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     if (spotsGrid) {
       if (mode === 'masonry') {
         spotsGrid.classList.add('view-masonry');
+        updateWaterfallColumns('masonry');
       } else {
         spotsGrid.classList.remove('view-masonry');
+        updateWaterfallColumns('list');
       }
     }
     try {
@@ -648,6 +697,16 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
       const mode = btn.getAttribute('data-view');
       applyViewMode(mode);
     });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (spotsGrid && spotsGrid.classList.contains('view-masonry')) {
+        updateWaterfallColumns('masonry');
+      }
+    }, 150);
   });
 
   // Detect URL parameter (?view=masonry) or stored preference
@@ -1308,55 +1367,36 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /* ========================================================
-     Masonry / Waterfall View Mode Styles (Full-Bleed 滿版沉浸大圖)
+     Masonry / Waterfall View Mode Styles (RemixAI Style 雙欄直式瀑布流)
      ======================================================== */
   .spots-grid.view-masonry {
-    display: block;
-    columns: 2;
-    column-gap: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
     margin-bottom: var(--space-12);
   }
 
-  @media (min-width: 768px) {
-    .spots-grid.view-masonry {
-      columns: 3;
-      column-gap: 8px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .spots-grid.view-masonry {
-      columns: 4;
-      column-gap: 10px;
-    }
+  .spots-grid.view-masonry .waterfall-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .spots-grid.view-masonry .spot-postcard-card {
     position: relative;
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 5px;
-    border-radius: var(--radius-lg);
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 16px;
     overflow: hidden;
     display: block;
     background: #090d16;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     cursor: pointer;
     transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
-  }
-
-  @media (min-width: 768px) {
-    .spots-grid.view-masonry .spot-postcard-card {
-      margin-bottom: 8px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .spots-grid.view-masonry .spot-postcard-card {
-      margin-bottom: 10px;
-    }
   }
 
   html[data-theme="vibrant"] .spots-grid.view-masonry .spot-postcard-card {
@@ -1382,24 +1422,10 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .spots-grid.view-masonry .postcard-img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.4s var(--ease-out);
-  }
-
-  /* Proposal 5: Staggered Heights (交錯不死板) */
-  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+1) .postcard-img {
-    aspect-ratio: 3 / 4;
-  }
-  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+2) .postcard-img {
-    aspect-ratio: 1 / 1;
-  }
-  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n+3) .postcard-img {
-    aspect-ratio: 4 / 5;
-  }
-  .spots-grid.view-masonry .spot-postcard-card:nth-child(4n) .postcard-img {
-    aspect-ratio: 16 / 11;
   }
 
   .spots-grid.view-masonry .spot-postcard-card:hover .postcard-img {
@@ -1408,7 +1434,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .spots-grid.view-masonry .postcard-img-placeholder {
     width: 100%;
-    min-height: 180px;
+    min-height: 220px;
     background: #1e293b;
     display: flex;
     flex-direction: column;
@@ -1417,11 +1443,55 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     color: var(--color-text-secondary);
   }
 
-  /* Proposal 1: Badges overlay on top-left - ONLY icon (蘑菇/花圖) */
+  /*
+   * RemixAI Strict Vertical Ratios & Dynamic Staggering
+   * 左欄與右欄交錯錯開，徹底告別橫式與對齊死板感！
+   */
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+1) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+1) .postcard-img {
+    aspect-ratio: 9 / 15.5;
+  }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+2) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+2) .postcard-img {
+    aspect-ratio: 3 / 4.6;
+  }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n+3) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n+3) .postcard-img {
+    aspect-ratio: 9 / 15;
+  }
+  .waterfall-col-1 .spot-postcard-card:nth-child(4n) .postcard-img,
+  .spots-grid.view-masonry > .spot-postcard-card:nth-child(4n) .postcard-img {
+    aspect-ratio: 3 / 4.4;
+  }
+
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+1) .postcard-img {
+    aspect-ratio: 3 / 4;
+  }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+2) .postcard-img {
+    aspect-ratio: 9 / 15.5;
+  }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n+3) .postcard-img {
+    aspect-ratio: 3 / 4.2;
+  }
+  .waterfall-col-2 .spot-postcard-card:nth-child(4n) .postcard-img {
+    aspect-ratio: 9 / 14.5;
+  }
+
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n+1) .postcard-img {
+    aspect-ratio: 9 / 14;
+  }
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n+2) .postcard-img {
+    aspect-ratio: 3 / 4.3;
+  }
+  .waterfall-col-3 .spot-postcard-card:nth-child(3n) .postcard-img {
+    aspect-ratio: 9 / 15;
+  }
+
+  /* Top-left: subtle circular glass badge (蘑菇/花圖) */
   .spots-grid.view-masonry .postcard-badges-overlay {
     position: absolute;
-    top: 6px;
-    left: 6px;
+    top: 8px;
+    left: 8px;
     display: flex;
     gap: 4px;
     z-index: 5;
@@ -1437,40 +1507,76 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     justify-content: center;
     border-radius: 50%;
     font-size: 14px;
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
-  .spots-grid.view-masonry .type-badge .badge-text {
-    display: none;
-  }
-
+  .spots-grid.view-masonry .type-badge .badge-text,
   .spots-grid.view-masonry .region-badge {
     display: none;
   }
 
-  /* Proposal 3: Full-bleed bottom gradient overlay - 只留名字，不留介紹 */
+  /* Top-right: subtle circular glass button (Google Maps 跳轉) */
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 5;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
+    background: rgba(59, 130, 246, 0.85);
+    transform: scale(1.08);
+  }
+
+  .spots-grid.view-masonry .spot-card-footer .map-link-btn .map-icon-svg {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+  }
+
+  .spots-grid.view-masonry .map-link-text-full,
+  .spots-grid.view-masonry .map-link-text-short {
+    display: none;
+  }
+
+  /* Bottom Floating Pill Bar (RemixAI 懸浮膠囊微選單) */
   .spots-grid.view-masonry .spot-card-body {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
     z-index: 4;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.9) 0%,
-      rgba(0, 0, 0, 0.55) 55%,
-      transparent 100%
-    );
-    padding: var(--space-6) 8px 8px 8px;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 6px 8px;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
     pointer-events: auto;
   }
 
@@ -1482,8 +1588,8 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .spots-grid.view-masonry .spot-card-num-title {
     display: flex;
-    flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    gap: 4px;
     min-width: 0;
   }
 
@@ -1492,16 +1598,15 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     font-size: 11px;
     font-weight: 800;
     line-height: 1;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    flex-shrink: 0;
   }
 
   .spots-grid.view-masonry .spot-card-title {
     color: #ffffff;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.2;
     margin: 0;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1513,78 +1618,44 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     display: none !important;
   }
 
-  /* Proposal 2: Circular GPS and Map Icon Buttons */
   .spots-grid.view-masonry .spot-card-footer {
     display: flex;
     align-items: center;
-    gap: 5px;
-    margin-top: 0;
+    margin: 0;
     flex-shrink: 0;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    padding: 0;
-    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.92);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(59, 130, 246, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    gap: 3px;
+    white-space: nowrap;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35);
     transition: background 0.2s, transform 0.15s;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn:hover {
     background: #2563eb;
-    transform: scale(1.08);
+    transform: scale(1.05);
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn .coord-icon-svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     margin: 0;
   }
 
   .spots-grid.view-masonry .spot-card-footer .copy-single-coord-btn .copy-btn-text {
-    display: none;
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    padding: 0;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn:hover {
-    background: rgba(255, 255, 255, 0.32);
-    transform: scale(1.08);
-  }
-
-  .spots-grid.view-masonry .spot-card-footer .map-link-btn .map-icon-svg {
-    width: 13px;
-    height: 13px;
-    margin: 0;
-  }
-
-  .spots-grid.view-masonry .map-link-text-full,
-  .spots-grid.view-masonry .map-link-text-short {
-    display: none;
+    display: inline;
+    font-size: 11px;
   }
 
   /* ========================================================
