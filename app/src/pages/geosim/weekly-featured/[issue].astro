@@ -1447,45 +1447,45 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /*
-   * Aspect Ratio Blueprint:
-   * 1. 長版更修長 (aspect-ratio: 9 / 17.5 ~ 9 / 16)
-   * 2. 橫版極小化：僅右欄第一張 (Spot #02) 為橫版破局卡片，其餘 95% 全為大器修長直版！
+   * Aspect Ratio Blueprint (一屏約容納 2 ~ 2.5 則超修長直版):
+   * 1. 長版比例提升至 9/19.5 ~ 9/18（高度約為寬度的 2 ~ 2.1 倍）
+   * 2. 右欄僅第一張 (Spot #02) 為開頭破局卡片 (4/3.4)，其餘全為極致長版！
    */
 
-  /* 左欄：從頭到尾皆為大器修長直版 */
+  /* 左欄：超修長直版 (一屏約容納 2 ~ 2.5 則) */
   .waterfall-col-1 .spot-postcard-card:nth-child(even) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(even) .postcard-img {
-    aspect-ratio: 9 / 16 !important;
+    aspect-ratio: 9 / 18 !important;
   }
   .waterfall-col-1 .spot-postcard-card:nth-child(odd) .postcard-frame,
   .waterfall-col-1 .spot-postcard-card:nth-child(odd) .postcard-img,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(odd) .postcard-frame,
   .spots-grid.view-masonry > .spot-postcard-card:nth-child(odd) .postcard-img {
-    aspect-ratio: 9 / 17.5 !important;
+    aspect-ratio: 9 / 19.5 !important;
   }
 
-  /* 右欄：僅第一張卡 (Spot #02) 為唯一的開頭橫版破局卡片 (4/3)，立即形成巨大落差，其餘全為修長直版！ */
+  /* 右欄：第一張卡 (Spot #02) 為開頭破局卡 (4/3.4)，其餘全為極致長版！ */
   .waterfall-col-2 .spot-postcard-card:first-child .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:first-child .postcard-img {
-    aspect-ratio: 4 / 3.2 !important;
+    aspect-ratio: 4 / 3.4 !important;
   }
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(even) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(even) .postcard-img {
-    aspect-ratio: 9 / 17 !important;
+    aspect-ratio: 9 / 19 !important;
   }
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(odd) .postcard-frame,
   .waterfall-col-2 .spot-postcard-card:not(:first-child):nth-child(odd) .postcard-img {
-    aspect-ratio: 9 / 16.5 !important;
+    aspect-ratio: 9 / 18.2 !important;
   }
 
   /* 3rd column (for desktop tablet) */
   .waterfall-col-3 .spot-postcard-card:first-child .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:first-child .postcard-img {
-    aspect-ratio: 4 / 3.2 !important;
+    aspect-ratio: 4 / 3.4 !important;
   }
   .waterfall-col-3 .spot-postcard-card:not(:first-child) .postcard-frame,
   .waterfall-col-3 .spot-postcard-card:not(:first-child) .postcard-img {
-    aspect-ratio: 9 / 16.5 !important;
+    aspect-ratio: 9 / 18.5 !important;
   }
 
   /* Top-left: subtle square frosted glass badge */
