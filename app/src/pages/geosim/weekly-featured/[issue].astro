@@ -595,46 +595,39 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     });
   }
 
-  // 6. Type filter tabs (全部 / 🍄 蘑菇 / 🌸 花點)
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const cards = document.querySelectorAll('.spot-postcard-card');
-
-  filterTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      filterTabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      const filterVal = tab.getAttribute('data-filter');
-      cards.forEach((card) => {
-        const type = card.getAttribute('data-type');
-        if (filterVal === 'all' || type === filterVal) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // 7. Masonry Waterfall Engine (雙欄 / 三欄交錯瀑布流，定版唯一模式)
+  // 6 & 7. Masonry Waterfall Engine with Category Filter (雙欄 / 三欄瀑布流與類別篩選連動)
   const spotsGrid = document.getElementById('spots-grid-container');
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  // Cache all initial postcard elements in memory so they never get lost when filtered
+  const allPostcards = spotsGrid ? Array.from(spotsGrid.querySelectorAll('.spot-postcard-card')) : [];
+  let currentFilter = 'all';
+  let currentColCount = 0;
 
-  function initWaterfall() {
-    if (!spotsGrid) return;
+  function renderWaterfall(force = false) {
+    if (!spotsGrid || allPostcards.length === 0) return;
     const isMobile = window.innerWidth < 768;
     const colCount = isMobile ? 2 : 3;
-    const existingCols = spotsGrid.querySelectorAll('.waterfall-col');
-    if (existingCols.length === colCount) return;
 
-    const allCards = Array.from(spotsGrid.querySelectorAll('.spot-postcard-card'));
-    allCards.sort((a, b) => {
+    // Only re-render if forced (filter changed) or column count changed on resize
+    if (!force && colCount === currentColCount) return;
+
+    // Filter cards based on current category
+    const visibleCards = allPostcards.filter((card) => {
+      const type = card.getAttribute('data-type');
+      return currentFilter === 'all' || type === currentFilter;
+    });
+
+    // Sort by sequence number
+    visibleCards.sort((a, b) => {
       const seqA = parseInt(a.getAttribute('data-seq') || '0', 10);
       const seqB = parseInt(b.getAttribute('data-seq') || '0', 10);
       return seqA - seqB;
     });
 
-    existingCols.forEach((c) => c.remove());
+    // Clear container
+    spotsGrid.innerHTML = '';
 
+    // Create balanced column containers
     const cols = [];
     for (let i = 0; i < colCount; i++) {
       const col = document.createElement('div');
@@ -642,20 +635,35 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
       cols.push(col);
     }
 
-    allCards.forEach((card, idx) => {
+    // Interleave cards across columns
+    visibleCards.forEach((card, idx) => {
+      card.style.display = '';
       cols[idx % colCount].appendChild(card);
     });
 
+    // Append columns to grid
     cols.forEach((col) => spotsGrid.appendChild(col));
+    currentColCount = colCount;
   }
 
-  initWaterfall();
+  // Filter tabs click handling
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      filterTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentFilter = tab.getAttribute('data-filter') || 'all';
+      renderWaterfall(true);
+    });
+  });
+
+  // Initial waterfall render
+  renderWaterfall(true);
 
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      initWaterfall();
+      renderWaterfall(false);
     }, 150);
   });
 
@@ -754,14 +762,17 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   // Open Lightbox when clicking anywhere on the postcard card (except footer action buttons)
-  cards.forEach((card) => {
-    card.addEventListener('click', (e) => {
+  if (spotsGrid) {
+    spotsGrid.addEventListener('click', (e) => {
       if (e.target.closest('button') || e.target.closest('a')) {
         return;
       }
-      openLightbox(card);
+      const card = e.target.closest('.spot-postcard-card');
+      if (card) {
+        openLightbox(card);
+      }
     });
-  });
+  }
 </script>
 
 <style>
@@ -1365,7 +1376,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     margin-bottom: 0 !important;
     border-radius: 14px !important;
     overflow: hidden !important;
-    display: flex !important;
+    display: flex;
     flex-direction: column !important;
     background: #0d1525 !important;
     border: 1px solid rgba(255, 255, 255, 0.09) !important;
