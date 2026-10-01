@@ -1694,31 +1694,21 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
     width: 100% !important;
     height: 100% !important;
     z-index: 99999 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    padding: 20px 12px !important;
+    overflow: hidden !important;
     box-sizing: border-box !important;
   }
 
   .postcard-lightbox.active {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
   }
 
   .lightbox-overlay {
-    position: fixed !important;
+    position: absolute !important;
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
     width: 100% !important;
     height: 100% !important;
     background: rgba(0, 0, 0, 0.88) !important;
@@ -1729,22 +1719,27 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   .lightbox-dialog {
-    position: relative !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    -webkit-transform: translate(-50%, -50%) !important;
     z-index: 2 !important;
-    margin: auto !important;
-    width: 100% !important;
+    width: calc(100% - 28px) !important;
     max-width: 440px !important;
     min-width: 280px !important;
-    max-height: 85vh !important;
+    min-height: 420px !important;
+    max-height: 86vh !important;
+    max-height: 86dvh !important;
     background: #0a0f1d !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
     border-radius: 18px !important;
     overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
     box-sizing: border-box !important;
     flex-shrink: 0 !important;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 25px rgba(56, 189, 248, 0.2) !important;
     animation: lightboxFadeIn 0.2s ease-out forwards !important;
     -webkit-animation: lightboxFadeIn 0.2s ease-out forwards !important;
   }
@@ -1789,8 +1784,9 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
 
   .lightbox-media {
     width: 100% !important;
-    height: 200px !important;
-    max-height: 38vh !important;
+    height: 190px !important;
+    min-height: 190px !important;
+    max-height: 190px !important;
     background: #000000 !important;
     display: flex !important;
     align-items: center !important;
@@ -1803,6 +1799,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   .lightbox-media img {
     width: 100% !important;
     height: 100% !important;
+    min-height: 190px !important;
     object-fit: cover !important;
     display: block !important;
   }
@@ -1816,6 +1813,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     gap: 12px !important;
     background: #0a0f1d !important;
     flex: 1 1 auto !important;
+    min-height: 220px !important;
     box-sizing: border-box !important;
   }
 
