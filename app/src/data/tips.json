@@ -510,38 +510,106 @@
     "id": "health-connect-permission-guide",
     "productId": "pikiewalker",
     "productName": "PikieWalker",
-    "title": "確保 Health Connect 讀寫權限皆已開啟全攻略",
+    "title": "【新手必看】步數沒增加？Health Connect 資料來源優先權與設定教學（圖文完整指南）",
     "slug": "health-connect-permission-guide",
-    "category": "系統權限",
+    "category": "新手必看",
     "readTime": "3 分鐘閱讀",
-    "updatedAt": "2026-08-25",
-    "summary": "完整圖文步驟解說 Android 系統中 Health Connect 權限設定細節，解決步數無法寫入或遊戲無法讀取的問題。",
+    "updatedAt": "2026-10-02",
+    "summary": "明明在 PikieWalker 顯示同步完成，遊戲步數卻紋風不動？完整 4 步驟圖解 Android Health Connect「資料來源優先順序」設定，將 PikieWalker 設為第 1 順位，解決步數被手機實體感測器吃掉的常見痛點！",
     "content": [
       {
         "type": "heading",
-        "text": "為什麼 Health Connect 權限如此重要？"
+        "text": "為什麼明明顯示同步，遊戲步數卻沒有增加？"
       },
       {
         "type": "paragraph",
-        "text": "Android 14 起，Health Connect（健康防護）已成為系統原生的健康資料交換中心。PikieWalker 是透過官方標準 API 安全地將模擬步數寫入此系統資料庫，而非直接修改其他遊戲或 App 的記憶體。因此，確認權限開關是確保步數能順利同步的最關鍵一步。"
+        "text": "許多皮克敏（Pikmin Bloom）或健康 App 玩家在初次使用 PikieWalker 時，常常遇到這個困惑：<strong>「明明在 PikieWalker 看到步數已經結算並同步，為什麼打開遊戲步數卻完全沒動？」</strong><br><br>這並不是 App 壞掉或步數沒寫入，而是 <strong>Android 系統 Health Connect（健康資料同步）的「資料衝突仲裁機制」</strong> 在作用！"
       },
       {
         "type": "callout",
-        "title": "重要觀念：雙向授權機制",
-        "text": "資料傳遞必須滿足兩端授權：(1) PikieWalker 需獲得「寫入步數」權限；(2) 你的遊戲或健康 App 需獲得「讀取步數」權限。"
+        "title": "💡 核心原理：Health Connect 是如何決定步數的？",
+        "text": "每台 Android 手機內部都有實體的「硬體計步晶片」（例如 POCO、小米、三星、Google Pixel 等手機內建感應器）。<br><br>當 PikieWalker 回報「剛才走了一段路產生 3,000 步」，但你的手機其實正放在桌上或手上靜止，手機硬體感測器回報「這段時間是 0 步」——此時 Health Connect 就像個裁判，<strong>它只會採納「優先順序排在最前面」的來源</strong>！<br><br>如果你的手機硬體排在第 1 名，系統就會自動忽略 PikieWalker 的模擬步數；反之，<strong>只要把 PikieWalker 移到第 1 名，系統就會 100% 採納 PikieWalker 的步數</strong>！"
       },
       {
         "type": "heading",
-        "text": "逐步設定教學"
+        "text": "4 步驟圖文教學：提升 PikieWalker 優先權"
+      },
+      {
+        "type": "paragraph",
+        "text": "只需跟著下方 4 個步驟花 1 分鐘調整一次，之後無論何時模擬步數都能即時反映在遊戲中："
+      },
+      {
+        "type": "heading",
+        "text": "步驟 1：由 PikieWalker 進入系統 Health Connect 設定"
+      },
+      {
+        "type": "paragraph",
+        "text": "打開 <strong>PikieWalker</strong>，進入「設定」頁面。在「系統與隱私」分區中找到 <strong>「Google Health Connect」</strong>（如下圖橘圈標示處）。點擊它，系統會自動帶你跳轉至 Android 原生的「健康資料同步」管理介面。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/pikiewalker/step1-pikiewalker-settings.png",
+        "caption": "步驟 1：在 PikieWalker「設定」頁點擊「Google Health Connect」快速跳轉"
+      },
+      {
+        "type": "heading",
+        "text": "步驟 2：滑動至底部，點擊「管理資料」"
+      },
+      {
+        "type": "paragraph",
+        "text": "進入系統的「健康資料同步」畫面後，往下滑動至「偏好設定」區塊，點選最下方的 <strong>「管理資料」</strong>（副標題為：自動刪除、資料來源、備份和還原）。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/pikiewalker/step2-health-connect-manage-data.png",
+        "caption": "步驟 2：在偏好設定下方，點選進入「管理資料」"
+      },
+      {
+        "type": "heading",
+        "text": "步驟 3：點擊「資料來源與優先順序」"
+      },
+      {
+        "type": "paragraph",
+        "text": "進入管理資料頁面後，在偏好設定下點選 <strong>「資料來源與優先順序」</strong>。這裡是決定多個運動健康 App 與手機感測器誰先被採納的關鍵開關！"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/pikiewalker/step3-data-sources-priority.png",
+        "caption": "步驟 3：點選「資料來源與優先順序」進入調整順序清單"
+      },
+      {
+        "type": "heading",
+        "text": "步驟 4：將 PikieWalker「向上移」至第 1 位（最高優先權）"
+      },
+      {
+        "type": "paragraph",
+        "text": "在「資料來源與優先順序」設定中：<br>1. 上方分類標籤確認為 <strong>「活動」</strong>（包含步數、距離與熱量）。<br>2. 在下方的「資料來源」清單中找到 <strong>PikieWalker</strong>。<br>3. 點擊 PikieWalker 右側的 <strong>三個小點選單（⋮）</strong>，點選 <strong>「向上移」</strong>。<br>4. 連續點選向上移，直到 <strong>PikieWalker 排在清單的最頂部（第 1 位）</strong>，順位高於你的手機型號與其他計步 App。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/pikiewalker/step4-set-pikiewalker-priority-top.png",
+        "caption": "步驟 4：點選選單將 PikieWalker 向上移至第 1 名，確保步數享有最高採納優先權"
+      },
+      {
+        "type": "heading",
+        "text": "同場加映：確認雙向讀寫權限"
+      },
+      {
+        "type": "paragraph",
+        "text": "除了設定優先權之外，請務必順手確認 Health Connect 的雙向授權開關皆已開啟："
       },
       {
         "type": "steps",
         "items": [
-          "進入 Android 手機「設定」→ 點選「安全性與隱私」或直接搜尋「Health Connect」。",
-          "點選「應用程式權限 (App permissions)」。",
-          "在列表中找到「PikieWalker」，確認「步數 (Steps)」的寫入開關已開啟。",
-          "返回列表找到目標遊戲（如 Pikmin Bloom、Google Fit 等），確認其「步數 (Steps)」的讀取開關亦已開啟。"
+          "在 Health Connect 中點選「應用程式權限」。",
+          "找到「PikieWalker」，確認【步數 (Steps)】寫入權限已開啟。",
+          "找到你的目標遊戲（如 Pikmin Bloom、Google Fit 等），確認其「步數 (Steps)」的讀取開關亦已開啟。"
         ]
+      },
+      {
+        "type": "callout",
+        "title": "🎉 設定完成！如何立即驗收？",
+        "text": "完成以上設定後，返回 PikieWalker 隨意設定模擬 100 步並點擊同步。<br>接著切換回 Pikmin Bloom 遊戲中，稍等 3~5 秒或隨意點擊一下畫面（例如進出花苗背包或散步清單），就能看到步數即時順利刷新、花苗順利長大囉！"
       }
     ]
   },
