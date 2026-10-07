@@ -31,18 +31,18 @@
         },
         {
           "id": "spot-02",
-          "name": "津嶋神社",
-          "city": "Nagai",
-          "location": "長井市 日本山形縣",
-          "lat": 38.138826,
-          "lng": 140.017912,
+          "name": "雄壯美洲麋鹿雕像",
+          "city": "Eden, Utah",
+          "location": "🇺🇸美國 猶他州 埃登",
+          "lat": 41.278302,
+          "lng": -111.823068,
           "region": "global",
           "type": "mushroom",
           "typeName": "蘑菇戰鬥點",
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/雕像/spot-02.jpg",
-          "story": "白花、樹、神社"
+          "story": "原名「Studly Elk Statue」。矗立於猶他州雪白山丘上的壯麗麋鹿金屬雕像，雄偉的鹿角直指蔚藍晴空。"
         },
         {
           "id": "spot-03",
@@ -151,33 +151,33 @@
         },
         {
           "id": "spot-10",
-          "name": "大青田 妙見神社",
-          "city": "Kashiwa",
-          "location": "Kashiwa 大青田 妙見神社",
-          "lat": 35.915787,
-          "lng": 139.927702,
+          "name": "名偵探柯南青銅雕像",
+          "city": "Hokuei",
+          "location": "🇯🇵日本鳥取縣 北榮町",
+          "lat": 35.49283,
+          "lng": 133.75908,
           "region": "global",
           "type": "mushroom",
           "typeName": "蘑菇戰鬥點",
           "tag": "特色精選",
           "recommendedSpeed": "4.0 km/h",
           "image": "/images/postcards/雕像/spot-10.jpg",
-          "story": "位於 Kashiwa 的代表性打卡點，適合散步巡航探索。"
+          "story": "原名「名探偵コナン像」。位於青山剛昌故鄉柯南大道上的經典長椅雕像，全球柯南迷必訪的聖地！"
         },
         {
           "id": "spot-11",
-          "name": "円通寺",
-          "city": "Fujikawaguchiko",
-          "location": "Fujikawaguchiko 円通寺",
-          "lat": 35.502876,
-          "lng": 138.767754,
+          "name": "東京迪士尼 美女與野獸立體雕像",
+          "city": "Urayasu",
+          "location": "🇯🇵日本千葉縣 浦安市",
+          "lat": 35.630551,
+          "lng": 139.877739,
           "region": "global",
           "type": "flower",
           "typeName": "巨型大花點",
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/雕像/spot-11.jpg",
-          "story": "位於 Fujikawaguchiko 的代表性打卡點，適合散步巡航探索。"
+          "story": "原名「美女と野獣の像」。重現貝兒與野獸王子在華麗宮廷大廳中浪漫共舞的經典雕塑，細緻度令人驚嘆。"
         },
         {
           "id": "spot-12",
@@ -301,18 +301,18 @@
         },
         {
           "id": "spot-20",
-          "name": "醍醐寺 仁王門",
-          "city": "Kyoto",
-          "location": "Kyoto 醍醐寺 仁王門",
-          "lat": 34.951466,
-          "lng": 135.820197,
+          "name": "日本環球影城 經典旋轉地球儀",
+          "city": "Osaka",
+          "location": "🇯🇵日本大阪市 此花區",
+          "lat": 34.667975,
+          "lng": 135.435341,
           "region": "global",
           "type": "flower",
           "typeName": "巨型大花點",
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/雕像/spot-20.jpg",
-          "story": "位於 Kyoto 的代表性打卡點，適合散步巡航探索。"
+          "story": "原名「ユニバーサルスタジオジャパン前の地球のオブジェ」。大阪環球影城門口最具標誌性的巨大旋轉地球裝置藝術與水幕景觀！"
         }
       ],
       "status": "staging"
