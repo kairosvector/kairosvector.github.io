@@ -427,7 +427,13 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   </div>
 
   <!-- Postcard Lightbox Modal (景點相片放大預覽與微故事) -->
-  <div id="postcard-lightbox" class="postcard-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <div
+    id="postcard-lightbox"
+    class={`postcard-lightbox ${routeAlias === 'staging' || currentIssue.status === 'staging' ? 'is-staging-lightbox' : ''}`}
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
     <div class="lightbox-overlay" id="lightbox-backdrop"></div>
     <div class="lightbox-dialog">
       <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="關閉預覽">✕</button>
@@ -1835,6 +1841,18 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     min-height: 100% !important;
     object-fit: cover !important;
     display: block !important;
+  }
+
+  /* Staging 專屬：相片完整呈現不裁切模式（object-fit: contain，保留完整頭尾與左右） */
+  .postcard-lightbox.is-staging-lightbox .lightbox-media {
+    height: 280px !important;
+    min-height: 240px !important;
+    background: #000000 !important;
+  }
+
+  .postcard-lightbox.is-staging-lightbox .lightbox-media img {
+    object-fit: contain !important;
+    background: #000000 !important;
   }
 
   .lightbox-info {
