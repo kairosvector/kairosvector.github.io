@@ -438,6 +438,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     <div class="lightbox-dialog">
       <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="關閉預覽">✕</button>
       <div class="lightbox-media">
+        <div class="lightbox-ambient-bg" id="lightbox-ambient-bg"></div>
         <img id="lightbox-img" src="" alt="" />
       </div>
       <div class="lightbox-info">
@@ -678,6 +679,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   const lightboxBackdrop = document.getElementById('lightbox-backdrop');
   const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
   const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxAmbientBg = document.getElementById('lightbox-ambient-bg');
   const lightboxSeq = document.getElementById('lightbox-seq');
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxBadge = document.getElementById('lightbox-badge');
@@ -702,6 +704,9 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     if (lightboxImg) {
       lightboxImg.src = img;
       lightboxImg.alt = name;
+    }
+    if (lightboxAmbientBg && img) {
+      lightboxAmbientBg.style.backgroundImage = `url("${img}")`;
     }
     if (lightboxSeq) lightboxSeq.textContent = `#${seq}`;
     if (lightboxTitle) lightboxTitle.textContent = name;
@@ -1843,16 +1848,59 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     display: block !important;
   }
 
-  /* Staging 專屬：相片完整呈現不裁切模式（object-fit: contain，保留完整頭尾與左右） */
-  .postcard-lightbox.is-staging-lightbox .lightbox-media {
-    height: 280px !important;
-    min-height: 240px !important;
-    background: #000000 !important;
+  /* Ambient Background layer (預設隱藏，維持 Product 原樣) */
+  .lightbox-ambient-bg {
+    display: none;
   }
 
+  /* Staging 專屬：方案一「動態環境光暈 / 毛玻璃相片背景 (Ambient Glow Backdrop)」 */
+  .postcard-lightbox.is-staging-lightbox .lightbox-media {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #040813 !important;
+    height: 290px !important;
+    min-height: 250px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .postcard-lightbox.is-staging-lightbox .lightbox-ambient-bg {
+    display: block !important;
+    position: absolute !important;
+    inset: -30px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    filter: blur(28px) brightness(0.65) saturate(1.45) !important;
+    -webkit-filter: blur(28px) brightness(0.65) saturate(1.45) !important;
+    transform: scale(1.25) !important;
+    -webkit-transform: scale(1.25) !important;
+    opacity: 0.88 !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+  /* 柔和深色漸層覆蓋層，讓光暈底部自然融入彈窗卡片 */
+  .postcard-lightbox.is-staging-lightbox .lightbox-media::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(10, 15, 29, 0.45) 100%) !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+  /* 前景原圖：100% 完整呈現、不裁切、帶立體陰影懸浮於光暈之上 */
   .postcard-lightbox.is-staging-lightbox .lightbox-media img {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: contain !important;
-    background: #000000 !important;
+    background: transparent !important;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.75)) !important;
+    -webkit-filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.75)) !important;
   }
 
   .lightbox-info {
