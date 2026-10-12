@@ -429,7 +429,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   <!-- Postcard Lightbox Modal (景點相片放大預覽與微故事) -->
   <div
     id="postcard-lightbox"
-    class={`postcard-lightbox ${routeAlias === 'staging' || currentIssue.status === 'staging' ? 'is-staging-lightbox' : ''}`}
+    class="postcard-lightbox"
     role="dialog"
     aria-modal="true"
     aria-hidden="true"
@@ -1827,45 +1827,21 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     background: rgba(239, 68, 68, 0.85) !important;
   }
 
+  /* 動態環境光暈 / 毛玻璃相片背景 (Ambient Glow Backdrop) 全站通用 */
   .lightbox-media {
-    width: 100% !important;
-    height: 250px !important;
-    min-height: 220px !important;
-    background: #000000 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-    position: relative !important;
-    flex-shrink: 0 !important;
-  }
-
-  .lightbox-media img {
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    object-fit: cover !important;
-    display: block !important;
-  }
-
-  /* Ambient Background layer (預設隱藏，維持 Product 原樣) */
-  .lightbox-ambient-bg {
-    display: none;
-  }
-
-  /* Staging 專屬：方案一「動態環境光暈 / 毛玻璃相片背景 (Ambient Glow Backdrop)」 */
-  .postcard-lightbox.is-staging-lightbox .lightbox-media {
     position: relative !important;
     overflow: hidden !important;
     background: #040813 !important;
+    width: 100% !important;
     height: 290px !important;
     min-height: 250px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-shrink: 0 !important;
   }
 
-  .postcard-lightbox.is-staging-lightbox .lightbox-ambient-bg {
+  .lightbox-ambient-bg {
     display: block !important;
     position: absolute !important;
     inset: -30px !important;
@@ -1882,7 +1858,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /* 柔和深色漸層覆蓋層，讓光暈底部自然融入彈窗卡片 */
-  .postcard-lightbox.is-staging-lightbox .lightbox-media::after {
+  .lightbox-media::after {
     content: '' !important;
     position: absolute !important;
     inset: 0 !important;
@@ -1892,7 +1868,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
   }
 
   /* 前景原圖：100% 完整呈現、不裁切、帶立體陰影懸浮於光暈之上 */
-  .postcard-lightbox.is-staging-lightbox .lightbox-media img {
+  .lightbox-media img {
     position: relative !important;
     z-index: 2 !important;
     width: 100% !important;
@@ -1901,6 +1877,7 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     background: transparent !important;
     filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.75)) !important;
     -webkit-filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.75)) !important;
+    display: block !important;
   }
 
   .lightbox-info {
