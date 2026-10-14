@@ -1,5 +1,83 @@
 [
   {
+    "id": "geosim-google-maps-mushroom-guide",
+    "productId": "geosim",
+    "productName": "GeoSim",
+    "title": "【進階實戰】透過 Google 地圖秒抓香菇 GPS 點位，一鍵分享至 GeoSim 精準打菇！",
+    "slug": "geosim-google-maps-mushroom-guide",
+    "category": "實戰技巧",
+    "readTime": "3 分鐘閱讀",
+    "updatedAt": "2026-10-14",
+    "summary": "教你利用皮克敏「前往這裡」功能搭配 Google 地圖分享，10 秒內將遠處香菇的真實 GPS 點位無縫傳給 GeoSim，直達目標開打！",
+    "content": [
+      {
+        "type": "heading",
+        "text": "遠處香菇看得到打不到？免打字、免複製的「地圖直達神技」"
+      },
+      {
+        "type": "paragraph",
+        "text": "在跨國打菇或探索新區域時，最常遇到的痛點就是：地圖上明明看得到遠方有顆大香菇，但不在圓圈範圍內，地名又是外文難以拼寫。這時千萬不要辛苦手動找路！只要善用遊戲內建的「前往這裡」結合系統原生分享功能，就能精確取得 Google 地圖的官方真實 GPS 座標，直接餵給 GeoSim 一秒降落！"
+      },
+      {
+        "type": "heading",
+        "text": "第一步：點開香菇，按右下角「前往這裡」"
+      },
+      {
+        "type": "paragraph",
+        "text": "在遊戲中點開你想打的那顆遠處香菇，查看畫面右下角，點擊「📍 前往這裡」按鈕。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/mushroom-detail-nav.jpg",
+        "caption": "點擊香菇畫面右下角的「📍 前往這裡」"
+      },
+      {
+        "type": "heading",
+        "text": "第二步：點選「在地圖應用程式開啟」"
+      },
+      {
+        "type": "paragraph",
+        "text": "點擊後底部會彈出選單，直接選擇「在地圖應用程式開啟」，手機系統會自動啟動 Google 地圖。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/mushroom-open-maps-menu.jpg",
+        "caption": "在選單中點選「在地圖應用程式開啟」"
+      },
+      {
+        "type": "heading",
+        "text": "第三步：在 Google 地圖中點擊「分享」"
+      },
+      {
+        "type": "paragraph",
+        "text": "Google 地圖開啟後，會精準釘選出這顆香菇在現實世界的官方 GPS 點位。點擊地標卡片上的「分享」按鈕。"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/google-maps-location-view.jpg",
+        "caption": "在 Google 地圖中點擊「分享」"
+      },
+      {
+        "type": "heading",
+        "text": "第四步：分享清單直接點「GeoSim」秒飛！"
+      },
+      {
+        "type": "paragraph",
+        "text": "在彈出的分享應用程式清單中，直接點選「GeoSim」。系統會自動跳轉喚醒 GeoSim，且香菇的經緯度座標已自動帶入、地圖已鎖定目標！只要點擊「換點」（或移動過去），再切回遊戲，你的人就已經完美站在香菇正下方了！"
+      },
+      {
+        "type": "image",
+        "src": "/images/tips/share-to-geosim-sheet.jpg",
+        "caption": "分享選單直接選擇「GeoSim」，無縫帶入座標！"
+      },
+      {
+        "type": "callout",
+        "title": "老玩家安全出發守則",
+        "text": "• 跨國移動前請遵守冷卻時間（CD 規則）：出發前 2 小時內不要在遊戲中有任何採花、打菇、拔苗操作。\n• 抵達香菇點後可順手點擊 GeoSim 的「加入書籤」，將該香菇點存入書籤清單，下次一秒切換！"
+      }
+    ]
+  },
+  {
     "id": "geosim-setup-beginner-guide",
     "productId": "geosim",
     "productName": "GeoSim",
