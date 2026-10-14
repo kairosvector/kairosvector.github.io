@@ -19,6 +19,15 @@
         "text": "在跨國打菇或探索新區域時，最常遇到的痛點就是：地圖上明明看得到遠方有顆大香菇，但不在圓圈範圍內，地名又是外文難以拼寫。這時千萬不要辛苦手動找路！只要善用遊戲內建的「前往這裡」結合系統原生分享功能，就能精確取得 Google 地圖的官方真實 GPS 座標，直接餵給 GeoSim 一秒降落！"
       },
       {
+        "type": "steps",
+        "items": [
+          "在皮克敏點開遠處香菇，點擊右下角「📍 前往這裡」",
+          "彈出選單選擇「在地圖應用程式開啟」，自動喚起 Google 地圖",
+          "在 Google 地圖點選「分享」按鈕，呼叫系統分享清單",
+          "在分享清單中點選「GeoSim」，精準座標秒帶入，一鍵換點直達目標！"
+        ]
+      },
+      {
         "type": "heading",
         "text": "第一步：點開香菇，按右下角「前往這裡」"
       },
@@ -29,7 +38,7 @@
       {
         "type": "image",
         "src": "/images/tips/mushroom-detail-nav.jpg",
-        "caption": "點擊香菇畫面右下角的「📍 前往這裡」"
+        "caption": "第一步：點擊香菇畫面右下角的「📍 前往這裡」"
       },
       {
         "type": "heading",
@@ -42,7 +51,7 @@
       {
         "type": "image",
         "src": "/images/tips/mushroom-open-maps-menu.jpg",
-        "caption": "在選單中點選「在地圖應用程式開啟」"
+        "caption": "第二步：在選單中點選「在地圖應用程式開啟」"
       },
       {
         "type": "heading",
@@ -55,7 +64,7 @@
       {
         "type": "image",
         "src": "/images/tips/google-maps-location-view.jpg",
-        "caption": "在 Google 地圖中點擊「分享」"
+        "caption": "第三步：在 Google 地圖中點擊「分享」"
       },
       {
         "type": "heading",
@@ -68,12 +77,47 @@
       {
         "type": "image",
         "src": "/images/tips/share-to-geosim-sheet.jpg",
-        "caption": "分享選單直接選擇「GeoSim」，無縫帶入座標！"
+        "caption": "第四步：分享選單直接選擇「GeoSim」，無縫帶入座標！"
+      },
+      {
+        "type": "heading",
+        "text": "效率大比拼：手動輸入 vs Google 地圖直飛"
+      },
+      {
+        "type": "table",
+        "headers": ["比較項目", "傳統手動尋找 / 複製", "Google 地圖分享直達神技"],
+        "highlightCol": 2,
+        "rows": [
+          ["操作步驟", "截圖 → 辨識地名 → 切地圖搜尋 → 複製座標 → 貼入工具", "點擊「前往這裡」→ 分享 → 選 GeoSim（4 次點擊搞定）"],
+          ["耗費時間", "約 2 ~ 5 分鐘", "只需 10 秒鐘"],
+          ["外語地標支援", "日文/法文/俄文地名極難拼寫容易查無結果", "官方點位直接轉譯，100% 精準無誤"],
+          ["座標誤差", "常定在馬路對面或大樓外，無法進圈", "官方真實 POI 座標，正中香菇中心圈"]
+        ]
       },
       {
         "type": "callout",
-        "title": "老玩家安全出發守則",
-        "text": "• 跨國移動前請遵守冷卻時間（CD 規則）：出發前 2 小時內不要在遊戲中有任何採花、打菇、拔苗操作。\n• 抵達香菇點後可順手點擊 GeoSim 的「加入書籤」，將該香菇點存入書籤清單，下次一秒切換！"
+        "title": "🛡️ 帳號安全與冷卻時間（CD 法則）",
+        "text": "• <strong>同城短距離（< 5 公里）</strong>：飛抵後建議在原地稍候 1~2 分鐘再進入香菇戰鬥。<br>• <strong>跨國長距離（如台灣飛往歐美日韓）</strong>：務必遵守 <strong>2 小時冷卻時間</strong>。在出發前 2 小時不要在舊地點進行任何採集、打菇或種花；抵達新地點後也不要立刻動作，待冷卻結束再派遣皮克敏，確保帳號長久安全！"
+      },
+      {
+        "type": "heading",
+        "text": "常見問題與實用小技巧 (FAQ)"
+      },
+      {
+        "type": "paragraph",
+        "text": "<strong>Q：為什麼 Google 地圖分享能自動把座標傳給 GeoSim？</strong><br>因為 GeoSim 支援 Android 原生 Intent 分享機制。當 Google 地圖產出 maps.app.goo.gl 地理短連結時，GeoSim 能在背景自動解析出真實緯度與經度，省去所有繁瑣的手動複製貼上！"
+      },
+      {
+        "type": "paragraph",
+        "text": "<strong>Q：這個香菇點下週還想打，怎麼辦？</strong><br>飛抵目標後，在 GeoSim 介面點擊「⭐ 加入書籤」，為它取個好記的名稱（例如：台科大門口萬聖節蘑菇），以後只要打開書籤就能一秒瞬移過去！"
+      },
+      {
+        "type": "promo",
+        "icon": "🌸",
+        "title": "搭配每週精選世界巡航特輯",
+        "desc": "每週更新全球打卡明信片、熱門花菇集中區與精選路線，一鍵複製整組巡航座標！",
+        "href": "/geosim/weekly-featured/latest",
+        "btnText": "前往每週特輯 →"
       }
     ]
   },
