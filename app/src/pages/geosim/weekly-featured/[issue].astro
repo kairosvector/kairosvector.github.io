@@ -1143,6 +1143,8 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     border-radius: var(--radius-full);
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .type-badge--mushroom {
@@ -1937,6 +1939,12 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     align-items: baseline;
     gap: 8px;
     min-width: 0;
+    flex: 1;
+  }
+
+  #lightbox-badge {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
   }
 
   .lightbox-seq {
