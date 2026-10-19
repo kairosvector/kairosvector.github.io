@@ -5,8 +5,10 @@ import products from '../../data/products.json';
 
 const product = products.find((p) => p.id === 'geosim')!;
 const { countries, cities, districts, spotCategories, spots } = locationsData;
-// 最新一期動態讀，不再手寫期數（手寫會跟資料脫鉤）。
-const latestIssue = locationsData.weeklyFeatured?.[0];
+// 最新一期動態讀，抓取當前正式線上期別（避免抓到 Staging 預覽版）
+const allIssues = locationsData.weeklyFeatured || [];
+const currentProductId = (locationsData as any).currentProductIssueId;
+const latestIssue = allIssues.find((x) => x.id === currentProductId) || allIssues[1] || allIssues[0];
 ---
 
 <BaseLayout

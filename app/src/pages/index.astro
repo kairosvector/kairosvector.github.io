@@ -3,7 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import products from '../data/products.json';
 import locationsData from '../data/locations.json';
 
-const latestWeekly = locationsData.weeklyFeatured[0];
+const allIssues = locationsData.weeklyFeatured || [];
+const currentProductId = (locationsData as any).currentProductIssueId;
+const latestWeekly = allIssues.find((x) => x.id === currentProductId) || allIssues[1] || allIssues[0];
 ---
 
 <BaseLayout
