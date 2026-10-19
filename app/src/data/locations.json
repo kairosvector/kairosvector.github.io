@@ -556,18 +556,18 @@
         },
         {
           "id": "spot-16",
-          "name": "富士山觀景點（大渕笹場）",
-          "city": "Fuji",
-          "location": "日本 靜岡",
-          "lat": 35.220333,
-          "lng": 138.698028,
+          "name": "大石公園 河口湖の像",
+          "city": "Fujikawaguchiko",
+          "location": "日本 山梨",
+          "lat": 35.523129,
+          "lng": 138.746044,
           "region": "global",
           "type": "flower",
           "typeName": "巨型大花點",
           "tag": "特色精選",
           "recommendedSpeed": "19.0 km/h（種花黃金時速）",
           "image": "/images/postcards/富士山/spot-16.jpg",
-          "story": "富士山🗻"
+          "story": "河口湖北岸大石公園內的經典石碑地標，傍晚時分晚霞映照富士山與湖畔花田，是極具代表性的明信片打卡勝地！"
         },
         {
           "id": "spot-17",
