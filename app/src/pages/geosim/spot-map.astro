@@ -280,7 +280,7 @@ const latestIssue = allIssues.find((x) => x.id === currentProductId) || allIssue
 
   <!-- Toast Notification for Copying -->
   <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
-    ✅ 座標已成功複製！可直接貼入 GeoSim 搜尋欄
+    📍 已複製，可貼入 GeoSim
   </div>
 </BaseLayout>
 
@@ -440,6 +440,7 @@ const latestIssue = allIssues.find((x) => x.id === currentProductId) || allIssue
   resetEmptyBtn?.addEventListener('click', resetAll);
 
   // Copy coordinate handler
+  let spotToastTimer = null;
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const coord = btn.getAttribute('data-coord');
@@ -449,9 +450,10 @@ const latestIssue = allIssues.find((x) => x.id === currentProductId) || allIssue
           const toast = document.getElementById('copy-toast');
           if (toast) {
             toast.classList.add('show');
-            setTimeout(() => {
+            if (spotToastTimer) clearTimeout(spotToastTimer);
+            spotToastTimer = setTimeout(() => {
               toast.classList.remove('show');
-            }, 2500);
+            }, 2000);
           }
         } catch (err) {
           console.error('Failed to copy: ', err);
@@ -1017,21 +1019,25 @@ const latestIssue = allIssues.find((x) => x.id === currentProductId) || allIssue
   /* Toast Notification */
   .copy-toast {
     position: fixed;
-    bottom: 80px;
+    bottom: 28px;
     left: 50%;
-    transform: translateX(-50%) translateY(30px);
+    transform: translateX(-50%) translateY(20px);
     background: var(--hz-card);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: var(--hz-ink);
     border: 1px solid var(--hz-rose);
-    padding: 10px 20px;
+    padding: 8px 18px;
     border-radius: var(--radius-full);
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     font-weight: 700;
     box-shadow: var(--hz-shadow);
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s var(--ease-out);
+    transition: all 0.25s var(--ease-out);
     z-index: 2000;
+    white-space: nowrap;
+    max-width: 90vw;
   }
 
   .copy-toast.show {
