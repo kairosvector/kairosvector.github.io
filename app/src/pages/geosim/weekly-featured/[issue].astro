@@ -728,12 +728,40 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     }
 
     lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Push history state so Android / Mobile back button closes lightbox instead of exiting page/webview
+    try {
+      if (window.location.hash !== '#postcard-detail') {
+        history.pushState({ lightboxOpen: true }, '', '#postcard-detail');
+      }
+    } catch (err) {
+      console.warn('History pushState failed:', err);
+    }
   }
 
-  function closeLightbox() {
+  // Pure DOM close without history manipulation
+  function closeLightboxDOM() {
     if (!lightbox) return;
     lightbox.classList.remove('active');
+    document.body.style.overflow = '';
   }
+
+  // User-initiated close (Clicking ✕ close btn, backdrop, or Escape key)
+  function closeLightbox() {
+    if (!lightbox) return;
+    closeLightboxDOM();
+    if (window.location.hash === '#postcard-detail' || (history.state && history.state.lightboxOpen)) {
+      history.back();
+    }
+  }
+
+  // Listen to popstate (fires when user taps Android Back button or browser Back)
+  window.addEventListener('popstate', (e) => {
+    if (lightbox && lightbox.classList.contains('active')) {
+      closeLightboxDOM();
+    }
+  });
 
   if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
   if (lightboxBackdrop) {
