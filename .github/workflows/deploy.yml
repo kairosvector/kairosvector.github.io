@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # 僅在備用站公開倉庫 (kairosvector.github.io) 執行建置與上傳，避免消耗個人私有帳號的 Actions 儲存空間 (500MB)
+    if: github.repository == 'kairosvector/kairosvector.github.io'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
