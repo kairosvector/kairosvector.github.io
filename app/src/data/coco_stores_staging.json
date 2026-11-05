@@ -435,10 +435,10 @@
     "shortName": "台北石牌商城",
     "address": "臺北市北投區裕民三路1號",
     "phone": "02 2823 0082",
-    "lat": 25.11619,
-    "lng": 121.51607,
-    "coordsText": "25.11619, 121.51607",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11619,121.51607",
+    "lat": 25.11618,
+    "lng": 121.51621,
+    "coordsText": "25.11618, 121.51621",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11618,121.51621",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
   },
   {
@@ -1315,8 +1315,8 @@
   {
     "id": "coco-101",
     "city": "新北市",
-    "name": "CoCo都可 南華店",
-    "shortName": "新北南華",
+    "name": "CoCo都可 中和永華店",
+    "shortName": "新北中和永華",
     "address": "新北市中和區南華路57號",
     "phone": "02 8245 2259",
     "lat": 24.9971,

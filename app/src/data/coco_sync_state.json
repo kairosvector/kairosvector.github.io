@@ -482,6 +482,26 @@
           "source": "使用者驗證新增門市（巨城雙門市核實：保留中央路207號新竹巨城店，新增中央路229號遠東巨城店）"
         }
       ]
+    },
+    {
+      "batch_id": 24,
+      "applied_at": "2026-11-06 07:10:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-34",
+          "name": "CoCo都可(石牌商城店)",
+          "coords": "25.11618, 121.51621",
+          "source": "使用者驗證微調精確座標（25.1161823, 121.5162096）"
+        },
+        {
+          "id": "coco-101",
+          "name": "CoCo都可 中和永華店",
+          "coords": "24.9971, 121.50421",
+          "source": "使用者驗證門市更名（原南華店更名為中和永華店，座標維持不動）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -515,6 +535,8 @@
     "coco-346",
     "coco-305",
     "coco-347",
-    "coco-348"
+    "coco-348",
+    "coco-34",
+    "coco-101"
   ]
 }
