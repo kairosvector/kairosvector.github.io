@@ -244,6 +244,20 @@
           "source": "使用者驗證新增"
         }
       ]
+    },
+    {
+      "batch_id": 10,
+      "applied_at": "2026-11-05 15:41:30 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-291",
+          "name": "CoCo都可(苗栗三義店)",
+          "coords": "24.41105, 120.76841",
+          "source": "表單提供點位"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
