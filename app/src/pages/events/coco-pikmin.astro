@@ -630,7 +630,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       const pillTodo = document.getElementById('pill-todo-count');
       const pillDone = document.getElementById('pill-done-count');
       if (pillTodo) pillTodo.textContent = `待造訪: ${totalTodo}`;
-      if (pillDone) pillDone.textContent = `冷卻中: ${totalVisited}`;
+      if (pillDone) pillDone.textContent = `${totalVisited}`;
     }
 
     // 2. Direct 1-Click Launch to GeoSim
@@ -1083,18 +1083,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     position: sticky;
     top: var(--nav-height, 64px);
     z-index: 40;
-    padding: 0.75rem 0;
-    background: rgba(10, 12, 20, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--color-border);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    padding: 0.5rem 0;
+    background: #0F172A !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   :global(html[data-theme="vibrant"]) .coco-controls-section {
-    background: rgba(255, 255, 255, 0.96) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    background: #FAF8F5 !important;
+    border-bottom: 1px solid #EBE7DF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
   :global(html[data-theme="vibrant"]) .coco-tab:not(.active) {
@@ -2290,6 +2288,74 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     .muse-btn {
       font-size: 0.9rem;
       padding: 0.45rem 0.65rem;
+    }
+  }
+
+
+  /* ==========================================================================
+     Full-Width Mobile Optimization (Expands edge-to-edge with 10px margin)
+     ========================================================================== */
+  @media (max-width: 640px) {
+    /* Remove heavy 24px container padding on mobile */
+    .coco-page .container {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .coco-controls-section .container {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+    }
+
+    .coco-list-section {
+      padding: 0.75rem 0 2rem 0 !important;
+    }
+
+    .city-section {
+      margin-bottom: 1.5rem !important;
+    }
+
+    .stores-grid {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      gap: 10px !important;
+    }
+
+    .muse-card {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 1rem 0.95rem !important;
+      box-sizing: border-box !important;
+      border-radius: 14px !important;
+    }
+
+    .muse-card__actions {
+      margin-left: 34px !important;
+    }
+
+    .muse-btn-row {
+      display: flex !important;
+      gap: 8px !important;
+      width: 100% !important;
+    }
+
+    .muse-btn {
+      flex: 1 !important;
+      padding: 0.55rem 0.5rem !important;
+      font-size: 0.95rem !important;
+      text-align: center !important;
+    }
+
+    .muse-btn--geosim {
+      flex: 1.25 !important;
+    }
+
+    .muse-btn[href*="google.com/maps"] {
+      flex: 0.75 !important;
     }
   }
 
