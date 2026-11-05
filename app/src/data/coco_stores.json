@@ -4444,5 +4444,18 @@
     "coordsText": "25.03459, 121.56601",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03459,121.56601",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
+  },
+  {
+    "id": "coco-345",
+    "city": "台中市",
+    "name": "CoCo都可 台中火車站店",
+    "shortName": "台中火車站",
+    "address": "台中市中區台灣大道一段1號1樓 (台中火車站/鐵鹿大街)",
+    "phone": "04 2220 0272",
+    "lat": 24.13701,
+    "lng": 120.68713,
+    "coordsText": "24.13701, 120.68713",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13701,120.68713",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]
