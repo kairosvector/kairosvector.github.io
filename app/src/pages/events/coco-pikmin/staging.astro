@@ -1,0 +1,2754 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import stores from '../../../data/coco_stores.json';
+
+const title = 'Pikmin Bloom × CoCo 都可全台門市 GPS 座標地圖與打卡清單 (331店完整版) | GeoSim';
+const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。全台 331 間 CoCo 門市經緯度 GPS 座標完整清單，涵蓋雙北、基隆、桃竹苗、中南部、金門等 15 縣市。支援手機一鍵直接啟動 GeoSim、直開遊戲帶座標、縣市快速切換、7 天領取冷卻打卡追蹤。';
+
+// Geographic ordering of Taiwan counties and cities
+const CITY_ORDER = [
+  '基隆市',
+  '台北市',
+  '新北市',
+  '桃園市',
+  '新竹市',
+  '新竹縣',
+  '苗栗縣',
+  '台中市',
+  '彰化縣',
+  '南投縣',
+  '雲林縣',
+  '台南市',
+  '高雄市',
+  '宜蘭縣',
+  '金門縣'
+];
+
+// Extract available cities dynamically, ordered geographically
+const availableCities = Array.from(new Set(stores.map((s) => s.city))).sort((a, b) => {
+  const ia = CITY_ORDER.indexOf(a);
+  const ib = CITY_ORDER.indexOf(b);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+});
+
+const cities = [
+  { id: 'all', name: '全區', count: stores.length },
+  ...availableCities.map((c) => ({
+    id: c,
+    name: c,
+    count: stores.filter((s) => s.city === c).length
+  }))
+];
+
+const cityGroups = availableCities.map((cityName) => {
+  const cityStores = stores.filter((s) => s.city === cityName);
+  return {
+    cityName,
+    stores: cityStores,
+    routeText: cityStores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n')
+  };
+});
+
+const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n');
+const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
+---
+
+<BaseLayout
+  title={`[Staging 測試版] ` + title}
+  description={description}
+  ogTitle="Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單"
+  ogDescription="全台 CoCo 門市經緯度整理。支援手機一鍵直開 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
+>
+  <main class="coco-page">
+    <!-- Staging Environment Indicator Banner -->
+    <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
+      [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
+    </div>
+    <!-- In-App Browser (LINE / FB) Guidance Bar -->
+    <div id="inapp-browser-bar" class="inapp-browser-bar" style="display: none;">
+      <div class="container inapp-browser-bar__inner">
+        <div class="inapp-browser-bar__text">
+          <strong>提示：</strong>您正在使用 LINE 內建瀏覽器，部分直開與打卡紀錄將受限。請點右下角「…」選擇<strong>「在 Safari / 瀏覽器中開啟」</strong>以獲得最佳體驗！
+        </div>
+        <button id="btn-close-inapp-bar" class="inapp-browser-bar__close" aria-label="關閉提示">✕</button>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-container" aria-label="路徑導覽">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="/">首頁</a></li>
+          <li><a href="/geosim">GeoSim</a></li>
+          <li aria-current="page">CoCo 都可活動專區</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="coco-hero">
+      <div class="container">
+        <div class="coco-hero__badge-wrap">
+          <span class="coco-hero__tag">限時合作活動</span>
+          <span class="coco-hero__date">2026/11/5 ～ 11/22</span>
+        </div>
+        <h1 class="coco-hero__title">
+          Pikmin Bloom × CoCo 都可門市<br />
+          <span class="text-gradient">全台 331 店 GPS 座標與 7 天打卡清單</span>
+        </h1>
+        <p class="coco-hero__subtitle">
+          全台 15 縣市 331 間 CoCo 都可門市特殊地點完整開放。收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
+        </p>
+
+        <!-- Rule Highlights -->
+        <div class="rule-grid">
+          <div class="rule-card">
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="rule-card__content">
+              <strong>每 7 天領取 1 次</strong>
+              <p>每個特殊地點的金色花苗與明信片，7 天內限領一次，網頁提供打卡倒數計時。</p>
+            </div>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <div class="rule-card__content">
+              <strong>走 2,000 步挑戰</strong>
+              <p>向下滑動特殊地點觸發任務，完成獲得「紅色照片鈕扣徽章」飾品皮克敏金色花苗。</p>
+            </div>
+          </div>
+
+          <div class="rule-card">
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+            </div>
+            <div class="rule-card__content">
+              <strong>手機直開 GeoSim</strong>
+              <p>點擊按鈕直接開啟 GeoSim 定位，若尚未安裝將自動導向 Google Play 商店。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Quick Actions -->
+        <div class="coco-hero__actions">
+          <button
+            id="btn-copy-all-route"
+            class="btn btn--primary btn--lg"
+            data-route={allRouteText}
+            data-name="全台 331 間 CoCo 門市"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            一鍵複製全台 331 店巡航路徑
+          </button>
+          <a href="#geosim-intro" class="btn btn--outline btn--lg">
+            了解 GeoSim 搭配玩法
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Controls Bar (County & Status Multi-Dimension Filtering) -->
+    <section class="coco-controls-section">
+      <div class="container">
+        <!-- Top Status Bar: 已領取計數 + 搜尋與巡航工具按鈕 -->
+        <div class="muse-top-bar">
+          <div class="muse-top-bar__counter">
+            <span class="muse-counter-label">已領取</span>
+            <span class="muse-counter-done" id="pill-done-count">0</span>
+            <span class="muse-counter-sep">/</span>
+            <span class="muse-counter-total" id="pill-total-count">{stores.length}</span>
+          </div>
+
+          <!-- Tools Toggle Button -->
+          <button id="btn-toggle-tools" class="tools-toggle-btn" aria-expanded="false" aria-controls="muse-tools-panel">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>搜尋與巡航工具</span>
+            <svg class="tools-toggle-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Tier 1: 依縣市過濾 (15 縣市快速切換水平膠囊列) -->
+        <div class="tier-city-bar" role="tablist" aria-label="縣市篩選">
+          {cities.map((c) => (
+            <button
+              class={`city-pill ${c.id === 'all' ? 'active' : ''}`}
+              data-city={c.id}
+              role="tab"
+              aria-selected={c.id === 'all' ? 'true' : 'false'}
+            >
+              {c.name} <span class="pill-count">{c.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Tier 2: 依狀態過濾 (全部 / 尚未前往 / 7天冷卻中 / 冷卻完畢可再次領取) -->
+        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
+          <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
+          <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
+          <button class="status-pill" data-status="cooling">冷卻中 (<span id="count-cooling">0</span>)</button>
+          <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
+        </div>
+
+        <!-- Expandable Tools & Search Panel -->
+        <div id="muse-tools-panel" class="muse-tools-panel" style="display: none;">
+          <div class="tools-inner-box">
+            <div class="search-box">
+              <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                id="store-search-input"
+                class="search-input"
+                placeholder="搜尋門市名稱（例如：板橋、三民、新豐...）"
+                aria-label="搜尋門市名稱"
+              />
+              <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
+            </div>
+            <div class="tools-action-row">
+              <button
+                class="btn btn--outline btn--sm btn-copy-all-route"
+                data-route={allRouteText}
+                data-name="全台 331 間 CoCo 門市"
+              >
+                複製全台 331 店巡航路徑
+              </button>
+              <span id="stat-summary-text">顯示 {stores.length} 家門市</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Lists by City -->
+    <section class="coco-list-section">
+      <div class="container">
+        {cityGroups.map((group) => (
+          <div class="city-section" data-city-section={group.cityName}>
+            <div class="city-section__header">
+              <div class="city-section__title-wrap">
+                <h2 class="city-section__title">{group.cityName}</h2>
+                <span class="badge badge--geosim">{group.stores.length} 間門市</span>
+              </div>
+              <button
+                class="btn btn--outline btn--sm btn-copy-region-route"
+                data-route={group.routeText}
+                data-city={group.cityName}
+                data-count={group.stores.length}
+                title="複製該縣市所有門市座標，可直接貼入 GeoSim 巡航佇列"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                複製【{group.cityName}】巡航路徑
+              </button>
+            </div>
+
+            <div class="stores-grid">
+              {group.stores.map((store) => (
+                <article
+                  class="store-card muse-card"
+                  data-store-id={store.id}
+                  data-city={store.city}
+                  data-name={store.name}
+                  data-short={store.shortName}
+                  data-lat={store.lat}
+                  data-lng={store.lng}
+                  data-coords={store.coordsText}
+                >
+                  <!-- Line 1: Big Rounded Checkbox & Bold 22px Store Name -->
+                  <div class="muse-card__head">
+                    <label class="muse-checkbox" title="勾選代表已刷花苗，開始計算 7 天冷卻">
+                      <input
+                        type="checkbox"
+                        class="check-toggle__input"
+                        data-store-id={store.id}
+                        aria-label={`標記 ${store.shortName} 已領取花苗`}
+                      />
+                      <span class="muse-checkbox__box"></span>
+                    </label>
+                    <h3 class="muse-card__title">{store.shortName}</h3>
+                  </div>
+
+                  <!-- Line 2: GPS Coordinates (Large, clear, aligned under store title) -->
+                  <div class="muse-card__coords">
+                    {store.coordsText}
+                  </div>
+
+                  <!-- 7-Day Cooldown Notice (Appears when visited) -->
+                  <div class="cooldown-banner muse-cooldown-badge" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="cooldown-banner__text">7 天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
+                  </div>
+
+                  <!-- Line 3 & 4: Action Buttons (Warm beige & soft peach colors matching screenshot) -->
+                  <div class="muse-card__actions">
+                    <!-- Button Row 1: 複製座標 & 直開遊戲 -->
+                    <div class="muse-btn-row">
+                      <button
+                        class="muse-btn muse-btn--neutral btn-copy-coord"
+                        data-coords={store.coordsText}
+                        data-name={store.shortName}
+                        title="複製經緯度座標"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span>複製座標</span>
+                      </button>
+
+                      <button
+                        class="muse-btn muse-btn--pikmin btn-launch-pikmin"
+                        data-lat={store.lat}
+                        data-lng={store.lng}
+                        data-name={store.shortName}
+                        title="直開 Pikmin Bloom 帶座標大區域地圖"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <span>直開遊戲</span>
+                      </button>
+                    </div>
+
+                    <!-- Button Row 2: 分享到 GeoSim & 地圖 -->
+                    <div class="muse-btn-row">
+                      <button
+                        class="muse-btn muse-btn--geosim btn-launch-geosim"
+                        data-lat={store.lat}
+                        data-lng={store.lng}
+                        data-name={store.name}
+                        data-coords={store.coordsText}
+                        title="分享座標並開啟 GeoSim（未安裝將自動導向商店）"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="18" cy="5" r="3"></circle>
+                          <circle cx="6" cy="12" r="3"></circle>
+                          <circle cx="18" cy="19" r="3"></circle>
+                          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <span>分享到 GeoSim</span>
+                      </button>
+
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="muse-btn muse-btn--neutral btn-gmap"
+                        title="在 Google Maps 查看位置"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>地圖</span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- No Results Fallback -->
+        <div id="no-results-box" class="no-results" style="display: none;">
+          <div class="no-results__icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <h3>找不到符合條件的 CoCo 門市</h3>
+          <p>請嘗試放寬搜尋關鍵字或重設篩選條件。</p>
+          <button id="btn-reset-filters" class="btn btn--outline">重設篩選條件</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GeoSim Introduction Section (Product Spotlight) -->
+    <section id="geosim-intro" class="geosim-intro-section">
+      <div class="container">
+        <div class="geosim-intro-card">
+          <div class="geosim-intro-header">
+            <div class="geosim-intro-logo">
+              <img
+                src="/images/geosim-icon.png"
+                alt="GeoSim App Icon"
+                width="72"
+                height="72"
+                class="geosim-app-img"
+              />
+            </div>
+            <div class="geosim-intro-heading">
+              <span class="badge badge--geosim">推薦搭配工具</span>
+              <h2 class="geosim-intro-title">GeoSim — 自由定位，探索無界限</h2>
+              <p class="geosim-intro-tagline">
+                專為 Android 打造的 GPS 位置模擬與路線規劃測試工具。適合遊戲玩家探索地圖、收集飾品皮克敏，以及開發者測試位置服務。
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Columns for Pikmin Players -->
+          <div class="geosim-features-grid">
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">懸浮虛擬搖桿</h3>
+              <p class="feature-item__desc">
+                遊戲上方懸浮覆蓋控制面板，支援隨意拖曳與 360 度方向控制，自訂行走速度（1~24 km/h），在家也能自然散步。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">依線巡航與自動折返</h3>
+              <p class="feature-item__desc">
+                貼入多間門市座標即可自動連成路徑，支援平滑速度前進與自動循環，輕鬆達成「走 2,000 步」地點挑戰。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">區內漫步隨機遊走</h3>
+              <p class="feature-item__desc">
+                在地圖選定 3 個以上頂點繪製多邊形區域，自動在範圍內隨機自然漫步，模擬最真實的戶外散步走動軌跡。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">自訂書籤與純點庫</h3>
+              <p class="feature-item__desc">
+                支援建立景點資料夾、標籤分類與匯入匯出備份。官方更提供全台純點座標庫與每週主題巡航專欄。
+              </p>
+            </div>
+          </div>
+
+          <!-- Download Action Bar -->
+          <div class="geosim-intro-actions">
+            <a
+              href={playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--primary btn--lg btn-playstore"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              前往 Google Play 免費下載 GeoSim
+            </a>
+            <a href="/geosim" class="btn btn--outline btn--lg">
+              閱讀 GeoSim 完整功能介紹
+            </a>
+            <a href="/geosim/spot-map" class="btn btn--ghost btn--lg">
+              探索全球純點座標庫
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use" class="how-to-use-section">
+      <div class="container">
+        <div class="how-to-use-card">
+          <h2 class="how-to-use__title">如何在手機上搭配 GeoSim 使用</h2>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-card__number">1</div>
+              <h3 class="step-card__title">直開 GeoSim（自動導向商店）</h3>
+              <p>
+                在手機瀏覽器點擊門市卡片上的 <strong>「直開 GeoSim」</strong> 按鈕，系統將直接啟動 App 並定位在該門市。若尚未安裝，將自動前往 Google Play 商店下載。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">2</div>
+              <h3 class="step-card__title">複製座標貼上</h3>
+              <p>
+                點擊卡片上的 <strong>「複製座標」</strong>，經緯度直接複製進剪貼簿。切換到 GeoSim 主畫面或懸浮控制器的搜尋欄即可貼上前往。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">3</div>
+              <h3 class="step-card__title">整區巡航自動走 2,000 步</h3>
+              <p>
+                點擊各區頂部的 <strong>「複製巡航路徑」</strong>，可一次取得該縣市所有門市路徑。貼入 GeoSim 的「依線巡航」，自動掛機散步 2,000 步並依序抵達門市領花苗。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">4</div>
+              <h3 class="step-card__title">7 天打卡記錄</h3>
+              <p>
+                每刷完一間門市，勾選 <strong>「標記已領取」</strong>，手機會自動記錄日期並鎖定 7 天倒數，下次可刷日期一清二楚。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Copy Toast (Clean, no emoji) -->
+    <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
+      已複製座標，可貼入 GeoSim
+    </div>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    // 0. LINE / In-App Browser Breakout & Detection
+    (function handleInAppBrowser() {
+      const ua = navigator.userAgent || '';
+      const isLine = /Line\//i.test(ua);
+      const isFB = /FBAN|FBAV|Instagram/i.test(ua);
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+      if (isLine || isFB) {
+        if (isAndroid) {
+          if (!window.location.search.includes('intent_redirected=1')) {
+            const intentUri = 'intent://' + window.location.host + window.location.pathname + '#Intent;scheme=https;package=com.android.chrome;end;';
+            window.location.href = intentUri;
+          }
+        } else if (isIOS) {
+          const bar = document.getElementById('inapp-browser-bar');
+          if (bar) bar.style.display = 'block';
+        }
+      }
+
+      const closeBar = document.getElementById('btn-close-inapp-bar');
+      if (closeBar) {
+        closeBar.addEventListener('click', () => {
+          const bar = document.getElementById('inapp-browser-bar');
+          if (bar) bar.style.display = 'none';
+        });
+      }
+    })();
+
+    // 1. Constants & State
+    const STORAGE_KEY_PREFIX = 'coco_store_visited_';
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
+
+    let currentCity = 'all';
+    let currentStatus = 'all';
+    let currentSearch = '';
+
+    const toast = document.getElementById('copy-toast');
+    let toastTimer = null;
+
+    function showToast(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    // 2. Visited Status Handling (7-day cooldown in localStorage)
+    function getVisitedTime(storeId) {
+      try {
+        const val = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
+        return val ? parseInt(val, 10) : 0;
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function setVisited(storeId, isVisited) {
+      try {
+        if (isVisited) {
+          localStorage.setItem(STORAGE_KEY_PREFIX + storeId, Date.now().toString());
+        } else {
+          localStorage.removeItem(STORAGE_KEY_PREFIX + storeId);
+        }
+      } catch (e) {}
+      updateAllStoreStates();
+      filterStores();
+    }
+
+    function formatDate(ms) {
+      const d = new Date(ms);
+      return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    }
+
+    function updateAllStoreStates() {
+      const now = Date.now();
+      let countTodo = 0;
+      let countCooling = 0;
+      let countReady = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const storeId = card.getAttribute('data-store-id');
+        const visitedTime = getVisitedTime(storeId);
+        const checkbox = card.querySelector('.check-toggle__input');
+        const banner = card.querySelector('.cooldown-banner');
+        const dateSpan = card.querySelector('.next-available-date');
+
+        if (!visitedTime) {
+          // 尚未前往
+          card.classList.remove('is-visited', 'is-cooling', 'is-ready');
+          card.setAttribute('data-status-state', 'todo');
+          if (checkbox) checkbox.checked = false;
+          if (banner) banner.style.display = 'none';
+          countTodo++;
+        } else if (now - visitedTime < SEVEN_DAYS_MS) {
+          // 7 天冷卻中
+          card.classList.add('is-visited', 'is-cooling');
+          card.classList.remove('is-ready');
+          card.setAttribute('data-status-state', 'cooling');
+          if (checkbox) checkbox.checked = true;
+          if (banner) {
+            banner.style.display = 'flex';
+            banner.className = 'cooldown-banner muse-cooldown-badge is-cooling-badge';
+            const nextDate = visitedTime + SEVEN_DAYS_MS;
+            if (dateSpan) dateSpan.textContent = formatDate(nextDate);
+          }
+          countCooling++;
+        } else {
+          // 冷卻完畢（滿 7 天，可再次前往領花苗）
+          card.classList.add('is-visited', 'is-ready');
+          card.classList.remove('is-cooling');
+          card.setAttribute('data-status-state', 'ready');
+          if (checkbox) checkbox.checked = false;
+          if (banner) {
+            banner.style.display = 'flex';
+            banner.className = 'cooldown-banner muse-cooldown-badge is-ready-badge';
+            if (dateSpan) dateSpan.textContent = '滿 7 天可再次領取！';
+          }
+          countReady++;
+        }
+      });
+
+      // Update Top Status Counter
+      const pillDone = document.getElementById('pill-done-count');
+      if (pillDone) pillDone.textContent = `${countCooling}`;
+
+      // Update Status Pills Counters
+      const elTodo = document.getElementById('count-todo');
+      const elCooling = document.getElementById('count-cooling');
+      const elReady = document.getElementById('count-ready');
+      if (elTodo) elTodo.textContent = `${countTodo}`;
+      if (elCooling) elCooling.textContent = `${countCooling}`;
+      if (elReady) elReady.textContent = `${countReady}`;
+    }
+
+    // 3. Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
+    function openInPikmin(lat, lng) {
+      const LAT = Number(lat).toFixed(7);
+      const LNG = Number(lng).toFixed(7);
+      const ua = navigator.userAgent || '';
+      if (/Android/i.test(ua)) {
+        const fb = 'https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin';
+        location.href = 'intent:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG
+          + '#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=' + fb + ';end';
+        return;
+      }
+      location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
+    }
+
+    // 4. Direct 1-Click Launch to GeoSim
+    async function launchGeoSim(lat, lng, storeName, coordsText) {
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
+        showToast(`已帶入 GeoSim: ${storeName}`);
+        return;
+      }
+      showToast(`正在開啟 GeoSim...`);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const encodedName = encodeURIComponent(storeName);
+      const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
+
+      if (isAndroid) {
+        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
+        let appOpened = false;
+        const fallbackTimer = setTimeout(() => {
+          if (!appOpened && !document.hidden) {
+            window.location.href = PLAY_STORE_URL;
+          }
+        }, 1800);
+
+        const onVisibilityChange = () => {
+          if (document.hidden) {
+            appOpened = true;
+            clearTimeout(fallbackTimer);
+          }
+        };
+        window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+        window.addEventListener('pagehide', onVisibilityChange, { once: true });
+        window.location.href = intentUri;
+      } else {
+        window.location.href = PLAY_STORE_URL;
+      }
+    }
+
+    // 5. Copy Text Helper
+    async function copyToClipboard(text, msg) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast(msg || '已複製至剪貼簿');
+    }
+
+    // 6. Multi-Dimensional Filtering Logic
+    function filterStores() {
+      const q = currentSearch.trim().toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const city = card.getAttribute('data-city');
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const shortName = (card.getAttribute('data-short') || '').toLowerCase();
+        const coords = card.getAttribute('data-coords') || '';
+        const state = card.getAttribute('data-status-state') || 'todo';
+
+        // 1. City match
+        const cityMatch = (currentCity === 'all' || city === currentCity);
+
+        // 2. Status match (all / todo / cooling / ready)
+        let statusMatch = true;
+        if (currentStatus !== 'all') {
+          statusMatch = (state === currentStatus);
+        }
+
+        // 3. Keyword search match
+        let searchMatch = true;
+        if (q) {
+          searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q);
+        }
+
+        if (cityMatch && statusMatch && searchMatch) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/Hide City Sections based on visible cards
+      document.querySelectorAll('.city-section').forEach((sec) => {
+        const secCity = sec.getAttribute('data-city-section');
+        const anyVisible = sec.querySelectorAll('.store-card:not([style*="display: none"])').length > 0;
+        if (currentCity !== 'all' && secCity !== currentCity) {
+          sec.style.display = 'none';
+        } else {
+          sec.style.display = anyVisible ? '' : 'none';
+        }
+      });
+
+      const statText = document.getElementById('stat-summary-text');
+      if (statText) statText.textContent = `顯示 ${visibleCount} 家門市`;
+
+      const noResults = document.getElementById('no-results-box');
+      if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // 7. Event Listeners Setup
+    function setupEventListeners() {
+      updateAllStoreStates();
+
+      // Checkbox click: Toggle 7-Day Cooldown
+      document.querySelectorAll('.check-toggle__input').forEach((cb) => {
+        cb.addEventListener('change', (e) => {
+          const storeId = e.target.getAttribute('data-store-id');
+          setVisited(storeId, e.target.checked);
+        });
+      });
+
+      // Button: Direct Launch Pikmin Bloom
+      document.querySelectorAll('.btn-launch-pikmin').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lat = parseFloat(btn.getAttribute('data-lat'));
+          const lng = parseFloat(btn.getAttribute('data-lng'));
+          const name = btn.getAttribute('data-name') || '';
+          if (!isNaN(lat) && !isNaN(lng)) {
+            showToast(`正在開啟遊戲 (${name})...`);
+            openInPikmin(lat, lng);
+          }
+        });
+      });
+
+      // Button: Direct Launch GeoSim
+      document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lat = btn.getAttribute('data-lat');
+          const lng = btn.getAttribute('data-lng');
+          const name = btn.getAttribute('data-name');
+          const coords = btn.getAttribute('data-coords');
+          launchGeoSim(lat, lng, name, coords);
+        });
+      });
+
+      // Button: Copy Single Coordinate
+      document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const coords = btn.getAttribute('data-coords');
+          const name = btn.getAttribute('data-name');
+          copyToClipboard(coords, `已複製 ${name} 座標`);
+        });
+      });
+
+      // Button: Copy Region Route
+      document.querySelectorAll('.btn-copy-region-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route');
+          const city = btn.getAttribute('data-city');
+          copyToClipboard(route, `已複製【${city}】巡航路徑，可貼入 GeoSim`);
+        });
+      });
+
+      // Button: Copy All 331 Route in Hero & Tools Panel
+      document.querySelectorAll('#btn-copy-all-route, .btn-copy-all-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route');
+          copyToClipboard(route, `已複製全台 331 店巡航路徑，可貼入 GeoSim`);
+        });
+      });
+
+      // Tier 1: City Pills Filter
+      document.querySelectorAll('.city-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.city-pill').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          currentCity = btn.getAttribute('data-city');
+          filterStores();
+        });
+      });
+
+      // Tier 2: Status Pills Filter
+      document.querySelectorAll('.status-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentStatus = btn.getAttribute('data-status');
+          filterStores();
+        });
+      });
+
+      // Toggle Tools & Search Panel
+      const btnToggle = document.getElementById('btn-toggle-tools');
+      const toolsPanel = document.getElementById('muse-tools-panel');
+      if (btnToggle && toolsPanel) {
+        btnToggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isOpen = toolsPanel.style.display !== 'none';
+          toolsPanel.style.display = isOpen ? 'none' : 'block';
+          btnToggle.classList.toggle('active', !isOpen);
+          btnToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+      }
+
+      // Keyword Search Input
+      const searchInput = document.getElementById('store-search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value;
+          if (clearBtn) clearBtn.style.display = currentSearch ? 'block' : 'none';
+          filterStores();
+        });
+      }
+      if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentSearch = '';
+          clearBtn.style.display = 'none';
+          filterStores();
+        });
+      }
+
+      // Reset Filters Fallback Button
+      const resetBtn = document.getElementById('btn-reset-filters');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          currentCity = 'all';
+          currentStatus = 'all';
+          currentSearch = '';
+          if (searchInput) searchInput.value = '';
+          if (clearBtn) clearBtn.style.display = 'none';
+          document.querySelectorAll('.city-pill').forEach(b => b.classList.remove('active'));
+          document.querySelector('.city-pill[data-city="all"]')?.classList.add('active');
+          document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
+          document.querySelector('.status-pill[data-status="all"]')?.classList.add('active');
+          filterStores();
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEventListeners);
+    } else {
+      setupEventListeners();
+    }
+  })();
+</script>
+
+<style>
+  .coco-page {
+    padding-bottom: 5rem;
+  }
+
+  .breadcrumb-container {
+    padding: 1rem 0;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-primary);
+  }
+
+  /* Hero Header */
+  .coco-hero {
+    padding: 2.5rem 0 2rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% 20%, rgba(255, 112, 67, 0.12), transparent 70%);
+  }
+
+  .coco-hero__badge-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(255, 112, 67, 0.1);
+    border: 1px solid rgba(255, 112, 67, 0.25);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .coco-hero__tag {
+    font-weight: 700;
+    color: #ff7043;
+  }
+
+  .coco-hero__date {
+    color: var(--color-text-secondary);
+  }
+
+  .coco-hero__title {
+    font-size: 2.25rem;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #ff7043 0%, #ffb74d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .coco-hero__subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  /* Rule Grid */
+  .rule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto 2rem;
+    text-align: left;
+  }
+
+  .rule-card {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .rule-card__icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 112, 67, 0.12);
+    color: #ff7043;
+    flex-shrink: 0;
+  }
+
+  .rule-card__content strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .rule-card__content p {
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .coco-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  /* Sticky Controls - perfectly aligned below navbar in both dark & vibrant light modes */
+  .coco-controls-section {
+    position: sticky;
+    top: var(--nav-height, 64px);
+    z-index: 40;
+    padding: 0.5rem 0;
+    background: #0F172A !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-controls-section {
+    background: #FAF8F5 !important;
+    border-bottom: 1px solid #EBE7DF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active) {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #4B5563;
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active):hover {
+    border-color: #ff7043;
+    color: #ff7043;
+    background: #FFF7ED;
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active) .coco-tab__count {
+    background: #F3F4F6;
+    color: #6B7280;
+  }
+
+  :global(html[data-theme="vibrant"]) .search-input {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #111827;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filters {
+    background: #F3F4F6;
+    border-color: #E5E7EB;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filter-btn {
+    color: #6B7280;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filter-btn.active {
+    background: #FFFFFF;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  :global(html[data-theme="vibrant"]) .stat-pill--todo {
+    background: rgba(33, 150, 243, 0.1);
+    color: #1d4ed8;
+  }
+
+  :global(html[data-theme="vibrant"]) .stat-pill--done {
+    background: rgba(76, 175, 80, 0.12);
+    color: #15803d;
+  }
+
+  .coco-controls-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .coco-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .coco-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .coco-tab:hover {
+    border-color: #ff7043;
+    color: var(--color-text-primary);
+  }
+
+  .coco-tab.active {
+    background: #ff7043;
+    border-color: #ff7043;
+    color: #fff;
+  }
+
+  .coco-tab__count {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .coco-tab:not(.active) .coco-tab__count {
+    background: var(--color-surface-hover);
+    color: var(--color-text-secondary);
+  }
+
+  .coco-filter-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 2.2rem 0.5rem 2.2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .search-input:focus {
+    border-color: #ff7043;
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .status-filters {
+    display: flex;
+    gap: 0.35rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.2rem;
+  }
+
+  .status-filter-btn {
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .status-filter-btn.active {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+  }
+
+  .coco-stat-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+  }
+
+  .stat-pills {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .stat-pill {
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .stat-pill--todo {
+    background: rgba(33, 150, 243, 0.12);
+    color: #2196f3;
+  }
+
+  .stat-pill--done {
+    background: rgba(76, 175, 80, 0.12);
+    color: #4caf50;
+  }
+
+  /* List Section */
+  .coco-list-section {
+    padding: 2rem 0;
+  }
+
+  .city-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .city-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .city-section__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .city-section__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .badge--geosim {
+    background: rgba(255, 112, 67, 0.12);
+    color: #ff7043;
+    border: 1px solid rgba(255, 112, 67, 0.25);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  /* In-App Browser Guidance Bar */
+  .inapp-browser-bar {
+    background: #fff3cd;
+    border-bottom: 1px solid #ffeeba;
+    color: #856404;
+    padding: 0.65rem 0;
+    font-size: 0.875rem;
+    position: sticky;
+    top: var(--nav-height, 64px);
+    z-index: 50;
+  }
+
+  .inapp-browser-bar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .inapp-browser-bar__close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #856404;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* Compact High-Density Stores Grid */
+  .stores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 0.65rem;
+  }
+
+  .store-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    gap: 0.6rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .store-card {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  }
+
+  .store-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 112, 67, 0.4);
+  }
+
+  .store-card.is-visited {
+    border-color: rgba(76, 175, 80, 0.35);
+    background: linear-gradient(to bottom, rgba(76, 175, 80, 0.04), var(--color-surface));
+  }
+
+  /* Row 1: Title & Checklist */
+  .store-card__row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .store-card__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .store-badge {
+    background: #ff7043;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .store-card__name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.01em;
+  }
+
+  :global(html[data-theme="vibrant"]) .store-card__name {
+    color: #111827;
+  }
+
+  .store-card__city-tag {
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Checklist Toggle (Comfortable 14px font, easy tap) */
+  .check-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+
+  .check-toggle__input {
+    display: none;
+  }
+
+  .check-toggle__box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .check-toggle__box {
+    border-color: #D1D5DB;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box {
+    background: #16a34a;
+    border-color: #16a34a;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box::after {
+    content: '✓';
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .check-toggle__input:checked ~ .check-toggle__label {
+    color: #16a34a;
+    font-weight: 700;
+  }
+
+  /* Cooldown Banner */
+  .cooldown-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.25);
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    color: #16a34a;
+  }
+
+  .cooldown-banner__text strong {
+    color: #16a34a;
+  }
+
+  /* Row 2: GPS Coordinate & Action Buttons */
+  .store-card__row-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .coords-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.9rem;
+  }
+
+  .coords-prefix {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  .coords-code {
+    background: var(--color-surface-hover);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .coords-code {
+    background: #F3F4F6;
+    color: #1F2937;
+  }
+
+  /* Action Buttons Group */
+  .store-card__btn-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+  }
+
+  .btn-act {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.45rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    border: none;
+    line-height: 1.2;
+  }
+
+  /* Launch GeoSim Button (Prominent Orange) */
+  .btn-act--launch {
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(255, 112, 67, 0.25);
+  }
+
+  .btn-act--launch:hover {
+    box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* Launch Pikmin Bloom Button (Fresh Pikmin Garden Green) */
+  .btn-act--pikmin {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+  }
+
+  .btn-act--pikmin:hover {
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-act--pikmin {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Outline Buttons (Copy & Map) */
+  .btn-act--copy,
+  .btn-act--map {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+  }
+
+  .btn-act--copy:hover,
+  .btn-act--map:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-act--copy,
+  :global(html[data-theme="vibrant"]) .btn-act--map {
+    background: #FFFFFF;
+    border-color: #D1D5DB;
+    color: #374151;
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-act--copy:hover,
+  :global(html[data-theme="vibrant"]) .btn-act--map:hover {
+    background: #F3F4F6;
+    color: #111827;
+    border-color: #9CA3AF;
+  }
+
+  @media (max-width: 640px) {
+    .stores-grid {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+
+    .store-card {
+      padding: 0.75rem 0.85rem;
+      gap: 0.5rem;
+    }
+
+    .store-card__row-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.45rem;
+    }
+
+    .coords-display {
+      justify-content: space-between;
+    }
+
+    .store-card__btn-group {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .btn-act--launch {
+      flex: 1.25;
+      padding: 0.5rem 0.35rem;
+      font-size: 0.825rem;
+    }
+
+    .btn-act--pikmin {
+      flex: 1.15;
+      padding: 0.5rem 0.35rem;
+      font-size: 0.825rem;
+    }
+
+    .btn-act--copy,
+    .btn-act--map {
+      flex: 0.8;
+      padding: 0.5rem 0.3rem;
+      font-size: 0.825rem;
+    }
+  }
+
+  /* No Results */
+  .no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border);
+    border-radius: 12px;
+  }
+
+  .no-results__icon {
+    margin-bottom: 0.75rem;
+    opacity: 0.4;
+  }
+
+  /* GeoSim Introduction Section */
+  .geosim-intro-section {
+    padding: 2.5rem 0;
+  }
+
+  .geosim-intro-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 112, 67, 0.3);
+    border-radius: 16px;
+    padding: 2.25rem;
+    background: linear-gradient(135deg, rgba(255, 112, 67, 0.05) 0%, rgba(2, 132, 199, 0.03) 100%);
+  }
+
+  .geosim-intro-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .geosim-app-img {
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .geosim-intro-heading {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .geosim-intro-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0.35rem 0 0.5rem;
+  }
+
+  .geosim-intro-tagline {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .geosim-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .feature-item__icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(2, 132, 199, 0.12);
+    color: var(--color-geosim);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-item__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .feature-item__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .geosim-intro-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-playstore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: none;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  }
+
+  .btn-playstore:hover {
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
+  }
+
+  /* How to use section */
+  .how-to-use-section {
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .how-to-use-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .how-to-use__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    position: relative;
+    padding: 1.25rem;
+    background: var(--color-surface-hover);
+    border-radius: 12px;
+  }
+
+  .step-card__number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(255, 112, 67, 0.35);
+  }
+
+  .step-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .step-card p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Floating Toast */
+  .copy-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(18, 18, 20, 0.94);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 112, 67, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    z-index: 9999;
+    white-space: nowrap;
+  }
+
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .coco-hero__title {
+      font-size: 1.65rem;
+    }
+
+    .stores-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .city-section__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .city-section__header .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .geosim-intro-header {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .geosim-intro-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .geosim-intro-actions .btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  /* ==========================================================================
+     Muse-Style High Legibility Mobile Card Layout
+     (Matches reference: 22px bold title, 16.5px coords, warm palette)
+     ========================================================================== */
+
+  /* Page background warm tint */
+  :global(html[data-theme="vibrant"]) .coco-page {
+    background-color: #FAF8F5 !important;
+  }
+
+  /* Sticky Top Status Bar */
+  .muse-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .muse-top-bar__counter {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-top-bar__counter {
+    color: #1C1917;
+  }
+
+  .muse-counter-label {
+    font-weight: 700;
+  }
+
+  .muse-counter-done {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #E05326;
+  }
+
+  .muse-counter-sep,
+  .muse-counter-total {
+    color: var(--color-text-secondary);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-counter-total {
+    color: #44403C;
+  }
+
+  /* 搜尋／工具 Toggle Button */
+  .muse-tools-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.925rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-tools-toggle {
+    background: #FFFFFF;
+    border-color: #D6D3CD;
+    color: #292524;
+  }
+
+  .muse-tools-toggle:hover,
+  .muse-tools-toggle.active {
+    background: var(--color-surface-hover);
+    border-color: #E05326;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-tools-toggle.active {
+    background: #FDF4F0;
+    color: #E05326;
+    border-color: #E05326;
+  }
+
+  .muse-tools-toggle__arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .muse-tools-toggle.active .muse-tools-toggle__arrow {
+    transform: rotate(180deg);
+  }
+
+  .muse-tools-panel {
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.2s ease;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Muse Cards Grid */
+  .stores-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .stores-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .stores-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+    }
+  }
+
+  /* Muse Store Card */
+  .muse-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1rem 1.15rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card {
+    background: #FFFFFF !important;
+    border-color: #EAE6DF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .muse-card.is-visited {
+    opacity: 0.88;
+    background: rgba(16, 185, 129, 0.04);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card.is-visited {
+    background: #F4FBF7 !important;
+    border-color: #D1E7DD !important;
+  }
+
+  /* Card Head: Big Checkbox + Store Title */
+  .muse-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Custom Large Checkbox (24px x 24px) */
+  .muse-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .muse-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .muse-checkbox__box {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #78716C;
+    border-radius: 6px;
+    background: transparent;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-checkbox__box {
+    border-color: #78716C;
+    background: #FFFFFF;
+  }
+
+  .muse-checkbox input:checked + .muse-checkbox__box {
+    background: #16A34A;
+    border-color: #16A34A;
+  }
+
+  .muse-checkbox input:checked + .muse-checkbox__box::after {
+    content: '';
+    width: 6px;
+    height: 11px;
+    border: solid #FFFFFF;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+  }
+
+  /* Store Title: Large, bold, punchy (22px) */
+  .muse-card__title {
+    font-size: 1.35rem; /* ~21.6px */
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card__title {
+    color: #1C1917;
+  }
+
+  /* Coordinates (indented 34px to align with text) */
+  .muse-card__coords {
+    margin-left: 34px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1.05rem; /* ~16.8px */
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card__coords {
+    color: #57534E;
+  }
+
+  /* Cooldown Badge */
+  .muse-cooldown-badge {
+    margin-left: 34px;
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #16a34a;
+    font-size: 0.85rem;
+  }
+
+  .muse-cooldown-badge strong {
+    color: #16a34a;
+  }
+
+  /* Actions Area (indented 34px) */
+  .muse-card__actions {
+    margin-left: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .muse-btn-row {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+  }
+
+  /* Action Buttons (15px bold, comfortable touch targets) */
+  .muse-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.95rem; /* ~15.2px */
+    font-weight: 600;
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1.25;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  /* Neutral Button (複製座標, 地圖) */
+  .muse-btn--neutral {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--neutral {
+    background: #F3EFE9 !important;
+    color: #292524 !important;
+  }
+
+  .muse-btn--neutral:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  /* GeoSim Button (溫潤淡橘底紅字 #fdeee7 / #c2410c) */
+  .muse-btn--geosim {
+    background: rgba(255, 112, 67, 0.15);
+    color: #ff7043;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--geosim {
+    background: #FDEEE7 !important;
+    color: #C2410C !important;
+  }
+
+  .muse-btn--geosim:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  /* Pikmin Game Button (清新淡綠底綠字 #e8f7ee / #15803d) */
+  .muse-btn--pikmin {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--pikmin {
+    background: #E8F7EE !important;
+    color: #15803D !important;
+  }
+
+  .muse-btn--pikmin:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 480px) {
+    .muse-card {
+      padding: 0.9rem 1rem;
+    }
+
+    .muse-card__title {
+      font-size: 1.25rem; /* 20px on small screens */
+    }
+
+    .muse-card__coords {
+      font-size: 1rem;
+    }
+
+    .muse-btn {
+      font-size: 0.9rem;
+      padding: 0.45rem 0.65rem;
+    }
+  }
+
+
+  /* ==========================================================================
+     Full-Width Mobile Optimization (Expands edge-to-edge with 10px margin)
+     ========================================================================== */
+  @media (max-width: 640px) {
+    /* Remove heavy 24px container padding on mobile */
+    .coco-page .container {
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .coco-controls-section .container {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+    }
+
+    .coco-list-section {
+      padding: 0.75rem 0 2rem 0 !important;
+    }
+
+    .city-section {
+      margin-bottom: 1.5rem !important;
+    }
+
+    .stores-grid {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      gap: 10px !important;
+    }
+
+    .muse-card {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 1rem 0.95rem !important;
+      box-sizing: border-box !important;
+      border-radius: 14px !important;
+    }
+
+    .muse-card__actions {
+      margin-left: 34px !important;
+    }
+
+    .muse-btn-row {
+      display: flex !important;
+      gap: 8px !important;
+      width: 100% !important;
+    }
+
+    .muse-btn {
+      flex: 1 !important;
+      padding: 0.55rem 0.5rem !important;
+      font-size: 0.95rem !important;
+      text-align: center !important;
+    }
+
+    .muse-btn--geosim {
+      flex: 1.25 !important;
+    }
+
+    .muse-btn[href*="google.com/maps"] {
+      flex: 0.75 !important;
+    }
+  }
+
+
+  /* ==========================================================================
+     3-Tier Multi-Dimensional Controls CSS
+     ========================================================================== */
+
+  .coco-controls-section {
+    position: sticky;
+    top: var(--nav-height, 64px);
+    z-index: 40;
+    padding: 0.65rem 0 0.5rem 0;
+    background: #0F172A !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-controls-section {
+    background: #FAF8F5 !important;
+    border-bottom: 1px solid #EBE7DF !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Tier 1: Day Selector + Counter */
+  .tier-date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .day-filter-group {
+    display: inline-flex;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 3px;
+    border-radius: 9999px;
+    gap: 3px;
+  }
+
+  :global(html[data-theme="vibrant"]) .day-filter-group {
+    background: #EFECE6;
+  }
+
+  .day-pill {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--color-text-secondary);
+    transition: all 0.15s ease;
+  }
+
+  .day-pill.active {
+    background: #E05326;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 6px rgba(224, 83, 38, 0.3);
+  }
+
+  .day-pill.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  /* Tier 2: City Pills (Horizontal Scroll on Mobile) */
+  .tier-city-bar {
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.45rem;
+  }
+
+  .tier-city-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .city-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="vibrant"]) .city-pill {
+    background: #FFFFFF;
+    border-color: #DCD8D0;
+    color: #44403C;
+  }
+
+  .city-pill:hover {
+    border-color: #E05326;
+  }
+
+  .city-pill.active {
+    background: #292524 !important;
+    color: #FFFFFF !important;
+    border-color: #292524 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(html[data-theme="vibrant"]) .city-pill.active {
+    background: #1C1917 !important;
+    color: #FFFFFF !important;
+    border-color: #1C1917 !important;
+  }
+
+  .city-pill .pill-count {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+  }
+
+  .city-pill.active .pill-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+  }
+
+  /* Tier 3: Status Pills (全部 / 尚未前往 / 冷卻中 / 冷卻完畢) */
+  .tier-status-bar {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.35rem;
+  }
+
+  .tier-status-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .status-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-pill {
+    background: #F3EFE9;
+    color: #57534E;
+  }
+
+  .status-pill.active {
+    background: #E05326 !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+  }
+
+  /* Cooldown Badge styles */
+  .is-cooling-badge {
+    background: rgba(234, 88, 12, 0.12) !important;
+    color: #EA580C !important;
+  }
+  .is-cooling-badge strong {
+    color: #EA580C !important;
+  }
+
+  .is-ready-badge {
+    background: rgba(22, 163, 74, 0.15) !important;
+    color: #16A34A !important;
+    font-weight: 700 !important;
+  }
+
+  /* Tools Toggle Row */
+  .tier-tools-toggle-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+  }
+
+  .tools-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  .tools-toggle-btn:hover {
+    color: #E05326;
+  }
+
+  .tools-toggle-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .tools-toggle-btn.active .tools-toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .tools-inner-box {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  :global(html[data-theme="vibrant"]) .tools-inner-box {
+    background: #FFFFFF;
+    border-color: #E5E2DC;
+  }
+
+
+  /* ==========================================================================
+     Bulletproof Mobile Width & Zero Horizontal Overflow Fix
+     Solves the "Right side big gap / not adapting" issue completely
+     ========================================================================== */
+
+  :global(html) {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  :global(body) {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+  }
+
+  .coco-page {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Force all containers in coco-page to be 100% width with symmetrical 10px margins */
+  .coco-page .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Prevent any button or hero action from overflowing viewport width */
+  .coco-hero,
+  .coco-hero .container,
+  .rule-grid,
+  .geosim-intro-section,
+  .how-to-use-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .btn {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (max-width: 640px) {
+    .btn {
+      white-space: normal !important;
+      word-break: break-word !important;
+    }
+    .coco-hero__actions .btn,
+    .geosim-intro-actions .btn {
+      width: 100% !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
+  }
+
+  /* Sticky Controls Container - perfectly width-constrained */
+  .coco-controls-section {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .tier-city-bar,
+  .tier-status-bar {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain !important;
+  }
+
+  /* Grid: 100% width, single column on mobile, cards expand to full available width */
+  .stores-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (min-width: 768px) {
+    .stores-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .stores-grid {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+
+  /* Muse Card: Edge-to-edge symmetrical card */
+  .muse-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 14px !important;
+  }
+
+  /* Muse Actions: Stretches all buttons to fill the entire card width */
+  .muse-card__actions {
+    margin-left: 34px !important;
+    width: calc(100% - 34px) !important;
+    max-width: calc(100% - 34px) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .muse-btn-row {
+    display: flex !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .muse-btn {
+    flex: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .muse-btn--geosim {
+    flex: 1.25 !important;
+  }
+
+  .muse-btn[href*="google.com/maps"] {
+    flex: 0.75 !important;
+  }
+
+</style>
