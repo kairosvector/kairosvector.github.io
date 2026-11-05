@@ -1,8 +1,8 @@
 {
-  "last_processed_timestamp": "2026-11-05T06:13:23.000Z",
-  "last_processed_local_time": "2026-11-05 14:07:18 (UTC+8)",
-  "last_processed_row_index": 39,
-  "total_records_at_last_sync": 40,
+  "last_processed_timestamp": "2026-11-05T06:29:39.000Z",
+  "last_processed_local_time": "2026-11-05 14:31:00 (UTC+8)",
+  "last_processed_row_index": 44,
+  "total_records_at_last_sync": 45,
   "batches": [
     {
       "batch_id": 1,
@@ -105,6 +105,21 @@
           "id": "coco-317",
           "name": "CoCo都可 南投服務區店",
           "coords": "23.90005, 120.71165",
+          "source": "表單提供點位"
+        }
+      ]
+    },
+    {
+      "batch_id": 3,
+      "applied_at": "2026-11-05 14:31:30 (UTC+8)",
+      "cutoff_timestamp": "2026-11-05T06:29:39.000Z",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-253",
+          "name": "CoCo都可 竹北光明店",
+          "coords": "24.82599, 121.00899",
           "source": "表單提供點位"
         }
       ]
