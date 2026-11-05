@@ -109,6 +109,41 @@ const latestWeekly = allIssues.find((x) => x.id === currentProductId) || allIssu
     </div>
   </section>
 
+  <!-- Pikmin Bloom × CoCo Event Banner -->
+  <section class="section coco-event-teaser" id="coco-event-section" style="padding-top: var(--space-4); padding-bottom: var(--space-4);">
+    <div class="container">
+      <div class="card coco-teaser-card" data-animate style="border: 1px solid rgba(255, 112, 67, 0.35); background: linear-gradient(135deg, rgba(255, 112, 67, 0.08) 0%, rgba(255, 183, 77, 0.04) 100%);">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: var(--space-6); flex-wrap: wrap;">
+          <div style="max-width: 680px;">
+            <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); flex-wrap: wrap;">
+              <span class="badge" style="background: #ff7043; color: #fff; font-weight: 800;">🔥 限時合作活動</span>
+              <span style="font-size: var(--text-xs); color: #ff7043; font-weight: 700;">2026/11/5 ～ 11/22</span>
+            </div>
+            <h2 style="font-size: clamp(var(--text-xl), 3vw, var(--text-2xl)); font-weight: 800; margin-bottom: var(--space-2); line-height: 1.3;">
+              <a href="/events/coco-pikmin" style="color: var(--color-text); text-decoration: none;">
+                Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單 🧋
+              </a>
+            </h2>
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+              全台 CoCo 門市特殊地點登場！收集金色花苗、挑戰 2,000 步任務獲得紅色照片鈕扣徽章。支援手機一鍵啟動 GeoSim 瞬移、整區巡航路徑與 7 天領取冷卻追蹤。
+            </p>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a href="/events/coco-pikmin" class="btn btn--primary btn--md" style="background: linear-gradient(135deg, #ff7043, #f4511e); border: none;">
+                探索第一批 48 家門市座標 ➔
+              </a>
+              <a href="/events/coco-pikmin#how-to-use" class="btn btn--outline btn--md">
+                📱 手機操作教學
+              </a>
+            </div>
+          </div>
+          <div style="font-size: 3.5rem; line-height: 1; padding: 1rem; opacity: 0.9;">
+            🧋✨
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Weekly Featured Spotlight (每周精選專欄最新主打) -->
   {latestWeekly && (
     <section class="section weekly-featured-teaser" id="weekly-featured-section" style="padding-top: var(--space-8); padding-bottom: var(--space-8);">

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "coco_001",
+    "name": "CoCo都可 基隆百福",
+    "shortName": "基隆百福",
+    "city": "基隆市",
+    "region": "百福",
+    "lat": 25.08172,
+    "lng": 121.69605,
+    "coordsText": "25.08172, 121.69605"
+  },
+  {
+    "id": "coco_002",
+    "name": "CoCo都可 基隆復興",
+    "shortName": "基隆復興",
+    "city": "基隆市",
+    "region": "復興",
+    "lat": 25.14503,
+    "lng": 121.72662,
+    "coordsText": "25.14503, 121.72662"
+  },
+  {
+    "id": "coco_003",
+    "name": "CoCo都可 基隆海洋",
+    "shortName": "基隆海洋",
+    "city": "基隆市",
+    "region": "海洋",
+    "lat": 25.1509,
+    "lng": 121.77191,
+    "coordsText": "25.15090, 121.77191"
+  },
+  {
+    "id": "coco_004",
+    "name": "CoCo都可 基隆中船",
+    "shortName": "基隆中船",
+    "city": "基隆市",
+    "region": "中船",
+    "lat": 25.13725,
+    "lng": 121.7509,
+    "coordsText": "25.13725, 121.75090"
+  },
+  {
+    "id": "coco_005",
+    "name": "CoCo都可 基隆海豐",
+    "shortName": "基隆海豐",
+    "city": "基隆市",
+    "region": "海豐",
+    "lat": 25.13591,
+    "lng": 121.78704,
+    "coordsText": "25.13591, 121.78704"
+  },
+  {
+    "id": "coco_006",
+    "name": "CoCo都可 基隆廟口",
+    "shortName": "基隆廟口",
+    "city": "基隆市",
+    "region": "廟口",
+    "lat": 25.12756,
+    "lng": 121.74226,
+    "coordsText": "25.12756, 121.74226"
+  },
+  {
+    "id": "coco_007",
+    "name": "CoCo都可 基隆成功",
+    "shortName": "基隆成功",
+    "city": "基隆市",
+    "region": "成功",
+    "lat": 25.12775,
+    "lng": 121.73697,
+    "coordsText": "25.12775, 121.73697"
+  },
+  {
+    "id": "coco_008",
+    "name": "CoCo都可 基隆武崙",
+    "shortName": "基隆武崙",
+    "city": "基隆市",
+    "region": "武崙",
+    "lat": 25.14026,
+    "lng": 121.70921,
+    "coordsText": "25.14026, 121.70921"
+  },
+  {
+    "id": "coco_009",
+    "name": "CoCo都可 基隆長庚",
+    "shortName": "基隆長庚",
+    "city": "基隆市",
+    "region": "長庚",
+    "lat": 25.12045,
+    "lng": 121.72311,
+    "coordsText": "25.12045, 121.72311"
+  },
+  {
+    "id": "coco_010",
+    "name": "CoCo都可 宜蘭五結",
+    "shortName": "宜蘭五結",
+    "city": "宜蘭縣",
+    "region": "五結",
+    "lat": 24.68484,
+    "lng": 121.79702,
+    "coordsText": "24.68484, 121.79702"
+  },
+  {
+    "id": "coco_011",
+    "name": "CoCo都可 宜蘭冬山義成",
+    "shortName": "宜蘭冬山義成",
+    "city": "宜蘭縣",
+    "region": "冬山義成",
+    "lat": 24.66721,
+    "lng": 121.76791,
+    "coordsText": "24.66721, 121.76791"
+  },
+  {
+    "id": "coco_012",
+    "name": "CoCo都可 宜蘭壯圍",
+    "shortName": "宜蘭壯圍",
+    "city": "宜蘭縣",
+    "region": "壯圍",
+    "lat": 24.74718,
+    "lng": 121.7842,
+    "coordsText": "24.74718, 121.78420"
+  },
+  {
+    "id": "coco_013",
+    "name": "CoCo都可 宜蘭",
+    "shortName": "宜蘭",
+    "city": "宜蘭縣",
+    "region": "宜蘭市區",
+    "lat": 24.7606,
+    "lng": 121.75319,
+    "coordsText": "24.76060, 121.75319"
+  },
+  {
+    "id": "coco_014",
+    "name": "CoCo都可 宜蘭礁溪",
+    "shortName": "宜蘭礁溪",
+    "city": "宜蘭縣",
+    "region": "礁溪",
+    "lat": 24.82641,
+    "lng": 121.77172,
+    "coordsText": "24.82641, 121.77172"
+  },
+  {
+    "id": "coco_015",
+    "name": "CoCo都可 宜蘭羅東",
+    "shortName": "宜蘭羅東",
+    "city": "宜蘭縣",
+    "region": "羅東",
+    "lat": 24.67764,
+    "lng": 121.76724,
+    "coordsText": "24.67764, 121.76724"
+  },
+  {
+    "id": "coco_016",
+    "name": "CoCo都可 宜蘭蘇澳",
+    "shortName": "宜蘭蘇澳",
+    "city": "宜蘭縣",
+    "region": "蘇澳",
+    "lat": 24.59615,
+    "lng": 121.85129,
+    "coordsText": "24.59615, 121.85129"
+  },
+  {
+    "id": "coco_017",
+    "name": "CoCo都可 宜蘭頭城",
+    "shortName": "宜蘭頭城",
+    "city": "宜蘭縣",
+    "region": "頭城",
+    "lat": 24.85752,
+    "lng": 121.82508,
+    "coordsText": "24.85752, 121.82508"
+  },
+  {
+    "id": "coco_018",
+    "name": "CoCo都可 台北大直",
+    "shortName": "台北大直",
+    "city": "台北市",
+    "region": "大直",
+    "lat": 25.08265,
+    "lng": 121.54628,
+    "coordsText": "25.08265, 121.54628"
+  },
+  {
+    "id": "coco_019",
+    "name": "CoCo都可 台北林森北",
+    "shortName": "台北林森北",
+    "city": "台北市",
+    "region": "林森北",
+    "lat": 25.06049,
+    "lng": 121.52545,
+    "coordsText": "25.06049, 121.52545"
+  },
+  {
+    "id": "coco_020",
+    "name": "CoCo都可 台北龍江2",
+    "shortName": "台北龍江2",
+    "city": "台北市",
+    "region": "龍江2",
+    "lat": 25.0658,
+    "lng": 121.54087,
+    "coordsText": "25.06580, 121.54087"
+  },
+  {
+    "id": "coco_021",
+    "name": "CoCo都可 台北吳興",
+    "shortName": "台北吳興",
+    "city": "台北市",
+    "region": "吳興",
+    "lat": 25.02763,
+    "lng": 121.56334,
+    "coordsText": "25.02763, 121.56334"
+  },
+  {
+    "id": "coco_022",
+    "name": "CoCo都可 台北松山壹號",
+    "shortName": "台北松山壹號",
+    "city": "台北市",
+    "region": "松山壹號",
+    "lat": 25.04921,
+    "lng": 121.57824,
+    "coordsText": "25.04921, 121.57824"
+  },
+  {
+    "id": "coco_023",
+    "name": "CoCo都可 台北信義永吉",
+    "shortName": "台北信義永吉",
+    "city": "台北市",
+    "region": "信義永吉",
+    "lat": 25.0443,
+    "lng": 121.56889,
+    "coordsText": "25.04430, 121.56889"
+  },
+  {
+    "id": "coco_024",
+    "name": "CoCo都可 台北內湖",
+    "shortName": "台北內湖",
+    "city": "台北市",
+    "region": "內湖",
+    "lat": 25.08352,
+    "lng": 121.567,
+    "coordsText": "25.08352, 121.56700"
+  },
+  {
+    "id": "coco_025",
+    "name": "CoCo都可 台北康寧",
+    "shortName": "台北康寧",
+    "city": "台北市",
+    "region": "康寧",
+    "lat": 25.0707,
+    "lng": 121.61169,
+    "coordsText": "25.07070, 121.61169"
+  },
+  {
+    "id": "coco_026",
+    "name": "CoCo都可 台北內湖成功",
+    "shortName": "台北內湖成功",
+    "city": "台北市",
+    "region": "內湖成功",
+    "lat": 25.0818,
+    "lng": 121.59222,
+    "coordsText": "25.08180, 121.59222"
+  },
+  {
+    "id": "coco_027",
+    "name": "CoCo都可 台北東湖二",
+    "shortName": "台北東湖二",
+    "city": "台北市",
+    "region": "東湖二",
+    "lat": 25.06894,
+    "lng": 121.61389,
+    "coordsText": "25.06894, 121.61389"
+  },
+  {
+    "id": "coco_028",
+    "name": "CoCo都可 台北民權",
+    "shortName": "台北民權",
+    "city": "台北市",
+    "region": "民權",
+    "lat": 25.06878,
+    "lng": 121.58591,
+    "coordsText": "25.06878, 121.58591"
+  },
+  {
+    "id": "coco_029",
+    "name": "CoCo都可 台北內湖金龍",
+    "shortName": "台北內湖金龍",
+    "city": "台北市",
+    "region": "內湖金龍",
+    "lat": 25.08474,
+    "lng": 121.59332,
+    "coordsText": "25.08474, 121.59332"
+  },
+  {
+    "id": "coco_030",
+    "name": "CoCo都可 台北北投中和",
+    "shortName": "台北北投中和",
+    "city": "台北市",
+    "region": "北投中和",
+    "lat": 25.14037,
+    "lng": 121.50048,
+    "coordsText": "25.14037, 121.50048"
+  },
+  {
+    "id": "coco_031",
+    "name": "CoCo都可 台北北投中央北",
+    "shortName": "台北北投中央北",
+    "city": "台北市",
+    "region": "北投中央北",
+    "lat": 25.1366,
+    "lng": 121.4957,
+    "coordsText": "25.13660, 121.49570"
+  },
+  {
+    "id": "coco_032",
+    "name": "CoCo都可 台北尊賢",
+    "shortName": "台北尊賢",
+    "city": "台北市",
+    "region": "尊賢",
+    "lat": 25.11816,
+    "lng": 121.50652,
+    "coordsText": "25.11816, 121.50652"
+  },
+  {
+    "id": "coco_033",
+    "name": "CoCo都可 台北關渡",
+    "shortName": "台北關渡",
+    "city": "台北市",
+    "region": "關渡",
+    "lat": 25.12207,
+    "lng": 121.46721,
+    "coordsText": "25.12207, 121.46721"
+  },
+  {
+    "id": "coco_034",
+    "name": "CoCo都可 台北石牌商城",
+    "shortName": "台北石牌商城",
+    "city": "台北市",
+    "region": "石牌商城",
+    "lat": 25.11619,
+    "lng": 121.51607,
+    "coordsText": "25.11619, 121.51607"
+  },
+  {
+    "id": "coco_035",
+    "name": "CoCo都可 台北南港同德",
+    "shortName": "台北南港同德",
+    "city": "台北市",
+    "region": "南港同德",
+    "lat": 25.04525,
+    "lng": 121.58395,
+    "coordsText": "25.04525, 121.58395"
+  },
+  {
+    "id": "coco_036",
+    "name": "CoCo都可 台北三井南港",
+    "shortName": "台北三井南港",
+    "city": "台北市",
+    "region": "三井南港",
+    "lat": 25.05934,
+    "lng": 121.61758,
+    "coordsText": "25.05934, 121.61758"
+  },
+  {
+    "id": "coco_037",
+    "name": "CoCo都可 台北興華",
+    "shortName": "台北興華",
+    "city": "台北市",
+    "region": "興華",
+    "lat": 25.05635,
+    "lng": 121.60582,
+    "coordsText": "25.05635, 121.60582"
+  },
+  {
+    "id": "coco_038",
+    "name": "CoCo都可 台北士林中正",
+    "shortName": "台北士林中正",
+    "city": "台北市",
+    "region": "士林中正",
+    "lat": 25.09461,
+    "lng": 121.52198,
+    "coordsText": "25.09461, 121.52198"
+  },
+  {
+    "id": "coco_039",
+    "name": "CoCo都可 台北大南",
+    "shortName": "台北大南",
+    "city": "台北市",
+    "region": "大南",
+    "lat": 25.08882,
+    "lng": 121.51839,
+    "coordsText": "25.08882, 121.51839"
+  },
+  {
+    "id": "coco_040",
+    "name": "CoCo都可 台北社子",
+    "shortName": "台北社子",
+    "city": "台北市",
+    "region": "社子",
+    "lat": 25.08862,
+    "lng": 121.50854,
+    "coordsText": "25.08862, 121.50854"
+  },
+  {
+    "id": "coco_041",
+    "name": "CoCo都可 台北新天母德行",
+    "shortName": "台北新天母德行",
+    "city": "台北市",
+    "region": "新天母德行",
+    "lat": 25.10797,
+    "lng": 121.52889,
+    "coordsText": "25.10797, 121.52889"
+  },
+  {
+    "id": "coco_042",
+    "name": "CoCo都可 台北華齡",
+    "shortName": "台北華齡",
+    "city": "台北市",
+    "region": "華齡",
+    "lat": 25.083,
+    "lng": 121.51955,
+    "coordsText": "25.08300, 121.51955"
+  },
+  {
+    "id": "coco_043",
+    "name": "CoCo都可 台北延平",
+    "shortName": "台北延平",
+    "city": "台北市",
+    "region": "延平",
+    "lat": 25.06457,
+    "lng": 121.511,
+    "coordsText": "25.06457, 121.51100"
+  },
+  {
+    "id": "coco_044",
+    "name": "CoCo都可 台北昌吉",
+    "shortName": "台北昌吉",
+    "city": "台北市",
+    "region": "昌吉",
+    "lat": 25.06601,
+    "lng": 121.51614,
+    "coordsText": "25.06601, 121.51614"
+  },
+  {
+    "id": "coco_045",
+    "name": "CoCo都可 台北民生",
+    "shortName": "台北民生",
+    "city": "台北市",
+    "region": "民生",
+    "lat": 25.05739,
+    "lng": 121.51741,
+    "coordsText": "25.05739, 121.51741"
+  },
+  {
+    "id": "coco_046",
+    "name": "CoCo都可 台北南京",
+    "shortName": "台北南京",
+    "city": "台北市",
+    "region": "南京",
+    "lat": 25.052,
+    "lng": 121.54583,
+    "coordsText": "25.05200, 121.54583"
+  },
+  {
+    "id": "coco_047",
+    "name": "CoCo都可 台北南京五",
+    "shortName": "台北南京五",
+    "city": "台北市",
+    "region": "南京五",
+    "lat": 25.05054,
+    "lng": 121.56087,
+    "coordsText": "25.05054, 121.56087"
+  },
+  {
+    "id": "coco_048",
+    "name": "CoCo都可 台北南四",
+    "shortName": "台北南四",
+    "city": "台北市",
+    "region": "南四",
+    "lat": 25.05231,
+    "lng": 121.555,
+    "coordsText": "25.05231, 121.55500"
+  }
+]

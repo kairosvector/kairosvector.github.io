@@ -1,0 +1,1348 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import stores from '../../data/coco_stores.json';
+
+const title = 'Pikmin Bloom × CoCo 都可門市 GPS 座標全地圖與打卡清單 | GeoSim';
+const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動！精選全台 CoCo 門市經緯度 GPS 座標清單。支援手機一鍵直接啟動 GeoSim、整區自動巡航路徑複製、7 天領取冷卻打卡追蹤。';
+
+// Group stores by city
+const cities = [
+  { id: 'all', name: '全部縣市', count: stores.length },
+  { id: '基隆市', name: '基隆市', count: stores.filter((s) => s.city === '基隆市').length },
+  { id: '宜蘭縣', name: '宜蘭縣', count: stores.filter((s) => s.city === '宜蘭縣').length },
+  { id: '台北市', name: '台北市', count: stores.filter((s) => s.city === '台北市').length }
+];
+
+const cityGroups = ['基隆市', '宜蘭縣', '台北市'].map((cityName) => ({
+  cityName,
+  stores: stores.filter((s) => s.city === cityName),
+  routeText: stores
+    .filter((s) => s.city === cityName)
+    .map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`)
+    .join('\n')
+}));
+
+const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogTitle="Pikmin Bloom × CoCo 都可門市 GPS 座標全地圖與打卡清單"
+  ogDescription="全台 CoCo 門市經緯度整理！支援手機一鍵啟動 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
+>
+  <main class="coco-page">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-container" aria-label="路徑導覽">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="/">首頁</a></li>
+          <li><a href="/geosim">GeoSim</a></li>
+          <li aria-current="page">CoCo 都可活動專區</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="coco-hero">
+      <div class="container">
+        <div class="coco-hero__badge-wrap">
+          <span class="coco-hero__tag">🔥 限時合作活動</span>
+          <span class="coco-hero__date">2026/11/5 ～ 11/22</span>
+        </div>
+        <h1 class="coco-hero__title">
+          Pikmin Bloom × CoCo 都可門市<br />
+          <span class="text-gradient">GPS 座標地圖與 7 天打卡清單</span>
+        </h1>
+        <p class="coco-hero__subtitle">
+          全台 CoCo 都可門市特殊地點開放！收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
+        </p>
+
+        <!-- Rule Highlights -->
+        <div class="rule-grid">
+          <div class="rule-card">
+            <span class="rule-card__icon">⭐</span>
+            <div class="rule-card__content">
+              <strong>每 7 天領取 1 次</strong>
+              <p>每個特殊地點的金色花苗與明信片，7 天內限領一次，網頁提供打卡倒數計時！</p>
+            </div>
+          </div>
+          <div class="rule-card">
+            <span class="rule-card__icon">👟</span>
+            <div class="rule-card__content">
+              <strong>走 2,000 步挑戰</strong>
+              <p>向下滑動特殊地點觸發任務，完成獲得「紅色照片鈕扣徽章」金色花苗。</p>
+            </div>
+          </div>
+          <div class="rule-card">
+            <span class="rule-card__icon">🚀</span>
+            <div class="rule-card__content">
+              <strong>直接啟動 GeoSim</strong>
+              <p>點擊按鈕直接透過 Android 系統分享瞬移，或一鍵複製整區巡航自動走！</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Quick Actions -->
+        <div class="coco-hero__actions">
+          <button
+            id="btn-copy-all-route"
+            class="btn btn--primary btn--lg"
+            data-route={allRouteText}
+            data-name="全台 48 間 CoCo 門市"
+          >
+            🚗 一鍵複製第一批全部 48 店巡航路徑
+          </button>
+          <a href="#how-to-use" class="btn btn--outline btn--lg">
+            📖 查看手機操作教學
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Filter & Search Bar -->
+    <section class="coco-controls-section">
+      <div class="container">
+        <div class="coco-controls-card">
+          <!-- City Tabs -->
+          <div class="coco-tabs" role="tablist" aria-label="縣市篩選">
+            {cities.map((c) => (
+              <button
+                class={`coco-tab ${c.id === 'all' ? 'active' : ''}`}
+                data-city={c.id}
+                role="tab"
+                aria-selected={c.id === 'all' ? 'true' : 'false'}
+              >
+                {c.name}
+                <span class="coco-tab__count">{c.count}</span>
+              </button>
+            ))}
+          </div>
+
+          <!-- Search & Status Filter Row -->
+          <div class="coco-filter-row">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                id="store-search-input"
+                class="search-input"
+                placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
+                aria-label="搜尋門市名稱"
+              />
+              <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="status-filters">
+              <button class="status-filter-btn active" data-status="all">全部</button>
+              <button class="status-filter-btn" data-status="todo">尚未前往</button>
+              <button class="status-filter-btn" data-status="visited">⏳ 冷卻中</button>
+            </div>
+          </div>
+
+          <!-- Result Counter & Quick Reset -->
+          <div class="coco-stat-bar">
+            <span id="stat-summary-text">顯示 48 家門市</span>
+            <div class="stat-pills">
+              <span class="stat-pill stat-pill--todo" id="pill-todo-count">待造訪: 48</span>
+              <span class="stat-pill stat-pill--done" id="pill-done-count">冷卻中: 0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Lists by City -->
+    <section class="coco-list-section">
+      <div class="container">
+        {cityGroups.map((group) => (
+          <div class="city-section" data-city-section={group.cityName}>
+            <div class="city-section__header">
+              <div class="city-section__title-wrap">
+                <h2 class="city-section__title">{group.cityName}</h2>
+                <span class="badge badge--geosim">{group.stores.length} 間門市</span>
+              </div>
+              <button
+                class="btn btn--outline btn--sm btn-copy-region-route"
+                data-route={group.routeText}
+                data-city={group.cityName}
+                data-count={group.stores.length}
+                title="複製該縣市所有門市座標，可直接貼入 GeoSim 巡航佇列"
+              >
+                🚗 複製【{group.cityName}】整區巡航路徑
+              </button>
+            </div>
+
+            <div class="stores-grid">
+              {group.stores.map((store) => (
+                <article
+                  class="store-card"
+                  data-store-id={store.id}
+                  data-city={store.city}
+                  data-name={store.name}
+                  data-short={store.shortName}
+                  data-lat={store.lat}
+                  data-lng={store.lng}
+                  data-coords={store.coordsText}
+                >
+                  <div class="store-card__header">
+                    <div class="store-card__title-wrap">
+                      <span class="store-badge">CoCo</span>
+                      <h3 class="store-card__name">{store.shortName}</h3>
+                    </div>
+                    <span class="store-card__region">{store.city}</span>
+                  </div>
+
+                  <!-- Coordinates & Checklist Status -->
+                  <div class="store-card__info">
+                    <div class="coords-display">
+                      <span class="coords-label">GPS:</span>
+                      <code class="coords-code">{store.coordsText}</code>
+                    </div>
+
+                    <!-- 7-Day Checklist Toggle -->
+                    <label class="check-toggle" title="標記今天已刷花苗，開始計算 7 天冷卻">
+                      <input
+                        type="checkbox"
+                        class="check-toggle__input"
+                        data-store-id={store.id}
+                      />
+                      <span class="check-toggle__box"></span>
+                      <span class="check-toggle__label">標記已領取</span>
+                    </label>
+                  </div>
+
+                  <!-- Cooldown Notice Badge (Hidden by default, shown when visited) -->
+                  <div class="cooldown-banner" style="display: none;">
+                    <span class="cooldown-banner__icon">⏳</span>
+                    <span class="cooldown-banner__text">7天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
+                  </div>
+
+                  <!-- Card Action Buttons -->
+                  <div class="store-card__actions">
+                    <!-- Direct Launch / Share to GeoSim -->
+                    <button
+                      class="btn btn--primary btn--sm btn-launch-geosim"
+                      data-lat={store.lat}
+                      data-lng={store.lng}
+                      data-name={store.name}
+                      data-coords={store.coordsText}
+                      title="直接透過 Android 系統分享或 deep link 啟動 GeoSim 瞬移"
+                    >
+                      <span class="btn-icon">🚀</span>
+                      <span>啟動 / 分享到 GeoSim</span>
+                    </button>
+
+                    <!-- Fast Clipboard Copy -->
+                    <button
+                      class="btn btn--outline btn--sm btn-copy-coord"
+                      data-coords={store.coordsText}
+                      data-name={store.shortName}
+                      title="複製經緯度座標"
+                    >
+                      <span class="btn-icon">📋</span>
+                      <span>複製</span>
+                    </button>
+
+                    <!-- Google Maps Link -->
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn btn--icon btn--sm btn-gmap"
+                      title="在 Google Maps 查看位置"
+                      aria-label={`${store.shortName} Google Maps`}
+                    >
+                      🗺️
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- No Results Fallback -->
+        <div id="no-results-box" class="no-results" style="display: none;">
+          <div class="no-results__icon">🔍</div>
+          <h3>找不到符合條件的 CoCo 門市</h3>
+          <p>請嘗試放寬搜尋關鍵字或重設篩選條件。</p>
+          <button id="btn-reset-filters" class="btn btn--outline">重設篩選條件</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use" class="how-to-use-section">
+      <div class="container">
+        <div class="how-to-use-card">
+          <h2 class="how-to-use__title">💡 如何在手機上搭配 GeoSim 輕鬆使用？</h2>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-card__number">1</div>
+              <h3 class="step-card__title">方法 A：手機分享直達（推薦）</h3>
+              <p>
+                在手機瀏覽器點擊門市卡片上的 <strong>「🚀 啟動 / 分享到 GeoSim」</strong> 按鈕，
+                在跳出的系統分享面板中點選 <strong>GeoSim</strong>，GeoSim 就會直接在當前畫面浮出面板，點「瞬移」就立刻飛到門市！
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">2</div>
+              <h3 class="step-card__title">方法 B：一鍵複製貼上</h3>
+              <p>
+                點擊卡片上的 <strong>「📋 複製」</strong>，經緯度直接複製進剪貼簿。
+                切換到手機上的 GeoSim 或懸浮搖桿，貼入搜尋欄即可前往。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">3</div>
+              <h3 class="step-card__title">方法 C：整區巡航自動走 2,000 步</h3>
+              <p>
+                點擊各區頂部的 <strong>「🚗 複製該區巡航路徑」</strong>，可一次取得該縣市所有門市路徑！
+                貼入 GeoSim 的「依線巡航」或「區內漫步」，自動掛機散步 2,000 步並依序抵達門市領花苗。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">4</div>
+              <h3 class="step-card__title">打卡記錄與 7 天提醒</h3>
+              <p>
+                每刷完一間門市，勾選 <strong>「標記已領取」</strong>，手機會自動記錄日期並鎖定 7 天倒數，下次可刷日期一清二楚，不用用紙筆苦記！
+              </p>
+            </div>
+          </div>
+
+          <div class="how-to-use__actions">
+            <a href="/geosim" class="btn btn--primary">了解更多 GeoSim 功能</a>
+            <a href="/geosim/spot-map" class="btn btn--outline">瀏覽全球純點地圖庫</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating Copy Toast -->
+    <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
+      📍 已複製，可貼入 GeoSim
+    </div>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY_PREFIX = 'coco_visited_';
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+
+    let currentCity = 'all';
+    let currentStatus = 'all';
+    let currentSearch = '';
+
+    const toast = document.getElementById('copy-toast');
+    let toastTimer = null;
+
+    function showToast(msg) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2400);
+    }
+
+    // 1. Visited Status Handling (7-day cooldown in localStorage)
+    function getVisitedTime(storeId) {
+      try {
+        const val = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
+        return val ? parseInt(val, 10) : 0;
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function setVisited(storeId, isVisited) {
+      try {
+        if (isVisited) {
+          localStorage.setItem(STORAGE_KEY_PREFIX + storeId, Date.now().toString());
+        } else {
+          localStorage.removeItem(STORAGE_KEY_PREFIX + storeId);
+        }
+      } catch (e) {}
+      updateAllStoreStates();
+      filterStores();
+    }
+
+    function formatDate(ms) {
+      const d = new Date(ms);
+      return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    }
+
+    function updateAllStoreStates() {
+      const now = Date.now();
+      let totalTodo = 0;
+      let totalVisited = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const storeId = card.getAttribute('data-store-id');
+        const visitedTime = getVisitedTime(storeId);
+        const checkbox = card.querySelector('.check-toggle__input');
+        const banner = card.querySelector('.cooldown-banner');
+        const dateSpan = card.querySelector('.next-available-date');
+
+        const isCooldown = visitedTime && (now - visitedTime < SEVEN_DAYS_MS);
+
+        if (isCooldown) {
+          card.classList.add('is-visited');
+          if (checkbox) checkbox.checked = true;
+          if (banner) {
+            banner.style.display = 'flex';
+            const nextDate = visitedTime + SEVEN_DAYS_MS;
+            if (dateSpan) dateSpan.textContent = formatDate(nextDate);
+          }
+          totalVisited++;
+        } else {
+          card.classList.remove('is-visited');
+          if (checkbox) checkbox.checked = false;
+          if (banner) banner.style.display = 'none';
+          totalTodo++;
+        }
+      });
+
+      const pillTodo = document.getElementById('pill-todo-count');
+      const pillDone = document.getElementById('pill-done-count');
+      if (pillTodo) pillTodo.textContent = `待造訪: ${totalTodo}`;
+      if (pillDone) pillDone.textContent = `冷卻中: ${totalVisited}`;
+    }
+
+    // 2. Launch / Share to GeoSim
+    async function launchGeoSim(lat, lng, storeName, coordsText) {
+      // (1) Check if inside GeoSim built-in WebView Bridge
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
+        showToast(`📍 已帶入 GeoSim: ${storeName}`);
+        return;
+      }
+
+      // (2) Check Web Share API (Triggers Android native Share Sheet -> select GeoSim)
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: storeName,
+            text: coordsText
+          });
+          showToast(`🚀 已分享至系統選單，點選 GeoSim 即可瞬移！`);
+          return;
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            console.log('Share dismissed or failed, fallback to copy');
+          }
+        }
+      }
+
+      // (3) Fallback: Copy to clipboard and try deep-link
+      try {
+        await navigator.clipboard.writeText(coordsText);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = coordsText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      const deepLink = `geosim://location?lat=${lat}&lng=${lng}&label=${encodeURIComponent(storeName)}`;
+      showToast(`📍 已複製座標，正在嘗試啟動 GeoSim...`);
+      window.location.href = deepLink;
+    }
+
+    // 3. Share or Copy Multi-Point Route
+    async function shareOrCopyRoute(routeText, routeTitle, count) {
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
+        window.AndroidGeoSim.setRoute(routeText);
+        showToast(`🚗 已匯入 ${count} 處巡航座標至 GeoSim！`);
+        return;
+      }
+
+      // On mobile, navigator.share with multiline text
+      if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        try {
+          await navigator.share({
+            title: routeTitle,
+            text: routeText
+          });
+          showToast(`🚗 已開啟分享，點選 GeoSim 即可套用巡航路線！`);
+          return;
+        } catch (e) {}
+      }
+
+      // Clipboard fallback
+      try {
+        await navigator.clipboard.writeText(routeText);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = routeText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast(`🚗 已複製 ${count} 間門市巡航路徑，可直接貼入 GeoSim！`);
+    }
+
+    // 4. Filtering Logic
+    function filterStores() {
+      const q = currentSearch.trim().toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const city = card.getAttribute('data-city');
+        const name = card.getAttribute('data-name').toLowerCase();
+        const shortName = card.getAttribute('data-short').toLowerCase();
+        const coords = card.getAttribute('data-coords');
+        const isVisited = card.classList.contains('is-visited');
+
+        // City match
+        const cityMatch = (currentCity === 'all' || city === currentCity);
+
+        // Status match
+        let statusMatch = true;
+        if (currentStatus === 'todo') statusMatch = !isVisited;
+        if (currentStatus === 'visited') statusMatch = isVisited;
+
+        // Keyword match
+        let searchMatch = true;
+        if (q) {
+          searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q);
+        }
+
+        if (cityMatch && statusMatch && searchMatch) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/Hide City Sections if all children are hidden
+      document.querySelectorAll('.city-section').forEach((sec) => {
+        const secCity = sec.getAttribute('data-city-section');
+        const anyVisible = sec.querySelectorAll('.store-card:not([style*="display: none"])').length > 0;
+        if (currentCity !== 'all' && secCity !== currentCity) {
+          sec.style.display = 'none';
+        } else {
+          sec.style.display = anyVisible ? '' : 'none';
+        }
+      });
+
+      const statText = document.getElementById('stat-summary-text');
+      if (statText) statText.textContent = `顯示 ${visibleCount} 家門市`;
+
+      const noResults = document.getElementById('no-results-box');
+      if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // 5. Event Listeners Setup
+    document.addEventListener('DOMContentLoaded', () => {
+      updateAllStoreStates();
+
+      // Checkbox changes
+      document.querySelectorAll('.check-toggle__input').forEach((cb) => {
+        cb.addEventListener('change', (e) => {
+          const storeId = e.target.getAttribute('data-store-id');
+          setVisited(storeId, e.target.checked);
+        });
+      });
+
+      // Launch to GeoSim
+      document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lat = btn.getAttribute('data-lat');
+          const lng = btn.getAttribute('data-lng');
+          const name = btn.getAttribute('data-name');
+          const coords = btn.getAttribute('data-coords');
+          launchGeoSim(lat, lng, name, coords);
+        });
+      });
+
+      // Copy Single Coordinate
+      document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const coords = btn.getAttribute('data-coords');
+          const name = btn.getAttribute('data-name');
+          try {
+            await navigator.clipboard.writeText(coords);
+          } catch (e) {
+            const ta = document.createElement('textarea');
+            ta.value = coords;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+          showToast(`📍 已複製 ${name} 座標，可貼入 GeoSim`);
+        });
+      });
+
+      // Copy Region Route
+      document.querySelectorAll('.btn-copy-region-route').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const route = btn.getAttribute('data-route');
+          const city = btn.getAttribute('data-city');
+          const count = btn.getAttribute('data-count');
+          shareOrCopyRoute(route, `CoCo ${city} 巡航路線`, count);
+        });
+      });
+
+      // Copy All Route
+      const copyAllBtn = document.getElementById('btn-copy-all-route');
+      if (copyAllBtn) {
+        copyAllBtn.addEventListener('click', () => {
+          const route = copyAllBtn.getAttribute('data-route');
+          const name = copyAllBtn.getAttribute('data-name');
+          shareOrCopyRoute(route, name, 48);
+        });
+      }
+
+      // City Tabs
+      document.querySelectorAll('.coco-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.coco-tab').forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentCity = tab.getAttribute('data-city');
+          filterStores();
+        });
+      });
+
+      // Status Filter
+      document.querySelectorAll('.status-filter-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.status-filter-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentStatus = btn.getAttribute('data-status');
+          filterStores();
+        });
+      });
+
+      // Search Input
+      const searchInput = document.getElementById('store-search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value;
+          if (clearBtn) clearBtn.style.display = currentSearch ? 'block' : 'none';
+          filterStores();
+        });
+      }
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          currentSearch = '';
+          clearBtn.style.display = 'none';
+          filterStores();
+        });
+      }
+
+      const resetBtn = document.getElementById('btn-reset-filters');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          currentCity = 'all';
+          currentStatus = 'all';
+          currentSearch = '';
+          if (searchInput) searchInput.value = '';
+          if (clearBtn) clearBtn.style.display = 'none';
+          document.querySelectorAll('.coco-tab').forEach((t) => t.classList.remove('active'));
+          document.querySelector('.coco-tab[data-city="all"]')?.classList.add('active');
+          document.querySelectorAll('.status-filter-btn').forEach((b) => b.classList.remove('active'));
+          document.querySelector('.status-filter-btn[data-status="all"]')?.classList.add('active');
+          filterStores();
+        });
+      }
+    });
+  })();
+</script>
+
+<style>
+  .coco-page {
+    padding-bottom: 5rem;
+  }
+
+  .breadcrumb-container {
+    padding: 1rem 0;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-secondary);
+  }
+
+  .breadcrumb li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    opacity: 0.6;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-primary);
+  }
+
+  /* Hero Header */
+  .coco-hero {
+    padding: 2.5rem 0 2rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% 20%, rgba(255, 112, 67, 0.15), transparent 70%);
+  }
+
+  .coco-hero__badge-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 112, 67, 0.12);
+    border: 1px solid rgba(255, 112, 67, 0.3);
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .coco-hero__tag {
+    font-weight: 700;
+    color: #ff7043;
+  }
+
+  .coco-hero__date {
+    color: var(--color-text-secondary);
+  }
+
+  .coco-hero__title {
+    font-size: 2.25rem;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #ff7043 0%, #ffb74d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .coco-hero__subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    max-width: 680px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  /* Rule Grid */
+  .rule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    max-width: 960px;
+    margin: 0 auto 2rem;
+    text-align: left;
+  }
+
+  .rule-card {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .rule-card__icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .rule-card__content strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .rule-card__content p {
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .coco-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  /* Sticky Controls */
+  .coco-controls-section {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding: 0.75rem 0;
+    background: rgba(18, 18, 20, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  :global([data-theme="light"]) .coco-controls-section {
+    background: rgba(255, 255, 255, 0.88);
+  }
+
+  .coco-controls-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .coco-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .coco-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .coco-tab:hover {
+    border-color: #ff7043;
+    color: var(--color-text-primary);
+  }
+
+  .coco-tab.active {
+    background: #ff7043;
+    border-color: #ff7043;
+    color: #fff;
+  }
+
+  .coco-tab__count {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .coco-tab:not(.active) .coco-tab__count {
+    background: var(--color-surface-hover);
+    color: var(--color-text-secondary);
+  }
+
+  .coco-filter-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search-box {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5rem 2.2rem 0.5rem 2.2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .search-input:focus {
+    border-color: #ff7043;
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .status-filters {
+    display: flex;
+    gap: 0.35rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.2rem;
+  }
+
+  .status-filter-btn {
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .status-filter-btn.active {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+  }
+
+  .coco-stat-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.825rem;
+    color: var(--color-text-secondary);
+  }
+
+  .stat-pills {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .stat-pill {
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .stat-pill--todo {
+    background: rgba(33, 150, 243, 0.12);
+    color: #2196f3;
+  }
+
+  .stat-pill--done {
+    background: rgba(76, 175, 80, 0.12);
+    color: #4caf50;
+  }
+
+  /* List Section */
+  .coco-list-section {
+    padding: 2rem 0;
+  }
+
+  .city-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .city-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .city-section__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .city-section__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .badge--geosim {
+    background: rgba(255, 112, 67, 0.12);
+    color: #ff7043;
+    border: 1px solid rgba(255, 112, 67, 0.25);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  /* Stores Grid */
+  .stores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1rem;
+  }
+
+  .store-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.15rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+
+  .store-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 112, 67, 0.35);
+  }
+
+  .store-card.is-visited {
+    border-color: rgba(76, 175, 80, 0.35);
+    background: linear-gradient(to bottom, rgba(76, 175, 80, 0.03), var(--color-surface));
+  }
+
+  .store-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .store-card__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .store-badge {
+    background: #ff7043;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .store-card__name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .store-card__region {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .store-card__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .coords-display {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.85rem;
+  }
+
+  .coords-label {
+    color: var(--color-text-secondary);
+    margin-right: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .coords-code {
+    background: var(--color-surface-hover);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.825rem;
+  }
+
+  /* Checklist Toggle */
+  .check-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .check-toggle__input {
+    display: none;
+  }
+
+  .check-toggle__box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box {
+    background: #4caf50;
+    border-color: #4caf50;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box::after {
+    content: '✓';
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .check-toggle__input:checked ~ .check-toggle__label {
+    color: #4caf50;
+    font-weight: 600;
+  }
+
+  /* Cooldown Banner */
+  .cooldown-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.25);
+    border-radius: 6px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.775rem;
+    color: #4caf50;
+    margin-bottom: 0.75rem;
+  }
+
+  .cooldown-banner__text strong {
+    color: #4caf50;
+  }
+
+  /* Store Card Actions */
+  .store-card__actions {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .btn-launch-geosim {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.825rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 112, 67, 0.3);
+    transition: all 0.15s ease;
+  }
+
+  .btn-launch-geosim:hover {
+    box-shadow: 0 4px 12px rgba(255, 112, 67, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-copy-coord {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.825rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  .btn-gmap {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: background 0.15s ease;
+  }
+
+  .btn-gmap:hover {
+    background: var(--color-surface-hover);
+  }
+
+  /* No Results */
+  .no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--color-surface);
+    border: 1px dashed var(--color-border);
+    border-radius: 12px;
+  }
+
+  .no-results__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* How to use section */
+  .how-to-use-section {
+    padding: 2.5rem 0;
+  }
+
+  .how-to-use-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .how-to-use__title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .step-card {
+    position: relative;
+    padding: 1.25rem;
+    background: var(--color-surface-hover);
+    border-radius: 12px;
+  }
+
+  .step-card__number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(255, 112, 67, 0.35);
+  }
+
+  .step-card__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .step-card p {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .how-to-use__actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* Floating Toast */
+  .copy-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(18, 18, 20, 0.94);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 112, 67, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+    z-index: 9999;
+    white-space: nowrap;
+  }
+
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .coco-hero__title {
+      font-size: 1.65rem;
+    }
+
+    .stores-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .city-section__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .city-section__header .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
