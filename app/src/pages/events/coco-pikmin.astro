@@ -987,19 +987,71 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     justify-content: center;
   }
 
-  /* Sticky Controls */
+  /* Sticky Controls - perfectly aligned below navbar in both dark & vibrant light modes */
   .coco-controls-section {
     position: sticky;
-    top: 0;
+    top: var(--nav-height, 64px);
     z-index: 40;
     padding: 0.75rem 0;
-    background: rgba(18, 18, 20, 0.88);
-    backdrop-filter: blur(12px);
+    background: rgba(10, 12, 20, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
 
-  :global([data-theme="light"]) .coco-controls-section {
-    background: rgba(255, 255, 255, 0.88);
+  :global(html[data-theme="vibrant"]) .coco-controls-section {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active) {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #4B5563;
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active):hover {
+    border-color: #ff7043;
+    color: #ff7043;
+    background: #FFF7ED;
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-tab:not(.active) .coco-tab__count {
+    background: #F3F4F6;
+    color: #6B7280;
+  }
+
+  :global(html[data-theme="vibrant"]) .search-input {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #111827;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filters {
+    background: #F3F4F6;
+    border-color: #E5E7EB;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filter-btn {
+    color: #6B7280;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-filter-btn.active {
+    background: #FFFFFF;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  :global(html[data-theme="vibrant"]) .stat-pill--todo {
+    background: rgba(33, 150, 243, 0.1);
+    color: #1d4ed8;
+  }
+
+  :global(html[data-theme="vibrant"]) .stat-pill--done {
+    background: rgba(76, 175, 80, 0.12);
+    color: #15803d;
   }
 
   .coco-controls-card {
@@ -1395,20 +1447,51 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     white-space: nowrap;
   }
 
+  .btn-launch-geosim,
+  :global(html[data-theme="vibrant"]) .btn-launch-geosim {
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+  }
+
   .btn-share-store,
   .btn-gmap {
-    width: 34px;
-    height: 34px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     border-radius: 8px;
     text-decoration: none;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     color: var(--color-text-secondary);
     cursor: pointer;
+    flex-shrink: 0;
     transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-share-store svg,
+  .btn-gmap svg {
+    width: 15px !important;
+    height: 15px !important;
+    stroke: currentColor !important;
+    display: block !important;
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-share-store,
+  :global(html[data-theme="vibrant"]) .btn-gmap {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #4B5563;
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-share-store:hover,
+  :global(html[data-theme="vibrant"]) .btn-gmap:hover {
+    background: #F3F4F6;
+    color: #111827;
   }
 
   .btn-share-store:hover,
