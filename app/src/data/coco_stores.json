@@ -806,6 +806,19 @@
     "route": "台北其餘＋新北西線"
   },
   {
+    "id": "coco-332",
+    "city": "台北市",
+    "name": "CoCo都可-台北南機場店",
+    "shortName": "台北南機場",
+    "address": "台北市中正區中華路二段307巷（南機場夜市）",
+    "phone": "",
+    "lat": 25.02901,
+    "lng": 121.50582,
+    "coordsText": "25.02901, 121.50582",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02901,121.50582",
+    "route": "台北市中正區南機場"
+  },
+  {
     "id": "coco-63",
     "city": "新北市",
     "name": "CoCo都可 三重徐匯店",

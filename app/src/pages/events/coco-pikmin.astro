@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import stores from '../../data/coco_stores.json';
 
-const title = 'Pikmin Bloom × CoCo 都可全台門市 GPS 座標地圖與打卡清單 (331店完整版) | GeoSim';
-const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。全台 331 間 CoCo 門市經緯度 GPS 座標完整清單，涵蓋雙北、基隆、桃竹苗、中南部、金門等 15 縣市。支援手機一鍵直接啟動 GeoSim、直開遊戲帶座標、縣市快速切換、7 天領取冷卻打卡追蹤。';
+const title = `Pikmin Bloom × CoCo 都可全台門市 GPS 座標地圖與打卡清單 (${stores.length}店完整版) | GeoSim`;
+const description = `2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。全台 ${stores.length} 間 CoCo 門市經緯度 GPS 座標完整清單，涵蓋雙北、基隆、桃竹苗、中南部、金門等 15 縣市。支援手機一鍵直接啟動 GeoSim、直開遊戲帶座標、縣市快速切換、7 天領取冷卻打卡追蹤。`;
 
 // Geographic ordering of Taiwan counties and cities
 const CITY_ORDER = [
@@ -93,7 +93,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </div>
         <h1 class="coco-hero__title">
           Pikmin Bloom × CoCo 都可門市<br />
-          <span class="text-gradient">全台 331 店 GPS 座標與 7 天打卡清單</span>
+          <span class="text-gradient">全台 {stores.length} 店 GPS 座標與 7 天打卡清單</span>
         </h1>
 
         <!-- Compact GeoSim Recommendation Card (Inspired by Version B) -->
@@ -107,7 +107,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <h2 class="ad-title">人還沒到，定位先到 CoCo</h2>
             </div>
             <p class="ad-desc">
-              331 間門市不用手打座標。點一下用 GeoSim 落點到店門口，再開遊戲領花苗，跑店快人一步。
+              {stores.length} 間門市不用手打座標。點一下用 GeoSim 落點到店門口，再開遊戲領花苗，跑店快人一步。
             </p>
             <div class="ad-action-line">
               <a class="ad-cta-btn" href={playStoreUrl} target="_blank" rel="noopener">
@@ -193,9 +193,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <button
                 class="btn btn--outline btn--sm btn-copy-all-route"
                 data-route={allRouteText}
-                data-name="全台 331 間 CoCo 門市"
+                data-name={`全台 ${stores.length} 間 CoCo 門市`}
               >
-                複製全台 331 店巡航路徑
+                複製全台 {stores.length} 店巡航路徑
               </button>
               <span id="stat-summary-text">顯示 {stores.length} 家門市</span>
             </div>
@@ -975,7 +975,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const route = btn.getAttribute('data-route');
-          copyToClipboard(route, `已複製全台 331 店巡航路徑，可貼入 GeoSim`);
+          copyToClipboard(route, `已複製全台 {stores.length} 店巡航路徑，可貼入 GeoSim`);
         });
       });
 
