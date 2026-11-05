@@ -2,25 +2,52 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import stores from '../../data/coco_stores.json';
 
-const title = 'Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單 | GeoSim';
-const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。精選全台 CoCo 門市經緯度 GPS 座標清單。支援手機一鍵直接啟動 GeoSim、整區自動巡航路徑複製、7 天領取冷卻打卡追蹤。';
+const title = 'Pikmin Bloom × CoCo 都可全台門市 GPS 座標地圖與打卡清單 (331店完整版) | GeoSim';
+const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。全台 331 間 CoCo 門市經緯度 GPS 座標完整清單，涵蓋雙北、基隆、桃竹苗、中南部、金門等 15 縣市。支援手機一鍵直接啟動 GeoSim、直開遊戲帶座標、縣市快速切換、7 天領取冷卻打卡追蹤。';
 
-// Group stores by city
-const cities = [
-  { id: 'all', name: '全部縣市', count: stores.length },
-  { id: '基隆市', name: '基隆市', count: stores.filter((s) => s.city === '基隆市').length },
-  { id: '宜蘭縣', name: '宜蘭縣', count: stores.filter((s) => s.city === '宜蘭縣').length },
-  { id: '台北市', name: '台北市', count: stores.filter((s) => s.city === '台北市').length }
+// Geographic ordering of Taiwan counties and cities
+const CITY_ORDER = [
+  '基隆市',
+  '台北市',
+  '新北市',
+  '桃園市',
+  '新竹市',
+  '新竹縣',
+  '苗栗縣',
+  '台中市',
+  '彰化縣',
+  '南投縣',
+  '雲林縣',
+  '台南市',
+  '高雄市',
+  '宜蘭縣',
+  '金門縣'
 ];
 
-const cityGroups = ['基隆市', '宜蘭縣', '台北市'].map((cityName) => ({
-  cityName,
-  stores: stores.filter((s) => s.city === cityName),
-  routeText: stores
-    .filter((s) => s.city === cityName)
-    .map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`)
-    .join('\n')
-}));
+// Extract available cities dynamically, ordered geographically
+const availableCities = Array.from(new Set(stores.map((s) => s.city))).sort((a, b) => {
+  const ia = CITY_ORDER.indexOf(a);
+  const ib = CITY_ORDER.indexOf(b);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+});
+
+const cities = [
+  { id: 'all', name: '全區', count: stores.length },
+  ...availableCities.map((c) => ({
+    id: c,
+    name: c,
+    count: stores.filter((s) => s.city === c).length
+  }))
+];
+
+const cityGroups = availableCities.map((cityName) => {
+  const cityStores = stores.filter((s) => s.city === cityName);
+  return {
+    cityName,
+    stores: cityStores,
+    routeText: cityStores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n')
+  };
+});
 
 const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n');
 const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
@@ -63,10 +90,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </div>
         <h1 class="coco-hero__title">
           Pikmin Bloom × CoCo 都可門市<br />
-          <span class="text-gradient">GPS 座標地圖與 7 天打卡清單</span>
+          <span class="text-gradient">全台 331 店 GPS 座標與 7 天打卡清單</span>
         </h1>
         <p class="coco-hero__subtitle">
-          全台 CoCo 都可門市特殊地點開放。收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
+          全台 15 縣市 331 間 CoCo 都可門市特殊地點完整開放。收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
         </p>
 
         <!-- Rule Highlights -->
@@ -115,13 +142,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             id="btn-copy-all-route"
             class="btn btn--primary btn--lg"
             data-route={allRouteText}
-            data-name="全台 48 間 CoCo 門市"
+            data-name="全台 331 間 CoCo 門市"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
-            一鍵複製第一批 48 店巡航路徑
+            一鍵複製全台 331 店巡航路徑
           </button>
           <a href="#geosim-intro" class="btn btn--outline btn--lg">
             了解 GeoSim 搭配玩法
@@ -130,67 +157,54 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </header>
 
-    <!-- Sticky 3-Tier Multi-Dimension Control Bar -->
+    <!-- Sticky Controls Bar (County & Status Multi-Dimension Filtering) -->
     <section class="coco-controls-section">
       <div class="container">
-        <!-- Tier 1: Day/日期分組 + 總領取計數 -->
-        <div class="tier-date-row">
+        <!-- Top Status Bar: 已領取計數 + 搜尋與巡航工具按鈕 -->
+        <div class="muse-top-bar">
           <div class="muse-top-bar__counter">
             <span class="muse-counter-label">已領取</span>
             <span class="muse-counter-done" id="pill-done-count">0</span>
             <span class="muse-counter-sep">/</span>
-            <span class="muse-counter-total" id="pill-total-count">48</span>
+            <span class="muse-counter-total" id="pill-total-count">{stores.length}</span>
           </div>
 
-          <!-- Day 1 / Day 2 批次選擇 -->
-          <div class="day-filter-group" role="tablist" aria-label="活動日期批次">
-            <button class="day-pill active" data-day="day1" role="tab" aria-selected="true">
-              Day 1 (11/5 首波)
-            </button>
-            <button class="day-pill disabled" data-day="day2" disabled title="11/12 後續門市即將公開" role="tab" aria-selected="false">
-              Day 2 (敬請期待)
-            </button>
-          </div>
-        </div>
-
-        <!-- Tier 2: 依縣市過濾 (全部 48 / 基隆市 9 / 宜蘭縣 8 / 台北市 31) -->
-        <div class="tier-city-bar" role="tablist" aria-label="縣市篩選">
-          <button class="city-pill active" data-city="all" role="tab" aria-selected="true">
-            全部 <span class="pill-count">48</span>
-          </button>
-          <button class="city-pill" data-city="基隆市" role="tab" aria-selected="false">
-            基隆市 <span class="pill-count">9</span>
-          </button>
-          <button class="city-pill" data-city="宜蘭縣" role="tab" aria-selected="false">
-            宜蘭縣 <span class="pill-count">8</span>
-          </button>
-          <button class="city-pill" data-city="台北市" role="tab" aria-selected="false">
-            台北市 <span class="pill-count">31</span>
-          </button>
-        </div>
-
-        <!-- Tier 3: 依狀態過濾 (全部 / 尚未前往 / 7天冷卻中 / 冷卻完畢可再次領取) -->
-        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
-          <button class="status-pill active" data-status="all">全部</button>
-          <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">48</span>)</button>
-          <button class="status-pill" data-status="cooling">冷卻中 (<span id="count-cooling">0</span>)</button>
-          <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
-        </div>
-
-        <!-- Optional: 關鍵字搜尋與一鍵巡航工具 (收合/展開) -->
-        <div class="tier-tools-toggle-wrap">
+          <!-- Tools Toggle Button -->
           <button id="btn-toggle-tools" class="tools-toggle-btn" aria-expanded="false" aria-controls="muse-tools-panel">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <span>搜尋與巡航路徑工具</span>
+            <span>搜尋與巡航工具</span>
             <svg class="tools-toggle-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
         </div>
 
+        <!-- Tier 1: 依縣市過濾 (15 縣市快速切換水平膠囊列) -->
+        <div class="tier-city-bar" role="tablist" aria-label="縣市篩選">
+          {cities.map((c) => (
+            <button
+              class={`city-pill ${c.id === 'all' ? 'active' : ''}`}
+              data-city={c.id}
+              role="tab"
+              aria-selected={c.id === 'all' ? 'true' : 'false'}
+            >
+              {c.name} <span class="pill-count">{c.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Tier 2: 依狀態過濾 (全部 / 尚未前往 / 7天冷卻中 / 冷卻完畢可再次領取) -->
+        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
+          <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
+          <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
+          <button class="status-pill" data-status="cooling">冷卻中 (<span id="count-cooling">0</span>)</button>
+          <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
+        </div>
+
+        <!-- Expandable Tools & Search Panel -->
         <div id="muse-tools-panel" class="muse-tools-panel" style="display: none;">
           <div class="tools-inner-box">
             <div class="search-box">
@@ -202,13 +216,20 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                 type="text"
                 id="store-search-input"
                 class="search-input"
-                placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
+                placeholder="搜尋門市名稱（例如：板橋、三民、新豐...）"
                 aria-label="搜尋門市名稱"
               />
               <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
             </div>
-            <div class="stat-summary-line">
-              <span id="stat-summary-text">顯示 48 家門市</span>
+            <div class="tools-action-row">
+              <button
+                class="btn btn--outline btn--sm btn-copy-all-route"
+                data-route={allRouteText}
+                data-name="全台 331 間 CoCo 門市"
+              >
+                複製全台 331 店巡航路徑
+              </button>
+              <span id="stat-summary-text">顯示 {stores.length} 家門市</span>
             </div>
           </div>
         </div>
@@ -584,7 +605,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
     const STORAGE_KEY_PREFIX = 'coco_store_visited_';
 
-    let currentDay = 'day1';
+    
     let currentCity = 'all';
     let currentStatus = 'all';
     let currentSearch = '';
@@ -803,15 +824,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // Tier 1: Day Tabs
-      document.querySelectorAll('.day-pill:not(.disabled)').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.day-pill').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentDay = btn.getAttribute('data-day');
-          filterStores();
-        });
-      });
+      
 
       // Tier 2: City Pills (全部 / 基隆市 / 宜蘭縣 / 台北市)
       document.querySelectorAll('.city-pill').forEach((btn) => {
