@@ -279,10 +279,10 @@
     "shortName": "台北松山壹號",
     "address": "臺北市信義區松山路11號",
     "phone": "02 2742 0858",
-    "lat": 25.04921,
-    "lng": 121.57824,
-    "coordsText": "25.04921, 121.57824",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04921,121.57824",
+    "lat": 25.04944,
+    "lng": 121.57891,
+    "coordsText": "25.04944, 121.57891",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04944,121.57891",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
   },
   {
@@ -461,10 +461,10 @@
     "shortName": "台北三井南港",
     "address": "臺北市南港區經貿二路131號5樓",
     "phone": "02 2783 0189",
-    "lat": 25.05934,
-    "lng": 121.61758,
-    "coordsText": "25.05934, 121.61758",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05934,121.61758",
+    "lat": 25.05925,
+    "lng": 121.61803,
+    "coordsText": "25.05925, 121.61803",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05925,121.61803",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
   },
   {
@@ -656,10 +656,10 @@
     "shortName": "台北北車2M3",
     "address": "臺北市中正區忠孝西路一段49號台北車站M3出口B1",
     "phone": "02 2311 1322",
-    "lat": 25.04677,
-    "lng": 121.51617,
-    "coordsText": "25.04677, 121.51617",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04677,121.51617",
+    "lat": 25.045,
+    "lng": 121.51621,
+    "coordsText": "25.04500, 121.51621",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04500,121.51621",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -747,10 +747,10 @@
     "shortName": "台北忠孝復興",
     "address": "臺北市大安區忠孝東路三段302號B1",
     "phone": "02 2721 1229",
-    "lat": 25.04145,
-    "lng": 121.54335,
-    "coordsText": "25.04145, 121.54335",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04145,121.54335",
+    "lat": 25.04142,
+    "lng": 121.54508,
+    "coordsText": "25.04142, 121.54508",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04142,121.54508",
     "route": "台北其餘＋新北西線"
   },
   {
