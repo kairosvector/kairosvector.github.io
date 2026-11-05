@@ -210,6 +210,20 @@
           "source": "使用者驗證"
         }
       ]
+    },
+    {
+      "batch_id": 8,
+      "applied_at": "2026-11-05 15:10:30 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-185",
+          "name": "林口文青店",
+          "coords": "25.04039, 121.38804",
+          "source": "使用者驗證"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
