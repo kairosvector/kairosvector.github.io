@@ -4509,5 +4509,18 @@
     "coordsText": "24.13730, 120.64398",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13730,120.64398",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-350",
+    "city": "基隆市",
+    "name": "CoCo都可 基隆七堵店",
+    "shortName": "基隆七堵",
+    "address": "基隆市七堵區明德一路196號",
+    "phone": "02 2455 8339",
+    "lat": 25.09744,
+    "lng": 121.71289,
+    "coordsText": "25.09744, 121.71289",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09744,121.71289",
+    "route": "東北線：基隆＋宜蘭＋台北東北區"
   }
 ]

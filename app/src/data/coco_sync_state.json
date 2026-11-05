@@ -516,6 +516,20 @@
           "source": "使用者驗證新增門市（南屯向心南店實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 26,
+      "applied_at": "2026-11-06 07:20:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-350",
+          "name": "CoCo都可 基隆七堵店",
+          "coords": "25.09744, 121.71289",
+          "source": "使用者驗證新增門市（基隆七堵店實體店核實補全，25.0974408, 121.7128851）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -552,6 +566,7 @@
     "coco-348",
     "coco-34",
     "coco-101",
-    "coco-349"
+    "coco-349",
+    "coco-350"
   ]
 }

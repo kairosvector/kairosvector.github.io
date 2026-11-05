@@ -64,14 +64,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 >
   <main class="coco-page">
     <!-- Top Fixed Version & Force Refresh Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="25" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="26" data-store-count={stores.length}>
       <div class="container top-sticky-version-inner">
         <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
           <span class="version-tag" id="version-badge">{stores.length} 店最新</span>
           <span class="version-info-text" id="version-title">
-            <span class="version-desktop-text">點位已校正 · 11/06 07:15</span>
-            <span class="version-mobile-text">11/06 07:15</span>
+            <span class="version-desktop-text">點位已校正 · 11/06 07:20</span>
+            <span class="version-mobile-text">11/06 07:20</span>
           </span>
         </div>
         <button id="btn-force-refresh" class="btn-top-refresh" type="button" title="清除快取載入最新門市點位">
@@ -698,7 +698,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const label = btnForceRefresh.querySelector('.refresh-label');
         if (label) label.textContent = '正在重新載入最新資料...';
         const u = new URL(window.location.href);
-        u.searchParams.set('v', '25');
+        u.searchParams.set('v', '26');
         u.searchParams.set('t', Date.now().toString());
         window.location.href = u.toString();
       });
