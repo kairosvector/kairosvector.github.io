@@ -394,6 +394,26 @@
           "source": "使用者提供新增門市（高雄義享時尚廣場實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 19,
+      "applied_at": "2026-11-05 23:30:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-344",
+          "name": "CoCo都可 微風南山店",
+          "coords": "25.03459, 121.56601",
+          "source": "使用者提供新增門市（微風南山B2實體店核實補全）"
+        },
+        {
+          "id": "coco-116",
+          "name": "CoCo都可 新店裕隆城店",
+          "coords": "24.97807, 121.54653",
+          "source": "表單玩家提供微調（自建築中心微調31米至B1美食街櫃位）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -420,6 +440,8 @@
     "coco-340",
     "coco-341",
     "coco-342",
-    "coco-343"
+    "coco-343",
+    "coco-344",
+    "coco-116"
   ]
 }
