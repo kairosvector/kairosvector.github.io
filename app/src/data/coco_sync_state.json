@@ -366,6 +366,20 @@
           "source": "使用者提供新增門市（雲林斗六萬家福實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 17,
+      "applied_at": "2026-11-05 20:35:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-342",
+          "name": "CoCo都可 朴子店",
+          "coords": "23.46367, 120.24413",
+          "source": "使用者提供新增門市（嘉義縣首間實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -390,6 +404,7 @@
   ],
   "all_updated_ids": [
     "coco-340",
-    "coco-341"
+    "coco-341",
+    "coco-342"
   ]
 }

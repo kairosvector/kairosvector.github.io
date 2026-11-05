@@ -4405,5 +4405,18 @@
     "coordsText": "23.70152, 120.53048",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70152,120.53048",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-342",
+    "city": "嘉義縣",
+    "name": "CoCo都可 朴子店",
+    "shortName": "嘉義朴子",
+    "address": "嘉義縣朴子市海通路31號",
+    "phone": "05 370 5667",
+    "lat": 23.46367,
+    "lng": 120.24413,
+    "coordsText": "23.46367, 120.24413",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.46367,120.24413",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]
