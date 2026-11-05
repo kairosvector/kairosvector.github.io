@@ -249,9 +249,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                     <span class="cooldown-banner__text">7 天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
                   </div>
 
-                  <!-- Card Action Buttons -->
+                  <!-- Card Action Buttons with Clear Labels -->
                   <div class="store-card__actions">
-                    <!-- Direct 1-Click Launch to GeoSim (Redirects to Play Store if not installed) -->
+                    <!-- Direct 1-Click Launch to GeoSim -->
                     <button
                       class="btn btn--primary btn--sm btn-launch-geosim"
                       data-lat={store.lat}
@@ -280,38 +280,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                       <span>複製座標</span>
                     </button>
 
-                    <!-- Web Share Button (Optional System Share Sheet) -->
-                    <button
-                      class="btn btn--icon btn--sm btn-share-store"
-                      data-lat={store.lat}
-                      data-lng={store.lng}
-                      data-name={store.name}
-                      data-coords={store.coordsText}
-                      title="透過系統選單分享"
-                      aria-label="系統分享"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3"></circle>
-                        <circle cx="6" cy="12" r="3"></circle>
-                        <circle cx="18" cy="19" r="3"></circle>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                      </svg>
-                    </button>
-
-                    <!-- Google Maps Link -->
+                    <!-- Google Maps Link with Clear Text -->
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="btn btn--icon btn--sm btn-gmap"
-                      title="在 Google Maps 查看實體街景位置"
-                      aria-label={`${store.shortName} Google Maps`}
+                      class="btn btn--outline btn--sm btn-gmap"
+                      title="在 Google Maps 查看位置"
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                       </svg>
+                      <span>地圖</span>
                     </a>
                   </div>
                 </article>
@@ -1406,30 +1387,31 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     color: #4caf50;
   }
 
-  /* Store Card Actions */
+  /* Store Card Actions - 3 Clean Clear-Text Buttons */
   .store-card__actions {
     display: flex;
-    gap: 0.45rem;
+    gap: 0.4rem;
     align-items: center;
     margin-top: auto;
   }
 
   .btn-launch-geosim {
-    flex: 1;
+    flex: 1.35;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%);
-    border: none;
-    color: #fff;
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
+    border: none !important;
+    color: #fff !important;
     font-weight: 700;
-    padding: 0.45rem 0.65rem;
+    padding: 0.5rem 0.65rem;
     font-size: 0.825rem;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(255, 112, 67, 0.3);
     transition: all 0.15s ease;
+    white-space: nowrap;
   }
 
   .btn-launch-geosim:hover {
@@ -1437,67 +1419,47 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     transform: translateY(-1px);
   }
 
-  .btn-copy-coord {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.825rem;
-    padding: 0.45rem 0.65rem;
-    border-radius: 8px;
-    white-space: nowrap;
-  }
-
-  .btn-launch-geosim,
   :global(html[data-theme="vibrant"]) .btn-launch-geosim {
     background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
     color: #FFFFFF !important;
     border: none !important;
   }
 
-  .btn-share-store,
+  .btn-copy-coord,
   .btn-gmap {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    padding: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    font-size: 0.825rem;
+    padding: 0.5rem 0.5rem;
     border-radius: 8px;
+    white-space: nowrap;
     text-decoration: none;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     color: var(--color-text-secondary);
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: all 0.15s ease;
   }
 
-  .btn-share-store svg,
-  .btn-gmap svg {
-    width: 15px !important;
-    height: 15px !important;
-    stroke: currentColor !important;
-    display: block !important;
-  }
-
-  :global(html[data-theme="vibrant"]) .btn-share-store,
-  :global(html[data-theme="vibrant"]) .btn-gmap {
-    background: #FFFFFF;
-    border-color: #E5E7EB;
-    color: #4B5563;
-  }
-
-  :global(html[data-theme="vibrant"]) .btn-share-store:hover,
-  :global(html[data-theme="vibrant"]) .btn-gmap:hover {
-    background: #F3F4F6;
-    color: #111827;
-  }
-
-  .btn-share-store:hover,
+  .btn-copy-coord:hover,
   .btn-gmap:hover {
     background: var(--color-surface-hover);
     color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-copy-coord,
+  :global(html[data-theme="vibrant"]) .btn-gmap {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    color: #374151;
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-copy-coord:hover,
+  :global(html[data-theme="vibrant"]) .btn-gmap:hover {
+    background: #F3F4F6;
+    color: #111827;
   }
 
   /* No Results */
