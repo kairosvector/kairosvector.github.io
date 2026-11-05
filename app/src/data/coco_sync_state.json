@@ -1,0 +1,74 @@
+{
+  "last_processed_timestamp": "2026-11-05T05:53:33.000Z",
+  "last_processed_local_time": "2026-11-05 13:53:33 (UTC+8)",
+  "last_processed_row_index": 26,
+  "total_records_at_last_sync": 27,
+  "batches": [
+    {
+      "batch_id": 1,
+      "applied_at": "2026-11-05 14:02:00 (UTC+8)",
+      "cutoff_timestamp": "2026-11-05T05:53:33.000Z",
+      "target": "Product & Staging",
+      "updated_stores_count": 8,
+      "updated_stores": [
+        {
+          "id": "coco-22",
+          "name": "CoCo都可 (松山壹號)",
+          "coords": "25.04944, 121.57891",
+          "source": "使用者驗證"
+        },
+        {
+          "id": "coco-36",
+          "name": "CoCo都可(三井南港店)",
+          "coords": "25.05925, 121.61803",
+          "source": "使用者驗證"
+        },
+        {
+          "id": "coco-51",
+          "name": "CoCo都可 (捷運北車2)M3出口",
+          "coords": "25.04500, 121.51621",
+          "source": "使用者驗證"
+        },
+        {
+          "id": "coco-58",
+          "name": "CoCo都可 忠孝復興店",
+          "coords": "25.04142, 121.54508",
+          "source": "使用者驗證"
+        },
+        {
+          "id": "coco-52",
+          "name": "CoCo都可 捷運北車店",
+          "coords": "25.04811, 121.51839",
+          "source": "表單提供點位 (類別A)"
+        },
+        {
+          "id": "coco-329",
+          "name": "CoCo都可 高雄大遠百",
+          "coords": "22.61292, 120.30435",
+          "source": "表單提供點位 (類別A)"
+        },
+        {
+          "id": "coco-326",
+          "name": "CoCo都可 夢時代店",
+          "coords": "22.59486, 120.30697",
+          "source": "表單提供點位 (類別A)"
+        },
+        {
+          "id": "coco-319",
+          "name": "CoCo都可 西螺服務區",
+          "coords": "23.78876, 120.47742",
+          "source": "表單提供點位 (類別A)"
+        }
+      ],
+      "pending_without_coords": [
+        "coco-1 CoCo都可（百福門市）",
+        "coco-73 CoCo都可 洲子洋店",
+        "coco-85 CoCo都可 合宜店",
+        "coco-100 CoCo都可 三芝店",
+        "coco-114 CoCo都可 土城廣福店",
+        "coco-123 CoCo都可 萬家福林口店",
+        "coco-328 CoCo都可 楠梓德賢店"
+      ]
+    }
+  ]
+}
