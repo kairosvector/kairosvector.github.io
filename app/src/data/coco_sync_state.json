@@ -352,6 +352,20 @@
           "source": "使用者提供新增門市（雲林實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 16,
+      "applied_at": "2026-11-05 20:30:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-341",
+          "name": "CoCo都可 斗六萬家福",
+          "coords": "23.70152, 120.53048",
+          "source": "使用者提供新增門市（雲林斗六萬家福實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -375,6 +389,7 @@
     }
   ],
   "all_updated_ids": [
-    "coco-340"
+    "coco-340",
+    "coco-341"
   ]
 }

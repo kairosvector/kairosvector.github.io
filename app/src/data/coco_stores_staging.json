@@ -4392,5 +4392,18 @@
     "coordsText": "23.70814, 120.43351",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70814,120.43351",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-341",
+    "city": "雲林縣",
+    "name": "CoCo都可 斗六萬家福",
+    "shortName": "雲林斗六萬家福",
+    "address": "雲林縣斗六市雲林路二段297號",
+    "phone": "05 537 5500",
+    "lat": 23.70152,
+    "lng": 120.53048,
+    "coordsText": "23.70152, 120.53048",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70152,120.53048",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]
