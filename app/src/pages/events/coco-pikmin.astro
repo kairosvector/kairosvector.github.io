@@ -305,7 +305,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
                   <!-- Line 3 & 4: Action Buttons (Warm beige & soft peach colors matching screenshot) -->
                   <div class="muse-card__actions">
-                    <!-- Button Row 1: 複製座標 & 直開遊戲 -->
+                    <!-- Button Row 1: 複製座標 & 看遊戲地圖 -->
                     <div class="muse-btn-row">
                       <button
                         class="muse-btn muse-btn--neutral btn-copy-coord"
@@ -325,16 +325,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                         data-lat={store.lat}
                         data-lng={store.lng}
                         data-name={store.shortName}
-                        title="直開 Pikmin Bloom 帶座標大區域地圖"
+                        title="在 Pikmin Bloom 查看大區域地圖（未安裝將導向商店）"
                       >
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg>
-                        <span>直開遊戲</span>
+                        <span>看遊戲地圖</span>
                       </button>
                     </div>
 
-                    <!-- Button Row 2: 分享到 GeoSim & 地圖 -->
+                    <!-- Button Row 2: 用 GeoSim 打開 & 地圖 -->
                     <div class="muse-btn-row">
                       <button
                         class="muse-btn muse-btn--geosim btn-launch-geosim"
@@ -342,7 +342,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                         data-lng={store.lng}
                         data-name={store.name}
                         data-coords={store.coordsText}
-                        title="分享座標並開啟 GeoSim（未安裝將自動導向商店）"
+                        title="用 GeoSim 開啟此座標（未安裝將導向商店）"
                       >
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                           <circle cx="18" cy="5" r="3"></circle>
@@ -351,7 +351,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                           <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
                           <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                         </svg>
-                        <span>分享到 GeoSim</span>
+                        <span>用 GeoSim 打開</span>
                       </button>
 
                       <a
@@ -678,15 +678,38 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       if (elReady) elReady.textContent = `${countReady}`;
     }
 
-    // 3. Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
+    // 3. Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates & 100% Store Fallback)
     function openInPikmin(lat, lng) {
       const LAT = Number(lat).toFixed(7);
       const LNG = Number(lng).toFixed(7);
       const ua = navigator.userAgent || '';
-      if (/Android/i.test(ua)) {
-        const fb = 'https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+      const playStore = 'https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin';
+      const appStore = 'https://apps.apple.com/app/id1492797348';
+      const fallbackUrl = isIOS ? appStore : playStore;
+
+      showToast('正在開啟 Pikmin Bloom...');
+
+      let appOpened = false;
+      const fallbackTimer = setTimeout(() => {
+        if (!appOpened && !document.hidden) {
+          window.location.href = fallbackUrl;
+        }
+      }, 1800);
+
+      const onVisibilityChange = () => {
+        if (document.hidden) {
+          appOpened = true;
+          clearTimeout(fallbackTimer);
+        }
+      };
+      window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+      window.addEventListener('pagehide', onVisibilityChange, { once: true });
+
+      if (isAndroid) {
         location.href = 'intent:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG
-          + '#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=' + fb + ';end';
+          + '#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=' + encodeURIComponent(playStore) + ';end';
         return;
       }
       location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
@@ -2754,11 +2777,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
   .muse-btn--geosim {
-    flex: 1.25 !important;
+    flex: 1.35 !important;
   }
 
   .muse-btn[href*="google.com/maps"] {
-    flex: 0.75 !important;
+    flex: 0.65 !important;
   }
 
 </style>
