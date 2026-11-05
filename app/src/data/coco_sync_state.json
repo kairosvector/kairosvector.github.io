@@ -272,6 +272,26 @@
           "source": "表單提供點位"
         }
       ]
+    },
+    {
+      "batch_id": 12,
+      "applied_at": "2026-11-05 16:29:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-232",
+          "name": "富源店",
+          "coords": "24.96488, 121.15103",
+          "source": "表單提供點位（重大偏差校正）"
+        },
+        {
+          "id": "coco-271",
+          "name": "CoCo都可(竹東二重)",
+          "coords": "24.76736, 121.05588",
+          "source": "表單提供點位"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
