@@ -196,6 +196,20 @@
           "source": "使用者驗證"
         }
       ]
+    },
+    {
+      "batch_id": 7,
+      "applied_at": "2026-11-05 15:09:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-133",
+          "name": "CoCo都可 遠雄汐止店",
+          "coords": "25.06247, 121.65008",
+          "source": "使用者驗證"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
