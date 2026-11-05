@@ -130,56 +130,74 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </header>
 
-    <!-- Sticky Filter & Search Bar -->
+    <!-- Sticky Filter & Search Bar (Muse-Style High Legibility) -->
     <section class="coco-controls-section">
       <div class="container">
-        <div class="coco-controls-card">
-          <!-- City Tabs -->
-          <div class="coco-tabs" role="tablist" aria-label="縣市篩選">
-            {cities.map((c) => (
-              <button
-                class={`coco-tab ${c.id === 'all' ? 'active' : ''}`}
-                data-city={c.id}
-                role="tab"
-                aria-selected={c.id === 'all' ? 'true' : 'false'}
-              >
-                {c.name}
-                <span class="coco-tab__count">{c.count}</span>
-              </button>
-            ))}
+        <!-- Top Status Bar: 已領取 0 / 48 & 搜尋／工具 toggle button -->
+        <div class="muse-top-bar">
+          <div class="muse-top-bar__counter">
+            <span class="muse-counter-label">已領取</span>
+            <span class="muse-counter-done" id="pill-done-count">0</span>
+            <span class="muse-counter-sep">/</span>
+            <span class="muse-counter-total" id="pill-total-count">48</span>
           </div>
+          <button id="btn-toggle-tools" class="muse-tools-toggle" aria-expanded="false" aria-controls="muse-tools-panel">
+            <span>搜尋／工具</span>
+            <svg class="muse-tools-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
 
-          <!-- Search & Status Filter Row -->
-          <div class="coco-filter-row">
-            <div class="search-box">
-              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="text"
-                id="store-search-input"
-                class="search-input"
-                placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
-                aria-label="搜尋門市名稱"
-              />
-              <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
+        <!-- Expandable Tools & Filters Panel (Collapsed by default on mobile) -->
+        <div id="muse-tools-panel" class="muse-tools-panel" style="display: none;">
+          <div class="coco-controls-card">
+            <!-- City Tabs -->
+            <div class="coco-tabs" role="tablist" aria-label="縣市篩選">
+              {cities.map((c) => (
+                <button
+                  class={`coco-tab ${c.id === 'all' ? 'active' : ''}`}
+                  data-city={c.id}
+                  role="tab"
+                  aria-selected={c.id === 'all' ? 'true' : 'false'}
+                >
+                  {c.name}
+                  <span class="coco-tab__count">{c.count}</span>
+                </button>
+              ))}
             </div>
 
-            <!-- Status Filter -->
-            <div class="status-filters">
-              <button class="status-filter-btn active" data-status="all">全部</button>
-              <button class="status-filter-btn" data-status="todo">尚未前往</button>
-              <button class="status-filter-btn" data-status="visited">7 天冷卻中</button>
-            </div>
-          </div>
+            <!-- Search & Status Filter Row -->
+            <div class="coco-filter-row">
+              <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                  type="text"
+                  id="store-search-input"
+                  class="search-input"
+                  placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
+                  aria-label="搜尋門市名稱"
+                />
+                <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
+              </div>
 
-          <!-- Result Counter & Quick Reset -->
-          <div class="coco-stat-bar">
-            <span id="stat-summary-text">顯示 48 家門市</span>
-            <div class="stat-pills">
-              <span class="stat-pill stat-pill--todo" id="pill-todo-count">待造訪: 48</span>
-              <span class="stat-pill stat-pill--done" id="pill-done-count">冷卻中: 0</span>
+              <!-- Status Filter -->
+              <div class="status-filters">
+                <button class="status-filter-btn active" data-status="all">全部</button>
+                <button class="status-filter-btn" data-status="todo">尚未前往</button>
+                <button class="status-filter-btn" data-status="visited">7 天冷卻中</button>
+              </div>
+            </div>
+
+            <!-- Result Counter -->
+            <div class="coco-stat-bar">
+              <span id="stat-summary-text">顯示 48 家門市</span>
+              <div class="stat-pills">
+                <span class="stat-pill stat-pill--todo" id="pill-todo-count">待造訪: 48</span>
+              </div>
             </div>
           </div>
         </div>
@@ -214,7 +232,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <div class="stores-grid">
               {group.stores.map((store) => (
                 <article
-                  class="store-card"
+                  class="store-card muse-card"
                   data-store-id={store.id}
                   data-city={store.city}
                   data-name={store.name}
@@ -223,76 +241,96 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-lng={store.lng}
                   data-coords={store.coordsText}
                 >
-                  <!-- Row 1: Store Name, City Tag & Checklist Toggle -->
-                  <div class="store-card__row-header">
-                    <div class="store-card__title-wrap">
-                      <span class="store-badge">CoCo</span>
-                      <h3 class="store-card__name">{store.shortName}</h3>
-                      <span class="store-card__city-tag">{store.city}</span>
-                    </div>
-
-                    <!-- 7-Day Checklist Toggle (Clear, comfortable font) -->
-                    <label class="check-toggle" title="標記今天已刷花苗，開始計算 7 天冷卻">
+                  <!-- Line 1: Big Rounded Checkbox & Bold 22px Store Name -->
+                  <div class="muse-card__head">
+                    <label class="muse-checkbox" title="勾選代表已刷花苗，開始計算 7 天冷卻">
                       <input
                         type="checkbox"
                         class="check-toggle__input"
                         data-store-id={store.id}
+                        aria-label={`標記 ${store.shortName} 已領取花苗`}
                       />
-                      <span class="check-toggle__box"></span>
-                      <span class="check-toggle__label">標記已領取</span>
+                      <span class="muse-checkbox__box"></span>
                     </label>
+                    <h3 class="muse-card__title">{store.shortName}</h3>
                   </div>
 
-                  <!-- Cooldown Banner (Inline compact badge when visited) -->
-                  <div class="cooldown-banner" style="display: none;">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <!-- Line 2: GPS Coordinates (Large, clear, aligned under store title) -->
+                  <div class="muse-card__coords">
+                    {store.coordsText}
+                  </div>
+
+                  <!-- 7-Day Cooldown Notice (Appears when visited) -->
+                  <div class="cooldown-banner muse-cooldown-badge" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
                       <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                     <span class="cooldown-banner__text">7 天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
                   </div>
 
-                  <!-- Row 2: GPS Coordinate & 3 Action Buttons in a Compact Row -->
-                  <div class="store-card__row-actions">
-                    <div class="coords-display">
-                      <span class="coords-prefix">GPS</span>
-                      <code class="coords-code">{store.coordsText}</code>
-                    </div>
-
-                    <div class="store-card__btn-group">
-                      <!-- Direct 1-Click Launch to GeoSim -->
+                  <!-- Line 3 & 4: Action Buttons (Warm beige & soft peach colors matching screenshot) -->
+                  <div class="muse-card__actions">
+                    <!-- Button Row 1: 複製座標 & 直開遊戲 -->
+                    <div class="muse-btn-row">
                       <button
-                        class="btn-act btn-act--launch btn-launch-geosim"
-                        data-lat={store.lat}
-                        data-lng={store.lng}
-                        data-name={store.name}
-                        data-coords={store.coordsText}
-                        title="手機直接開啟 GeoSim 瞬移至此門市（未安裝將自動導向商店）"
-                      >
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
-                        <span>直開 GeoSim</span>
-                      </button>
-
-                      <!-- Fast Clipboard Copy -->
-                      <button
-                        class="btn-act btn-act--copy btn-copy-coord"
+                        class="muse-btn muse-btn--neutral btn-copy-coord"
                         data-coords={store.coordsText}
                         data-name={store.shortName}
                         title="複製經緯度座標"
                       >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
                         <span>複製座標</span>
                       </button>
 
-                      <!-- Google Maps Link -->
+                      <button
+                        class="muse-btn muse-btn--pikmin btn-launch-pikmin"
+                        data-lat={store.lat}
+                        data-lng={store.lng}
+                        data-name={store.shortName}
+                        title="直開 Pikmin Bloom 帶座標大區域地圖"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <span>直開遊戲</span>
+                      </button>
+                    </div>
+
+                    <!-- Button Row 2: 分享到 GeoSim & 地圖 -->
+                    <div class="muse-btn-row">
+                      <button
+                        class="muse-btn muse-btn--geosim btn-launch-geosim"
+                        data-lat={store.lat}
+                        data-lng={store.lng}
+                        data-name={store.name}
+                        data-coords={store.coordsText}
+                        title="分享座標並開啟 GeoSim（未安裝將自動導向商店）"
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <circle cx="18" cy="5" r="3"></circle>
+                          <circle cx="6" cy="12" r="3"></circle>
+                          <circle cx="18" cy="19" r="3"></circle>
+                          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        <span>分享到 GeoSim</span>
+                      </button>
+
                       <a
                         href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="btn-act btn-act--map btn-gmap"
+                        class="muse-btn muse-btn--neutral btn-gmap"
                         title="在 Google Maps 查看位置"
                       >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
                         <span>地圖</span>
                       </a>
                     </div>
@@ -467,6 +505,18 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
 <script is:inline>
   (function () {
+    // Tools Panel Toggle (搜尋／工具)
+    const btnToggleTools = document.getElementById('btn-toggle-tools');
+    const toolsPanel = document.getElementById('muse-tools-panel');
+    if (btnToggleTools && toolsPanel) {
+      btnToggleTools.addEventListener('click', () => {
+        const isClosed = toolsPanel.style.display === 'none';
+        toolsPanel.style.display = isClosed ? 'block' : 'none';
+        btnToggleTools.setAttribute('aria-expanded', isClosed ? 'true' : 'false');
+        btnToggleTools.classList.toggle('active', isClosed);
+      });
+    }
+
     // 0. LINE / In-App Browser Breakout & Detection
     (function handleInAppBrowser() {
       const ua = navigator.userAgent || '';
@@ -585,6 +635,20 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
     // 2. Direct 1-Click Launch to GeoSim
     // (Uses Android Intent URI with S.browser_fallback_url + JS timeout to ensure redirect to Play Store if not installed)
+    // 1.5 Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
+    function openInPikmin(lat, lng) {
+      const LAT = Number(lat).toFixed(7);
+      const LNG = Number(lng).toFixed(7);
+      const ua = navigator.userAgent || '';
+      if (/Android/i.test(ua)) {
+        const fb = 'https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin';
+        location.href = 'intent:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG
+          + '#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=' + fb + ';end';
+        return;
+      }
+      location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
+    }
+
     async function launchGeoSim(lat, lng, storeName, coordsText) {
       // (1) 先寫入剪貼簿備用
       try {
@@ -738,6 +802,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         cb.addEventListener('change', (e) => {
           const storeId = e.target.getAttribute('data-store-id');
           setVisited(storeId, e.target.checked);
+        });
+      });
+
+      // Direct Launch to Pikmin Bloom
+      document.querySelectorAll('.btn-launch-pikmin').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lat = parseFloat(btn.getAttribute('data-lat'));
+          const lng = parseFloat(btn.getAttribute('data-lng'));
+          const name = btn.getAttribute('data-name');
+          if (!isNaN(lat) && !isNaN(lng)) {
+            showToast(`正在開啟 Pikmin Bloom (${name})...`);
+            openInPikmin(lat, lng);
+          }
         });
       });
 
@@ -1523,6 +1600,24 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     transform: translateY(-1px);
   }
 
+  /* Launch Pikmin Bloom Button (Fresh Pikmin Garden Green) */
+  .btn-act--pikmin {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+  }
+
+  .btn-act--pikmin:hover {
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+    transform: translateY(-1px);
+  }
+
+  :global(html[data-theme="vibrant"]) .btn-act--pikmin {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    color: #FFFFFF !important;
+  }
+
   /* Outline Buttons (Copy & Map) */
   .btn-act--copy,
   .btn-act--map {
@@ -1578,14 +1673,22 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     }
 
     .btn-act--launch {
-      flex: 1.4;
-      padding: 0.5rem 0.4rem;
+      flex: 1.25;
+      padding: 0.5rem 0.35rem;
+      font-size: 0.825rem;
+    }
+
+    .btn-act--pikmin {
+      flex: 1.15;
+      padding: 0.5rem 0.35rem;
+      font-size: 0.825rem;
     }
 
     .btn-act--copy,
     .btn-act--map {
-      flex: 1;
-      padding: 0.5rem 0.4rem;
+      flex: 0.8;
+      padding: 0.5rem 0.3rem;
+      font-size: 0.825rem;
     }
   }
 
@@ -1823,4 +1926,371 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       justify-content: center;
     }
   }
+
+  /* ==========================================================================
+     Muse-Style High Legibility Mobile Card Layout
+     (Matches reference: 22px bold title, 16.5px coords, warm palette)
+     ========================================================================== */
+
+  /* Page background warm tint */
+  :global(html[data-theme="vibrant"]) .coco-page {
+    background-color: #FAF8F5 !important;
+  }
+
+  /* Sticky Top Status Bar */
+  .muse-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .muse-top-bar__counter {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-top-bar__counter {
+    color: #1C1917;
+  }
+
+  .muse-counter-label {
+    font-weight: 700;
+  }
+
+  .muse-counter-done {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #E05326;
+  }
+
+  .muse-counter-sep,
+  .muse-counter-total {
+    color: var(--color-text-secondary);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-counter-total {
+    color: #44403C;
+  }
+
+  /* 搜尋／工具 Toggle Button */
+  .muse-tools-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.925rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-tools-toggle {
+    background: #FFFFFF;
+    border-color: #D6D3CD;
+    color: #292524;
+  }
+
+  .muse-tools-toggle:hover,
+  .muse-tools-toggle.active {
+    background: var(--color-surface-hover);
+    border-color: #E05326;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-tools-toggle.active {
+    background: #FDF4F0;
+    color: #E05326;
+    border-color: #E05326;
+  }
+
+  .muse-tools-toggle__arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .muse-tools-toggle.active .muse-tools-toggle__arrow {
+    transform: rotate(180deg);
+  }
+
+  .muse-tools-panel {
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.2s ease;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Muse Cards Grid */
+  .stores-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 900px) {
+    .stores-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .stores-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 100%;
+    }
+  }
+
+  /* Muse Store Card */
+  .muse-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 1rem 1.15rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card {
+    background: #FFFFFF !important;
+    border-color: #EAE6DF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+  }
+
+  .muse-card.is-visited {
+    opacity: 0.88;
+    background: rgba(16, 185, 129, 0.04);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card.is-visited {
+    background: #F4FBF7 !important;
+    border-color: #D1E7DD !important;
+  }
+
+  /* Card Head: Big Checkbox + Store Title */
+  .muse-card__head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Custom Large Checkbox (24px x 24px) */
+  .muse-checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .muse-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .muse-checkbox__box {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #78716C;
+    border-radius: 6px;
+    background: transparent;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-checkbox__box {
+    border-color: #78716C;
+    background: #FFFFFF;
+  }
+
+  .muse-checkbox input:checked + .muse-checkbox__box {
+    background: #16A34A;
+    border-color: #16A34A;
+  }
+
+  .muse-checkbox input:checked + .muse-checkbox__box::after {
+    content: '';
+    width: 6px;
+    height: 11px;
+    border: solid #FFFFFF;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+  }
+
+  /* Store Title: Large, bold, punchy (22px) */
+  .muse-card__title {
+    font-size: 1.35rem; /* ~21.6px */
+    font-weight: 800;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card__title {
+    color: #1C1917;
+  }
+
+  /* Coordinates (indented 34px to align with text) */
+  .muse-card__coords {
+    margin-left: 34px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 1.05rem; /* ~16.8px */
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-card__coords {
+    color: #57534E;
+  }
+
+  /* Cooldown Badge */
+  .muse-cooldown-badge {
+    margin-left: 34px;
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #16a34a;
+    font-size: 0.85rem;
+  }
+
+  .muse-cooldown-badge strong {
+    color: #16a34a;
+  }
+
+  /* Actions Area (indented 34px) */
+  .muse-card__actions {
+    margin-left: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .muse-btn-row {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+  }
+
+  /* Action Buttons (15px bold, comfortable touch targets) */
+  .muse-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.95rem; /* ~15.2px */
+    font-weight: 600;
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1.25;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  /* Neutral Button (複製座標, 地圖) */
+  .muse-btn--neutral {
+    background: var(--color-surface-hover);
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--neutral {
+    background: #F3EFE9 !important;
+    color: #292524 !important;
+  }
+
+  .muse-btn--neutral:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  /* GeoSim Button (溫潤淡橘底紅字 #fdeee7 / #c2410c) */
+  .muse-btn--geosim {
+    background: rgba(255, 112, 67, 0.15);
+    color: #ff7043;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--geosim {
+    background: #FDEEE7 !important;
+    color: #C2410C !important;
+  }
+
+  .muse-btn--geosim:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  /* Pikmin Game Button (清新淡綠底綠字 #e8f7ee / #15803d) */
+  .muse-btn--pikmin {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    font-weight: 700;
+  }
+
+  :global(html[data-theme="vibrant"]) .muse-btn--pikmin {
+    background: #E8F7EE !important;
+    color: #15803D !important;
+  }
+
+  .muse-btn--pikmin:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 480px) {
+    .muse-card {
+      padding: 0.9rem 1rem;
+    }
+
+    .muse-card__title {
+      font-size: 1.25rem; /* 20px on small screens */
+    }
+
+    .muse-card__coords {
+      font-size: 1rem;
+    }
+
+    .muse-btn {
+      font-size: 0.9rem;
+      padding: 0.45rem 0.65rem;
+    }
+  }
+
 </style>
