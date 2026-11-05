@@ -669,10 +669,10 @@
     "shortName": "台北北車",
     "address": "臺北市中正區忠孝西路一段49號捷運北車10號店舖號B3",
     "phone": "02 2361 6898",
-    "lat": 25.04677,
-    "lng": 121.51617,
-    "coordsText": "25.04677, 121.51617",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04677,121.51617",
+    "lat": 25.04811,
+    "lng": 121.51839,
+    "coordsText": "25.04811, 121.51839",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04811,121.51839",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -4166,10 +4166,10 @@
     "shortName": "雲林西螺服務區",
     "address": "雲林縣西螺鎮振興里1號（南下站）",
     "phone": "05 586 0005",
-    "lat": 23.78877,
-    "lng": 120.47634,
-    "coordsText": "23.78877, 120.47634",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.78877,120.47634",
+    "lat": 23.78876,
+    "lng": 120.47742,
+    "coordsText": "23.78876, 120.47742",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.78876,120.47742",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -4257,10 +4257,10 @@
     "shortName": "高雄夢時代",
     "address": "高雄市前鎮區中華五路789號B1",
     "phone": "07 812 8801",
-    "lat": 22.59519,
-    "lng": 120.30718,
-    "coordsText": "22.59519, 120.30718",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.59519,120.30718",
+    "lat": 22.59486,
+    "lng": 120.30697,
+    "coordsText": "22.59486, 120.30697",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.59486,120.30697",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -4296,10 +4296,10 @@
     "shortName": "高雄大遠百",
     "address": "高雄市苓雅區三多四路21號11樓",
     "phone": "07 331 0018",
-    "lat": 22.6128,
-    "lng": 120.30168,
-    "coordsText": "22.6128, 120.30168",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.6128,120.30168",
+    "lat": 22.61292,
+    "lng": 120.30435,
+    "coordsText": "22.61292, 120.30435",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.61292,120.30435",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
