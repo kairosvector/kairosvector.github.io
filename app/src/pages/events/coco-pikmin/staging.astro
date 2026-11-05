@@ -67,13 +67,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>
-    <!-- Top Sticky Version & Force Refresh Banner (Pinned at absolute top) -->
+    <!-- Top Fixed Version & Force Refresh Banner (Fixed right below Title Bar) -->
     <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="13" data-store-count={stores.length}>
       <div class="container top-sticky-version-inner">
         <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
-          <span class="version-tag" id="version-badge">最新版</span>
-          <span class="version-info-text" id="version-title">點位資料庫：11/05 17:25 · 全台 <strong>{stores.length}</strong> 店已校對</span>
+          <span class="version-tag" id="version-badge">{stores.length} 店最新</span>
+          <span class="version-info-text" id="version-title">
+            <span class="version-desktop-text">點位已校正 · 11/05 17:25</span>
+            <span class="version-mobile-text">11/05 17:25</span>
+          </span>
         </div>
         <button id="btn-force-refresh" class="btn-top-refresh" type="button" title="清除快取載入最新門市點位">
           <svg class="refresh-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -81,10 +84,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <polyline points="1 20 1 14 7 14"></polyline>
             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
           </svg>
-          <span class="refresh-label">點此強制重整</span>
+          <span class="refresh-label">強制重整</span>
         </button>
       </div>
     </div>
+    <div class="top-sticky-spacer" aria-hidden="true"></div>
 
     <!-- In-App Browser (LINE / FB) Guidance Bar -->
     <div id="inapp-browser-bar" class="inapp-browser-bar" style="display: none;">
@@ -728,12 +732,12 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               badge.classList.add('has-update');
             }
             if (title) {
-              title.innerHTML = '<strong>已釋出最新點位（最新 ' + remote.store_count + ' 店，目前快取為 ' + localCount + ' 店）</strong>';
+              title.innerHTML = '<strong>最新 ' + remote.store_count + ' 店已釋出</strong>';
             }
             if (btn) {
               btn.classList.add('has-update');
               const label = btn.querySelector('.refresh-label');
-              if (label) label.textContent = '點我立即更新至最新 ' + remote.store_count + ' 店';
+              if (label) label.textContent = '更新至 ' + remote.store_count + ' 店';
             }
           }
         })
@@ -1654,38 +1658,49 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     50% { transform: translateY(-2px); }
   }
 
-  /* Top Sticky Version Banner (Absolute Top under Navbar) */
+  /* Top Fixed Version Banner (Fixed right below Title Bar) */
   .top-sticky-version-wrapper {
-    position: sticky;
-    top: var(--nav-height, 64px);
-    z-index: 45;
-    background: #FFFFFF;
-    border-bottom: 1px solid #E2E8F0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    padding: 0.35rem 0;
-    transition: all 0.2s ease;
+    position: fixed !important;
+    top: var(--nav-height, 64px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 38px !important;
+    z-index: 990 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .top-sticky-spacer {
+    height: 38px;
+    width: 100%;
   }
 
   :global(html[data-theme="vibrant"]) .top-sticky-version-wrapper {
-    background: #FFFFFF;
-    border-bottom-color: #E2E8F0;
+    background: #FFFFFF !important;
+    border-bottom-color: #E2E8F0 !important;
   }
 
   .top-sticky-version-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+    height: 100% !important;
   }
 
   .top-sticky-version-left {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.82rem;
-    color: #475569;
-    flex-wrap: nowrap;
-    overflow: hidden;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    font-size: 0.8rem !important;
+    color: #475569 !important;
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
   }
 
   .version-dot {
@@ -1701,44 +1716,45 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     background: #ECFDF5;
     color: #065F46;
     font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.1rem 0.4rem;
+    font-weight: 800;
+    padding: 0.1rem 0.45rem;
     border-radius: 4px;
     border: 1px solid #A7F3D0;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .version-info-text {
     font-weight: 500;
+    color: #64748B;
     white-space: nowrap;
   }
 
-  .version-info-text strong {
-    color: #E4571D;
-    font-weight: 800;
+  .version-mobile-text {
+    display: none;
   }
 
   .btn-top-refresh {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: #F1F5F9;
-    border: 1px solid #CBD5E1;
-    color: #334155;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.55rem;
-    border-radius: 6px;
-    cursor: pointer;
-    flex-shrink: 0;
-    white-space: nowrap;
-    transition: all 0.15s ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    background: #F1F5F9 !important;
+    border: 1px solid #CBD5E1 !important;
+    color: #334155 !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    padding: 0.25rem 0.55rem !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    transition: all 0.15s ease !important;
   }
 
   .btn-top-refresh:hover {
-    background: #EDE9FE;
-    border-color: #C4B5FD;
-    color: #6D28D9;
+    background: #EDE9FE !important;
+    border-color: #C4B5FD !important;
+    color: #6D28D9 !important;
   }
 
   .btn-top-refresh.is-refreshing {
@@ -1777,18 +1793,21 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     animation: btn-attention 1.6s infinite !important;
   }
 
-  /* Stack sticky controls below the top version bar */
+  /* Fixed offset for coco-controls-section */
   .coco-controls-section {
     top: calc(var(--nav-height, 64px) + 38px) !important;
   }
 
   @media (max-width: 640px) {
-    .version-info-text {
-      font-size: 0.75rem;
+    .version-desktop-text {
+      display: none;
+    }
+    .version-mobile-text {
+      display: inline;
     }
   }
 
-/* Clean Compact Hero */
+  /* Clean Compact Hero */
   .coco-hero {
     padding: 1rem 0 0.5rem;
     text-align: left;
