@@ -58,6 +58,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   description={description}
   ogTitle="Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單"
   ogDescription="全台 CoCo 門市經緯度整理。支援手機一鍵直開 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
+  forcedTheme="vibrant"
+  hideThemeSwitcher={true}
 >
   <main class="coco-page">
     <!-- Staging Environment Indicator Banner -->
@@ -2606,6 +2608,18 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
      Bulletproof Mobile Width & Zero Horizontal Overflow Fix
      Solves the "Right side big gap / not adapting" issue completely
      ========================================================================== */
+
+  :global(#theme-switcher-widget) {
+    display: none !important;
+  }
+
+  :global(html),
+  :global(body),
+  :global(html[data-theme="dark"]) body,
+  :global(html[data-theme="dark"]) .coco-page {
+    background-color: #FAF8F5 !important;
+    color: #1F2937 !important;
+  }
 
   :global(html) {
     overflow-x: hidden !important;

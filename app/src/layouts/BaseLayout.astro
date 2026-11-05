@@ -8,6 +8,8 @@ interface Props {
   ogDescription?: string;
   canonicalUrl?: string;
   schemaJson?: object;
+  forcedTheme?: string;
+  hideThemeSwitcher?: boolean;
 }
 
 const {
@@ -17,6 +19,8 @@ const {
   ogDescription,
   canonicalUrl,
   schemaJson,
+  forcedTheme,
+  hideThemeSwitcher = Boolean(forcedTheme),
 } = Astro.props;
 
 const siteTitle = title.includes('Kairos') ? title : `${title} | Kairos Vector Studio`;
@@ -36,7 +40,7 @@ const defaultSchema = {
 ---
 
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="dark">
+<html lang="zh-TW" data-theme={forcedTheme || "dark"}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -70,7 +74,7 @@ const defaultSchema = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <!-- Embed Mode Detection for Android WebView / In-App Browser & Theme Init -->
-  <script is:inline>
+  <script is:inline define:vars={{ forcedTheme }}>
     (function () {
       try {
         var params = new URLSearchParams(window.location.search);
@@ -84,6 +88,11 @@ const defaultSchema = {
         }
 
         // Theme initialization:
+        if (forcedTheme) {
+          document.documentElement.setAttribute('data-theme', forcedTheme);
+          return;
+        }
+
         // When in embed mode, default to 'vibrant' (質感白 / 淺色模式) unless overridden
         var urlTheme = params.get('theme');
         var defaultTheme = isEmbed ? 'vibrant' : 'dark';
@@ -258,6 +267,7 @@ const defaultSchema = {
   </footer>
 
   <!-- Floating Theme Switcher Widget (2 Options: 暗夜黑 & 質感白) -->
+  {!hideThemeSwitcher && (
   <aside class="theme-switcher" id="theme-switcher-widget" aria-label="視覺主題配色切換">
     <span class="theme-switcher__label">主題：</span>
     <button class="theme-btn active" data-theme-target="dark" title="暗夜黑 (深色模式)">
@@ -269,30 +279,33 @@ const defaultSchema = {
       質感白
     </button>
   </aside>
+  )}
 
-  <script is:inline>
-    // Theme Switcher Logic
-    const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('kv_theme') || 'dark';
-    
-    const updateThemeButtons = (activeTheme) => {
+  <script is:inline define:vars={{ forcedTheme }}>
+    // Theme Switcher Logic (only when theme is not locked)
+    if (!forcedTheme) {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('kv_theme') || 'dark';
+      
+      const updateThemeButtons = (activeTheme) => {
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+          const target = btn.getAttribute('data-theme-target');
+          btn.classList.toggle('active', target === activeTheme);
+        });
+      };
+
+      updateThemeButtons(currentTheme);
+
       document.querySelectorAll('.theme-btn').forEach(btn => {
-        const target = btn.getAttribute('data-theme-target');
-        btn.classList.toggle('active', target === activeTheme);
+        btn.addEventListener('click', () => {
+          const theme = btn.getAttribute('data-theme-target');
+          if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('kv_theme', theme);
+            updateThemeButtons(theme);
+          }
+        });
       });
-    };
-
-    updateThemeButtons(currentTheme);
-
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const theme = btn.getAttribute('data-theme-target');
-        if (theme) {
-          document.documentElement.setAttribute('data-theme', theme);
-          localStorage.setItem('kv_theme', theme);
-          updateThemeButtons(theme);
-        }
-      });
-    });
+    }
 
     // Navigation scroll effect
     const nav = document.getElementById('main-nav');
