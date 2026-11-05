@@ -144,6 +144,47 @@
           "source": "表單提供點位"
         }
       ]
+    },
+    {
+      "batch_id": 5,
+      "applied_at": "2026-11-05 15:03:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 5,
+      "updated_stores": [
+        {
+          "id": "coco-85",
+          "name": "CoCo都可 合宜店",
+          "coords": "24.99777, 121.44738",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-159",
+          "name": "菓林店",
+          "coords": "25.07462, 121.25931",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-314",
+          "name": "CoCo都可 台中東海店",
+          "coords": "24.18201, 120.59263",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-281",
+          "name": "CoCo都可 頭份文化店",
+          "coords": "24.69915, 120.89938",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-100",
+          "name": "CoCo都可 三芝店",
+          "coords": "25.25880, 121.50222",
+          "source": "使用者驗證"
+        }
+      ]
     }
+  ],
+  "confirmed_correct_stores": [
+    "coco-1"
   ]
 }

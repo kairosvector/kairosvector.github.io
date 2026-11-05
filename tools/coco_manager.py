@@ -60,6 +60,7 @@ def analyze():
         for s in b.get("updated_stores", []):
             all_updated_ids.add(s["id"])
     all_updated_ids.update({"coco-332", "coco-333"})
+    all_updated_ids.update(set(state.get("confirmed_correct_stores", [])))
 
     # 1. Track stores reported wrong but WITHOUT coords
     stores_without_coords = {}

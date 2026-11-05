@@ -1111,10 +1111,10 @@
     "shortName": "新北合宜",
     "address": "新北市板橋區合宜路81號1樓",
     "phone": "02 2275 1788",
-    "lat": 24.99868,
-    "lng": 121.4481,
-    "coordsText": "24.99868, 121.4481",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99868,121.4481",
+    "lat": 24.99777,
+    "lng": 121.44738,
+    "coordsText": "24.99777, 121.44738",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99777,121.44738",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -1306,10 +1306,10 @@
     "shortName": "新北三芝",
     "address": "新北市三芝區淡金路一段81號1樓",
     "phone": "02 8635 2766",
-    "lat": 25.25869,
-    "lng": 121.50152,
-    "coordsText": "25.25869, 121.50152",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.25869,121.50152",
+    "lat": 25.2588,
+    "lng": 121.50222,
+    "coordsText": "25.25880, 121.50222",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.25880,121.50222",
     "route": "新北其餘"
   },
   {
@@ -2073,10 +2073,10 @@
     "shortName": "桃園菓林",
     "address": "桃園市大園區菓林路50號",
     "phone": "03 393 3272",
-    "lat": 25.07996,
-    "lng": 121.25659,
-    "coordsText": "25.07996, 121.25659",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07996,121.25659",
+    "lat": 25.07462,
+    "lng": 121.25931,
+    "coordsText": "25.07462, 121.25931",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07462,121.25931",
     "route": "桃園北線＋新竹市北／香山"
   },
   {
@@ -3672,10 +3672,10 @@
     "shortName": "苗栗頭份文化",
     "address": "35147苗栗縣頭份市文化里文化街155號",
     "phone": "037 660 815",
-    "lat": 24.69879,
-    "lng": 120.89919,
-    "coordsText": "24.69879, 120.89919",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.69879,120.89919",
+    "lat": 24.69915,
+    "lng": 120.89938,
+    "coordsText": "24.69915, 120.89938",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.69915,120.89938",
     "route": "新竹市東區＋新竹縣＋苗栗北／中"
   },
   {
@@ -4101,10 +4101,10 @@
     "shortName": "台中東海",
     "address": "台中市龍井區台灣大道五段3巷32號",
     "phone": "04 2633 0658",
-    "lat": 24.18247,
-    "lng": 120.5915,
-    "coordsText": "24.18247, 120.5915",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.18247,120.5915",
+    "lat": 24.18201,
+    "lng": 120.59263,
+    "coordsText": "24.18201, 120.59263",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.18201,120.59263",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
