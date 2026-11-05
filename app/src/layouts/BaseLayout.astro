@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogImage?: string;
   canonicalUrl?: string;
   schemaJson?: object;
   forcedTheme?: string;
@@ -17,6 +18,7 @@ const {
   description = 'Kairos Vector Studio — 好用的 Android 工具，認真做。步數模擬、GPS 定位測試，為遊戲玩家與開發者打造。',
   ogTitle,
   ogDescription,
+  ogImage = 'https://kairosvector.pages.dev/og-cover.png',
   canonicalUrl,
   schemaJson,
   forcedTheme,
@@ -53,13 +55,13 @@ const defaultSchema = {
   <meta property="og:description" content={ogDescription || description} />
   <meta property="og:site_name" content="Kairos Vector Studio" />
   <meta property="og:locale" content="zh_TW" />
-  <meta property="og:image" content="https://kairosvector.pages.dev/og-cover.png" />
+  <meta property="og:image" content={ogImage} />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={ogTitle || siteTitle} />
   <meta name="twitter:description" content={ogDescription || description} />
-  <meta name="twitter:image" content="https://kairosvector.pages.dev/og-cover.png" />
+  <meta name="twitter:image" content={ogImage} />
 
   {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
