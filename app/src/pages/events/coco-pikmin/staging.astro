@@ -68,14 +68,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>
     <!-- Top Fixed Version & Force Refresh Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="13" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="14" data-store-count={stores.length}>
       <div class="container top-sticky-version-inner">
         <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
           <span class="version-tag" id="version-badge">{stores.length} 店最新</span>
           <span class="version-info-text" id="version-title">
-            <span class="version-desktop-text">點位已校正 · 11/05 17:25</span>
-            <span class="version-mobile-text">11/05 17:25</span>
+            <span class="version-desktop-text">點位已校正 · 11/05 18:28</span>
+            <span class="version-mobile-text">11/05 18:28</span>
           </span>
         </div>
         <button id="btn-force-refresh" class="btn-top-refresh" type="button" title="清除快取載入最新門市點位">
@@ -713,16 +713,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       const card = document.getElementById('coco-version-card');
       if (!card) return;
 
-      // On Staging: If URL has no ?v=13, simulate an outdated visitor (batch 12, 334 stores)
-      const hasUpdatedParam = window.location.search.includes('v=13');
-      const localBatch = hasUpdatedParam ? 13 : 12;
-      const localCount = hasUpdatedParam ? 338 : 334;
+      const localBatch = parseInt(card.getAttribute('data-batch-id') || '0', 10);
+      const localCount = parseInt(card.getAttribute('data-store-count') || '0', 10);
 
       // If user just arrived from an auto-reload, show a friendly toast
       if (sessionStorage.getItem('coco_just_auto_reloaded')) {
         sessionStorage.removeItem('coco_just_auto_reloaded');
         setTimeout(function () {
-          showToast('已自動為您刷新至最新 338 店門市點位！');
+          showToast('已偵測到新版本，自動為您刷新至最新點位！');
         }, 400);
       }
 
