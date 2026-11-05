@@ -33,6 +33,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   ogDescription="全台 CoCo 門市經緯度整理。支援手機一鍵直開 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
 >
   <main class="coco-page">
+    <!-- In-App Browser (LINE / FB) Guidance Bar -->
+    <div id="inapp-browser-bar" class="inapp-browser-bar" style="display: none;">
+      <div class="container inapp-browser-bar__inner">
+        <div class="inapp-browser-bar__text">
+          <strong>提示：</strong>您正在使用 LINE 內建瀏覽器，部分直開與打卡紀錄將受限。請點右下角「…」選擇<strong>「在 Safari / 瀏覽器中開啟」</strong>以獲得最佳體驗！
+        </div>
+        <button id="btn-close-inapp-bar" class="inapp-browser-bar__close" aria-label="關閉提示">✕</button>
+      </div>
+    </div>
+
     <!-- Breadcrumb -->
     <nav class="breadcrumb-container" aria-label="路徑導覽">
       <div class="container">
@@ -213,22 +223,15 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-lng={store.lng}
                   data-coords={store.coordsText}
                 >
-                  <div class="store-card__header">
+                  <!-- Row 1: Store Name, City Tag & Checklist Toggle -->
+                  <div class="store-card__row-header">
                     <div class="store-card__title-wrap">
                       <span class="store-badge">CoCo</span>
                       <h3 class="store-card__name">{store.shortName}</h3>
-                    </div>
-                    <span class="store-card__region">{store.city}</span>
-                  </div>
-
-                  <!-- Coordinates & Checklist Status -->
-                  <div class="store-card__info">
-                    <div class="coords-display">
-                      <span class="coords-label">GPS:</span>
-                      <code class="coords-code">{store.coordsText}</code>
+                      <span class="store-card__city-tag">{store.city}</span>
                     </div>
 
-                    <!-- 7-Day Checklist Toggle -->
+                    <!-- 7-Day Checklist Toggle (Clear, comfortable font) -->
                     <label class="check-toggle" title="標記今天已刷花苗，開始計算 7 天冷卻">
                       <input
                         type="checkbox"
@@ -240,60 +243,59 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                     </label>
                   </div>
 
-                  <!-- Cooldown Notice Badge -->
+                  <!-- Cooldown Banner (Inline compact badge when visited) -->
                   <div class="cooldown-banner" style="display: none;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
                       <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                     <span class="cooldown-banner__text">7 天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
                   </div>
 
-                  <!-- Card Action Buttons with Clear Labels -->
-                  <div class="store-card__actions">
-                    <!-- Direct 1-Click Launch to GeoSim -->
-                    <button
-                      class="btn btn--primary btn--sm btn-launch-geosim"
-                      data-lat={store.lat}
-                      data-lng={store.lng}
-                      data-name={store.name}
-                      data-coords={store.coordsText}
-                      title="手機直接開啟 GeoSim 瞬移至此門市（未安裝將自動導向商店）"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                      </svg>
-                      <span>直開 GeoSim</span>
-                    </button>
+                  <!-- Row 2: GPS Coordinate & 3 Action Buttons in a Compact Row -->
+                  <div class="store-card__row-actions">
+                    <div class="coords-display">
+                      <span class="coords-prefix">GPS</span>
+                      <code class="coords-code">{store.coordsText}</code>
+                    </div>
 
-                    <!-- Fast Clipboard Copy -->
-                    <button
-                      class="btn btn--outline btn--sm btn-copy-coord"
-                      data-coords={store.coordsText}
-                      data-name={store.shortName}
-                      title="複製經緯度座標"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                      </svg>
-                      <span>複製座標</span>
-                    </button>
+                    <div class="store-card__btn-group">
+                      <!-- Direct 1-Click Launch to GeoSim -->
+                      <button
+                        class="btn-act btn-act--launch btn-launch-geosim"
+                        data-lat={store.lat}
+                        data-lng={store.lng}
+                        data-name={store.name}
+                        data-coords={store.coordsText}
+                        title="手機直接開啟 GeoSim 瞬移至此門市（未安裝將自動導向商店）"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <span>直開 GeoSim</span>
+                      </button>
 
-                    <!-- Google Maps Link with Clear Text -->
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="btn btn--outline btn--sm btn-gmap"
-                      title="在 Google Maps 查看位置"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                      <span>地圖</span>
-                    </a>
+                      <!-- Fast Clipboard Copy -->
+                      <button
+                        class="btn-act btn-act--copy btn-copy-coord"
+                        data-coords={store.coordsText}
+                        data-name={store.shortName}
+                        title="複製經緯度座標"
+                      >
+                        <span>複製座標</span>
+                      </button>
+
+                      <!-- Google Maps Link -->
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-act btn-act--map btn-gmap"
+                        title="在 Google Maps 查看位置"
+                      >
+                        <span>地圖</span>
+                      </a>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -465,6 +467,37 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
 <script is:inline>
   (function () {
+    // 0. LINE / In-App Browser Breakout & Detection
+    (function handleInAppBrowser() {
+      const ua = navigator.userAgent || '';
+      const isLine = /Line\//i.test(ua);
+      const isFB = /FBAN|FBAV|Instagram/i.test(ua);
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+      if (isLine || isFB) {
+        if (isAndroid) {
+          // Android: Automatically escape to Chrome default browser
+          if (!window.location.search.includes('intent_redirected=1')) {
+            const cleanUrl = window.location.origin + window.location.pathname;
+            const intentUri = 'intent://' + window.location.host + window.location.pathname + '#Intent;scheme=https;package=com.android.chrome;end;';
+            window.location.href = intentUri;
+          }
+        } else if (isIOS) {
+          // iOS: Show guide notification bar
+          const bar = document.getElementById('inapp-browser-bar');
+          if (bar) bar.style.display = 'block';
+        }
+      }
+
+      const closeBar = document.getElementById('btn-close-inapp-bar');
+      if (closeBar) {
+        closeBar.addEventListener('click', () => {
+          const bar = document.getElementById('inapp-browser-bar');
+          if (bar) bar.style.display = 'none';
+        });
+      }
+    })();
     const STORAGE_KEY_PREFIX = 'coco_visited_';
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
@@ -1238,11 +1271,39 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     font-weight: 700;
   }
 
-  /* Stores Grid */
+  /* In-App Browser Guidance Bar */
+  .inapp-browser-bar {
+    background: #fff3cd;
+    border-bottom: 1px solid #ffeeba;
+    color: #856404;
+    padding: 0.65rem 0;
+    font-size: 0.875rem;
+    position: sticky;
+    top: var(--nav-height, 64px);
+    z-index: 50;
+  }
+
+  .inapp-browser-bar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .inapp-browser-bar__close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #856404;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* Compact High-Density Stores Grid */
   .stores-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 0.65rem;
   }
 
   .store-card {
@@ -1252,89 +1313,86 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    padding: 1.15rem;
+    padding: 0.85rem 1rem;
+    gap: 0.6rem;
     transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   }
 
+  :global(html[data-theme="vibrant"]) .store-card {
+    background: #FFFFFF;
+    border-color: #E5E7EB;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  }
+
   .store-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-color: rgba(255, 112, 67, 0.35);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 112, 67, 0.4);
   }
 
   .store-card.is-visited {
     border-color: rgba(76, 175, 80, 0.35);
-    background: linear-gradient(to bottom, rgba(76, 175, 80, 0.03), var(--color-surface));
+    background: linear-gradient(to bottom, rgba(76, 175, 80, 0.04), var(--color-surface));
   }
 
-  .store-card__header {
+  /* Row 1: Title & Checklist */
+  .store-card__row-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.75rem;
+    gap: 0.5rem;
   }
 
   .store-card__title-wrap {
     display: flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
+    min-width: 0;
   }
 
   .store-badge {
     background: #ff7043;
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    padding: 0.1rem 0.4rem;
+    padding: 0.15rem 0.45rem;
     border-radius: 4px;
     letter-spacing: 0.02em;
+    flex-shrink: 0;
   }
 
   .store-card__name {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -0.01em;
   }
 
-  .store-card__region {
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
+  :global(html[data-theme="vibrant"]) .store-card__name {
+    color: #111827;
   }
 
-  .store-card__info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-  }
-
-  .coords-display {
-    font-family: var(--font-mono, monospace);
-    font-size: 0.85rem;
-  }
-
-  .coords-label {
-    color: var(--color-text-secondary);
-    margin-right: 0.25rem;
-    font-size: 0.75rem;
-  }
-
-  .coords-code {
-    background: var(--color-surface-hover);
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
+  .store-card__city-tag {
     font-size: 0.825rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  /* Checklist Toggle */
+  /* Checklist Toggle (Comfortable 14px font, easy tap) */
   .check-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
     cursor: pointer;
     user-select: none;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
+    font-weight: 600;
     color: var(--color-text-secondary);
+    flex-shrink: 0;
   }
 
   .check-toggle__input {
@@ -1342,31 +1400,35 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
   .check-toggle__box {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--color-border);
-    border-radius: 4px;
+    border-radius: 5px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: all 0.15s ease;
   }
 
+  :global(html[data-theme="vibrant"]) .check-toggle__box {
+    border-color: #D1D5DB;
+  }
+
   .check-toggle__input:checked + .check-toggle__box {
-    background: #4caf50;
-    border-color: #4caf50;
+    background: #16a34a;
+    border-color: #16a34a;
   }
 
   .check-toggle__input:checked + .check-toggle__box::after {
     content: '✓';
     color: #fff;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: 900;
   }
 
   .check-toggle__input:checked ~ .check-toggle__label {
-    color: #4caf50;
-    font-weight: 600;
+    color: #16a34a;
+    font-weight: 700;
   }
 
   /* Cooldown Banner */
@@ -1374,92 +1436,157 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     display: flex;
     align-items: center;
     gap: 0.45rem;
-    background: rgba(76, 175, 80, 0.1);
+    background: rgba(76, 175, 80, 0.08);
     border: 1px solid rgba(76, 175, 80, 0.25);
     border-radius: 6px;
-    padding: 0.35rem 0.65rem;
-    font-size: 0.775rem;
-    color: #4caf50;
-    margin-bottom: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    color: #16a34a;
   }
 
   .cooldown-banner__text strong {
-    color: #4caf50;
+    color: #16a34a;
   }
 
-  /* Store Card Actions - 3 Clean Clear-Text Buttons */
-  .store-card__actions {
+  /* Row 2: GPS Coordinate & Action Buttons */
+  .store-card__row-actions {
     display: flex;
-    gap: 0.4rem;
+    justify-content: space-between;
     align-items: center;
-    margin-top: auto;
+    gap: 0.65rem;
+    flex-wrap: wrap;
   }
 
-  .btn-launch-geosim {
-    flex: 1.35;
+  .coords-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.9rem;
+  }
+
+  .coords-prefix {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  .coords-code {
+    background: var(--color-surface-hover);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  :global(html[data-theme="vibrant"]) .coords-code {
+    background: #F3F4F6;
+    color: #1F2937;
+  }
+
+  /* Action Buttons Group */
+  .store-card__btn-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+  }
+
+  .btn-act {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
-    border: none !important;
-    color: #fff !important;
-    font-weight: 700;
-    padding: 0.5rem 0.65rem;
-    font-size: 0.825rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.45rem 0.75rem;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255, 112, 67, 0.3);
-    transition: all 0.15s ease;
     white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    border: none;
+    line-height: 1.2;
   }
 
-  .btn-launch-geosim:hover {
-    box-shadow: 0 4px 12px rgba(255, 112, 67, 0.45);
+  /* Launch GeoSim Button (Prominent Orange) */
+  .btn-act--launch {
+    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(255, 112, 67, 0.25);
+  }
+
+  .btn-act--launch:hover {
+    box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
     transform: translateY(-1px);
   }
 
-  :global(html[data-theme="vibrant"]) .btn-launch-geosim {
-    background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-  }
-
-  .btn-copy-coord,
-  .btn-gmap {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    font-size: 0.825rem;
-    padding: 0.5rem 0.5rem;
-    border-radius: 8px;
-    white-space: nowrap;
-    text-decoration: none;
+  /* Outline Buttons (Copy & Map) */
+  .btn-act--copy,
+  .btn-act--map {
     border: 1px solid var(--color-border);
     background: var(--color-surface);
     color: var(--color-text-secondary);
-    transition: all 0.15s ease;
   }
 
-  .btn-copy-coord:hover,
-  .btn-gmap:hover {
+  .btn-act--copy:hover,
+  .btn-act--map:hover {
     background: var(--color-surface-hover);
     color: var(--color-text-primary);
   }
 
-  :global(html[data-theme="vibrant"]) .btn-copy-coord,
-  :global(html[data-theme="vibrant"]) .btn-gmap {
+  :global(html[data-theme="vibrant"]) .btn-act--copy,
+  :global(html[data-theme="vibrant"]) .btn-act--map {
     background: #FFFFFF;
-    border-color: #E5E7EB;
+    border-color: #D1D5DB;
     color: #374151;
   }
 
-  :global(html[data-theme="vibrant"]) .btn-copy-coord:hover,
-  :global(html[data-theme="vibrant"]) .btn-gmap:hover {
+  :global(html[data-theme="vibrant"]) .btn-act--copy:hover,
+  :global(html[data-theme="vibrant"]) .btn-act--map:hover {
     background: #F3F4F6;
     color: #111827;
+    border-color: #9CA3AF;
+  }
+
+  @media (max-width: 640px) {
+    .stores-grid {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+    }
+
+    .store-card {
+      padding: 0.75rem 0.85rem;
+      gap: 0.5rem;
+    }
+
+    .store-card__row-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.45rem;
+    }
+
+    .coords-display {
+      justify-content: space-between;
+    }
+
+    .store-card__btn-group {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .btn-act--launch {
+      flex: 1.4;
+      padding: 0.5rem 0.4rem;
+    }
+
+    .btn-act--copy,
+    .btn-act--map {
+      flex: 1;
+      padding: 0.5rem 0.4rem;
+    }
   }
 
   /* No Results */
