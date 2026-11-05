@@ -83,79 +83,44 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </nav>
 
-    <!-- Hero Header -->
+    <!-- Clean Compact Hero Header -->
     <header class="coco-hero">
       <div class="container">
         <div class="coco-hero__badge-wrap">
           <span class="coco-hero__tag">限時合作活動</span>
-          <span class="coco-hero__date">2026/11/5 ～ 11/22</span>
+          <span class="coco-hero__date">11/5 ～ 11/22 · 全台 15 縣市</span>
         </div>
         <h1 class="coco-hero__title">
           Pikmin Bloom × CoCo 都可門市<br />
           <span class="text-gradient">全台 331 店 GPS 座標與 7 天打卡清單</span>
         </h1>
-        <p class="coco-hero__subtitle">
-          全台 15 縣市 331 間 CoCo 都可門市特殊地點完整開放。收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
-        </p>
 
-        <!-- Rule Highlights -->
-        <div class="rule-grid">
-          <div class="rule-card">
-            <div class="rule-card__icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+        <!-- Compact GeoSim Recommendation Card (Inspired by Version B) -->
+        <aside class="geosim-compact-ad" aria-label="GeoSim 下載推薦">
+          <div class="ad-icon" aria-hidden="true">
+            <img src="/images/geosim-icon.png" alt="GeoSim App Icon" class="ad-icon-img" width="44" height="44" />
+          </div>
+          <div class="ad-content">
+            <div class="ad-head">
+              <span class="ad-tag">跑店神器 · 免費下載</span>
+              <h2 class="ad-title">人還沒到，定位先到 CoCo</h2>
             </div>
-            <div class="rule-card__content">
-              <strong>每 7 天領取 1 次</strong>
-              <p>每個特殊地點的金色花苗與明信片，7 天內限領一次，網頁提供打卡倒數計時。</p>
+            <p class="ad-desc">
+              331 間門市不用手打座標。點一下用 GeoSim 落點到店門口，再開遊戲領花苗，跑店快人一步。
+            </p>
+            <div class="ad-action-line">
+              <a class="ad-cta-btn" href={playStoreUrl} target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3v12"></path>
+                  <path d="M6.5 10.5L12 16l5.5-5.5"></path>
+                  <path d="M4 20h16"></path>
+                </svg>
+                免費下載 GeoSim
+              </a>
+              <span class="ad-note">清單中點「用 GeoSim 打開」，未安裝將自動導向商店</span>
             </div>
           </div>
-
-          <div class="rule-card">
-            <div class="rule-card__icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-              </svg>
-            </div>
-            <div class="rule-card__content">
-              <strong>走 2,000 步挑戰</strong>
-              <p>向下滑動特殊地點觸發任務，完成獲得「紅色照片鈕扣徽章」飾品皮克敏金色花苗。</p>
-            </div>
-          </div>
-
-          <div class="rule-card">
-            <div class="rule-card__icon-box">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-              </svg>
-            </div>
-            <div class="rule-card__content">
-              <strong>手機直開 GeoSim</strong>
-              <p>點擊按鈕直接開啟 GeoSim 定位，若尚未安裝將自動導向 Google Play 商店。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Global Quick Actions -->
-        <div class="coco-hero__actions">
-          <button
-            id="btn-copy-all-route"
-            class="btn btn--primary btn--lg"
-            data-route={allRouteText}
-            data-name="全台 331 間 CoCo 門市"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            一鍵複製全台 331 店巡航路徑
-          </button>
-          <a href="#geosim-intro" class="btn btn--outline btn--lg">
-            了解 GeoSim 搭配玩法
-          </a>
-        </div>
+        </aside>
       </div>
     </header>
 
@@ -1004,11 +969,177 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
   /* Hero Header */
+    /* Clean Compact Hero */
   .coco-hero {
-    padding: 2.5rem 0 2rem;
-    text-align: center;
-    background: radial-gradient(circle at 50% 20%, rgba(255, 112, 67, 0.12), transparent 70%);
+    padding: 1rem 0 0.5rem;
+    text-align: left;
+    background: transparent;
   }
+
+  .coco-hero__badge-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #FDEEE6;
+    border: 1px solid #FCDFD1;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .coco-hero__tag {
+    font-weight: 800;
+    color: #E4571D;
+  }
+
+  .coco-hero__date {
+    color: #5C554B;
+    font-weight: 600;
+  }
+
+  .coco-hero__title {
+    font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+    line-height: 1.25;
+    font-weight: 800;
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.01em;
+    color: #1F2937;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #E4571D 0%, #D97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Compact GeoSim Recommendation Card */
+  .geosim-compact-ad {
+    margin: 0.5rem 0 0.85rem;
+    border: 1px solid #E5E0D5;
+    border-radius: 14px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(29, 26, 22, 0.05);
+    padding: 12px 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .geosim-compact-ad .ad-icon {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .geosim-compact-ad .ad-icon-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+  }
+
+  .geosim-compact-ad .ad-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .geosim-compact-ad .ad-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: 3px;
+  }
+
+  .geosim-compact-ad .ad-title {
+    margin: 2px 0 4px;
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #1F2937;
+    line-height: 1.3;
+  }
+
+  .geosim-compact-ad .ad-desc {
+    margin: 0 0 8px;
+    color: #5C554B;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .geosim-compact-ad .ad-action-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .geosim-compact-ad .ad-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .geosim-compact-ad .ad-cta-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
+  }
+
+  .geosim-compact-ad .ad-note {
+    font-size: 11.5px;
+    color: #8A8175;
+  }
+
+  @media (max-width: 520px) {
+    .geosim-compact-ad {
+      padding: 10px 12px;
+      gap: 10px;
+    }
+    .geosim-compact-ad .ad-icon,
+    .geosim-compact-ad .ad-icon-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
+    }
+    .geosim-compact-ad .ad-title {
+      font-size: 14.5px;
+    }
+    .geosim-compact-ad .ad-desc {
+      font-size: 12.5px;
+      margin-bottom: 6px;
+    }
+    .geosim-compact-ad .ad-action-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .geosim-compact-ad .ad-cta-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
 
   .coco-hero__badge-wrap {
     display: inline-flex;
