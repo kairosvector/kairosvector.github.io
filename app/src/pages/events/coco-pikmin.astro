@@ -504,23 +504,35 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
 <script is:inline>
   (function () {
-    // 0. LINE / In-App Browser Breakout & Detection
+    // 0. LINE / Threads / In-App Browser Breakout & Detection
     (function handleInAppBrowser() {
       const ua = navigator.userAgent || '';
       const isLine = /Line\//i.test(ua);
+      const isThreads = /Barcelona|Threads/i.test(ua);
       const isFB = /FBAN|FBAV|Instagram/i.test(ua);
       const isAndroid = /Android/i.test(ua);
       const isIOS = /iPhone|iPad|iPod/i.test(ua);
 
-      if (isLine || isFB) {
+      if (isLine || isThreads || isFB) {
         if (isAndroid) {
           if (!window.location.search.includes('intent_redirected=1')) {
-            const intentUri = 'intent://' + window.location.host + window.location.pathname + '#Intent;scheme=https;package=com.android.chrome;end;';
-            window.location.href = intentUri;
+            const intentUri = 'intent://' + window.location.host + window.location.pathname + window.location.search + '#Intent;scheme=https;package=com.android.chrome;end;';
+            try {
+              window.location.href = intentUri;
+            } catch (e) {}
           }
-        } else if (isIOS) {
-          const bar = document.getElementById('inapp-browser-bar');
-          if (bar) bar.style.display = 'block';
+        }
+        
+        // Show guidance bar for iOS (or if Android in-app browser stays in foreground)
+        const bar = document.getElementById('inapp-browser-bar');
+        const textEl = bar ? bar.querySelector('.inapp-browser-bar__text') : null;
+        if (bar && (isIOS || isLine || isThreads || isFB)) {
+          bar.style.display = 'block';
+          if (textEl) {
+            const appName = isLine ? 'LINE' : (isThreads ? 'Threads' : '社群 App');
+            const menuPos = isLine ? '右下角' : '右上角';
+            textEl.innerHTML = `<strong>提示：</strong>您正在使用 ${appName} 內建瀏覽器，部分直開與冷卻打卡可能受限。請點${menuPos}「…」選擇<strong>「在預設瀏覽器中開啟」</strong>以獲得最佳體驗！`;
+          }
         }
       }
 
