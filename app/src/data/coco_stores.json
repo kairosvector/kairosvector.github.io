@@ -4483,5 +4483,18 @@
     "coordsText": "24.78133, 121.02319",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.78133,121.02319",
     "route": "新竹市東區＋新竹縣＋苗栗北／中"
+  },
+  {
+    "id": "coco-348",
+    "city": "新竹市",
+    "name": "CoCo都可 遠東巨城店",
+    "shortName": "新竹遠東巨城",
+    "address": "新竹市東區中央路229號",
+    "phone": "03 532 8120",
+    "lat": 24.80954,
+    "lng": 120.975,
+    "coordsText": "24.80954, 120.97500",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80954,120.97500",
+    "route": "新竹市東區＋新竹縣＋苗栗北／中"
   }
 ]

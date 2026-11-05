@@ -468,6 +468,20 @@
           "source": "使用者驗證新增門市（新竹園區2店實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 23,
+      "applied_at": "2026-11-06 07:05:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-348",
+          "name": "CoCo都可 遠東巨城店",
+          "coords": "24.80954, 120.97500",
+          "source": "使用者驗證新增門市（巨城雙門市核實：保留中央路207號新竹巨城店，新增中央路229號遠東巨城店）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -500,6 +514,7 @@
     "coco-345",
     "coco-346",
     "coco-305",
-    "coco-347"
+    "coco-347",
+    "coco-348"
   ]
 }
