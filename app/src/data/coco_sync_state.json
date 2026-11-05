@@ -324,6 +324,20 @@
           "source": "使用者回報新增門市（高雄實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 14,
+      "applied_at": "2026-11-05 20:10:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-266",
+          "name": "CoCo都可(新豐尚仁店)",
+          "action": "移除點位",
+          "reason": "已歇業/撤店，由使用者指示移除點位"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -338,6 +352,12 @@
       "name": "CoCo都可 土城廣福店",
       "reason": "已歇業/撤店，由使用者指示移除點位",
       "removed_at": "2026-11-05 15:05:30 (UTC+8)"
+    },
+    {
+      "id": "coco-266",
+      "name": "CoCo都可(新豐尚仁店)",
+      "reason": "已歇業/撤店，由使用者指示移除點位",
+      "removed_at": "2026-11-05 20:10:00 (UTC+8)"
     }
   ]
 }
