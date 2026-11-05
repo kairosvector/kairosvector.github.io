@@ -82,17 +82,16 @@ def analyze():
 
     pending_no_coords = {k: v for k, v in stores_without_coords.items() if k not in all_updated_ids}
 
-    # 2. Track new un-updated reports since watermark
+    # 2. Track ALL un-updated reports with new coords across the entire sheet
     new_unprocessed_dict = {}
-    for idx in range(last_idx + 1, len(sheet_rows)):
-        r = sheet_rows[idx]
+    for idx, r in enumerate(sheet_rows):
         ts, name, city, orig_coords, rtype, new_coords, note = r
         if "測試" in name:
             continue
         store = match_store(name, city, stores)
         sid = store["id"] if store else None
 
-        if sid in all_updated_ids:
+        if not sid or sid in all_updated_ids:
             continue
 
         if new_coords.strip() and rtype != "單純回報有誤":
@@ -101,6 +100,10 @@ def analyze():
                 lat, lng = parts[0], parts[1]
                 diff = haversine(store["lat"], store["lng"], lat, lng) if store else 0
                 
+                # If store already has these exact coordinates (within 10m), it's already updated
+                if diff < 10:
+                    continue
+
                 # Geographic plausibility check
                 if diff <= 2000:
                     geo_status = f"合理（偏移 {diff:.0f} 公尺）"
@@ -124,6 +127,7 @@ def analyze():
                 "geo_status": geo_status,
                 "note": note
             }
+
 
     return state, pending_no_coords, list(new_unprocessed_dict.values()), len(sheet_rows)
 
