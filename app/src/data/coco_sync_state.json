@@ -292,6 +292,38 @@
           "source": "表單提供點位"
         }
       ]
+    },
+    {
+      "batch_id": 13,
+      "applied_at": "2026-11-05 17:25:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 4,
+      "updated_stores": [
+        {
+          "id": "coco-336",
+          "name": "CoCo都可 岡山樂購廣場店",
+          "coords": "22.77993, 120.30010",
+          "source": "使用者回報新增門市（高雄實體店核實補全）"
+        },
+        {
+          "id": "coco-337",
+          "name": "CoCo都可 SKM Park店",
+          "coords": "22.58334, 120.33010",
+          "source": "使用者回報新增門市（高雄實體店核實補全）"
+        },
+        {
+          "id": "coco-338",
+          "name": "CoCo都可 鳳山青年店",
+          "coords": "22.63975, 120.35117",
+          "source": "使用者回報新增門市（高雄實體店核實補全）"
+        },
+        {
+          "id": "coco-339",
+          "name": "CoCo都可 左營新光店",
+          "coords": "22.68780, 120.30921",
+          "source": "使用者回報新增門市（高雄實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [

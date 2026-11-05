@@ -4340,5 +4340,57 @@
     "coordsText": "24.44141, 118.4157",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.44141,118.4157",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-336",
+    "city": "高雄市",
+    "name": "CoCo都可 岡山樂購廣場店",
+    "shortName": "岡山樂購廣場",
+    "address": "高雄市岡山區捷安路1巷2號3樓",
+    "phone": "07 625 7808",
+    "lat": 22.77993,
+    "lng": 120.3001,
+    "coordsText": "22.77993, 120.30010",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.77993,120.30010",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-337",
+    "city": "高雄市",
+    "name": "CoCo都可 SKM Park店",
+    "shortName": "高雄SKM Park",
+    "address": "高雄市前鎮區中安路1之1號3樓",
+    "phone": "07 791 5808",
+    "lat": 22.58334,
+    "lng": 120.3301,
+    "coordsText": "22.58334, 120.33010",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.58334,120.33010",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-338",
+    "city": "高雄市",
+    "name": "CoCo都可 鳳山青年店",
+    "shortName": "高雄鳳山青年",
+    "address": "高雄市鳳山區青年路二段296號",
+    "phone": "07 777 6288",
+    "lat": 22.63975,
+    "lng": 120.35117,
+    "coordsText": "22.63975, 120.35117",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.63975,120.35117",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-339",
+    "city": "高雄市",
+    "name": "CoCo都可 左營新光店",
+    "shortName": "高雄左營新光",
+    "address": "高雄市左營區高鐵路123號B2",
+    "phone": "07 345 6608",
+    "lat": 22.6878,
+    "lng": 120.30921,
+    "coordsText": "22.68780, 120.30921",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.68780,120.30921",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]
