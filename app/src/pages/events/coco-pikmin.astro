@@ -241,18 +241,39 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-lng={store.lng}
                   data-coords={store.coordsText}
                 >
-                  <!-- Line 1: Big Rounded Checkbox & Bold 22px Store Name -->
+                  <!-- Line 1: Checkbox, Store Name, Reported Badge & Report Button -->
                   <div class="muse-card__head">
-                    <label class="muse-checkbox" title="勾選代表已刷花苗，開始計算 7 天冷卻">
-                      <input
-                        type="checkbox"
-                        class="check-toggle__input"
-                        data-store-id={store.id}
-                        aria-label={`標記 ${store.shortName} 已領取花苗`}
-                      />
-                      <span class="muse-checkbox__box"></span>
-                    </label>
-                    <h3 class="muse-card__title">{store.shortName}</h3>
+                    <div class="muse-card__head-left">
+                      <label class="muse-checkbox" title="勾選代表已刷花苗，開始計算 7 天冷卻">
+                        <input
+                          type="checkbox"
+                          class="check-toggle__input"
+                          data-store-id={store.id}
+                          aria-label={`標記 ${store.shortName} 已領取花苗`}
+                        />
+                        <span class="muse-checkbox__box"></span>
+                      </label>
+                      <h3 class="muse-card__title">{store.shortName}</h3>
+                      <span class="muse-reported-badge" data-reported-badge={store.id} style="display: none;">已回報</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="muse-btn-report btn-open-report"
+                      data-store-id={store.id}
+                      data-name={store.name}
+                      data-short={store.shortName}
+                      data-city={store.city}
+                      data-coords={store.coordsText}
+                      title="回報門市點位問題"
+                      aria-label={`回報 ${store.shortName} 點位問題`}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                        <line x1="4" y1="22" x2="4" y2="15"></line>
+                      </svg>
+                      <span>回報</span>
+                    </button>
                   </div>
 
                   <!-- Line 2: GPS Coordinates (Large, clear, aligned under store title) -->
@@ -500,6 +521,101 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
       已複製座標，可貼入 GeoSim
     </div>
+      <!-- Bottom Sheet Modal for Point Reporting -->
+    <div id="report-sheet-backdrop" class="report-backdrop" style="display: none;">
+      <div id="report-sheet" class="report-sheet" role="dialog" aria-modal="true" aria-labelledby="report-sheet-title">
+        <div class="report-sheet__drag-bar"></div>
+        <div class="report-sheet__header">
+          <div>
+            <h3 id="report-sheet-title" class="report-sheet__store-name">門市名稱</h3>
+            <div id="report-sheet-coords" class="report-sheet__coords">原座標：--</div>
+          </div>
+          <button id="btn-close-report" class="report-sheet__close" aria-label="關閉">✕</button>
+        </div>
+
+        <!-- Sheet Body: Normal State -->
+        <div id="report-sheet-form" class="report-sheet__body">
+          <!-- Segmented Tab: 2 Big Options -->
+          <div class="report-tabs">
+            <button type="button" class="report-tab active" data-report-type="wrong">
+              1. 單純點位有誤
+            </button>
+            <button type="button" class="report-tab" data-report-type="correct">
+              2. 提供真正點位
+            </button>
+          </div>
+
+          <!-- Panel 1: Simple Wrong Report -->
+          <div id="report-panel-wrong" class="report-panel">
+            <p class="report-panel__desc">
+              若此門市座標偏差過大、或店家已歇業，點擊下方即可回報，後台核對後將盡快修正。
+            </p>
+            <button id="btn-submit-wrong" type="button" class="btn-submit-report btn-submit-report--primary">
+              確認送出報錯
+            </button>
+          </div>
+
+          <!-- Panel 2: Correct GPS Report -->
+          <div id="report-panel-correct" class="report-panel" style="display: none;">
+            <div class="gps-fetch-box">
+              <button id="btn-fetch-current-gps" type="button" class="btn-fetch-gps">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <line x1="12" y1="2" x2="12" y2="5"></line>
+                  <line x1="12" y1="19" x2="12" y2="22"></line>
+                  <line x1="2" y1="12" x2="5" y2="12"></line>
+                  <line x1="19" y1="12" x2="22" y2="12"></line>
+                </svg>
+                <span>用我現在位置（人正在店門口）</span>
+              </button>
+              <div id="gps-status-msg" class="gps-status-text" style="display: none;"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-corrected-coords" class="form-label">正確 GPS 座標：</label>
+              <input
+                type="text"
+                id="input-corrected-coords"
+                class="form-input"
+                placeholder="例如：25.01234, 121.45678"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="input-report-note" class="form-label">選填備註：</label>
+              <input
+                type="text"
+                id="input-report-note"
+                class="form-input"
+                placeholder="例如：在轉角全家對面、門市搬遷等"
+                autocomplete="off"
+              />
+            </div>
+
+            <button id="btn-submit-correct" type="button" class="btn-submit-report btn-submit-report--primary">
+              確認送出真正點位
+            </button>
+          </div>
+        </div>
+
+        <!-- Sheet Body: Success State -->
+        <div id="report-sheet-success" class="report-sheet__success" style="display: none;">
+          <div class="success-icon-box">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h4 class="success-title">已收到回報，謝謝！</h4>
+          <p class="success-desc">管理員將在審核核對後批次更新點位，感謝您協助全體玩家！</p>
+          <button id="btn-done-report" type="button" class="btn-submit-report btn-submit-report--done">
+            完成關閉
+          </button>
+        </div>
+      </div>
+    </div>
+
   </main>
 </BaseLayout>
 
@@ -937,10 +1053,233 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       }
     }
 
+    // ==========================================================================
+    // Point Reporting Bottom Sheet Logic (Google Apps Script Integration)
+    // ==========================================================================
+    const REPORT_API_URL = 'https://script.google.com/macros/s/AKfycbzgtI_7aWF-x5-y3ETnkDLHrb7wXCGeCw8zfZ-2TAMdty-UI6fox2-NR1EKhJhbdNGZLA/exec';
+    const REPORTED_STORAGE_KEY_PREFIX = 'coco_reported_';
+
+    let currentReportStore = null;
+    let currentReportTab = 'wrong'; // 'wrong' or 'correct'
+
+    const reportBackdrop = document.getElementById('report-sheet-backdrop');
+    const reportSheet = document.getElementById('report-sheet');
+    const reportSheetTitle = document.getElementById('report-sheet-title');
+    const reportSheetCoords = document.getElementById('report-sheet-coords');
+    const reportSheetForm = document.getElementById('report-sheet-form');
+    const reportSheetSuccess = document.getElementById('report-sheet-success');
+
+    const tabWrong = document.querySelector('[data-report-type="wrong"]');
+    const tabCorrect = document.querySelector('[data-report-type="correct"]');
+    const panelWrong = document.getElementById('report-panel-wrong');
+    const panelCorrect = document.getElementById('report-panel-correct');
+
+    const btnFetchGps = document.getElementById('btn-fetch-current-gps');
+    const gpsStatusMsg = document.getElementById('gps-status-msg');
+    const inputCorrectedCoords = document.getElementById('input-corrected-coords');
+    const inputReportNote = document.getElementById('input-report-note');
+
+    // 1. Initialize Reported Badges from LocalStorage
+    function initReportedBadges() {
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const id = card.getAttribute('data-store-id');
+        const badge = card.querySelector('.muse-reported-badge');
+        if (id && badge && localStorage.getItem(REPORTED_STORAGE_KEY_PREFIX + id)) {
+          badge.style.display = 'inline-flex';
+        }
+      });
+    }
+
+    // 2. Open Report Sheet
+    function openReportSheet(store) {
+      currentReportStore = store;
+      currentReportTab = 'wrong';
+
+      if (reportSheetTitle) reportSheetTitle.textContent = `${store.city} · ${store.name}`;
+      if (reportSheetCoords) reportSheetCoords.textContent = `原座標：${store.coords}`;
+
+      // Reset form view
+      if (reportSheetForm) reportSheetForm.style.display = 'block';
+      if (reportSheetSuccess) reportSheetSuccess.style.display = 'none';
+
+      // Reset tabs
+      switchReportTab('wrong');
+
+      // Clear inputs & GPS status
+      if (inputCorrectedCoords) inputCorrectedCoords.value = '';
+      if (inputReportNote) inputReportNote.value = '';
+      if (gpsStatusMsg) {
+        gpsStatusMsg.style.display = 'none';
+        gpsStatusMsg.textContent = '';
+      }
+
+      if (reportBackdrop) reportBackdrop.style.display = 'flex';
+    }
+
+    // 3. Close Report Sheet
+    function closeReportSheet() {
+      if (reportBackdrop) reportBackdrop.style.display = 'none';
+      currentReportStore = null;
+    }
+
+    // 4. Switch Tabs
+    function switchReportTab(tabType) {
+      currentReportTab = tabType;
+      if (tabWrong && tabCorrect && panelWrong && panelCorrect) {
+        if (tabType === 'wrong') {
+          tabWrong.classList.add('active');
+          tabCorrect.classList.remove('active');
+          panelWrong.style.display = 'block';
+          panelCorrect.style.display = 'none';
+        } else {
+          tabCorrect.classList.add('active');
+          tabWrong.classList.remove('active');
+          panelCorrect.style.display = 'block';
+          panelWrong.style.display = 'none';
+        }
+      }
+    }
+
+    // 5. Submit Report
+    async function submitReport(reportType) {
+      if (!currentReportStore) return;
+
+      const payload = {
+        storeId: currentReportStore.id,
+        storeName: currentReportStore.name,
+        city: currentReportStore.city,
+        originalCoords: currentReportStore.coords,
+        reportType: reportType === 'wrong' ? '單純回報有誤' : '提供正確點位',
+        correctedCoords: reportType === 'correct' ? (inputCorrectedCoords ? inputCorrectedCoords.value.trim() : '') : '',
+        note: reportType === 'correct' ? (inputReportNote ? inputReportNote.value.trim() : '') : '',
+        timestamp: new Date().toISOString()
+      };
+
+      // Send to Google Sheets via text/plain POST (bypasses CORS preflight)
+      if (REPORT_API_URL) {
+        try {
+          fetch(REPORT_API_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          }).then(() => {
+            console.log('Report sent successfully to Google Sheets');
+          }).catch((err) => {
+            console.warn('Report post background status:', err);
+          });
+        } catch (e) {
+          console.error('Error posting report:', e);
+        }
+      }
+
+      // Record in LocalStorage
+      try {
+        localStorage.setItem(REPORTED_STORAGE_KEY_PREFIX + currentReportStore.id, '1');
+      } catch (e) {}
+
+      // Update badge on card
+      const badge = document.querySelector(`.muse-reported-badge[data-reported-badge="${currentReportStore.id}"]`);
+      if (badge) badge.style.display = 'inline-flex';
+
+      // Switch to success view in-place
+      if (reportSheetForm) reportSheetForm.style.display = 'none';
+      if (reportSheetSuccess) reportSheetSuccess.style.display = 'block';
+
+      // Auto close after 2.2s
+      setTimeout(() => {
+        closeReportSheet();
+      }, 2200);
+    }
+
+    // 6. Geolocation Fetcher
+    function fetchCurrentGps() {
+      if (!navigator.geolocation) {
+        if (gpsStatusMsg) {
+          gpsStatusMsg.style.display = 'block';
+          gpsStatusMsg.className = 'gps-status-text gps-status-text--error';
+          gpsStatusMsg.textContent = '您的裝置不支援 GPS 定位';
+        }
+        return;
+      }
+
+      if (gpsStatusMsg) {
+        gpsStatusMsg.style.display = 'block';
+        gpsStatusMsg.className = 'gps-status-text';
+        gpsStatusMsg.textContent = '正在獲取精準 GPS 定位...';
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude.toFixed(5);
+          const lng = pos.coords.longitude.toFixed(5);
+          if (inputCorrectedCoords) {
+            inputCorrectedCoords.value = `${lat}, ${lng}`;
+          }
+          if (gpsStatusMsg) {
+            gpsStatusMsg.className = 'gps-status-text gps-status-text--success';
+            gpsStatusMsg.textContent = `已帶入目前位置：${lat}, ${lng}（精準度 ±${Math.round(pos.coords.accuracy)}m）`;
+          }
+        },
+        (err) => {
+          if (gpsStatusMsg) {
+            gpsStatusMsg.className = 'gps-status-text gps-status-text--error';
+            gpsStatusMsg.textContent = '定位失敗，請確認已開啟瀏覽器 GPS 定位權限';
+          }
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    }
+
+    function attachReportListeners() {
+      document.querySelectorAll('.btn-open-report').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const store = {
+            id: btn.getAttribute('data-store-id'),
+            name: btn.getAttribute('data-name'),
+            short: btn.getAttribute('data-short'),
+            city: btn.getAttribute('data-city'),
+            coords: btn.getAttribute('data-coords')
+          };
+          openReportSheet(store);
+        });
+      });
+
+      if (tabWrong) tabWrong.addEventListener('click', () => switchReportTab('wrong'));
+      if (tabCorrect) tabCorrect.addEventListener('click', () => switchReportTab('correct'));
+
+      const btnCloseReport = document.getElementById('btn-close-report');
+      if (btnCloseReport) btnCloseReport.addEventListener('click', closeReportSheet);
+
+      const btnDoneReport = document.getElementById('btn-done-report');
+      if (btnDoneReport) btnDoneReport.addEventListener('click', closeReportSheet);
+
+      if (reportBackdrop) {
+        reportBackdrop.addEventListener('click', (e) => {
+          if (e.target === reportBackdrop) closeReportSheet();
+        });
+      }
+
+      if (btnFetchGps) btnFetchGps.addEventListener('click', fetchCurrentGps);
+
+      const btnSubmitWrong = document.getElementById('btn-submit-wrong');
+      if (btnSubmitWrong) btnSubmitWrong.addEventListener('click', () => submitReport('wrong'));
+
+      const btnSubmitCorrect = document.getElementById('btn-submit-correct');
+      if (btnSubmitCorrect) btnSubmitCorrect.addEventListener('click', () => submitReport('correct'));
+
+      initReportedBadges();
+    }
+
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupEventListeners);
+      document.addEventListener('DOMContentLoaded', () => {
+        setupEventListeners();
+        attachReportListeners();
+      });
     } else {
       setupEventListeners();
+      attachReportListeners();
     }
   })();
 </script>
@@ -2926,6 +3265,306 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
   .muse-btn[href*="google.com/maps"] {
     flex: 0.65 !important;
+  }
+
+  /* ==========================================================================
+     Report Bottom Sheet Modal & Reported Badge Styles
+     ========================================================================== */
+  .muse-card__head {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .muse-card__head-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .muse-reported-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #E0F2FE;
+    color: #0369A1;
+    border: 1px solid #BAE6FD;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    flex-shrink: 0;
+  }
+
+  .muse-btn-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #F3EFE9;
+    color: #5C554B;
+    border: 1px solid #E5E0D5;
+    border-radius: 6px;
+    padding: 4px 9px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+
+  .muse-btn-report:hover {
+    background: #EAE5DC;
+    color: #1F2937;
+  }
+
+  /* Sheet Backdrop */
+  .report-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease;
+  }
+
+  /* Bottom Sheet Container */
+  .report-sheet {
+    width: 100%;
+    max-width: 520px;
+    background: #FFFFFF;
+    border-radius: 20px 20px 0 0;
+    padding: 14px 20px 24px;
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    animation: sheetSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes sheetSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .report-sheet__drag-bar {
+    width: 40px;
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 999px;
+    margin: 0 auto 12px;
+  }
+
+  .report-sheet__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F3F4F6;
+    margin-bottom: 14px;
+  }
+
+  .report-sheet__store-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 2px;
+  }
+
+  .report-sheet__coords {
+    font-size: 0.82rem;
+    color: #6B7280;
+    font-family: monospace;
+  }
+
+  .report-sheet__close {
+    background: #F3F4F6;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #4B5563;
+    cursor: pointer;
+  }
+
+  /* Report Tabs */
+  .report-tabs {
+    display: flex;
+    background: #F3F4F6;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 14px;
+    gap: 4px;
+  }
+
+  .report-tab {
+    flex: 1;
+    padding: 8px 10px;
+    border: none;
+    background: transparent;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #4B5563;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .report-tab.active {
+    background: #FFFFFF;
+    color: #7C3AED;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .report-panel__desc {
+    font-size: 0.88rem;
+    color: #4B5563;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  /* GPS Fetch Box */
+  .gps-fetch-box {
+    margin-bottom: 14px;
+  }
+
+  .btn-fetch-gps {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #F5F3FF;
+    color: #7C3AED;
+    border: 1px dashed #C4B5FD;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-fetch-gps:hover {
+    background: #EDE9FE;
+    border-color: #A78BFA;
+  }
+
+  .gps-status-text {
+    font-size: 0.82rem;
+    margin-top: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+
+  .gps-status-text--success {
+    background: #ECFDF5;
+    color: #065F46;
+  }
+
+  .gps-status-text--error {
+    background: #FEF2F2;
+    color: #991B1B;
+  }
+
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 4px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+
+  .form-input:focus {
+    border-color: #7C3AED;
+  }
+
+  /* Submit Buttons */
+  .btn-submit-report {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+
+  .btn-submit-report--primary {
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  }
+
+  .btn-submit-report--primary:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn-submit-report--done {
+    background: #10B981;
+    color: #FFFFFF;
+  }
+
+  /* Success View */
+  .report-sheet__success {
+    text-align: center;
+    padding: 16px 8px;
+  }
+
+  .success-icon-box {
+    width: 60px;
+    height: 60px;
+    background: #D1FAE5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+
+  .success-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #065F46;
+    margin: 0 0 6px;
+  }
+
+  .success-desc {
+    font-size: 0.88rem;
+    color: #4B5563;
+    line-height: 1.5;
+    margin: 0 0 16px;
   }
 
 </style>
