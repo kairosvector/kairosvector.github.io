@@ -955,10 +955,10 @@
     "shortName": "新北洲子洋",
     "address": "新北市五股區新五路三段188號",
     "phone": "02 8295 8099",
-    "lat": 25.09003,
-    "lng": 121.44637,
-    "coordsText": "25.09003, 121.44637",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09003,121.44637",
+    "lat": 25.08961,
+    "lng": 121.44604,
+    "coordsText": "25.08961, 121.44604",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08961,121.44604",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -3828,10 +3828,10 @@
     "shortName": "苗栗通霄",
     "address": "357苗栗縣通霄鎮通西里中山路145號",
     "phone": "037 750 626",
-    "lat": 24.481,
-    "lng": 120.6756,
-    "coordsText": "24.481, 120.6756",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.481,120.6756",
+    "lat": 24.4893,
+    "lng": 120.67809,
+    "coordsText": "24.48930, 120.67809",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.48930,120.67809",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -3867,10 +3867,10 @@
     "shortName": "台中文心秀泰",
     "address": "台中市南屯區文心南路289號B1",
     "phone": "04 2472 5205",
-    "lat": 24.12925,
-    "lng": 120.64601,
-    "coordsText": "24.12925, 120.64601",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.12925,120.64601",
+    "lat": 24.12969,
+    "lng": 120.64577,
+    "coordsText": "24.12969, 120.64577",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.12969,120.64577",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -3971,10 +3971,10 @@
     "shortName": "台中太平樹孝",
     "address": "台中市太平區樹孝路76-22號",
     "phone": "04 2391 1298",
-    "lat": 24.15153,
-    "lng": 120.71759,
-    "coordsText": "24.15153, 120.71759",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.15153,120.71759",
+    "lat": 24.15219,
+    "lng": 120.71744,
+    "coordsText": "24.15219, 120.71744",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.15219,120.71744",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -4140,10 +4140,10 @@
     "shortName": "南投服務區",
     "address": "南投縣南投市南鄉路250巷142弄6號",
     "phone": "049 220 0191",
-    "lat": 23.89992,
-    "lng": 120.71134,
-    "coordsText": "23.89992, 120.71134",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.89992,120.71134",
+    "lat": 23.90005,
+    "lng": 120.71165,
+    "coordsText": "23.90005, 120.71165",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.90005,120.71165",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {

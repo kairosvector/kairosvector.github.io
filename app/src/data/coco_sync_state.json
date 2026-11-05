@@ -1,8 +1,8 @@
 {
-  "last_processed_timestamp": "2026-11-05T05:53:33.000Z",
-  "last_processed_local_time": "2026-11-05 13:53:33 (UTC+8)",
-  "last_processed_row_index": 26,
-  "total_records_at_last_sync": 27,
+  "last_processed_timestamp": "2026-11-05T06:13:23.000Z",
+  "last_processed_local_time": "2026-11-05 14:07:18 (UTC+8)",
+  "last_processed_row_index": 39,
+  "total_records_at_last_sync": 40,
   "batches": [
     {
       "batch_id": 1,
@@ -68,6 +68,45 @@
         "coco-114 CoCo都可 土城廣福店",
         "coco-123 CoCo都可 萬家福林口店",
         "coco-328 CoCo都可 楠梓德賢店"
+      ]
+    },
+    {
+      "batch_id": 2,
+      "applied_at": "2026-11-05 14:14:00 (UTC+8)",
+      "cutoff_timestamp": "2026-11-05T06:13:23.000Z",
+      "target": "Product & Staging",
+      "updated_stores_count": 5,
+      "updated_stores": [
+        {
+          "id": "coco-293",
+          "name": "CoCo都可 苗栗通霄店",
+          "coords": "24.48930, 120.67809",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-296",
+          "name": "CoCo都可 文心秀泰店",
+          "coords": "24.12969, 120.64577",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-304",
+          "name": "CoCo都可 太平樹孝店",
+          "coords": "24.15219, 120.71744",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-73",
+          "name": "CoCo都可 洲子洋店",
+          "coords": "25.08961, 121.44604",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-317",
+          "name": "CoCo都可 南投服務區店",
+          "coords": "23.90005, 120.71165",
+          "source": "表單提供點位"
+        }
       ]
     }
   ]
