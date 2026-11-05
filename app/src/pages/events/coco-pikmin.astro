@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import stores from '../../data/coco_stores.json';
 
-const title = 'Pikmin Bloom × CoCo 都可門市 GPS 座標全地圖與打卡清單 | GeoSim';
-const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動！精選全台 CoCo 門市經緯度 GPS 座標清單。支援手機一鍵直接啟動 GeoSim、整區自動巡航路徑複製、7 天領取冷卻打卡追蹤。';
+const title = 'Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單 | GeoSim';
+const description = '2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。精選全台 CoCo 門市經緯度 GPS 座標清單。支援手機一鍵直接啟動 GeoSim、整區自動巡航路徑複製、7 天領取冷卻打卡追蹤。';
 
 // Group stores by city
 const cities = [
@@ -23,13 +23,14 @@ const cityGroups = ['基隆市', '宜蘭縣', '台北市'].map((cityName) => ({
 }));
 
 const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n');
+const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
 ---
 
 <BaseLayout
   title={title}
   description={description}
-  ogTitle="Pikmin Bloom × CoCo 都可門市 GPS 座標全地圖與打卡清單"
-  ogDescription="全台 CoCo 門市經緯度整理！支援手機一鍵啟動 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
+  ogTitle="Pikmin Bloom × CoCo 都可門市 GPS 座標地圖與打卡清單"
+  ogDescription="全台 CoCo 門市經緯度整理。支援手機一鍵直開 GeoSim 瞬移、整區巡航路徑複製、7天金色花苗冷卻追蹤。"
 >
   <main class="coco-page">
     <!-- Breadcrumb -->
@@ -47,7 +48,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     <header class="coco-hero">
       <div class="container">
         <div class="coco-hero__badge-wrap">
-          <span class="coco-hero__tag">🔥 限時合作活動</span>
+          <span class="coco-hero__tag">限時合作活動</span>
           <span class="coco-hero__date">2026/11/5 ～ 11/22</span>
         </div>
         <h1 class="coco-hero__title">
@@ -55,30 +56,45 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
           <span class="text-gradient">GPS 座標地圖與 7 天打卡清單</span>
         </h1>
         <p class="coco-hero__subtitle">
-          全台 CoCo 都可門市特殊地點開放！收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
+          全台 CoCo 都可門市特殊地點開放。收集金色花苗、挑戰「走 2,000 步」獲得紅色「照片鈕扣徽章」飾品皮克敏。
         </p>
 
         <!-- Rule Highlights -->
         <div class="rule-grid">
           <div class="rule-card">
-            <span class="rule-card__icon">⭐</span>
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
             <div class="rule-card__content">
               <strong>每 7 天領取 1 次</strong>
-              <p>每個特殊地點的金色花苗與明信片，7 天內限領一次，網頁提供打卡倒數計時！</p>
+              <p>每個特殊地點的金色花苗與明信片，7 天內限領一次，網頁提供打卡倒數計時。</p>
             </div>
           </div>
+
           <div class="rule-card">
-            <span class="rule-card__icon">👟</span>
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
             <div class="rule-card__content">
               <strong>走 2,000 步挑戰</strong>
-              <p>向下滑動特殊地點觸發任務，完成獲得「紅色照片鈕扣徽章」金色花苗。</p>
+              <p>向下滑動特殊地點觸發任務，完成獲得「紅色照片鈕扣徽章」飾品皮克敏金色花苗。</p>
             </div>
           </div>
+
           <div class="rule-card">
-            <span class="rule-card__icon">🚀</span>
+            <div class="rule-card__icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+              </svg>
+            </div>
             <div class="rule-card__content">
-              <strong>直接啟動 GeoSim</strong>
-              <p>點擊按鈕直接透過 Android 系統分享瞬移，或一鍵複製整區巡航自動走！</p>
+              <strong>手機直開 GeoSim</strong>
+              <p>點擊按鈕直接開啟 GeoSim 定位，若尚未安裝將自動導向 Google Play 商店。</p>
             </div>
           </div>
         </div>
@@ -91,10 +107,14 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
             data-route={allRouteText}
             data-name="全台 48 間 CoCo 門市"
           >
-            🚗 一鍵複製第一批全部 48 店巡航路徑
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            一鍵複製第一批 48 店巡航路徑
           </button>
-          <a href="#how-to-use" class="btn btn--outline btn--lg">
-            📖 查看手機操作教學
+          <a href="#geosim-intro" class="btn btn--outline btn--lg">
+            了解 GeoSim 搭配玩法
           </a>
         </div>
       </div>
@@ -122,7 +142,10 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
           <!-- Search & Status Filter Row -->
           <div class="coco-filter-row">
             <div class="search-box">
-              <span class="search-icon">🔍</span>
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
               <input
                 type="text"
                 id="store-search-input"
@@ -137,7 +160,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
             <div class="status-filters">
               <button class="status-filter-btn active" data-status="all">全部</button>
               <button class="status-filter-btn" data-status="todo">尚未前往</button>
-              <button class="status-filter-btn" data-status="visited">⏳ 冷卻中</button>
+              <button class="status-filter-btn" data-status="visited">7 天冷卻中</button>
             </div>
           </div>
 
@@ -170,7 +193,11 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                 data-count={group.stores.length}
                 title="複製該縣市所有門市座標，可直接貼入 GeoSim 巡航佇列"
               >
-                🚗 複製【{group.cityName}】整區巡航路徑
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                複製【{group.cityName}】巡航路徑
               </button>
             </div>
 
@@ -213,25 +240,30 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                     </label>
                   </div>
 
-                  <!-- Cooldown Notice Badge (Hidden by default, shown when visited) -->
+                  <!-- Cooldown Notice Badge -->
                   <div class="cooldown-banner" style="display: none;">
-                    <span class="cooldown-banner__icon">⏳</span>
-                    <span class="cooldown-banner__text">7天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span class="cooldown-banner__text">7 天冷卻中，下次可刷：<strong class="next-available-date">--/--</strong></span>
                   </div>
 
                   <!-- Card Action Buttons -->
                   <div class="store-card__actions">
-                    <!-- Direct 1-Click Launch to GeoSim -->
+                    <!-- Direct 1-Click Launch to GeoSim (Redirects to Play Store if not installed) -->
                     <button
                       class="btn btn--primary btn--sm btn-launch-geosim"
                       data-lat={store.lat}
                       data-lng={store.lng}
                       data-name={store.name}
                       data-coords={store.coordsText}
-                      title="手機一鍵直開 GeoSim 瞬移至此門市"
+                      title="手機直接開啟 GeoSim 瞬移至此門市（未安裝將自動導向商店）"
                     >
-                      <span class="btn-icon">🚀</span>
-                      <span>一鍵直開 GeoSim</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                      </svg>
+                      <span>直開 GeoSim</span>
                     </button>
 
                     <!-- Fast Clipboard Copy -->
@@ -241,8 +273,11 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                       data-name={store.shortName}
                       title="複製經緯度座標"
                     >
-                      <span class="btn-icon">📋</span>
-                      <span>複製</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                      <span>複製座標</span>
                     </button>
 
                     <!-- Web Share Button (Optional System Share Sheet) -->
@@ -255,7 +290,13 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                       title="透過系統選單分享"
                       aria-label="系統分享"
                     >
-                      📤
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                      </svg>
                     </button>
 
                     <!-- Google Maps Link -->
@@ -264,10 +305,13 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                       target="_blank"
                       rel="noopener noreferrer"
                       class="btn btn--icon btn--sm btn-gmap"
-                      title="在 Google Maps 查看位置"
+                      title="在 Google Maps 查看實體街景位置"
                       aria-label={`${store.shortName} Google Maps`}
                     >
-                      🗺️
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
                     </a>
                   </div>
                 </article>
@@ -278,10 +322,116 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
 
         <!-- No Results Fallback -->
         <div id="no-results-box" class="no-results" style="display: none;">
-          <div class="no-results__icon">🔍</div>
+          <div class="no-results__icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
           <h3>找不到符合條件的 CoCo 門市</h3>
           <p>請嘗試放寬搜尋關鍵字或重設篩選條件。</p>
           <button id="btn-reset-filters" class="btn btn--outline">重設篩選條件</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GeoSim Introduction Section (Product Spotlight) -->
+    <section id="geosim-intro" class="geosim-intro-section">
+      <div class="container">
+        <div class="geosim-intro-card">
+          <div class="geosim-intro-header">
+            <div class="geosim-intro-logo">
+              <img
+                src="/images/geosim-icon.png"
+                alt="GeoSim App Icon"
+                width="72"
+                height="72"
+                class="geosim-app-img"
+              />
+            </div>
+            <div class="geosim-intro-heading">
+              <span class="badge badge--geosim">推薦搭配工具</span>
+              <h2 class="geosim-intro-title">GeoSim — 自由定位，探索無界限</h2>
+              <p class="geosim-intro-tagline">
+                專為 Android 打造的 GPS 位置模擬與路線規劃測試工具。適合遊戲玩家探索地圖、收集飾品皮克敏，以及開發者測試位置服務。
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Columns for Pikmin Players -->
+          <div class="geosim-features-grid">
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">懸浮虛擬搖桿</h3>
+              <p class="feature-item__desc">
+                遊戲上方懸浮覆蓋控制面板，支援隨意拖曳與 360 度方向控制，自訂行走速度（1~24 km/h），在家也能自然散步。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">依線巡航與自動折返</h3>
+              <p class="feature-item__desc">
+                貼入多間門市座標即可自動連成路徑，支援平滑速度前進與自動循環，輕鬆達成「走 2,000 步」地點挑戰。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">區內漫步隨機遊走</h3>
+              <p class="feature-item__desc">
+                在地圖選定 3 個以上頂點繪製多邊形區域，自動在範圍內隨機自然漫步，模擬最真實的戶外散步走動軌跡。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">自訂書籤與純點庫</h3>
+              <p class="feature-item__desc">
+                支援建立景點資料夾、標籤分類與匯入匯出備份。官方更提供全台純點座標庫與每週主題巡航專欄。
+              </p>
+            </div>
+          </div>
+
+          <!-- Download Action Bar -->
+          <div class="geosim-intro-actions">
+            <a
+              href={playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--primary btn--lg btn-playstore"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              前往 Google Play 免費下載 GeoSim
+            </a>
+            <a href="/geosim" class="btn btn--outline btn--lg">
+              閱讀 GeoSim 完整功能介紹
+            </a>
+            <a href="/geosim/spot-map" class="btn btn--ghost btn--lg">
+              探索全球純點座標庫
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -290,52 +440,44 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     <section id="how-to-use" class="how-to-use-section">
       <div class="container">
         <div class="how-to-use-card">
-          <h2 class="how-to-use__title">💡 如何在手機上搭配 GeoSim 輕鬆使用？</h2>
+          <h2 class="how-to-use__title">如何在手機上搭配 GeoSim 使用</h2>
           <div class="steps-grid">
             <div class="step-card">
               <div class="step-card__number">1</div>
-              <h3 class="step-card__title">方法 A：手機分享直達（推薦）</h3>
+              <h3 class="step-card__title">直開 GeoSim（自動導向商店）</h3>
               <p>
-                在手機瀏覽器點擊門市卡片上的 <strong>「🚀 啟動 / 分享到 GeoSim」</strong> 按鈕，
-                在跳出的系統分享面板中點選 <strong>GeoSim</strong>，GeoSim 就會直接在當前畫面浮出面板，點「瞬移」就立刻飛到門市！
+                在手機瀏覽器點擊門市卡片上的 <strong>「直開 GeoSim」</strong> 按鈕，系統將直接啟動 App 並定位在該門市。若尚未安裝，將自動前往 Google Play 商店下載。
               </p>
             </div>
             <div class="step-card">
               <div class="step-card__number">2</div>
-              <h3 class="step-card__title">方法 B：一鍵複製貼上</h3>
+              <h3 class="step-card__title">複製座標貼上</h3>
               <p>
-                點擊卡片上的 <strong>「📋 複製」</strong>，經緯度直接複製進剪貼簿。
-                切換到手機上的 GeoSim 或懸浮搖桿，貼入搜尋欄即可前往。
+                點擊卡片上的 <strong>「複製座標」</strong>，經緯度直接複製進剪貼簿。切換到 GeoSim 主畫面或懸浮控制器的搜尋欄即可貼上前往。
               </p>
             </div>
             <div class="step-card">
               <div class="step-card__number">3</div>
-              <h3 class="step-card__title">方法 C：整區巡航自動走 2,000 步</h3>
+              <h3 class="step-card__title">整區巡航自動走 2,000 步</h3>
               <p>
-                點擊各區頂部的 <strong>「🚗 複製該區巡航路徑」</strong>，可一次取得該縣市所有門市路徑！
-                貼入 GeoSim 的「依線巡航」或「區內漫步」，自動掛機散步 2,000 步並依序抵達門市領花苗。
+                點擊各區頂部的 <strong>「複製巡航路徑」</strong>，可一次取得該縣市所有門市路徑。貼入 GeoSim 的「依線巡航」，自動掛機散步 2,000 步並依序抵達門市領花苗。
               </p>
             </div>
             <div class="step-card">
               <div class="step-card__number">4</div>
-              <h3 class="step-card__title">打卡記錄與 7 天提醒</h3>
+              <h3 class="step-card__title">7 天打卡記錄</h3>
               <p>
-                每刷完一間門市，勾選 <strong>「標記已領取」</strong>，手機會自動記錄日期並鎖定 7 天倒數，下次可刷日期一清二楚，不用用紙筆苦記！
+                每刷完一間門市，勾選 <strong>「標記已領取」</strong>，手機會自動記錄日期並鎖定 7 天倒數，下次可刷日期一清二楚。
               </p>
             </div>
-          </div>
-
-          <div class="how-to-use__actions">
-            <a href="/geosim" class="btn btn--primary">了解更多 GeoSim 功能</a>
-            <a href="/geosim/spot-map" class="btn btn--outline">瀏覽全球純點地圖庫</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Floating Copy Toast -->
+    <!-- Floating Copy Toast (Clean, no emoji) -->
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite">
-      📍 已複製，可貼入 GeoSim
+      已複製座標，可貼入 GeoSim
     </div>
   </main>
 </BaseLayout>
@@ -344,6 +486,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   (function () {
     const STORAGE_KEY_PREFIX = 'coco_visited_';
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
 
     let currentCity = 'all';
     let currentStatus = 'all';
@@ -426,9 +569,10 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
       if (pillDone) pillDone.textContent = `冷卻中: ${totalVisited}`;
     }
 
-    // 2. Direct 1-Click Launch to GeoSim (Direct Intent / Deep Link, no share menu)
+    // 2. Direct 1-Click Launch to GeoSim
+    // (Uses Android Intent URI with S.browser_fallback_url + JS timeout to ensure redirect to Play Store if not installed)
     async function launchGeoSim(lat, lng, storeName, coordsText) {
-      // (1) 保證寫入剪貼簿，讓玩家無論如何都能直接貼上
+      // (1) 先寫入剪貼簿備用
       try {
         await navigator.clipboard.writeText(coordsText);
       } catch (e) {
@@ -443,26 +587,46 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
       // (2) 若在 GeoSim 內嵌 WebView，直接呼叫 JS Bridge
       if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
         window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
-        showToast(`📍 已帶入 GeoSim: ${storeName}`);
+        showToast(`已帶入 GeoSim: ${storeName}`);
         return;
       }
 
-      // (3) 手機直達：直接使用 Android Intent / Custom Scheme 開啟 GeoSim，不彈系統分享選單
-      showToast(`🚀 正在直開 GeoSim: ${storeName}`);
+      // (3) 嘗試直接開啟 GeoSim
+      showToast(`正在開啟 GeoSim...`);
       const isAndroid = /Android/i.test(navigator.userAgent);
       const encodedName = encodeURIComponent(storeName);
+      const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
 
       if (isAndroid) {
-        // 標準 Android Intent 協定：直接強制叫起 com.kairosvector.geosim 的 MainActivity
-        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;end`;
+        // 標準 Android Intent URI，並宣告 S.browser_fallback_url
+        // 當手機未安裝 com.kairosvector.geosim 時，系統將自動導向 Google Play 商店
+        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
+
+        // 雙重保險：設定 1.8 秒檢查，若仍停留在本頁且未切換背景，則代表開啟失敗或瀏覽器未處理 fallback，手動導向 Play 商店
+        let appOpened = false;
+        const fallbackTimer = setTimeout(() => {
+          if (!appOpened && !document.hidden) {
+            window.location.href = PLAY_STORE_URL;
+          }
+        }, 1800);
+
+        const onVisibilityChange = () => {
+          if (document.hidden) {
+            appOpened = true;
+            clearTimeout(fallbackTimer);
+          }
+        };
+        window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+        window.addEventListener('pagehide', onVisibilityChange, { once: true });
+
         window.location.href = intentUri;
       } else {
-        // iOS 或其他環境嘗試 custom scheme
-        window.location.href = `geosim://location?lat=${lat}&lng=${lng}&label=${encodedName}`;
+        // 非 Android 環境（例如桌面或 iOS），導向商店或 custom scheme
+        window.location.href = PLAY_STORE_URL;
       }
     }
 
-    // 2.1 透過系統分享選單分享 (若使用者手動點擊分享按鈕)
+    // 2.1 透過系統分享選單分享 (點擊分享圖示時)
     async function shareStore(lat, lng, storeName, coordsText) {
       if (navigator.share) {
         try {
@@ -470,11 +634,11 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
             title: storeName,
             text: coordsText
           });
-          showToast(`📤 已開啟分享選單`);
+          showToast(`已開啟分享選單`);
         } catch (e) {}
       } else {
         await navigator.clipboard.writeText(coordsText);
-        showToast(`📍 已複製 ${storeName} 座標`);
+        showToast(`已複製 ${storeName} 座標`);
       }
     }
 
@@ -482,23 +646,10 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     async function shareOrCopyRoute(routeText, routeTitle, count) {
       if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
         window.AndroidGeoSim.setRoute(routeText);
-        showToast(`🚗 已匯入 ${count} 處巡航座標至 GeoSim！`);
+        showToast(`已匯入 ${count} 處巡航座標至 GeoSim`);
         return;
       }
 
-      // On mobile, navigator.share with multiline text
-      if (navigator.share && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        try {
-          await navigator.share({
-            title: routeTitle,
-            text: routeText
-          });
-          showToast(`🚗 已開啟分享，點選 GeoSim 即可套用巡航路線！`);
-          return;
-        } catch (e) {}
-      }
-
-      // Clipboard fallback
       try {
         await navigator.clipboard.writeText(routeText);
       } catch (e) {
@@ -509,7 +660,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
         document.execCommand('copy');
         document.body.removeChild(ta);
       }
-      showToast(`🚗 已複製 ${count} 間門市巡航路徑，可直接貼入 GeoSim！`);
+      showToast(`已複製 ${count} 間門市巡航路徑，可直接貼入 GeoSim`);
     }
 
     // 4. Filtering Logic
@@ -587,17 +738,6 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
         });
       });
 
-      // System Share Button
-      document.querySelectorAll('.btn-share-store').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lat = btn.getAttribute('data-lat');
-          const lng = btn.getAttribute('data-lng');
-          const name = btn.getAttribute('data-name');
-          const coords = btn.getAttribute('data-coords');
-          shareStore(lat, lng, name, coords);
-        });
-      });
-
       // Copy Single Coordinate
       document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
         btn.addEventListener('click', async () => {
@@ -613,7 +753,18 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
             document.execCommand('copy');
             document.body.removeChild(ta);
           }
-          showToast(`📍 已複製 ${name} 座標，可貼入 GeoSim`);
+          showToast(`已複製 ${name} 座標，可貼入 GeoSim`);
+        });
+      });
+
+      // System Share Button
+      document.querySelectorAll('.btn-share-store').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lat = btn.getAttribute('data-lat');
+          const lng = btn.getAttribute('data-lng');
+          const name = btn.getAttribute('data-name');
+          const coords = btn.getAttribute('data-coords');
+          shareStore(lat, lng, name, coords);
         });
       });
 
@@ -736,15 +887,15 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   .coco-hero {
     padding: 2.5rem 0 2rem;
     text-align: center;
-    background: radial-gradient(circle at 50% 20%, rgba(255, 112, 67, 0.15), transparent 70%);
+    background: radial-gradient(circle at 50% 20%, rgba(255, 112, 67, 0.12), transparent 70%);
   }
 
   .coco-hero__badge-wrap {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 112, 67, 0.12);
-    border: 1px solid rgba(255, 112, 67, 0.3);
+    gap: 0.65rem;
+    background: rgba(255, 112, 67, 0.1);
+    border: 1px solid rgba(255, 112, 67, 0.25);
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -803,9 +954,15 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
-  .rule-card__icon {
-    font-size: 1.5rem;
-    line-height: 1;
+  .rule-card__icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 112, 67, 0.12);
+    color: #ff7043;
     flex-shrink: 0;
   }
 
@@ -917,9 +1074,8 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.9rem;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .search-input {
@@ -1184,7 +1340,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   .cooldown-banner {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
     background: rgba(76, 175, 80, 0.1);
     border: 1px solid rgba(76, 175, 80, 0.25);
     border-radius: 6px;
@@ -1239,6 +1395,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     white-space: nowrap;
   }
 
+  .btn-share-store,
   .btn-gmap {
     width: 34px;
     height: 34px;
@@ -1247,14 +1404,17 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     justify-content: center;
     border-radius: 8px;
     text-decoration: none;
-    font-size: 1rem;
     border: 1px solid var(--color-border);
     background: var(--color-surface);
-    transition: background 0.15s ease;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
   }
 
+  .btn-share-store:hover,
   .btn-gmap:hover {
     background: var(--color-surface-hover);
+    color: var(--color-text-primary);
   }
 
   /* No Results */
@@ -1267,13 +1427,117 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   }
 
   .no-results__icon {
-    font-size: 2.5rem;
     margin-bottom: 0.75rem;
+    opacity: 0.4;
+  }
+
+  /* GeoSim Introduction Section */
+  .geosim-intro-section {
+    padding: 2.5rem 0;
+  }
+
+  .geosim-intro-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 112, 67, 0.3);
+    border-radius: 16px;
+    padding: 2.25rem;
+    background: linear-gradient(135deg, rgba(255, 112, 67, 0.05) 0%, rgba(2, 132, 199, 0.03) 100%);
+  }
+
+  .geosim-intro-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .geosim-app-img {
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .geosim-intro-heading {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .geosim-intro-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0.35rem 0 0.5rem;
+  }
+
+  .geosim-intro-tagline {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .geosim-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .feature-item__icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(2, 132, 199, 0.12);
+    color: var(--color-geosim);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-item__title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .feature-item__desc {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .geosim-intro-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-playstore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: none;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  }
+
+  .btn-playstore:hover {
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.5);
   }
 
   /* How to use section */
   .how-to-use-section {
-    padding: 2.5rem 0;
+    padding: 1.5rem 0 2.5rem;
   }
 
   .how-to-use-card {
@@ -1284,7 +1548,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   }
 
   .how-to-use__title {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 800;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -1294,7 +1558,6 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.25rem;
-    margin-bottom: 2rem;
   }
 
   .step-card {
@@ -1314,7 +1577,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
   }
 
   .step-card__title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     padding-right: 1.5rem;
@@ -1325,13 +1588,6 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     color: var(--color-text-secondary);
     line-height: 1.55;
     margin: 0;
-  }
-
-  .how-to-use__actions {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
   }
 
   /* Floating Toast */
@@ -1377,6 +1633,22 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
     .city-section__header .btn {
       width: 100%;
       text-align: center;
+    }
+
+    .geosim-intro-header {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .geosim-intro-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .geosim-intro-actions .btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
     }
   }
 </style>
