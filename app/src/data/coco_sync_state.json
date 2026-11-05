@@ -428,6 +428,20 @@
           "source": "使用者提供新增門市（台中火車站鐵鹿大街實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 21,
+      "applied_at": "2026-11-05 23:50:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-346",
+          "name": "CoCo都可 台中遠雄店",
+          "coords": "24.13600, 120.68766",
+          "source": "使用者提供新增門市（台中東區iFG遠雄廣場實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -457,6 +471,7 @@
     "coco-343",
     "coco-344",
     "coco-116",
-    "coco-345"
+    "coco-345",
+    "coco-346"
   ]
 }
