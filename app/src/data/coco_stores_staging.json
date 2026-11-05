@@ -4379,5 +4379,18 @@
     "coordsText": "22.68780, 120.30921",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.68780,120.30921",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-340",
+    "city": "雲林縣",
+    "name": "CoCo都可 虎尾中正店",
+    "shortName": "雲林虎尾中正",
+    "address": "雲林縣虎尾鎮中正路125號",
+    "phone": "05 632 6083",
+    "lat": 23.70814,
+    "lng": 120.43351,
+    "coordsText": "23.70814, 120.43351",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70814,120.43351",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]

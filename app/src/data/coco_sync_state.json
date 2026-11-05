@@ -338,6 +338,20 @@
           "reason": "已歇業/撤店，由使用者指示移除點位"
         }
       ]
+    },
+    {
+      "batch_id": 15,
+      "applied_at": "2026-11-05 20:25:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-340",
+          "name": "CoCo都可 虎尾中正店",
+          "coords": "23.70814, 120.43351",
+          "source": "使用者提供新增門市（雲林實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -359,5 +373,8 @@
       "reason": "已歇業/撤店，由使用者指示移除點位",
       "removed_at": "2026-11-05 20:10:00 (UTC+8)"
     }
+  ],
+  "all_updated_ids": [
+    "coco-340"
   ]
 }
