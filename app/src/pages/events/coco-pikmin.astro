@@ -221,17 +221,17 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
 
                   <!-- Card Action Buttons -->
                   <div class="store-card__actions">
-                    <!-- Direct Launch / Share to GeoSim -->
+                    <!-- Direct 1-Click Launch to GeoSim -->
                     <button
                       class="btn btn--primary btn--sm btn-launch-geosim"
                       data-lat={store.lat}
                       data-lng={store.lng}
                       data-name={store.name}
                       data-coords={store.coordsText}
-                      title="直接透過 Android 系統分享或 deep link 啟動 GeoSim 瞬移"
+                      title="手機一鍵直開 GeoSim 瞬移至此門市"
                     >
                       <span class="btn-icon">🚀</span>
-                      <span>啟動 / 分享到 GeoSim</span>
+                      <span>一鍵直開 GeoSim</span>
                     </button>
 
                     <!-- Fast Clipboard Copy -->
@@ -243,6 +243,19 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
                     >
                       <span class="btn-icon">📋</span>
                       <span>複製</span>
+                    </button>
+
+                    <!-- Web Share Button (Optional System Share Sheet) -->
+                    <button
+                      class="btn btn--icon btn--sm btn-share-store"
+                      data-lat={store.lat}
+                      data-lng={store.lng}
+                      data-name={store.name}
+                      data-coords={store.coordsText}
+                      title="透過系統選單分享"
+                      aria-label="系統分享"
+                    >
+                      📤
                     </button>
 
                     <!-- Google Maps Link -->
@@ -413,32 +426,9 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
       if (pillDone) pillDone.textContent = `冷卻中: ${totalVisited}`;
     }
 
-    // 2. Launch / Share to GeoSim
+    // 2. Direct 1-Click Launch to GeoSim (Direct Intent / Deep Link, no share menu)
     async function launchGeoSim(lat, lng, storeName, coordsText) {
-      // (1) Check if inside GeoSim built-in WebView Bridge
-      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
-        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
-        showToast(`📍 已帶入 GeoSim: ${storeName}`);
-        return;
-      }
-
-      // (2) Check Web Share API (Triggers Android native Share Sheet -> select GeoSim)
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: storeName,
-            text: coordsText
-          });
-          showToast(`🚀 已分享至系統選單，點選 GeoSim 即可瞬移！`);
-          return;
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            console.log('Share dismissed or failed, fallback to copy');
-          }
-        }
-      }
-
-      // (3) Fallback: Copy to clipboard and try deep-link
+      // (1) 保證寫入剪貼簿，讓玩家無論如何都能直接貼上
       try {
         await navigator.clipboard.writeText(coordsText);
       } catch (e) {
@@ -450,9 +440,42 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
         document.body.removeChild(ta);
       }
 
-      const deepLink = `geosim://location?lat=${lat}&lng=${lng}&label=${encodeURIComponent(storeName)}`;
-      showToast(`📍 已複製座標，正在嘗試啟動 GeoSim...`);
-      window.location.href = deepLink;
+      // (2) 若在 GeoSim 內嵌 WebView，直接呼叫 JS Bridge
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
+        showToast(`📍 已帶入 GeoSim: ${storeName}`);
+        return;
+      }
+
+      // (3) 手機直達：直接使用 Android Intent / Custom Scheme 開啟 GeoSim，不彈系統分享選單
+      showToast(`🚀 正在直開 GeoSim: ${storeName}`);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const encodedName = encodeURIComponent(storeName);
+
+      if (isAndroid) {
+        // 標準 Android Intent 協定：直接強制叫起 com.kairosvector.geosim 的 MainActivity
+        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;end`;
+        window.location.href = intentUri;
+      } else {
+        // iOS 或其他環境嘗試 custom scheme
+        window.location.href = `geosim://location?lat=${lat}&lng=${lng}&label=${encodedName}`;
+      }
+    }
+
+    // 2.1 透過系統分享選單分享 (若使用者手動點擊分享按鈕)
+    async function shareStore(lat, lng, storeName, coordsText) {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: storeName,
+            text: coordsText
+          });
+          showToast(`📤 已開啟分享選單`);
+        } catch (e) {}
+      } else {
+        await navigator.clipboard.writeText(coordsText);
+        showToast(`📍 已複製 ${storeName} 座標`);
+      }
     }
 
     // 3. Share or Copy Multi-Point Route
@@ -553,7 +576,7 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
         });
       });
 
-      // Launch to GeoSim
+      // Direct Launch to GeoSim
       document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
         btn.addEventListener('click', () => {
           const lat = btn.getAttribute('data-lat');
@@ -561,6 +584,17 @@ const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`
           const name = btn.getAttribute('data-name');
           const coords = btn.getAttribute('data-coords');
           launchGeoSim(lat, lng, name, coords);
+        });
+      });
+
+      // System Share Button
+      document.querySelectorAll('.btn-share-store').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lat = btn.getAttribute('data-lat');
+          const lng = btn.getAttribute('data-lng');
+          const name = btn.getAttribute('data-name');
+          const coords = btn.getAttribute('data-coords');
+          shareStore(lat, lng, name, coords);
         });
       });
 
