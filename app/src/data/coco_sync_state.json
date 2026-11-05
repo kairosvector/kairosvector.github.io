@@ -224,6 +224,26 @@
           "source": "使用者驗證"
         }
       ]
+    },
+    {
+      "batch_id": 9,
+      "applied_at": "2026-11-05 15:25:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-334",
+          "name": "CoCo都可 安平郡平店",
+          "coords": "22.98922, 120.16823",
+          "source": "使用者驗證新增"
+        },
+        {
+          "id": "coco-335",
+          "name": "CoCo都可 永康大灣店",
+          "coords": "22.99937, 120.25413",
+          "source": "使用者驗證新增"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [

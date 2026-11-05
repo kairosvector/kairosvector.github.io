@@ -4225,6 +4225,32 @@
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
+    "id": "coco-334",
+    "city": "台南市",
+    "name": "CoCo都可 安平郡平店",
+    "shortName": "台南安平郡平",
+    "address": "台南市安平區郡平路160號",
+    "phone": "",
+    "lat": 22.98922,
+    "lng": 120.16823,
+    "coordsText": "22.98922, 120.16823",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.98922,120.16823",
+    "route": "台南市區"
+  },
+  {
+    "id": "coco-335",
+    "city": "台南市",
+    "name": "CoCo都可 永康大灣店",
+    "shortName": "台南永康大灣",
+    "address": "台南市永康區大灣路976號",
+    "phone": "",
+    "lat": 22.99937,
+    "lng": 120.25413,
+    "coordsText": "22.99937, 120.25413",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99937,120.25413",
+    "route": "台南市區"
+  },
+  {
     "id": "coco-325",
     "city": "高雄市",
     "name": "CoCo都可 萬家福店",
