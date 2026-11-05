@@ -442,6 +442,32 @@
           "source": "使用者提供新增門市（台中東區iFG遠雄廣場實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 22,
+      "applied_at": "2026-11-06 06:50:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 3,
+      "updated_stores": [
+        {
+          "id": "coco-305",
+          "name": "CoCo都可 台中遠雄",
+          "coords": "24.13600, 120.68766",
+          "source": "使用者驗證去重並校正（移除重複之coco-346，保留coco-305精準點位）"
+        },
+        {
+          "id": "coco-346",
+          "name": "CoCo都可 西屯水湳店",
+          "coords": "24.17809, 120.66778",
+          "source": "使用者驗證新增門市（西屯水湳店實體店核實補全）"
+        },
+        {
+          "id": "coco-347",
+          "name": "CoCo都可 園區2店",
+          "coords": "24.78133, 121.02319",
+          "source": "使用者驗證新增門市（新竹園區2店實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -472,6 +498,8 @@
     "coco-344",
     "coco-116",
     "coco-345",
-    "coco-346"
+    "coco-346",
+    "coco-305",
+    "coco-347"
   ]
 }

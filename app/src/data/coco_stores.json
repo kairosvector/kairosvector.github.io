@@ -3956,12 +3956,12 @@
     "city": "台中市",
     "name": "CoCo都可 台中遠雄",
     "shortName": "台中遠雄",
-    "address": "台中市東區復興路四段186號B1",
+    "address": "台中市東區復興路四段186號B1 (iFG遠雄廣場/新時代B1)",
     "phone": "04 2225 0225",
-    "lat": 24.13626,
-    "lng": 120.68748,
-    "coordsText": "24.13626, 120.68748",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13626,120.68748",
+    "lat": 24.136,
+    "lng": 120.68766,
+    "coordsText": "24.13600, 120.68766",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13600,120.68766",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -4461,14 +4461,27 @@
   {
     "id": "coco-346",
     "city": "台中市",
-    "name": "CoCo都可 台中遠雄店",
-    "shortName": "台中遠雄",
-    "address": "台中市東區復興路四段186號B1 (iFG遠雄廣場/新時代B1)",
-    "phone": "04 2225 0225",
-    "lat": 24.136,
-    "lng": 120.68766,
-    "coordsText": "24.13600, 120.68766",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13600,120.68766",
+    "name": "CoCo都可 西屯水湳店",
+    "shortName": "台中西屯水湳",
+    "address": "台中市西屯區大鵬路25號",
+    "phone": "04 2291 0178",
+    "lat": 24.17809,
+    "lng": 120.66778,
+    "coordsText": "24.17809, 120.66778",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17809,120.66778",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-347",
+    "city": "新竹市",
+    "name": "CoCo都可 園區2店",
+    "shortName": "新竹園區2",
+    "address": "新竹市東區光復路一段125號1樓",
+    "phone": "03 668 6523",
+    "lat": 24.78133,
+    "lng": 121.02319,
+    "coordsText": "24.78133, 121.02319",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.78133,121.02319",
+    "route": "新竹市東區＋新竹縣＋苗栗北／中"
   }
 ]
