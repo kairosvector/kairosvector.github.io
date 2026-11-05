@@ -4418,5 +4418,18 @@
     "coordsText": "23.46367, 120.24413",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.46367,120.24413",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+  },
+  {
+    "id": "coco-343",
+    "city": "高雄市",
+    "name": "CoCo都可 義享店",
+    "shortName": "高雄義享",
+    "address": "高雄市鼓山區大順一路115號B2 (義享時尚廣場B2)",
+    "phone": "07 556 1058",
+    "lat": 22.65613,
+    "lng": 120.30649,
+    "coordsText": "22.65613, 120.30649",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.65613,120.30649",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]

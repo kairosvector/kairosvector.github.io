@@ -380,6 +380,20 @@
           "source": "使用者提供新增門市（嘉義縣首間實體店核實補全）"
         }
       ]
+    },
+    {
+      "batch_id": 18,
+      "applied_at": "2026-11-05 21:25:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-343",
+          "name": "CoCo都可 義享店",
+          "coords": "22.65613, 120.30649",
+          "source": "使用者提供新增門市（高雄義享時尚廣場實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -405,6 +419,7 @@
   "all_updated_ids": [
     "coco-340",
     "coco-341",
-    "coco-342"
+    "coco-342",
+    "coco-343"
   ]
 }
