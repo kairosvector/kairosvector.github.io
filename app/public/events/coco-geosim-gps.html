@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>CoCo 全台 GPS 清單</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #fbfaf7;
+        --surface: #ffffff;
+        --surface-2: #f3f0e9;
+        --ink: #1d1a16;
+        --ink-2: #5c554b;
+        --ink-3: #8a8175;
+        --line: #e5e0d5;
+        --accent: #e4571d;
+        --accent-ink: #ffffff;
+        --accent-soft: #fdeee6;
+        --done: #2e7d4f;
+        --done-soft: #e7f3ec;
+        --shadow: 0 1px 2px rgba(29, 26, 22, .06), 0 8px 24px -12px rgba(29, 26, 22, .18);
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171512;
+          --surface: #221f1b;
+          --surface-2: #2b2721;
+          --ink: #f2ede4;
+          --ink-2: #b8b0a2;
+          --ink-3: #857d6f;
+          --line: #3a352d;
+          --accent: #ff7a3d;
+          --accent-ink: #1d130b;
+          --accent-soft: #3a2317;
+          --done: #5cb887;
+          --done-soft: #1d3125;
+          --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+          color-scheme: dark;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Noto Sans TC", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+        line-height: 1.5;
+      }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 96px; }
+
+      /* ---------- Header ---------- */
+      header { padding: 28px 0 8px; }
+      .date-line {
+        display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      }
+      .day-badge {
+        background: var(--accent); color: var(--accent-ink);
+        font-weight: 900; font-size: 13px; letter-spacing: .06em;
+        padding: 3px 10px; border-radius: 999px;
+      }
+      .date-text { color: var(--ink-2); font-size: 14px; font-weight: 500; }
+      h1 {
+        margin: 10px 0 6px; font-size: 34px; font-weight: 900; letter-spacing: .01em; line-height: 1.2;
+      }
+      .sub { margin: 0; color: var(--ink-2); font-size: 15px; }
+      .sub b { color: var(--ink); }
+
+      /* ---------- Sticky toolbar ---------- */
+      .toolbar {
+        position: sticky; top: 0; z-index: 20;
+        margin: 18px -16px 0; padding: 12px 16px 12px;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+        transition: padding .25s ease;
+      }
+      .progress-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .progress-num { font-size: 15px; font-weight: 700; white-space: nowrap; }
+      .progress-num .big { font-size: 22px; font-weight: 900; color: var(--accent); }
+      .progress-note { font-size: 12.5px; color: var(--ink-3); text-align: right; }
+      .bar { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin-top: 8px; transition: height .25s ease, margin .25s ease; }
+      /* Compact mode: once the page is scrolled, the sticky bar shrinks to a
+         single slim progress strip so the list gets the screen back. */
+      .compact-toggle {
+        display: none; appearance: none; flex: none;
+        border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+        font: inherit; font-size: 13px; font-weight: 700;
+        padding: 5px 11px; border-radius: 999px; cursor: pointer;
+        align-items: center; gap: 4px;
+      }
+      .compact-toggle svg { width: 14px; height: 14px; transition: transform .2s ease; }
+      .toolbar.is-compact { padding: 7px 16px 9px; }
+      .toolbar.is-compact .progress-num { font-size: 14px; }
+      .toolbar.is-compact .progress-num .big { font-size: 18px; }
+      .toolbar.is-compact .progress-note { display: none; }
+      .toolbar.is-compact .bar { height: 5px; margin-top: 5px; }
+      .toolbar.is-compact .compact-toggle { display: inline-flex; }
+      .toolbar.is-compact .toolbar-actions,
+      .toolbar.is-compact .filters,
+      .toolbar.is-compact .search { display: none; }
+      .toolbar.is-compact.is-expanded .toolbar-actions { display: flex; }
+      .toolbar.is-compact.is-expanded .filters { display: flex; }
+      .toolbar.is-compact.is-expanded .search { display: block; }
+      .toolbar.is-compact.is-expanded .compact-toggle svg { transform: rotate(180deg); }
+      .bar > div { height: 100%; width: 0%; background: var(--accent); border-radius: 999px; transition: width .35s ease; }
+      .toolbar-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+      .btn {
+        appearance: none; border: 1px solid var(--line); background: var(--surface);
+        color: var(--ink); font: inherit; font-size: 14px; font-weight: 700;
+        padding: 9px 14px; border-radius: 10px; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 6px;
+      }
+      .btn:active { transform: scale(.97); }
+      .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+      .btn svg { width: 16px; height: 16px; flex: none; }
+      .filters { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+      .county-filters .chip { padding: 6px 11px; font-size: 13px; }
+      .chip {
+        appearance: none; border: 1px solid var(--line); background: transparent;
+        color: var(--ink-2); font: inherit; font-size: 13.5px; font-weight: 700;
+        padding: 6px 14px; border-radius: 999px; cursor: pointer;
+      }
+      .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+      .search {
+        width: 100%; margin-top: 10px; font: inherit; font-size: 15px;
+        padding: 10px 14px; border-radius: 10px; border: 1px solid var(--line);
+        background: var(--surface); color: var(--ink);
+      }
+      .search::placeholder { color: var(--ink-3); }
+
+      /* ---------- County sections ---------- */
+      section { margin-top: 30px; }
+      .county-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+      .county-head h2 { margin: 0; font-size: 21px; font-weight: 900; }
+      .county-count {
+        font-size: 13px; font-weight: 700; color: var(--ink-2);
+        background: var(--surface-2); border-radius: 999px; padding: 2px 10px;
+      }
+      .county-head .spacer { flex: 1; }
+      .county-copy { font-size: 13px; padding: 6px 12px; }
+
+      .store {
+        display: flex; gap: 12px; align-items: flex-start;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+        padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow);
+      }
+      .check {
+        appearance: none; flex: none; width: 30px; height: 30px; margin-top: 2px;
+        border: 2px solid var(--ink-3); border-radius: 9px; background: transparent;
+        cursor: pointer; display: grid; place-items: center; padding: 0;
+      }
+      .check svg { width: 18px; height: 18px; opacity: 0; transform: scale(.6); transition: .15s ease; color: #fff; }
+      .check[aria-checked="true"] { background: var(--done); border-color: var(--done); }
+      .check[aria-checked="true"] svg { opacity: 1; transform: scale(1); }
+      .store-main { flex: 1; min-width: 0; }
+      .store-name { font-size: 18px; font-weight: 900; line-height: 1.3; }
+      .store.is-done .store-name { color: var(--ink-3); text-decoration: line-through; text-decoration-thickness: 2px; }
+      .coords {
+        font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 14.5px; font-weight: 600; color: var(--ink-2);
+        margin-top: 3px; letter-spacing: -.01em; word-break: break-all;
+      }
+      .store.is-done .coords { color: var(--ink-3); }
+      .done-tag {
+        display: none; font-size: 12px; font-weight: 700; color: var(--done);
+        background: var(--done-soft); border-radius: 999px; padding: 1px 8px; margin-left: 8px;
+        vertical-align: 3px; white-space: nowrap;
+      }
+      .store.is-done .done-tag { display: inline-block; }
+      .store-actions { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+      .mini {
+        appearance: none; border: 1px solid var(--line); background: var(--surface-2);
+        color: var(--ink); font: inherit; font-size: 13px; font-weight: 700;
+        padding: 7px 12px; border-radius: 8px; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
+      }
+      .mini:active { transform: scale(.96); }
+      .mini svg { width: 14px; height: 14px; }
+      .mini.share { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+      @media (prefers-color-scheme: dark) { .mini.share { color: var(--accent); } }
+      /* Android-only direct GeoSim button: replaces the share-sheet button on Android */
+      .mini.geosim-direct { display: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+      body.is-android .mini.geosim-direct { display: inline-flex; }
+      body.is-android .mini.share { display: none; }
+      .mini.game { background: var(--done-soft); border-color: transparent; color: var(--done); }
+      .mini.report { color: var(--ink-3); }
+
+      /* ---------- GeoSim top ad ---------- */
+      .geosim-ad {
+        margin: 18px 0 2px; border: 1px solid var(--line); border-radius: 16px;
+        background: var(--surface); box-shadow: var(--shadow);
+        padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start;
+      }
+      .geosim-ad .ad-icon {
+        flex: none; width: 52px; height: 52px; border-radius: 14px;
+        background: var(--accent); color: var(--accent-ink);
+        display: grid; place-items: center;
+      }
+      .geosim-ad .ad-icon svg { width: 28px; height: 28px; }
+      .geosim-ad .ad-tag {
+        display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .08em;
+        color: var(--accent); background: var(--accent-soft);
+        padding: 2px 9px; border-radius: 999px; margin-bottom: 6px;
+      }
+      .geosim-ad h2 { margin: 0 0 6px; font-size: 19px; font-weight: 900; line-height: 1.35; }
+      .geosim-ad p { margin: 0 0 14px; color: var(--ink-2); font-size: 14px; }
+      .geosim-ad .ad-cta {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: var(--accent); color: var(--accent-ink);
+        font-size: 14.5px; font-weight: 700; text-decoration: none;
+        padding: 10px 18px; border-radius: 10px;
+      }
+      .geosim-ad .ad-cta:active { transform: scale(.97); }
+      .geosim-ad .ad-cta svg { width: 16px; height: 16px; }
+      .geosim-ad .ad-note { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); }
+      @media (max-width: 480px) {
+        .geosim-ad { flex-direction: column; }
+      }
+
+      /* ---------- Report sheet ---------- */
+      .report-types { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+      .report-note {
+        width: 100%; font: inherit; font-size: 14.5px; color: var(--ink);
+        background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
+        padding: 10px 12px; min-height: 64px; resize: vertical; margin-bottom: 16px;
+      }
+      .report-store { font-weight: 700; color: var(--ink); }
+
+      .empty {
+        display: none; text-align: center; color: var(--ink-3);
+        padding: 40px 16px; font-size: 15px;
+      }
+
+      footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
+      footer p { margin: 0 0 6px; }
+      .reset-link {
+        appearance: none; background: none; border: none; padding: 0; font: inherit;
+        color: var(--ink-2); text-decoration: underline; cursor: pointer; font-size: 13px;
+      }
+
+      /* ---------- Toast ---------- */
+      .toast {
+        position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom));
+        transform: translate(-50%, 16px); z-index: 50;
+        background: var(--ink); color: var(--bg);
+        font-size: 14.5px; font-weight: 700;
+        padding: 11px 20px; border-radius: 999px;
+        opacity: 0; pointer-events: none; transition: .25s ease;
+        max-width: calc(100vw - 32px); text-align: center;
+        box-shadow: 0 10px 30px -8px rgba(0,0,0,.35);
+      }
+      .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+      /* ---------- Confirm sheet ---------- */
+      .sheet-back {
+        position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.45);
+        display: none; align-items: flex-end; justify-content: center;
+      }
+      .sheet-back.open { display: flex; }
+      .sheet {
+        background: var(--surface); width: 100%; max-width: 480px;
+        border-radius: 18px 18px 0 0; padding: 22px 20px calc(20px + env(safe-area-inset-bottom));
+      }
+      .sheet h3 { margin: 0 0 6px; font-size: 18px; font-weight: 900; }
+      .sheet p { margin: 0 0 18px; color: var(--ink-2); font-size: 14.5px; }
+      .sheet-btns { display: flex; gap: 8px; }
+      .sheet-btns .btn { flex: 1; justify-content: center; padding: 12px; }
+      .btn.danger { background: #c62f1d; border-color: #c62f1d; color: #fff; }
+
+      @media (min-width: 640px) {
+        h1 { font-size: 40px; }
+        .sheet-back { align-items: center; }
+        .sheet { border-radius: 18px; margin: 16px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bar, .bar > div, .check svg, .toast, .toolbar, .compact-toggle svg { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <aside class="geosim-ad" aria-label="GeoSim 推薦">
+        <div class="ad-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <span class="ad-tag">跑店神器 · 免費下載</span>
+          <h2>人還沒到，定位先到 CoCo</h2>
+          <p>331 間門市不用慢慢找、不用手打座標。點一下就用 GeoSim 落點到店門口，再開 Pikmin Bloom 領限定獎勵——跑店快人一步，少站在路邊打字，多跑幾間。</p>
+          <a class="ad-cta" href="https://play.google.com/store/apps/details?id=com.kairosvector.geosim" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M6.5 10.5L12 16l5.5-5.5"/><path d="M4 20h16"/></svg>
+            免費下載 GeoSim
+          </a>
+          <p class="ad-note">還沒裝也沒關係：清單裡點「直達 GeoSim」會自動帶你去 Play 商店安裝。</p>
+        </div>
+      </aside>
+
+      <header>
+        <div class="date-line">
+          <span class="day-badge">全部</span>
+          <span class="date-text">11/5–11/22 · Pikmin Bloom × CoCo 特殊地點 · 全台 15 縣市</span>
+        </div>
+        <h1>全部跑店清單</h1>
+        <p class="sub">全台共 <b>331 間</b>，用上面的縣市鈕挑要跑的縣市就好。點左邊方框記錄領了沒；Android 手機可一鍵直達 GeoSim 落點、或直開 Pikmin Bloom 遊戲地圖，不用再選選單。之前 Day1 勾過的會直接帶過來，不用重勾。</p>
+      </header>
+
+      <div class="toolbar" id="toolbar">
+        <div class="progress-row">
+          <div class="progress-num">已領取 <span class="big" id="doneCount">0</span> / 331</div>
+          <div class="progress-note" id="progressNote">每間每 7 天可再領一次</div>
+          <button class="compact-toggle" id="compactToggle" type="button" aria-expanded="false">
+            <span id="compactToggleLabel">搜尋／工具</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
+        <div class="toolbar-actions">
+          <button class="btn primary" id="shareRouteBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            分享目前縣市路線
+          </button>
+          <button class="btn" id="copyAllBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            複製全部座標
+          </button>
+          <button class="btn" id="copyLeftBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            複製未領取
+          </button>
+        </div>
+        <div class="filters county-filters" role="group" aria-label="縣市篩選">
+          <button class="chip" type="button" data-county="all" aria-pressed="true">全部縣市 331</button>
+          <button class="chip" type="button" data-county="基隆市" aria-pressed="false">基隆市 9</button>
+          <button class="chip" type="button" data-county="宜蘭縣" aria-pressed="false">宜蘭縣 8</button>
+          <button class="chip" type="button" data-county="台北市" aria-pressed="false">台北市 45</button>
+          <button class="chip" type="button" data-county="新北市" aria-pressed="false">新北市 86</button>
+          <button class="chip" type="button" data-county="桃園市" aria-pressed="false">桃園市 84</button>
+          <button class="chip" type="button" data-county="新竹市" aria-pressed="false">新竹市 20</button>
+          <button class="chip" type="button" data-county="新竹縣" aria-pressed="false">新竹縣 24</button>
+          <button class="chip" type="button" data-county="苗栗縣" aria-pressed="false">苗栗縣 18</button>
+          <button class="chip" type="button" data-county="台中市" aria-pressed="false">台中市 20</button>
+          <button class="chip" type="button" data-county="彰化縣" aria-pressed="false">彰化縣 2</button>
+          <button class="chip" type="button" data-county="南投縣" aria-pressed="false">南投縣 2</button>
+          <button class="chip" type="button" data-county="雲林縣" aria-pressed="false">雲林縣 1</button>
+          <button class="chip" type="button" data-county="台南市" aria-pressed="false">台南市 5</button>
+          <button class="chip" type="button" data-county="高雄市" aria-pressed="false">高雄市 5</button>
+          <button class="chip" type="button" data-county="金門縣" aria-pressed="false">金門縣 2</button>
+        </div>
+        <div class="filters" role="group" aria-label="領取狀態篩選">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">全部 331</button>
+          <button class="chip" type="button" data-filter="left" aria-pressed="false">未領取</button>
+          <button class="chip" type="button" data-filter="done" aria-pressed="false">已領取</button>
+        </div>
+        <input class="search" id="searchInput" type="search" placeholder="搜尋店名，例如：廟口、內湖、羅東" autocomplete="off" />
+      </div>
+
+      <main id="list"></main>
+      <div class="empty" id="emptyState">這個縣市／篩選下沒有店家。</div>
+
+      <footer>
+        <p>打勾紀錄只存在這支手機的瀏覽器裡，換裝置不會同步。活動期間 11/5–11/22，每間店每 7 天最多領一次：某間第一次領的那天起算，滿 7 天就能再領，所以不用照固定日期跑，挑縣市跑就好。</p>
+        <p>發現哪間店的店名或座標有錯？點該門市下方的「回報錯誤」，把回報內容分享給頁面管理者，管理者收到後會統一修正。</p>
+        <p><button class="reset-link" id="resetBtn" type="button">清除全部打勾紀錄</button></p>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <div class="sheet-back" id="sheetBack">
+      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+        <h3 id="sheetTitle">清除全部打勾？</h3>
+        <p>331 間的領取紀錄會全部歸零，這個動作沒辦法復原。</p>
+        <div class="sheet-btns">
+          <button class="btn" id="sheetCancel" type="button">取消</button>
+          <button class="btn danger" id="sheetOk" type="button">全部清除</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-back" id="reportBack">
+      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="reportTitle">
+        <h3 id="reportTitle">回報錯誤</h3>
+        <p><span class="report-store" id="reportStoreName"></span><br /><span id="reportStoreCoord"></span><br />選一下問題類型，再把回報內容分享給頁面管理者，管理者收到後會在後台統一修正這筆資料。</p>
+        <div class="report-types" role="group" aria-label="問題類型">
+          <button class="chip" type="button" data-rtype="座標錯誤" aria-pressed="true">座標錯誤</button>
+          <button class="chip" type="button" data-rtype="店名錯誤" aria-pressed="false">店名錯誤</button>
+          <button class="chip" type="button" data-rtype="門市不存在／已歇業" aria-pressed="false">門市不存在／已歇業</button>
+          <button class="chip" type="button" data-rtype="其他" aria-pressed="false">其他</button>
+        </div>
+        <textarea class="report-note" id="reportNote" placeholder="想補充的話寫在這裡（可留空），例如：實際位置在對面騎樓"></textarea>
+        <div class="sheet-btns">
+          <button class="btn" id="reportCancel" type="button">取消</button>
+          <button class="btn" id="reportCopy" type="button">複製回報</button>
+          <button class="btn primary" id="reportSend" type="button">送出回報</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var STORES = [
+        { g: "基隆市", n: "基隆百福", lat: 25.08172, lng: 121.69605 },
+        { g: "基隆市", n: "基隆復興", lat: 25.14503, lng: 121.72662 },
+        { g: "基隆市", n: "基隆海洋", lat: 25.1509, lng: 121.77191 },
+        { g: "基隆市", n: "基隆中船", lat: 25.13725, lng: 121.7509 },
+        { g: "基隆市", n: "基隆海豐", lat: 25.13591, lng: 121.78704 },
+        { g: "基隆市", n: "基隆廟口", lat: 25.12756, lng: 121.74226 },
+        { g: "基隆市", n: "基隆成功", lat: 25.12775, lng: 121.73697 },
+        { g: "基隆市", n: "基隆武崙", lat: 25.14026, lng: 121.70921 },
+        { g: "基隆市", n: "基隆長庚", lat: 25.12045, lng: 121.72311 },
+        { g: "宜蘭縣", n: "宜蘭五結", lat: 24.68484, lng: 121.79702 },
+        { g: "宜蘭縣", n: "宜蘭冬山義成", lat: 24.66721, lng: 121.76791 },
+        { g: "宜蘭縣", n: "宜蘭壯圍", lat: 24.74718, lng: 121.7842 },
+        { g: "宜蘭縣", n: "宜蘭", lat: 24.7606, lng: 121.75319 },
+        { g: "宜蘭縣", n: "宜蘭礁溪", lat: 24.82641, lng: 121.77172 },
+        { g: "宜蘭縣", n: "宜蘭羅東", lat: 24.67764, lng: 121.76724 },
+        { g: "宜蘭縣", n: "宜蘭蘇澳", lat: 24.59615, lng: 121.85129 },
+        { g: "宜蘭縣", n: "宜蘭頭城", lat: 24.85752, lng: 121.82508 },
+        { g: "台北市", n: "台北大直", lat: 25.08265, lng: 121.54628 },
+        { g: "台北市", n: "台北林森北", lat: 25.06049, lng: 121.52545 },
+        { g: "台北市", n: "台北龍江2", lat: 25.0658, lng: 121.54087 },
+        { g: "台北市", n: "台北吳興", lat: 25.02763, lng: 121.56334 },
+        { g: "台北市", n: "台北松山壹號", lat: 25.04921, lng: 121.57824 },
+        { g: "台北市", n: "台北信義永吉", lat: 25.0443, lng: 121.56889 },
+        { g: "台北市", n: "台北內湖", lat: 25.08352, lng: 121.567 },
+        { g: "台北市", n: "台北康寧", lat: 25.0707, lng: 121.61169 },
+        { g: "台北市", n: "台北內湖成功", lat: 25.0818, lng: 121.59222 },
+        { g: "台北市", n: "台北東湖二", lat: 25.06894, lng: 121.61389 },
+        { g: "台北市", n: "台北民權", lat: 25.06878, lng: 121.58591 },
+        { g: "台北市", n: "台北內湖金龍", lat: 25.08474, lng: 121.59332 },
+        { g: "台北市", n: "台北北投中和", lat: 25.14037, lng: 121.50048 },
+        { g: "台北市", n: "台北北投中央北", lat: 25.1366, lng: 121.4957 },
+        { g: "台北市", n: "台北尊賢", lat: 25.11816, lng: 121.50652 },
+        { g: "台北市", n: "台北關渡", lat: 25.12207, lng: 121.46721 },
+        { g: "台北市", n: "台北石牌商城", lat: 25.11619, lng: 121.51607 },
+        { g: "台北市", n: "台北南港同德", lat: 25.04525, lng: 121.58395 },
+        { g: "台北市", n: "台北三井南港", lat: 25.05934, lng: 121.61758 },
+        { g: "台北市", n: "台北興華", lat: 25.05635, lng: 121.60582 },
+        { g: "台北市", n: "台北士林中正", lat: 25.09461, lng: 121.52198 },
+        { g: "台北市", n: "台北大南", lat: 25.08882, lng: 121.51839 },
+        { g: "台北市", n: "台北社子", lat: 25.08862, lng: 121.50854 },
+        { g: "台北市", n: "台北新天母德行", lat: 25.10797, lng: 121.52889 },
+        { g: "台北市", n: "台北華齡", lat: 25.083, lng: 121.51955 },
+        { g: "台北市", n: "台北延平", lat: 25.06457, lng: 121.511 },
+        { g: "台北市", n: "台北昌吉", lat: 25.06601, lng: 121.51614 },
+        { g: "台北市", n: "台北民生", lat: 25.05739, lng: 121.51741 },
+        { g: "台北市", n: "台北南京", lat: 25.052, lng: 121.54583 },
+        { g: "台北市", n: "台北南京五", lat: 25.05054, lng: 121.56087 },
+        { g: "台北市", n: "台北南四", lat: 25.05231, lng: 121.555 },
+        { g: "台北市", n: "台北站前", lat: 25.04503, lng: 121.51616 },
+        { g: "台北市", n: "台北南昌", lat: 25.03023, lng: 121.51659 },
+        { g: "台北市", n: "台北北車2M3", lat: 25.04677, lng: 121.51617 },
+        { g: "台北市", n: "台北北車", lat: 25.04677, lng: 121.51617 },
+        { g: "台北市", n: "台北開封", lat: 25.04616, lng: 121.51352 },
+        { g: "台北市", n: "台北青島", lat: 25.04355, lng: 121.52424 },
+        { g: "台北市", n: "台北金山", lat: 25.03438, lng: 121.52696 },
+        { g: "台北市", n: "台北安居", lat: 25.02102, lng: 121.55482 },
+        { g: "台北市", n: "台北建國", lat: 25.03272, lng: 121.53818 },
+        { g: "台北市", n: "台北忠孝復興", lat: 25.04145, lng: 121.54335 },
+        { g: "台北市", n: "台北興隆", lat: 25.00013, lng: 121.55589 },
+        { g: "台北市", n: "台北忠順", lat: 24.98473, lng: 121.56146 },
+        { g: "台北市", n: "台北萬華寶興", lat: 25.02633, lng: 121.4941 },
+        { g: "台北市", n: "台北西門町", lat: 25.04432, lng: 121.50834 },
+        { g: "新北市", n: "新北三重徐匯", lat: 25.07880, lng: 121.48320 },
+        { g: "新北市", n: "新北三民", lat: 25.06317, lng: 121.48557 },
+        { g: "新北市", n: "新北三重中正北", lat: 25.06948, lng: 121.47716 },
+        { g: "新北市", n: "新北三重五華", lat: 25.08371, lng: 121.49152 },
+        { g: "新北市", n: "新北三重天台", lat: 25.06090, lng: 121.49793 },
+        { g: "新北市", n: "新北三重自強", lat: 25.06739, lng: 121.49267 },
+        { g: "新北市", n: "新北集美", lat: 25.05420, lng: 121.49119 },
+        { g: "新北市", n: "新北三重龍門", lat: 25.07257, lng: 121.49639 },
+        { g: "新北市", n: "新北凌雲", lat: 25.10149, lng: 121.45043 },
+        { g: "新北市", n: "新北五股成泰", lat: 25.08456, lng: 121.43865 },
+        { g: "新北市", n: "新北洲子洋", lat: 25.09003, lng: 121.44637 },
+        { g: "新北市", n: "新北新莊中和", lat: 25.04944, lng: 121.44744 },
+        { g: "新北市", n: "新北新莊中港", lat: 25.04497, lng: 121.45243 },
+        { g: "新北市", n: "新北新莊五權", lat: 25.06540, lng: 121.45757 },
+        { g: "新北市", n: "新北新莊化成", lat: 25.05484, lng: 121.46621 },
+        { g: "新北市", n: "新北新莊富國", lat: 25.02465, lng: 121.42456 },
+        { g: "新北市", n: "新北新莊輔大", lat: 25.03074, lng: 121.43416 },
+        { g: "新北市", n: "新北新莊新泰", lat: 25.03463, lng: 121.44940 },
+        { g: "新北市", n: "新北新莊昌隆", lat: 25.05081, lng: 121.45475 },
+        { g: "新北市", n: "新北民安", lat: 25.01673, lng: 121.42613 },
+        { g: "新北市", n: "新北新莊龍安", lat: 25.01946, lng: 121.42159 },
+        { g: "新北市", n: "新北板橋三民", lat: 25.01520, lng: 121.47931 },
+        { g: "新北市", n: "新北合宜", lat: 24.99868, lng: 121.44810 },
+        { g: "新北市", n: "新北新海", lat: 25.02252, lng: 121.46123 },
+        { g: "新北市", n: "新北板橋民治", lat: 25.03110, lng: 121.47843 },
+        { g: "新北市", n: "新北板橋漢東", lat: 25.00837, lng: 121.47169 },
+        { g: "新北市", n: "新北板橋莊敬", lat: 25.02440, lng: 121.47114 },
+        { g: "新北市", n: "新北板橋重慶", lat: 25.00249, lng: 121.46275 },
+        { g: "新北市", n: "新北板橋金門", lat: 24.98522, lng: 121.42874 },
+        { g: "新北市", n: "新北蘆洲光華", lat: 25.08188, lng: 121.46489 },
+        { g: "新北市", n: "新北蘆洲民族1", lat: 25.08625, lng: 121.47945 },
+        { g: "新北市", n: "新北蘆洲民義", lat: 25.09102, lng: 121.47394 },
+        { g: "新北市", n: "新北蘆洲永平", lat: 25.09082, lng: 121.45905 },
+        { g: "新北市", n: "新北蘆洲長安", lat: 25.08023, lng: 121.46253 },
+        { g: "新北市", n: "新北三峽光明", lat: 24.93133, lng: 121.37323 },
+        { g: "新北市", n: "新北三峽和平", lat: 24.93736, lng: 121.37029 },
+        { g: "新北市", n: "新北三峽北大", lat: 24.94391, lng: 121.37424 },
+        { g: "新北市", n: "新北三芝", lat: 25.25869, lng: 121.50152 },
+        { g: "新北市", n: "新北南華", lat: 24.99710, lng: 121.50421 },
+        { g: "新北市", n: "新北中和員山", lat: 25.00163, lng: 121.48118 },
+        { g: "新北市", n: "新北圓通", lat: 24.99062, lng: 121.49248 },
+        { g: "新北市", n: "新北中和建一", lat: 24.99928, lng: 121.48826 },
+        { g: "新北市", n: "新北德光", lat: 25.00346, lng: 121.46897 },
+        { g: "新北市", n: "新北景安", lat: 24.99307, lng: 121.50471 },
+        { g: "新北市", n: "新北中和福美", lat: 25.00530, lng: 121.49879 },
+        { g: "新北市", n: "新北自立", lat: 24.99312, lng: 121.52237 },
+        { g: "新北市", n: "新北中和興南", lat: 24.98840, lng: 121.50956 },
+        { g: "新北市", n: "新北中和連勝", lat: 24.99853, lng: 121.49912 },
+        { g: "新北市", n: "新北八里", lat: 25.14672, lng: 121.39809 },
+        { g: "新北市", n: "新北八里2", lat: 25.12589, lng: 121.45286 },
+        { g: "新北市", n: "新北土城中央", lat: 24.97400, lng: 121.44116 },
+        { g: "新北市", n: "新北土城廣福", lat: 24.98718, lng: 121.45481 },
+        { g: "新北市", n: "新北土城立德", lat: 24.98733, lng: 121.46353 },
+        { g: "新北市", n: "新北新店裕隆城", lat: 24.97793, lng: 121.54627 },
+        { g: "新北市", n: "新北新店北新", lat: 24.96509, lng: 121.54034 },
+        { g: "新北市", n: "新北安康2", lat: 24.95332, lng: 121.49318 },
+        { g: "新北市", n: "新北安康", lat: 24.96375, lng: 121.51487 },
+        { g: "新北市", n: "新北新店民族", lat: 24.97540, lng: 121.53642 },
+        { g: "新北市", n: "新北林口中正", lat: 25.07733, lng: 121.39409 },
+        { g: "新北市", n: "新北林口文化2", lat: 25.07310, lng: 121.37061 },
+        { g: "新北市", n: "新北萬家福林口", lat: 25.07732, lng: 121.37470 },
+        { g: "新北市", n: "新北樹林中華", lat: 24.98110, lng: 121.41881 },
+        { g: "新北市", n: "新北樹林保安", lat: 24.99498, lng: 121.42259 },
+        { g: "新北市", n: "新北樹林站前", lat: 24.99110, lng: 121.42552 },
+        { g: "新北市", n: "新北三峽大雅", lat: 24.94723, lng: 121.37998 },
+        { g: "新北市", n: "新北永安市場", lat: 25.00280, lng: 121.51104 },
+        { g: "新北市", n: "新北永和中正", lat: 24.99694, lng: 121.51537 },
+        { g: "新北市", n: "新北永和仁愛", lat: 25.01309, lng: 121.51245 },
+        { g: "新北市", n: "新北永和得和", lat: 24.99912, lng: 121.52549 },
+        { g: "新北市", n: "新北汐止忠孝", lat: 25.06730, lng: 121.66263 },
+        { g: "新北市", n: "新北遠雄汐止", lat: 25.06123, lng: 121.64768 },
+        { g: "新北市", n: "新北汐止樟樹", lat: 25.06586, lng: 121.64218 },
+        { g: "新北市", n: "新北汐止福德", lat: 25.06527, lng: 121.63447 },
+        { g: "新北市", n: "新北泰山明志", lat: 25.05958, lng: 121.43172 },
+        { g: "新北市", n: "新北泰山貴子", lat: 25.04083, lng: 121.42489 },
+        { g: "新北市", n: "新北水碓", lat: 25.17779, lng: 121.44389 },
+        { g: "新北市", n: "新北淡水紅樹林", lat: 25.15630, lng: 121.45937 },
+        { g: "新北市", n: "新北竹圍", lat: 25.13619, lng: 121.46179 },
+        { g: "新北市", n: "新北沙崙", lat: 25.18345, lng: 121.42409 },
+        { g: "新北市", n: "新北新埔", lat: 25.22750, lng: 121.45191 },
+        { g: "新北市", n: "新北淡水", lat: 25.17095, lng: 121.44578 },
+        { g: "新北市", n: "新北深坑", lat: 25.00230, lng: 121.61902 },
+        { g: "新北市", n: "新北瑞芳", lat: 25.10775, lng: 121.80606 },
+        { g: "新北市", n: "新北金山", lat: 25.22112, lng: 121.63806 },
+        { g: "新北市", n: "新北鶯歌中正", lat: 24.94035, lng: 121.33725 },
+        { g: "新北市", n: "新北鶯歌建國", lat: 24.95341, lng: 121.34824 },
+        { g: "桃園市", n: "桃園介壽", lat: 24.93251, lng: 121.29729 },
+        { g: "桃園市", n: "桃園大湳", lat: 24.94830, lng: 121.29745 },
+        { g: "桃園市", n: "桃園廣福", lat: 24.95944, lng: 121.29653 },
+        { g: "桃園市", n: "桃園鳳鳴", lat: 24.97072, lng: 121.32718 },
+        { g: "桃園市", n: "桃園永豐", lat: 24.97544, lng: 121.27121 },
+        { g: "桃園市", n: "桃園八德", lat: 24.96354, lng: 121.30378 },
+        { g: "桃園市", n: "桃園興豐", lat: 24.92921, lng: 121.28678 },
+        { g: "桃園市", n: "桃園大園", lat: 25.06462, lng: 121.19694 },
+        { g: "桃園市", n: "桃園中壢大江", lat: 25.00445, lng: 121.22860 },
+        { g: "桃園市", n: "桃園大園大工", lat: 25.06669, lng: 121.18028 },
+        { g: "桃園市", n: "桃園菓林", lat: 25.07996, lng: 121.25659 },
+        { g: "桃園市", n: "桃園青埔", lat: 25.00951, lng: 121.21392 },
+        { g: "桃園市", n: "桃園中平", lat: 24.98967, lng: 121.29200 },
+        { g: "桃園市", n: "桃園中正", lat: 25.00693, lng: 121.30343 },
+        { g: "桃園市", n: "桃園中華", lat: 24.99068, lng: 121.31045 },
+        { g: "桃園市", n: "桃園南平", lat: 25.01711, lng: 121.29549 },
+        { g: "桃園市", n: "桃園大同", lat: 24.98955, lng: 121.31257 },
+        { g: "桃園市", n: "桃園大興", lat: 25.01553, lng: 121.31101 },
+        { g: "桃園市", n: "桃園寶山", lat: 25.01269, lng: 121.31702 },
+        { g: "桃園市", n: "桃園桃鶯", lat: 24.98372, lng: 121.31851 },
+        { g: "桃園市", n: "桃園縣府", lat: 24.99284, lng: 121.29974 },
+        { g: "桃園市", n: "桃園桃安", lat: 24.98976, lng: 121.28012 },
+        { g: "桃園市", n: "桃園南崁中山", lat: 25.05578, lng: 121.29821 },
+        { g: "桃園市", n: "桃園山腳", lat: 25.08494, lng: 121.28606 },
+        { g: "桃園市", n: "桃園南崁公埔", lat: 25.06568, lng: 121.28681 },
+        { g: "桃園市", n: "桃園南崁3", lat: 25.05019, lng: 121.29109 },
+        { g: "桃園市", n: "桃園大竹2", lat: 25.01974, lng: 121.26594 },
+        { g: "桃園市", n: "桃園大竹", lat: 25.02385, lng: 121.25971 },
+        { g: "桃園市", n: "桃園南崁2", lat: 25.03981, lng: 121.28933 },
+        { g: "桃園市", n: "桃園南崁", lat: 25.04683, lng: 121.29390 },
+        { g: "桃園市", n: "桃園海湖", lat: 25.10066, lng: 121.26135 },
+        { g: "桃園市", n: "桃園中興", lat: 24.99356, lng: 121.33688 },
+        { g: "桃園市", n: "桃園龜山大同", lat: 24.99148, lng: 121.34387 },
+        { g: "桃園市", n: "桃園山鶯", lat: 24.99085, lng: 121.32318 },
+        { g: "桃園市", n: "桃園林口2", lat: 25.05577, lng: 121.36271 },
+        { g: "桃園市", n: "桃園林口長庚", lat: 25.05985, lng: 121.36897 },
+        { g: "桃園市", n: "桃園林口文青", lat: 25.04081, lng: 121.38757 },
+        { g: "桃園市", n: "桃園龜山民生北", lat: 25.03525, lng: 121.30237 },
+        { g: "桃園市", n: "桃園龍華", lat: 25.01692, lng: 121.40240 },
+        { g: "新竹市", n: "新竹南寮", lat: 24.84092, lng: 120.93713 },
+        { g: "新竹市", n: "新竹延平1號", lat: 24.80515, lng: 120.95263 },
+        { g: "新竹市", n: "新竹中正", lat: 24.81248, lng: 120.96423 },
+        { g: "新竹市", n: "新竹湳雅", lat: 24.82145, lng: 120.97517 },
+        { g: "新竹市", n: "新竹城隍廟", lat: 24.80463, lng: 120.96538 },
+        { g: "新竹市", n: "新竹光華", lat: 24.81593, lng: 120.97436 },
+        { g: "新竹市", n: "新竹內湖", lat: 24.74282, lng: 120.90589 },
+        { g: "新竹市", n: "新竹牛埔", lat: 24.79669, lng: 120.9417 },
+        { g: "新竹市", n: "新竹中華", lat: 24.75657, lng: 120.95267 },
+        { g: "新竹市", n: "新竹大庄", lat: 24.7898, lng: 120.92795 },
+        { g: "桃園市", n: "桃園中壢中山東", lat: 24.94546, lng: 121.24722 },
+        { g: "桃園市", n: "桃園中壢站前", lat: 24.95449, lng: 121.22553 },
+        { g: "桃園市", n: "桃園中壢大崙", lat: 24.98851, lng: 121.18109 },
+        { g: "桃園市", n: "桃園中壢中華", lat: 24.96938, lng: 121.25011 },
+        { g: "桃園市", n: "桃園中壢南園", lat: 24.97182, lng: 121.23516 },
+        { g: "桃園市", n: "桃園內壢忠孝", lat: 24.97418, lng: 121.25593 },
+        { g: "桃園市", n: "桃園中壢慈惠", lat: 24.96420, lng: 121.22555 },
+        { g: "桃園市", n: "桃園新中北", lat: 24.95586, lng: 121.26418 },
+        { g: "桃園市", n: "桃園中壢新明", lat: 24.95751, lng: 121.21445 },
+        { g: "桃園市", n: "桃園中壢榮民", lat: 24.96494, lng: 121.26143 },
+        { g: "桃園市", n: "桃園中壢民族", lat: 24.95755, lng: 121.20507 },
+        { g: "桃園市", n: "桃園中壢高榮", lat: 24.95815, lng: 121.16657 },
+        { g: "桃園市", n: "桃園中壢福州", lat: 24.96744, lng: 121.23286 },
+        { g: "桃園市", n: "桃園內壢莊敬", lat: 24.97035, lng: 121.25743 },
+        { g: "桃園市", n: "桃園內壢長春", lat: 24.97919, lng: 121.25019 },
+        { g: "桃園市", n: "桃園龍岡", lat: 24.93567, lng: 121.23410 },
+        { g: "桃園市", n: "桃園大溪崎頂", lat: 24.90085, lng: 121.28361 },
+        { g: "桃園市", n: "桃園大溪", lat: 24.88135, lng: 121.28897 },
+        { g: "桃園市", n: "桃園平鎮中豐", lat: 24.94163, lng: 121.21626 },
+        { g: "桃園市", n: "桃園平鎮南勢", lat: 24.91540, lng: 121.21040 },
+        { g: "桃園市", n: "桃園平鎮山頂", lat: 24.90023, lng: 121.20905 },
+        { g: "桃園市", n: "桃園平鎮文化", lat: 24.95197, lng: 121.20336 },
+        { g: "桃園市", n: "桃園平鎮育達", lat: 24.95192, lng: 121.21032 },
+        { g: "桃園市", n: "桃園平鎮龍南", lat: 24.92185, lng: 121.25121 },
+        { g: "桃園市", n: "桃園永安中山", lat: 24.98906, lng: 121.03052 },
+        { g: "桃園市", n: "桃園新屋中山", lat: 24.97289, lng: 121.10480 },
+        { g: "桃園市", n: "桃園楊梅富岡", lat: 24.93627, lng: 121.08170 },
+        { g: "桃園市", n: "桃園埔心中興", lat: 24.91770, lng: 121.18483 },
+        { g: "桃園市", n: "桃園楊梅大成", lat: 24.90814, lng: 121.14567 },
+        { g: "桃園市", n: "桃園埔心文化", lat: 24.91174, lng: 121.18320 },
+        { g: "桃園市", n: "桃園楊梅梅獅", lat: 24.90628, lng: 121.17700 },
+        { g: "桃園市", n: "桃園老飯", lat: 24.93437, lng: 121.12297 },
+        { g: "桃園市", n: "桃園楊梅環東", lat: 24.91101, lng: 121.15634 },
+        { g: "桃園市", n: "桃園楊梅幼獅", lat: 24.92252, lng: 121.17747 },
+        { g: "桃園市", n: "桃園富源", lat: 25.00797, lng: 121.14408 },
+        { g: "桃園市", n: "桃園觀音甘泉", lat: 25.03663, lng: 121.08243 },
+        { g: "桃園市", n: "桃園觀音新坡", lat: 25.01293, lng: 121.13573 },
+        { g: "桃園市", n: "桃園草漯", lat: 25.04753, lng: 121.14275 },
+        { g: "桃園市", n: "桃園觀音成功", lat: 25.05153, lng: 121.11805 },
+        { g: "桃園市", n: "桃園龍潭渴望", lat: 24.82956, lng: 121.19281 },
+        { g: "桃園市", n: "桃園正潭", lat: 24.86452, lng: 121.21718 },
+        { g: "桃園市", n: "桃園龍潭石門", lat: 24.84889, lng: 121.23019 },
+        { g: "桃園市", n: "桃園中潭", lat: 24.87380, lng: 121.23378 },
+        { g: "桃園市", n: "桃園百年", lat: 24.87834, lng: 121.21150 },
+        { g: "桃園市", n: "桃園北潭", lat: 24.86598, lng: 121.21392 },
+        { g: "新竹市", n: "新竹明湖", lat: 24.78891, lng: 120.96672 },
+        { g: "新竹市", n: "新竹巨城", lat: 24.80877, lng: 120.97385 },
+        { g: "新竹市", n: "新竹巨城民生", lat: 24.81014, lng: 120.97682 },
+        { g: "新竹市", n: "新竹林森", lat: 24.79968, lng: 120.96505 },
+        { g: "新竹市", n: "新竹清大", lat: 24.79637, lng: 120.99853 },
+        { g: "新竹市", n: "新竹東門", lat: 24.80429, lng: 120.97185 },
+        { g: "新竹市", n: "新竹清大建新", lat: 24.79832, lng: 120.99726 },
+        { g: "新竹市", n: "新竹金山2", lat: 24.77707, lng: 121.02341 },
+        { g: "新竹市", n: "新竹關新", lat: 24.78575, lng: 121.01832 },
+        { g: "新竹市", n: "新竹食品", lat: 24.79696, lng: 120.97575 },
+        { g: "新竹縣", n: "新竹竹北光明", lat: 24.82713, lng: 121.00924 },
+        { g: "新竹縣", n: "新竹竹北勝利", lat: 24.82281, lng: 121.02646 },
+        { g: "新竹縣", n: "新竹竹北文興", lat: 24.80766, lng: 121.03402 },
+        { g: "新竹縣", n: "新竹竹北中正", lat: 24.84094, lng: 121.00028 },
+        { g: "新竹縣", n: "新竹竹北三民", lat: 24.83391, lng: 121.01035 },
+        { g: "新竹縣", n: "新竹竹北中正東", lat: 24.83507, lng: 121.01352 },
+        { g: "新竹縣", n: "新竹竹北成功", lat: 24.8187, lng: 121.02327 },
+        { g: "新竹縣", n: "新竹湖口中正2", lat: 24.90094, lng: 121.04682 },
+        { g: "新竹縣", n: "新竹湖口勝利", lat: 24.8634, lng: 121.0265 },
+        { g: "新竹縣", n: "新竹湖口", lat: 24.8699, lng: 121.02635 },
+        { g: "新竹縣", n: "新竹湖口中正", lat: 24.90249, lng: 121.04429 },
+        { g: "新竹縣", n: "新竹湖口仁和", lat: 24.87296, lng: 121.01485 },
+        { g: "新竹縣", n: "新竹新豐建興", lat: 24.87083, lng: 120.99587 },
+        { g: "新竹縣", n: "新竹新豐尚仁", lat: 24.86686, lng: 120.9903 },
+        { g: "新竹縣", n: "新竹新豐新市", lat: 24.89969, lng: 120.98655 },
+        { g: "新竹縣", n: "新竹新埔", lat: 24.82778, lng: 121.08068 },
+        { g: "新竹縣", n: "新竹芎林", lat: 24.77684, lng: 121.07807 },
+        { g: "新竹縣", n: "新竹園區寶山", lat: 24.76514, lng: 120.99044 },
+        { g: "新竹縣", n: "新竹竹東二重", lat: 24.7671, lng: 121.05565 },
+        { g: "新竹縣", n: "新竹竹東東峰", lat: 24.72193, lng: 121.09629 },
+        { g: "新竹縣", n: "新竹竹東", lat: 24.73738, lng: 121.08906 },
+        { g: "新竹縣", n: "新竹竹東2", lat: 24.7438, lng: 121.08369 },
+        { g: "新竹縣", n: "新竹竹東北興", lat: 24.73634, lng: 121.09596 },
+        { g: "新竹縣", n: "新竹北埔", lat: 24.70163, lng: 121.05732 },
+        { g: "苗栗縣", n: "苗栗竹南博愛", lat: 24.68744, lng: 120.8707 },
+        { g: "苗栗縣", n: "苗栗竹南光復", lat: 24.6882, lng: 120.87936 },
+        { g: "苗栗縣", n: "苗栗竹南民族", lat: 24.68564, lng: 120.87822 },
+        { g: "苗栗縣", n: "苗栗頭份信義", lat: 24.68624, lng: 120.90746 },
+        { g: "苗栗縣", n: "苗栗頭份文化", lat: 24.69879, lng: 120.89919 },
+        { g: "苗栗縣", n: "苗栗頭份斗煥坪", lat: 24.68035, lng: 120.94657 },
+        { g: "苗栗縣", n: "苗栗頭份中正二", lat: 24.68363, lng: 120.90615 },
+        { g: "苗栗縣", n: "苗栗頭份建國", lat: 24.69374, lng: 120.91297 },
+        { g: "苗栗縣", n: "苗栗頭份中正", lat: 24.68637, lng: 120.91008 },
+        { g: "苗栗縣", n: "苗栗正發", lat: 24.56919, lng: 120.81996 },
+        { g: "苗栗縣", n: "苗栗府前", lat: 24.5606, lng: 120.81859 },
+        { g: "苗栗縣", n: "苗栗南苗中正", lat: 24.55186, lng: 120.816 },
+        { g: "苗栗縣", n: "苗栗公館", lat: 24.50488, lng: 120.82704 },
+        { g: "苗栗縣", n: "苗栗銅鑼中正", lat: 24.48816, lng: 120.78738 },
+        { g: "苗栗縣", n: "苗栗三義", lat: 24.41203, lng: 120.77078 },
+        { g: "苗栗縣", n: "苗栗後龍", lat: 24.6149, lng: 120.78979 },
+        { g: "苗栗縣", n: "苗栗通霄", lat: 24.481, lng: 120.6756 },
+        { g: "苗栗縣", n: "苗栗苑裡", lat: 24.44296, lng: 120.65238 },
+        { g: "台中市", n: "台中北屯昌平", lat: 24.17755, lng: 120.69031 },
+        { g: "台中市", n: "台中文心秀泰", lat: 24.12925, lng: 120.64601 },
+        { g: "台中市", n: "台中泰安服務區南下站", lat: 24.33035, lng: 120.71164 },
+        { g: "台中市", n: "台中后里", lat: 24.30892, lng: 120.72494 },
+        { g: "台中市", n: "台中大甲", lat: 24.34677, lng: 120.62036 },
+        { g: "台中市", n: "台中大里中興", lat: 24.10671, lng: 120.68981 },
+        { g: "台中市", n: "台中大里大明", lat: 24.11519, lng: 120.68136 },
+        { g: "台中市", n: "台中大里成功", lat: 24.09075, lng: 120.70319 },
+        { g: "台中市", n: "台中大雅", lat: 24.22508, lng: 120.64899 },
+        { g: "台中市", n: "台中太平樹孝", lat: 24.15153, lng: 120.71759 },
+        { g: "台中市", n: "台中遠雄", lat: 24.13626, lng: 120.68748 },
+        { g: "台中市", n: "台中梧棲", lat: 24.2554, lng: 120.53058 },
+        { g: "台中市", n: "台中靜宜", lat: 24.2289, lng: 120.57368 },
+        { g: "台中市", n: "台中沙鹿", lat: 24.23584, lng: 120.55894 },
+        { g: "台中市", n: "台中清水", lat: 24.27107, lng: 120.57602 },
+        { g: "台中市", n: "台中潭子勝利", lat: 24.21002, lng: 120.70082 },
+        { g: "台中市", n: "台中青海萬家福", lat: 24.17008, lng: 120.64541 },
+        { g: "台中市", n: "台中豐原南陽", lat: 24.24518, lng: 120.72746 },
+        { g: "台中市", n: "台中霧峰", lat: 24.06371, lng: 120.69874 },
+        { g: "台中市", n: "台中東海", lat: 24.18247, lng: 120.5915 },
+        { g: "彰化縣", n: "彰化和美", lat: 24.11134, lng: 120.49928 },
+        { g: "彰化縣", n: "彰化民族", lat: 24.07505, lng: 120.53989 },
+        { g: "南投縣", n: "南投服務區", lat: 23.89992, lng: 120.71134 },
+        { g: "南投縣", n: "南投草屯", lat: 23.98176, lng: 120.68447 },
+        { g: "雲林縣", n: "雲林西螺服務區", lat: 23.78877, lng: 120.47634 },
+        { g: "台南市", n: "台南國華", lat: 22.99757, lng: 120.19921 },
+        { g: "台南市", n: "台南新市", lat: 23.08416, lng: 120.29521 },
+        { g: "台南市", n: "台南南紡購物中心", lat: 22.99125, lng: 120.23357 },
+        { g: "台南市", n: "台南市醫", lat: 22.96959, lng: 120.22732 },
+        { g: "台南市", n: "台南永康中華", lat: 23.00874, lng: 120.23368 },
+        { g: "高雄市", n: "高雄萬家福", lat: 22.60494, lng: 120.30415 },
+        { g: "高雄市", n: "高雄夢時代", lat: 22.59519, lng: 120.30718 },
+        { g: "高雄市", n: "高雄左營裕誠", lat: 22.66437, lng: 120.31101 },
+        { g: "高雄市", n: "高雄楠梓德賢", lat: 22.72655, lng: 120.30655 },
+        { g: "高雄市", n: "高雄大遠百", lat: 22.6128, lng: 120.30168 },
+        { g: "金門縣", n: "金門金城", lat: 24.43473, lng: 118.31932 },
+        { g: "金門縣", n: "金門山外", lat: 24.44141, lng: 118.4157 }
+      ];
+      var GROUPS = ["基隆市", "宜蘭縣", "台北市", "新北市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "台中市", "彰化縣", "南投縣", "雲林縣", "台南市", "高雄市", "金門縣"];
+      var LS_KEY = "coco-day1-gps-used-v1";
+
+      var used = {};
+      try {
+        var saved = JSON.parse(localStorage.getItem(LS_KEY) || "[]");
+        if (Array.isArray(saved)) saved.forEach(function (name) { used[name] = true; });
+      } catch (e) { /* storage unavailable: fall back to in-memory only */ }
+
+      function save() {
+        try { localStorage.setItem(LS_KEY, JSON.stringify(Object.keys(used))); } catch (e) {}
+      }
+      function coord(s) { return s.lat.toFixed(5) + "," + s.lng.toFixed(5); }
+      function geoUri(s) { return "geo:" + coord(s) + "?q=" + coord(s); }
+      function mapsUrl(s) { return "https://www.google.com/maps/search/?api=1&query=" + coord(s); }
+
+      /* ---------- Direct app launch (Android intent) ---------- */
+      var GEOSIM_PLAY = "https://play.google.com/store/apps/details?id=com.kairosvector.geosim";
+      var PIKMIN_PLAY = "https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin";
+      var IS_ANDROID = /Android/i.test(navigator.userAgent || "");
+      if (IS_ANDROID) document.body.classList.add("is-android");
+
+      function copyCoordsQuiet(s) {
+        // Best-effort background copy before the app switch: sync path first
+        // so the clipboard write lands before navigation tears the page down.
+        var text = coord(s);
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+        } catch (e) { /* clipboard is a backup only; the intent still fires */ }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          try { navigator.clipboard.writeText(text); } catch (e) {}
+        }
+      }
+
+      /* The launch buttons are real <a> elements whose href IS the intent
+         URL, opened with target="_blank". A synthetic click on a hidden,
+         JS-created anchor (the previous approach) is not treated as a real
+         user navigation by mobile Chrome/WebView: the frame itself gets
+         navigated to the unresolvable intent URL and lands on the
+         "webpage not available" error page (broken-file icon). A genuine
+         tap on a real anchor resolves the intent at top level instead:
+         app if installed, Play Store via the fallback if not. The
+         browser_fallback_url value is URL-encoded, as the intent URI
+         format requires, so the fallback actually parses. */
+      function geoSimUrl(s) {
+        return "intent://location?lat=" + s.lat.toFixed(7) + "&lng=" + s.lng.toFixed(7)
+          + "&label=" + encodeURIComponent(s.n)
+          + "#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=" + encodeURIComponent(GEOSIM_PLAY) + ";end";
+      }
+
+      function pikminUrl(s) {
+        var LAT = s.lat.toFixed(7);
+        var LNG = s.lng.toFixed(7);
+        if (IS_ANDROID) {
+          return "intent:///WIDE_AREA_MAP?LATITUDE=" + LAT + "&LONGITUDE=" + LNG
+            + "#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=" + encodeURIComponent(PIKMIN_PLAY) + ";end";
+        }
+        return "pikminbloom:///WIDE_AREA_MAP?LATITUDE=" + LAT + "&LONGITUDE=" + LNG;
+      }
+
+      var toastEl = document.getElementById("toast");
+      var toastTimer = null;
+      function toast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
+      }
+
+      function copyText(text, okMsg) {
+        function done() { toast(okMsg); }
+        function fallback() {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); done(); }
+          catch (e) { toast("複製失敗，請長按座標手動複製"); }
+          document.body.removeChild(ta);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+      }
+
+      function shareText(title, text, okMsg) {
+        if (navigator.share) {
+          navigator.share({ title: title, text: text }).catch(function (err) {
+            if (err && err.name !== "AbortError") copyText(text, okMsg);
+          });
+        } else {
+          copyText(text, okMsg);
+        }
+      }
+
+      /* ---------- Render ---------- */
+      var listEl = document.getElementById("list");
+      var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+      var copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      var shareSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>';
+      var pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+      var zapSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg>';
+      var playSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>';
+      var flagSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12.5l-2.5 4 2.5 4H5"/></svg>';
+
+      var sections = {};   // group -> {section, body}
+      var rows = {};       // name -> {root, check}
+
+      GROUPS.forEach(function (g) {
+        var inGroup = STORES.filter(function (s) { return s.g === g; });
+        var sec = document.createElement("section");
+        var head = document.createElement("div");
+        head.className = "county-head";
+        head.innerHTML = "<h2></h2><span class='county-count'></span><span class='spacer'></span>";
+        head.querySelector("h2").textContent = g;
+        head.querySelector(".county-count").textContent = inGroup.length + " 間";
+        var copyBtn = document.createElement("button");
+        copyBtn.type = "button";
+        copyBtn.className = "btn county-copy";
+        copyBtn.textContent = "複製本區";
+        copyBtn.addEventListener("click", function () {
+          var text = inGroup.map(function (s) { return s.n + " " + coord(s); }).join("\n");
+          copyText(text, "已複製" + g + " " + inGroup.length + " 間座標");
+        });
+        head.appendChild(copyBtn);
+        sec.appendChild(head);
+        var body = document.createElement("div");
+        sec.appendChild(body);
+        listEl.appendChild(sec);
+        sections[g] = { section: sec, body: body };
+
+        inGroup.forEach(function (s) {
+          var row = document.createElement("div");
+          row.className = "store";
+
+          var check = document.createElement("button");
+          check.type = "button";
+          check.className = "check";
+          check.setAttribute("role", "checkbox");
+          check.setAttribute("aria-label", s.n + " 已領取");
+          check.innerHTML = checkSvg;
+
+          var main = document.createElement("div");
+          main.className = "store-main";
+          var nameEl = document.createElement("div");
+          nameEl.className = "store-name";
+          nameEl.textContent = s.n;
+          var tag = document.createElement("span");
+          tag.className = "done-tag";
+          tag.textContent = "已領取";
+          nameEl.appendChild(tag);
+          var coordsEl = document.createElement("div");
+          coordsEl.className = "coords";
+          coordsEl.textContent = coord(s);
+
+          var actions = document.createElement("div");
+          actions.className = "store-actions";
+
+          var copyBtn2 = document.createElement("button");
+          copyBtn2.type = "button"; copyBtn2.className = "mini";
+          copyBtn2.innerHTML = copySvg + "<span>複製座標</span>";
+          copyBtn2.addEventListener("click", function () { copyText(coord(s), s.n + " 座標已複製"); });
+
+          var shareBtn = document.createElement("button");
+          shareBtn.type = "button"; shareBtn.className = "mini share";
+          shareBtn.innerHTML = shareSvg + "<span>分享到 GeoSim</span>";
+          shareBtn.addEventListener("click", function () {
+            shareText(s.n, s.n + "\n" + geoUri(s), s.n + " 已複製，貼到 GeoSim 即可");
+          });
+
+          var mapLink = document.createElement("a");
+          mapLink.className = "mini";
+          mapLink.href = mapsUrl(s);
+          mapLink.target = "_blank"; mapLink.rel = "noopener";
+          mapLink.innerHTML = pinSvg + "<span>地圖</span>";
+
+          var directBtn = document.createElement("a");
+          directBtn.className = "mini geosim-direct";
+          directBtn.href = geoSimUrl(s);
+          directBtn.target = "_blank"; directBtn.rel = "noopener";
+          directBtn.innerHTML = zapSvg + "<span>直達 GeoSim</span>";
+          directBtn.addEventListener("click", function () {
+            copyCoordsQuiet(s);
+            toast("座標已複製，正在開啟 GeoSim…");
+          });
+
+          var gameBtn = document.createElement("a");
+          gameBtn.className = "mini game";
+          gameBtn.href = pikminUrl(s);
+          gameBtn.target = "_blank"; gameBtn.rel = "noopener";
+          gameBtn.innerHTML = playSvg + "<span>開遊戲地圖</span>";
+
+          var reportBtn = document.createElement("button");
+          reportBtn.type = "button"; reportBtn.className = "mini report";
+          reportBtn.innerHTML = flagSvg + "<span>回報錯誤</span>";
+          reportBtn.addEventListener("click", function () { openReport(s); });
+
+          actions.appendChild(copyBtn2);
+          actions.appendChild(shareBtn);
+          actions.appendChild(directBtn);
+          actions.appendChild(gameBtn);
+          actions.appendChild(mapLink);
+          actions.appendChild(reportBtn);
+
+          main.appendChild(nameEl);
+          main.appendChild(coordsEl);
+          main.appendChild(actions);
+
+          check.addEventListener("click", function () {
+            if (used[s.n]) { delete used[s.n]; } else { used[s.n] = true; }
+            save(); refresh();
+          });
+
+          row.appendChild(check);
+          row.appendChild(main);
+          body.appendChild(row);
+          rows[s.n] = { root: row, check: check, store: s };
+        });
+      });
+
+      /* ---------- State / filtering ---------- */
+      var filter = "all";
+      var countyFilter = "all";
+      var query = "";
+      var doneCountEl = document.getElementById("doneCount");
+      var barFill = document.getElementById("barFill");
+      var progressNote = document.getElementById("progressNote");
+      var emptyEl = document.getElementById("emptyState");
+
+      function refresh() {
+        var done = 0;
+        STORES.forEach(function (s) { if (used[s.n]) done++; });
+        doneCountEl.textContent = done;
+        barFill.style.width = (done / STORES.length * 100) + "%";
+        progressNote.textContent = done === STORES.length
+          ? "全台 331 間全數領完"
+          : "還剩 " + (STORES.length - done) + " 間 · 每間每 7 天可再領一次";
+
+        var anyVisible = false;
+        GROUPS.forEach(function (g) {
+          var groupVisible = false;
+          STORES.filter(function (s) { return s.g === g; }).forEach(function (s) {
+            var r = rows[s.n];
+            var isDone = !!used[s.n];
+            r.root.classList.toggle("is-done", isDone);
+            r.check.setAttribute("aria-checked", isDone ? "true" : "false");
+            var show = true;
+            if (countyFilter !== "all" && s.g !== countyFilter) show = false;
+            if (filter === "done" && !isDone) show = false;
+            if (filter === "left" && isDone) show = false;
+            if (query && s.n.indexOf(query) === -1) show = false;
+            r.root.style.display = show ? "" : "none";
+            if (show) { groupVisible = true; anyVisible = true; }
+          });
+          sections[g].section.style.display = groupVisible ? "" : "none";
+        });
+        emptyEl.style.display = anyVisible ? "none" : "block";
+      }
+
+      document.querySelectorAll("[data-filter]").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          filter = chip.getAttribute("data-filter");
+          document.querySelectorAll("[data-filter]").forEach(function (c) {
+            c.setAttribute("aria-pressed", c === chip ? "true" : "false");
+          });
+          refresh();
+        });
+      });
+      document.querySelectorAll("[data-county]").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          countyFilter = chip.getAttribute("data-county");
+          document.querySelectorAll("[data-county]").forEach(function (c) {
+            c.setAttribute("aria-pressed", c === chip ? "true" : "false");
+          });
+          refresh();
+        });
+      });
+      document.getElementById("searchInput").addEventListener("input", function (e) {
+        query = e.target.value.trim();
+        refresh();
+      });
+
+      /* ---------- Bulk actions ---------- */
+      function routeText(list) {
+        return list.map(function (s, i) { return (i + 1) + ". " + s.n + " " + coord(s); }).join("\n");
+      }
+      function scopedStores() {
+        return countyFilter === "all" ? STORES : STORES.filter(function (s) { return s.g === countyFilter; });
+      }
+      function scopeLabel() { return countyFilter === "all" ? "全台" : countyFilter; }
+      document.getElementById("shareRouteBtn").addEventListener("click", function () {
+        var list = scopedStores();
+        var text = "CoCo " + scopeLabel() + "路線（共 " + list.length + " 間）\n" + routeText(list);
+        shareText("CoCo " + scopeLabel() + "路線", text, scopeLabel() + "路線已複製，可貼到 GeoSim 或記事本");
+      });
+      document.getElementById("copyAllBtn").addEventListener("click", function () {
+        var list = scopedStores();
+        var text = list.map(function (s) { return s.n + " " + coord(s); }).join("\n");
+        copyText(text, "已複製" + scopeLabel() + " " + list.length + " 間座標");
+      });
+      document.getElementById("copyLeftBtn").addEventListener("click", function () {
+        var left = scopedStores().filter(function (s) { return !used[s.n]; });
+        if (!left.length) { toast("全部都領完了，沒有未領取的"); return; }
+        var text = left.map(function (s) { return s.n + " " + coord(s); }).join("\n");
+        copyText(text, "已複製未領取的 " + left.length + " 間座標");
+      });
+
+      /* ---------- Reset ---------- */
+      var sheetBack = document.getElementById("sheetBack");
+      document.getElementById("resetBtn").addEventListener("click", function () { sheetBack.classList.add("open"); });
+      document.getElementById("sheetCancel").addEventListener("click", function () { sheetBack.classList.remove("open"); });
+      sheetBack.addEventListener("click", function (e) { if (e.target === sheetBack) sheetBack.classList.remove("open"); });
+      document.getElementById("sheetOk").addEventListener("click", function () {
+        used = {};
+        save();
+        sheetBack.classList.remove("open");
+        refresh();
+        toast("打勾紀錄已全部清除");
+      });
+
+      /* ---------- Error report (report-only; fixes happen backstage) ---------- */
+      var reportBack = document.getElementById("reportBack");
+      var reportStore = null;
+      var reportType = "座標錯誤";
+      var reportNoteEl = document.getElementById("reportNote");
+      function openReport(s) {
+        reportStore = s;
+        reportType = "座標錯誤";
+        reportNoteEl.value = "";
+        document.getElementById("reportStoreName").textContent = s.g + " · " + s.n;
+        document.getElementById("reportStoreCoord").textContent = "目前座標：" + coord(s);
+        document.querySelectorAll("[data-rtype]").forEach(function (c) {
+          c.setAttribute("aria-pressed", c.getAttribute("data-rtype") === reportType ? "true" : "false");
+        });
+        reportBack.classList.add("open");
+      }
+      function reportText() {
+        var lines = [
+          "【CoCo 清單錯誤回報】",
+          "門市：" + reportStore.g + " " + reportStore.n,
+          "目前座標：" + coord(reportStore),
+          "問題類型：" + reportType
+        ];
+        var note = reportNoteEl.value.trim();
+        if (note) lines.push("補充：" + note);
+        return lines.join("\n");
+      }
+      document.querySelectorAll("[data-rtype]").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          reportType = chip.getAttribute("data-rtype");
+          document.querySelectorAll("[data-rtype]").forEach(function (c) {
+            c.setAttribute("aria-pressed", c === chip ? "true" : "false");
+          });
+        });
+      });
+      document.getElementById("reportCancel").addEventListener("click", function () { reportBack.classList.remove("open"); });
+      reportBack.addEventListener("click", function (e) { if (e.target === reportBack) reportBack.classList.remove("open"); });
+      document.getElementById("reportCopy").addEventListener("click", function () {
+        if (!reportStore) return;
+        copyText(reportText(), "回報內容已複製，貼給頁面管理者即可");
+      });
+      document.getElementById("reportSend").addEventListener("click", function () {
+        if (!reportStore) return;
+        var text = reportText();
+        reportBack.classList.remove("open");
+        shareText("CoCo 清單錯誤回報", text, "回報內容已複製，貼給頁面管理者即可");
+      });
+
+      /* ---------- Compact sticky bar on scroll ---------- */
+      var toolbar = document.getElementById("toolbar");
+      var compactToggle = document.getElementById("compactToggle");
+      var compactToggleLabel = document.getElementById("compactToggleLabel");
+      var searchInputEl = document.getElementById("searchInput");
+      var expandedAt = null;
+      function setExpanded(expanded) {
+        toolbar.classList.toggle("is-expanded", expanded);
+        compactToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        compactToggleLabel.textContent = expanded ? "收合" : "搜尋／工具";
+        expandedAt = expanded ? (window.scrollY || window.pageYOffset || 0) : null;
+      }
+      compactToggle.addEventListener("click", function () {
+        setExpanded(!toolbar.classList.contains("is-expanded"));
+      });
+      var ticking = false;
+      function updateCompact() {
+        ticking = false;
+        var y = window.scrollY || window.pageYOffset || 0;
+        var compact = y > 140;
+        toolbar.classList.toggle("is-compact", compact);
+        if (!compact) { setExpanded(false); return; }
+        // Expanded to search/filter, then scrolled well past it: fold back up
+        // (unless the search box is focused and being typed in).
+        if (expandedAt !== null && y > expandedAt + 120 && document.activeElement !== searchInputEl) {
+          setExpanded(false);
+        }
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; window.requestAnimationFrame(updateCompact); }
+      }, { passive: true });
+      updateCompact();
+
+      refresh();
+    </script>
+  </body>
+</html>
