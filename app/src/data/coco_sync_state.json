@@ -502,6 +502,20 @@
           "source": "使用者驗證門市更名（原南華店更名為中和永華店，座標維持不動）"
         }
       ]
+    },
+    {
+      "batch_id": 25,
+      "applied_at": "2026-11-06 07:15:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-349",
+          "name": "CoCo都可 南屯向心南店",
+          "coords": "24.13730, 120.64398",
+          "source": "使用者驗證新增門市（南屯向心南店實體店核實補全）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -537,6 +551,7 @@
     "coco-347",
     "coco-348",
     "coco-34",
-    "coco-101"
+    "coco-101",
+    "coco-349"
   ]
 }

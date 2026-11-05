@@ -4496,5 +4496,18 @@
     "coordsText": "24.80954, 120.97500",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80954,120.97500",
     "route": "新竹市東區＋新竹縣＋苗栗北／中"
+  },
+  {
+    "id": "coco-349",
+    "city": "台中市",
+    "name": "CoCo都可 南屯向心南店",
+    "shortName": "台中南屯向心南",
+    "address": "台中市南屯區向心南路966號",
+    "phone": "04 2471 0833",
+    "lat": 24.1373,
+    "lng": 120.64398,
+    "coordsText": "24.13730, 120.64398",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13730,120.64398",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   }
 ]
