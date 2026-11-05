@@ -1,8 +1,8 @@
 {
-  "last_processed_timestamp": "2026-11-05T06:29:39.000Z",
-  "last_processed_local_time": "2026-11-05 14:31:00 (UTC+8)",
-  "last_processed_row_index": 44,
-  "total_records_at_last_sync": 45,
+  "last_processed_timestamp": "2026-11-05T06:47:48.000Z",
+  "last_processed_local_time": "2026-11-05 14:45:00 (UTC+8)",
+  "last_processed_row_index": 51,
+  "total_records_at_last_sync": 52,
   "batches": [
     {
       "batch_id": 1,
@@ -120,6 +120,27 @@
           "id": "coco-253",
           "name": "CoCo都可 竹北光明店",
           "coords": "24.82599, 121.00899",
+          "source": "表單提供點位"
+        }
+      ]
+    },
+    {
+      "batch_id": 4,
+      "applied_at": "2026-11-05 14:52:00 (UTC+8)",
+      "cutoff_timestamp": "2026-11-05T06:47:48.000Z",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-157",
+          "name": "中壢大江店",
+          "coords": "25.00492, 121.22852",
+          "source": "表單提供點位"
+        },
+        {
+          "id": "coco-311",
+          "name": "CoCo都可 青海萬家福",
+          "coords": "24.17015, 120.64485",
           "source": "表單提供點位"
         }
       ]

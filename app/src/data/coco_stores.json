@@ -2047,10 +2047,10 @@
     "shortName": "桃園中壢大江",
     "address": "桃園市大園區中正東路三段600號",
     "phone": "03 381 0989",
-    "lat": 25.00445,
-    "lng": 121.2286,
-    "coordsText": "25.00445, 121.2286",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00445,121.2286",
+    "lat": 25.00492,
+    "lng": 121.22852,
+    "coordsText": "25.00492, 121.22852",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00492,121.22852",
     "route": "桃園北線＋新竹市北／香山"
   },
   {
@@ -4062,10 +4062,10 @@
     "shortName": "台中青海萬家福",
     "address": "台中市西屯區青海路二段207-18號1樓",
     "phone": "04 2700 3195",
-    "lat": 24.17008,
-    "lng": 120.64541,
-    "coordsText": "24.17008, 120.64541",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17008,120.64541",
+    "lat": 24.17015,
+    "lng": 120.64485,
+    "coordsText": "24.17015, 120.64485",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17015,120.64485",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
