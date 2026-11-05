@@ -130,74 +130,85 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </header>
 
-    <!-- Sticky Filter & Search Bar (Muse-Style High Legibility) -->
+    <!-- Sticky 3-Tier Multi-Dimension Control Bar -->
     <section class="coco-controls-section">
       <div class="container">
-        <!-- Top Status Bar: 已領取 0 / 48 & 搜尋／工具 toggle button -->
-        <div class="muse-top-bar">
+        <!-- Tier 1: Day/日期分組 + 總領取計數 -->
+        <div class="tier-date-row">
           <div class="muse-top-bar__counter">
             <span class="muse-counter-label">已領取</span>
             <span class="muse-counter-done" id="pill-done-count">0</span>
             <span class="muse-counter-sep">/</span>
             <span class="muse-counter-total" id="pill-total-count">48</span>
           </div>
-          <button id="btn-toggle-tools" class="muse-tools-toggle" aria-expanded="false" aria-controls="muse-tools-panel">
-            <span>搜尋／工具</span>
-            <svg class="muse-tools-toggle__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+
+          <!-- Day 1 / Day 2 批次選擇 -->
+          <div class="day-filter-group" role="tablist" aria-label="活動日期批次">
+            <button class="day-pill active" data-day="day1" role="tab" aria-selected="true">
+              Day 1 (11/5 首波)
+            </button>
+            <button class="day-pill disabled" data-day="day2" disabled title="11/12 後續門市即將公開" role="tab" aria-selected="false">
+              Day 2 (敬請期待)
+            </button>
+          </div>
+        </div>
+
+        <!-- Tier 2: 依縣市過濾 (全部 48 / 基隆市 9 / 宜蘭縣 8 / 台北市 31) -->
+        <div class="tier-city-bar" role="tablist" aria-label="縣市篩選">
+          <button class="city-pill active" data-city="all" role="tab" aria-selected="true">
+            全部 <span class="pill-count">48</span>
+          </button>
+          <button class="city-pill" data-city="基隆市" role="tab" aria-selected="false">
+            基隆市 <span class="pill-count">9</span>
+          </button>
+          <button class="city-pill" data-city="宜蘭縣" role="tab" aria-selected="false">
+            宜蘭縣 <span class="pill-count">8</span>
+          </button>
+          <button class="city-pill" data-city="台北市" role="tab" aria-selected="false">
+            台北市 <span class="pill-count">31</span>
+          </button>
+        </div>
+
+        <!-- Tier 3: 依狀態過濾 (全部 / 尚未前往 / 7天冷卻中 / 冷卻完畢可再次領取) -->
+        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
+          <button class="status-pill active" data-status="all">全部</button>
+          <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">48</span>)</button>
+          <button class="status-pill" data-status="cooling">冷卻中 (<span id="count-cooling">0</span>)</button>
+          <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
+        </div>
+
+        <!-- Optional: 關鍵字搜尋與一鍵巡航工具 (收合/展開) -->
+        <div class="tier-tools-toggle-wrap">
+          <button id="btn-toggle-tools" class="tools-toggle-btn" aria-expanded="false" aria-controls="muse-tools-panel">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>搜尋與巡航路徑工具</span>
+            <svg class="tools-toggle-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
         </div>
 
-        <!-- Expandable Tools & Filters Panel (Collapsed by default on mobile) -->
         <div id="muse-tools-panel" class="muse-tools-panel" style="display: none;">
-          <div class="coco-controls-card">
-            <!-- City Tabs -->
-            <div class="coco-tabs" role="tablist" aria-label="縣市篩選">
-              {cities.map((c) => (
-                <button
-                  class={`coco-tab ${c.id === 'all' ? 'active' : ''}`}
-                  data-city={c.id}
-                  role="tab"
-                  aria-selected={c.id === 'all' ? 'true' : 'false'}
-                >
-                  {c.name}
-                  <span class="coco-tab__count">{c.count}</span>
-                </button>
-              ))}
+          <div class="tools-inner-box">
+            <div class="search-box">
+              <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                id="store-search-input"
+                class="search-input"
+                placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
+                aria-label="搜尋門市名稱"
+              />
+              <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
             </div>
-
-            <!-- Search & Status Filter Row -->
-            <div class="coco-filter-row">
-              <div class="search-box">
-                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input
-                  type="text"
-                  id="store-search-input"
-                  class="search-input"
-                  placeholder="搜尋門市名稱（例如：內湖、百福、礁溪...）"
-                  aria-label="搜尋門市名稱"
-                />
-                <button id="clear-search-btn" class="clear-btn" style="display: none;" aria-label="清除搜尋">✕</button>
-              </div>
-
-              <!-- Status Filter -->
-              <div class="status-filters">
-                <button class="status-filter-btn active" data-status="all">全部</button>
-                <button class="status-filter-btn" data-status="todo">尚未前往</button>
-                <button class="status-filter-btn" data-status="visited">7 天冷卻中</button>
-              </div>
-            </div>
-
-            <!-- Result Counter -->
-            <div class="coco-stat-bar">
+            <div class="stat-summary-line">
               <span id="stat-summary-text">顯示 48 家門市</span>
-              <div class="stat-pills">
-                <span class="stat-pill stat-pill--todo" id="pill-todo-count">待造訪: 48</span>
-              </div>
             </div>
           </div>
         </div>
@@ -570,6 +581,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     }
 
     // 1. Visited Status Handling (7-day cooldown in localStorage)
+    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+    const STORAGE_KEY_PREFIX = 'coco_store_visited_';
+
+    let currentDay = 'day1';
+    let currentCity = 'all';
+    let currentStatus = 'all';
+    let currentSearch = '';
+
     function getVisitedTime(storeId) {
       try {
         const val = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
@@ -598,8 +617,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
     function updateAllStoreStates() {
       const now = Date.now();
-      let totalTodo = 0;
-      let totalVisited = 0;
+      let countTodo = 0;
+      let countCooling = 0;
+      let countReady = 0;
 
       document.querySelectorAll('.store-card').forEach((card) => {
         const storeId = card.getAttribute('data-store-id');
@@ -608,34 +628,55 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const banner = card.querySelector('.cooldown-banner');
         const dateSpan = card.querySelector('.next-available-date');
 
-        const isCooldown = visitedTime && (now - visitedTime < SEVEN_DAYS_MS);
-
-        if (isCooldown) {
-          card.classList.add('is-visited');
+        if (!visitedTime) {
+          // 尚未前往
+          card.classList.remove('is-visited', 'is-cooling', 'is-ready');
+          card.setAttribute('data-status-state', 'todo');
+          if (checkbox) checkbox.checked = false;
+          if (banner) banner.style.display = 'none';
+          countTodo++;
+        } else if (now - visitedTime < SEVEN_DAYS_MS) {
+          // 7 天冷卻中
+          card.classList.add('is-visited', 'is-cooling');
+          card.classList.remove('is-ready');
+          card.setAttribute('data-status-state', 'cooling');
           if (checkbox) checkbox.checked = true;
           if (banner) {
             banner.style.display = 'flex';
+            banner.className = 'cooldown-banner muse-cooldown-badge is-cooling-badge';
             const nextDate = visitedTime + SEVEN_DAYS_MS;
             if (dateSpan) dateSpan.textContent = formatDate(nextDate);
           }
-          totalVisited++;
+          countCooling++;
         } else {
-          card.classList.remove('is-visited');
+          // 冷卻完畢（滿 7 天，可再次前往領花苗）
+          card.classList.add('is-visited', 'is-ready');
+          card.classList.remove('is-cooling');
+          card.setAttribute('data-status-state', 'ready');
           if (checkbox) checkbox.checked = false;
-          if (banner) banner.style.display = 'none';
-          totalTodo++;
+          if (banner) {
+            banner.style.display = 'flex';
+            banner.className = 'cooldown-banner muse-cooldown-badge is-ready-badge';
+            if (dateSpan) dateSpan.textContent = '滿 7 天可再次領取！';
+          }
+          countReady++;
         }
       });
 
-      const pillTodo = document.getElementById('pill-todo-count');
+      // Update Top Status Counter
       const pillDone = document.getElementById('pill-done-count');
-      if (pillTodo) pillTodo.textContent = `待造訪: ${totalTodo}`;
-      if (pillDone) pillDone.textContent = `${totalVisited}`;
+      if (pillDone) pillDone.textContent = `${countCooling}`;
+
+      // Update Status Pills Counters
+      const elTodo = document.getElementById('count-todo');
+      const elCooling = document.getElementById('count-cooling');
+      const elReady = document.getElementById('count-ready');
+      if (elTodo) elTodo.textContent = `${countTodo}`;
+      if (elCooling) elCooling.textContent = `${countCooling}`;
+      if (elReady) elReady.textContent = `${countReady}`;
     }
 
-    // 2. Direct 1-Click Launch to GeoSim
-    // (Uses Android Intent URI with S.browser_fallback_url + JS timeout to ensure redirect to Play Store if not installed)
-    // 1.5 Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
+    // Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
     function openInPikmin(lat, lng) {
       const LAT = Number(lat).toFixed(7);
       const LNG = Number(lng).toFixed(7);
@@ -649,38 +690,20 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
     }
 
+    // Direct 1-Click Launch to GeoSim
     async function launchGeoSim(lat, lng, storeName, coordsText) {
-      // (1) 先寫入剪貼簿備用
-      try {
-        await navigator.clipboard.writeText(coordsText);
-      } catch (e) {
-        const ta = document.createElement('textarea');
-        ta.value = coordsText;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      }
-
-      // (2) 若在 GeoSim 內嵌 WebView，直接呼叫 JS Bridge
       if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
         window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
         showToast(`已帶入 GeoSim: ${storeName}`);
         return;
       }
-
-      // (3) 嘗試直接開啟 GeoSim
       showToast(`正在開啟 GeoSim...`);
       const isAndroid = /Android/i.test(navigator.userAgent);
       const encodedName = encodeURIComponent(storeName);
       const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
 
       if (isAndroid) {
-        // 標準 Android Intent URI，並宣告 S.browser_fallback_url
-        // 當手機未安裝 com.kairosvector.geosim 時，系統將自動導向 Google Play 商店
         const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
-
-        // 雙重保險：設定 1.8 秒檢查，若仍停留在本頁且未切換背景，則代表開啟失敗或瀏覽器未處理 fallback，手動導向 Play 商店
         let appOpened = false;
         const fallbackTimer = setTimeout(() => {
           if (!appOpened && !document.hidden) {
@@ -696,52 +719,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         };
         window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
         window.addEventListener('pagehide', onVisibilityChange, { once: true });
-
         window.location.href = intentUri;
       } else {
-        // 非 Android 環境（例如桌面或 iOS），導向商店或 custom scheme
         window.location.href = PLAY_STORE_URL;
       }
     }
 
-    // 2.1 透過系統分享選單分享 (點擊分享圖示時)
-    async function shareStore(lat, lng, storeName, coordsText) {
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: storeName,
-            text: coordsText
-          });
-          showToast(`已開啟分享選單`);
-        } catch (e) {}
-      } else {
-        await navigator.clipboard.writeText(coordsText);
-        showToast(`已複製 ${storeName} 座標`);
-      }
-    }
-
-    // 3. Share or Copy Multi-Point Route
-    async function shareOrCopyRoute(routeText, routeTitle, count) {
-      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
-        window.AndroidGeoSim.setRoute(routeText);
-        showToast(`已匯入 ${count} 處巡航座標至 GeoSim`);
-        return;
-      }
-
-      try {
-        await navigator.clipboard.writeText(routeText);
-      } catch (e) {
-        const ta = document.createElement('textarea');
-        ta.value = routeText;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      }
-      showToast(`已複製 ${count} 間門市巡航路徑，可直接貼入 GeoSim`);
-    }
-
-    // 4. Filtering Logic
+    // Multi-Dimensional Filtering Logic
     function filterStores() {
       const q = currentSearch.trim().toLowerCase();
       let visibleCount = 0;
@@ -751,17 +735,18 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const name = card.getAttribute('data-name').toLowerCase();
         const shortName = card.getAttribute('data-short').toLowerCase();
         const coords = card.getAttribute('data-coords');
-        const isVisited = card.classList.contains('is-visited');
+        const state = card.getAttribute('data-status-state') || 'todo';
 
-        // City match
+        // 1. City match
         const cityMatch = (currentCity === 'all' || city === currentCity);
 
-        // Status match
+        // 2. Status match (all / todo / cooling / ready)
         let statusMatch = true;
-        if (currentStatus === 'todo') statusMatch = !isVisited;
-        if (currentStatus === 'visited') statusMatch = isVisited;
+        if (currentStatus !== 'all') {
+          statusMatch = (state === currentStatus);
+        }
 
-        // Keyword match
+        // 3. Keyword search match
         let searchMatch = true;
         if (q) {
           searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q);
@@ -775,7 +760,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         }
       });
 
-      // Show/Hide City Sections if all children are hidden
+      // Show/Hide City Sections based on visible cards
       document.querySelectorAll('.city-section').forEach((sec) => {
         const secCity = sec.getAttribute('data-city-section');
         const anyVisible = sec.querySelectorAll('.store-card:not([style*="display: none"])').length > 0;
@@ -817,6 +802,71 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           }
         });
       });
+
+      // Tier 1: Day Tabs
+      document.querySelectorAll('.day-pill:not(.disabled)').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.day-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentDay = btn.getAttribute('data-day');
+          filterStores();
+        });
+      });
+
+      // Tier 2: City Pills (全部 / 基隆市 / 宜蘭縣 / 台北市)
+      document.querySelectorAll('.city-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.city-pill').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          currentCity = btn.getAttribute('data-city');
+          filterStores();
+        });
+      });
+
+      // Tier 3: Status Pills (全部 / 尚未前往 / 冷卻中 / 冷卻完畢)
+      document.querySelectorAll('.status-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentStatus = btn.getAttribute('data-status');
+          filterStores();
+        });
+      });
+
+      // Tools Toggle Button
+      const btnToggle = document.getElementById('btn-toggle-tools');
+      const toolsPanel = document.getElementById('muse-tools-panel');
+      if (btnToggle && toolsPanel) {
+        btnToggle.addEventListener('click', () => {
+          const isOpen = toolsPanel.style.display !== 'none';
+          toolsPanel.style.display = isOpen ? 'none' : 'block';
+          btnToggle.classList.toggle('active', !isOpen);
+          btnToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+      }
+
+      // Search Input
+      const searchInput = document.getElementById('store-search-input');
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value;
+          if (clearBtn) clearBtn.style.display = currentSearch ? 'block' : 'none';
+          filterStores();
+        });
+      }
+      if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentSearch = '';
+          clearBtn.style.display = 'none';
+          filterStores();
+        });
+      }
 
       // Direct Launch to GeoSim
       document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
@@ -2357,6 +2407,240 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     .muse-btn[href*="google.com/maps"] {
       flex: 0.75 !important;
     }
+  }
+
+
+  /* ==========================================================================
+     3-Tier Multi-Dimensional Controls CSS
+     ========================================================================== */
+
+  .coco-controls-section {
+    position: sticky;
+    top: var(--nav-height, 64px);
+    z-index: 40;
+    padding: 0.65rem 0 0.5rem 0;
+    background: #0F172A !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(html[data-theme="vibrant"]) .coco-controls-section {
+    background: #FAF8F5 !important;
+    border-bottom: 1px solid #EBE7DF !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Tier 1: Day Selector + Counter */
+  .tier-date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .day-filter-group {
+    display: inline-flex;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 3px;
+    border-radius: 9999px;
+    gap: 3px;
+  }
+
+  :global(html[data-theme="vibrant"]) .day-filter-group {
+    background: #EFECE6;
+  }
+
+  .day-pill {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--color-text-secondary);
+    transition: all 0.15s ease;
+  }
+
+  .day-pill.active {
+    background: #E05326;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 6px rgba(224, 83, 38, 0.3);
+  }
+
+  .day-pill.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  /* Tier 2: City Pills (Horizontal Scroll on Mobile) */
+  .tier-city-bar {
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.45rem;
+  }
+
+  .tier-city-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .city-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="vibrant"]) .city-pill {
+    background: #FFFFFF;
+    border-color: #DCD8D0;
+    color: #44403C;
+  }
+
+  .city-pill:hover {
+    border-color: #E05326;
+  }
+
+  .city-pill.active {
+    background: #292524 !important;
+    color: #FFFFFF !important;
+    border-color: #292524 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  :global(html[data-theme="vibrant"]) .city-pill.active {
+    background: #1C1917 !important;
+    color: #FFFFFF !important;
+    border-color: #1C1917 !important;
+  }
+
+  .city-pill .pill-count {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 0.1rem 0.45rem;
+    border-radius: 9999px;
+  }
+
+  .city-pill.active .pill-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+  }
+
+  /* Tier 3: Status Pills (全部 / 尚未前往 / 冷卻中 / 冷卻完畢) */
+  .tier-status-bar {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.35rem;
+  }
+
+  .tier-status-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .status-pill {
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  :global(html[data-theme="vibrant"]) .status-pill {
+    background: #F3EFE9;
+    color: #57534E;
+  }
+
+  .status-pill.active {
+    background: #E05326 !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+  }
+
+  /* Cooldown Badge styles */
+  .is-cooling-badge {
+    background: rgba(234, 88, 12, 0.12) !important;
+    color: #EA580C !important;
+  }
+  .is-cooling-badge strong {
+    color: #EA580C !important;
+  }
+
+  .is-ready-badge {
+    background: rgba(22, 163, 74, 0.15) !important;
+    color: #16A34A !important;
+    font-weight: 700 !important;
+  }
+
+  /* Tools Toggle Row */
+  .tier-tools-toggle-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.25rem;
+  }
+
+  .tools-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  .tools-toggle-btn:hover {
+    color: #E05326;
+  }
+
+  .tools-toggle-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .tools-toggle-btn.active .tools-toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .tools-inner-box {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  :global(html[data-theme="vibrant"]) .tools-inner-box {
+    background: #FFFFFF;
+    border-color: #E5E2DC;
   }
 
 </style>
