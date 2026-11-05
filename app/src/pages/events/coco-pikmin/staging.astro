@@ -102,10 +102,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         <!-- Compact GeoSim Recommendation Card (Inspired by Version B) -->
         <aside class="geosim-compact-ad" aria-label="GeoSim 下載推薦">
           <div class="ad-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
+            <img src="/images/geosim-icon.png" alt="GeoSim App Icon" class="ad-icon-img" width="44" height="44" />
           </div>
           <div class="ad-content">
             <div class="ad-head">
@@ -1037,19 +1034,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
   .geosim-compact-ad .ad-icon {
     flex: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #E4571D;
-    color: #FFFFFF;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .geosim-compact-ad .ad-icon svg {
-    width: 22px;
-    height: 22px;
+  .geosim-compact-ad .ad-icon-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
   }
 
   .geosim-compact-ad .ad-content {
@@ -1062,9 +1059,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.05em;
-    color: #E4571D;
-    background: #FDEEE6;
-    padding: 2px 7px;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    padding: 2px 8px;
     border-radius: 999px;
     margin-bottom: 3px;
   }
@@ -1094,21 +1092,22 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   .geosim-compact-ad .ad-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    background: #E4571D;
+    gap: 6px;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
     color: #FFFFFF;
-    padding: 6px 13px;
+    padding: 7px 15px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 13.5px;
     text-decoration: none;
-    box-shadow: 0 2px 6px rgba(228, 87, 29, 0.25);
-    transition: transform 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
   }
 
   .geosim-compact-ad .ad-cta-btn:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.1);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
   }
 
   .geosim-compact-ad .ad-note {
@@ -1121,14 +1120,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       padding: 10px 12px;
       gap: 10px;
     }
-    .geosim-compact-ad .ad-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-    }
-    .geosim-compact-ad .ad-icon svg {
-      width: 18px;
-      height: 18px;
+    .geosim-compact-ad .ad-icon,
+    .geosim-compact-ad .ad-icon-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 9px;
     }
     .geosim-compact-ad .ad-title {
       font-size: 14.5px;
