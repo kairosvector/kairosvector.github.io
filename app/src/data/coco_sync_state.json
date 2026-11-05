@@ -258,6 +258,20 @@
           "source": "表單提供點位"
         }
       ]
+    },
+    {
+      "batch_id": 11,
+      "applied_at": "2026-11-05 16:00:30 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-322",
+          "name": "CoCo都可 南紡購物中心店",
+          "coords": "22.99071, 120.23261",
+          "source": "表單提供點位"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
