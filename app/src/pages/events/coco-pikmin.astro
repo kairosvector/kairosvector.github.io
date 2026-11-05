@@ -537,18 +537,6 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
 <script is:inline>
   (function () {
-    // Tools Panel Toggle (搜尋／工具)
-    const btnToggleTools = document.getElementById('btn-toggle-tools');
-    const toolsPanel = document.getElementById('muse-tools-panel');
-    if (btnToggleTools && toolsPanel) {
-      btnToggleTools.addEventListener('click', () => {
-        const isClosed = toolsPanel.style.display === 'none';
-        toolsPanel.style.display = isClosed ? 'block' : 'none';
-        btnToggleTools.setAttribute('aria-expanded', isClosed ? 'true' : 'false');
-        btnToggleTools.classList.toggle('active', isClosed);
-      });
-    }
-
     // 0. LINE / In-App Browser Breakout & Detection
     (function handleInAppBrowser() {
       const ua = navigator.userAgent || '';
@@ -559,14 +547,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
       if (isLine || isFB) {
         if (isAndroid) {
-          // Android: Automatically escape to Chrome default browser
           if (!window.location.search.includes('intent_redirected=1')) {
-            const cleanUrl = window.location.origin + window.location.pathname;
             const intentUri = 'intent://' + window.location.host + window.location.pathname + '#Intent;scheme=https;package=com.android.chrome;end;';
             window.location.href = intentUri;
           }
         } else if (isIOS) {
-          // iOS: Show guide notification bar
           const bar = document.getElementById('inapp-browser-bar');
           if (bar) bar.style.display = 'block';
         }
@@ -580,7 +565,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       }
     })();
-    const STORAGE_KEY_PREFIX = 'coco_visited_';
+
+    // 1. Constants & State
+    const STORAGE_KEY_PREFIX = 'coco_store_visited_';
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
 
@@ -601,15 +588,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       }, 2400);
     }
 
-    // 1. Visited Status Handling (7-day cooldown in localStorage)
-    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
-    const STORAGE_KEY_PREFIX = 'coco_store_visited_';
-
-    
-    let currentCity = 'all';
-    let currentStatus = 'all';
-    let currentSearch = '';
-
+    // 2. Visited Status Handling (7-day cooldown in localStorage)
     function getVisitedTime(storeId) {
       try {
         const val = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
@@ -697,7 +676,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       if (elReady) elReady.textContent = `${countReady}`;
     }
 
-    // Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
+    // 3. Direct Launch to Pikmin Bloom (Wide Area Map with Coordinates)
     function openInPikmin(lat, lng) {
       const LAT = Number(lat).toFixed(7);
       const LNG = Number(lng).toFixed(7);
@@ -711,7 +690,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
     }
 
-    // Direct 1-Click Launch to GeoSim
+    // 4. Direct 1-Click Launch to GeoSim
     async function launchGeoSim(lat, lng, storeName, coordsText) {
       if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
         window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
@@ -746,16 +725,31 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       }
     }
 
-    // Multi-Dimensional Filtering Logic
+    // 5. Copy Text Helper
+    async function copyToClipboard(text, msg) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      showToast(msg || '已複製至剪貼簿');
+    }
+
+    // 6. Multi-Dimensional Filtering Logic
     function filterStores() {
       const q = currentSearch.trim().toLowerCase();
       let visibleCount = 0;
 
       document.querySelectorAll('.store-card').forEach((card) => {
         const city = card.getAttribute('data-city');
-        const name = card.getAttribute('data-name').toLowerCase();
-        const shortName = card.getAttribute('data-short').toLowerCase();
-        const coords = card.getAttribute('data-coords');
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const shortName = (card.getAttribute('data-short') || '').toLowerCase();
+        const coords = card.getAttribute('data-coords') || '';
         const state = card.getAttribute('data-status-state') || 'todo';
 
         // 1. City match
@@ -799,11 +793,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // 5. Event Listeners Setup
-    document.addEventListener('DOMContentLoaded', () => {
+    // 7. Event Listeners Setup
+    function setupEventListeners() {
       updateAllStoreStates();
 
-      // Checkbox changes
+      // Checkbox click: Toggle 7-Day Cooldown
       document.querySelectorAll('.check-toggle__input').forEach((cb) => {
         cb.addEventListener('change', (e) => {
           const storeId = e.target.getAttribute('data-store-id');
@@ -811,22 +805,62 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // Direct Launch to Pikmin Bloom
+      // Button: Direct Launch Pikmin Bloom
       document.querySelectorAll('.btn-launch-pikmin').forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
           const lat = parseFloat(btn.getAttribute('data-lat'));
           const lng = parseFloat(btn.getAttribute('data-lng'));
-          const name = btn.getAttribute('data-name');
+          const name = btn.getAttribute('data-name') || '';
           if (!isNaN(lat) && !isNaN(lng)) {
-            showToast(`正在開啟 Pikmin Bloom (${name})...`);
+            showToast(`正在開啟遊戲 (${name})...`);
             openInPikmin(lat, lng);
           }
         });
       });
 
-      
+      // Button: Direct Launch GeoSim
+      document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lat = btn.getAttribute('data-lat');
+          const lng = btn.getAttribute('data-lng');
+          const name = btn.getAttribute('data-name');
+          const coords = btn.getAttribute('data-coords');
+          launchGeoSim(lat, lng, name, coords);
+        });
+      });
 
-      // Tier 2: City Pills (全部 / 基隆市 / 宜蘭縣 / 台北市)
+      // Button: Copy Single Coordinate
+      document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const coords = btn.getAttribute('data-coords');
+          const name = btn.getAttribute('data-name');
+          copyToClipboard(coords, `已複製 ${name} 座標`);
+        });
+      });
+
+      // Button: Copy Region Route
+      document.querySelectorAll('.btn-copy-region-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route');
+          const city = btn.getAttribute('data-city');
+          copyToClipboard(route, `已複製【${city}】巡航路徑，可貼入 GeoSim`);
+        });
+      });
+
+      // Button: Copy All 331 Route in Hero & Tools Panel
+      document.querySelectorAll('#btn-copy-all-route, .btn-copy-all-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route');
+          copyToClipboard(route, `已複製全台 331 店巡航路徑，可貼入 GeoSim`);
+        });
+      });
+
+      // Tier 1: City Pills Filter
       document.querySelectorAll('.city-pill').forEach((btn) => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.city-pill').forEach(b => {
@@ -840,7 +874,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // Tier 3: Status Pills (全部 / 尚未前往 / 冷卻中 / 冷卻完畢)
+      // Tier 2: Status Pills Filter
       document.querySelectorAll('.status-pill').forEach((btn) => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
@@ -850,11 +884,12 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // Tools Toggle Button
+      // Toggle Tools & Search Panel
       const btnToggle = document.getElementById('btn-toggle-tools');
       const toolsPanel = document.getElementById('muse-tools-panel');
       if (btnToggle && toolsPanel) {
-        btnToggle.addEventListener('click', () => {
+        btnToggle.addEventListener('click', (e) => {
+          e.preventDefault();
           const isOpen = toolsPanel.style.display !== 'none';
           toolsPanel.style.display = isOpen ? 'none' : 'block';
           btnToggle.classList.toggle('active', !isOpen);
@@ -862,7 +897,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       }
 
-      // Search Input
+      // Keyword Search Input
       const searchInput = document.getElementById('store-search-input');
       const clearBtn = document.getElementById('clear-search-btn');
       if (searchInput) {
@@ -881,107 +916,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       }
 
-      // Direct Launch to GeoSim
-      document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lat = btn.getAttribute('data-lat');
-          const lng = btn.getAttribute('data-lng');
-          const name = btn.getAttribute('data-name');
-          const coords = btn.getAttribute('data-coords');
-          launchGeoSim(lat, lng, name, coords);
-        });
-      });
-
-      // Copy Single Coordinate
-      document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const coords = btn.getAttribute('data-coords');
-          const name = btn.getAttribute('data-name');
-          try {
-            await navigator.clipboard.writeText(coords);
-          } catch (e) {
-            const ta = document.createElement('textarea');
-            ta.value = coords;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-          }
-          showToast(`已複製 ${name} 座標，可貼入 GeoSim`);
-        });
-      });
-
-      // System Share Button
-      document.querySelectorAll('.btn-share-store').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lat = btn.getAttribute('data-lat');
-          const lng = btn.getAttribute('data-lng');
-          const name = btn.getAttribute('data-name');
-          const coords = btn.getAttribute('data-coords');
-          shareStore(lat, lng, name, coords);
-        });
-      });
-
-      // Copy Region Route
-      document.querySelectorAll('.btn-copy-region-route').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const route = btn.getAttribute('data-route');
-          const city = btn.getAttribute('data-city');
-          const count = btn.getAttribute('data-count');
-          shareOrCopyRoute(route, `CoCo ${city} 巡航路線`, count);
-        });
-      });
-
-      // Copy All Route
-      const copyAllBtn = document.getElementById('btn-copy-all-route');
-      if (copyAllBtn) {
-        copyAllBtn.addEventListener('click', () => {
-          const route = copyAllBtn.getAttribute('data-route');
-          const name = copyAllBtn.getAttribute('data-name');
-          shareOrCopyRoute(route, name, 48);
-        });
-      }
-
-      // City Tabs
-      document.querySelectorAll('.coco-tab').forEach((tab) => {
-        tab.addEventListener('click', () => {
-          document.querySelectorAll('.coco-tab').forEach((t) => t.classList.remove('active'));
-          tab.classList.add('active');
-          currentCity = tab.getAttribute('data-city');
-          filterStores();
-        });
-      });
-
-      // Status Filter
-      document.querySelectorAll('.status-filter-btn').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.status-filter-btn').forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentStatus = btn.getAttribute('data-status');
-          filterStores();
-        });
-      });
-
-      // Search Input
-      const searchInput = document.getElementById('store-search-input');
-      const clearBtn = document.getElementById('clear-search-btn');
-      if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-          currentSearch = e.target.value;
-          if (clearBtn) clearBtn.style.display = currentSearch ? 'block' : 'none';
-          filterStores();
-        });
-      }
-
-      if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
-          if (searchInput) searchInput.value = '';
-          currentSearch = '';
-          clearBtn.style.display = 'none';
-          filterStores();
-        });
-      }
-
+      // Reset Filters Fallback Button
       const resetBtn = document.getElementById('btn-reset-filters');
       if (resetBtn) {
         resetBtn.addEventListener('click', () => {
@@ -990,14 +925,20 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           currentSearch = '';
           if (searchInput) searchInput.value = '';
           if (clearBtn) clearBtn.style.display = 'none';
-          document.querySelectorAll('.coco-tab').forEach((t) => t.classList.remove('active'));
-          document.querySelector('.coco-tab[data-city="all"]')?.classList.add('active');
-          document.querySelectorAll('.status-filter-btn').forEach((b) => b.classList.remove('active'));
-          document.querySelector('.status-filter-btn[data-status="all"]')?.classList.add('active');
+          document.querySelectorAll('.city-pill').forEach(b => b.classList.remove('active'));
+          document.querySelector('.city-pill[data-city="all"]')?.classList.add('active');
+          document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
+          document.querySelector('.status-pill[data-status="all"]')?.classList.add('active');
           filterStores();
         });
       }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEventListeners);
+    } else {
+      setupEventListeners();
+    }
   })();
 </script>
 
