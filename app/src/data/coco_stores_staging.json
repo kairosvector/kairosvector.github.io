@@ -747,10 +747,10 @@
     "shortName": "台北忠孝復興",
     "address": "臺北市大安區忠孝東路三段302號B1",
     "phone": "02 2721 1229",
-    "lat": 25.04142,
+    "lat": 25.0415,
     "lng": 121.54508,
-    "coordsText": "25.04142, 121.54508",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04142,121.54508",
+    "coordsText": "25.04150, 121.54508",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04150,121.54508",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -4075,10 +4075,10 @@
     "shortName": "台中東海",
     "address": "台中市龍井區台灣大道五段3巷32號",
     "phone": "04 2633 0658",
-    "lat": 24.18201,
-    "lng": 120.59263,
-    "coordsText": "24.18201, 120.59263",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.18201,120.59263",
+    "lat": 24.18209,
+    "lng": 120.5927,
+    "coordsText": "24.18209, 120.59270",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.18209,120.59270",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {

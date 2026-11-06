@@ -608,6 +608,26 @@
           "source": "網友回報經使用者查核確認微調（高雄家樂福成功店/萬家福商場）"
         }
       ]
+    },
+    {
+      "batch_id": 30,
+      "applied_at": "2026-11-06 17:05:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-58",
+          "name": "CoCo都可 忠孝復興店",
+          "coords": "25.04150, 121.54508",
+          "source": "使用者微調精準點位（忠孝東路三段302號B1捷運出口）"
+        },
+        {
+          "id": "coco-314",
+          "name": "CoCo都可 台中東海店",
+          "coords": "24.18209, 120.59270",
+          "source": "使用者微調精準點位（台灣大道五段3巷32號）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -654,6 +674,8 @@
     "coco-53",
     "coco-5",
     "coco-68",
-    "coco-325"
+    "coco-325",
+    "coco-58",
+    "coco-314"
   ]
 }
