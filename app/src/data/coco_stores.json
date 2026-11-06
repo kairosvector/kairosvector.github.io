@@ -4179,10 +4179,10 @@
     "shortName": "台南南紡購物中心",
     "address": "台南市東區中華東路一段366號B1美食街",
     "phone": "06 236 9098",
-    "lat": 22.99071,
-    "lng": 120.23261,
-    "coordsText": "22.99071, 120.23261",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99071,120.23261",
+    "lat": 22.99059,
+    "lng": 120.23268,
+    "coordsText": "22.99059, 120.23268",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99059,120.23268",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
@@ -4522,5 +4522,18 @@
     "coordsText": "25.09744, 121.71289",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09744,121.71289",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
+  },
+  {
+    "id": "coco-351",
+    "city": "新北市",
+    "name": "CoCo都可 土城廣福店",
+    "shortName": "新北土城廣福",
+    "address": "新北市土城區學府路一段146號",
+    "phone": "02 2270 4575",
+    "lat": 24.98723,
+    "lng": 121.45489,
+    "coordsText": "24.98723, 121.45489",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98723,121.45489",
+    "route": "新北其餘"
   }
 ]

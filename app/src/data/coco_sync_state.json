@@ -530,6 +530,26 @@
           "source": "使用者驗證新增門市（基隆七堵店實體店核實補全，25.0974408, 121.7128851）"
         }
       ]
+    },
+    {
+      "batch_id": 27,
+      "applied_at": "2026-11-06 09:35:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-351",
+          "name": "CoCo都可 土城廣福店",
+          "coords": "24.98723, 121.45489",
+          "source": "使用者驗證新增門市（土城廣福店實體店核實補全，學府路一段146號）"
+        },
+        {
+          "id": "coco-322",
+          "name": "CoCo都可 南紡購物中心店",
+          "coords": "22.99059, 120.23268",
+          "source": "使用者驗證精確微調（南紡購物中心B1美食街，22.9905907, 120.2326752）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -567,6 +587,8 @@
     "coco-34",
     "coco-101",
     "coco-349",
-    "coco-350"
+    "coco-350",
+    "coco-351",
+    "coco-322"
   ]
 }
