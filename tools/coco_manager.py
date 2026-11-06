@@ -37,11 +37,15 @@ STORE_ALIASES = {
     "CoCo都可龍江2店": "coco-20",
 }
 
+BUFFER_FILE = "app/src/data/coco_verified_buffer.json"
+
 # Stores that have been reviewed and verified by user/operator as resolved
 RESOLVED_STORES = {
     "coco-20",    # 龍江2店 (舊回報4.2km異常，已審核不採納)
     "coco-244",   # 新竹巨城店 (中央路207號正確，巨城館內另立coco-348)
     "coco-250",   # 新竹金山2店 (已立新竹園區2店coco-347處理完畢)
+    "coco-266",   # 新豐尚仁店 (昨日第14波已永久下架歇業)
+    "CoCo都可(新豐尚仁店)",
     "coco-305",   # 台中遠雄 (已去重並校正)
     "coco-101",   # 南華店 (已更名為中和永華店)
     "coco-34",    # 石牌商城 (已微調完成)
@@ -50,6 +54,7 @@ RESOLVED_STORES = {
     "coco-348",   # 遠東巨城
     "coco-349",   # 南屯向心南
     "coco-350",   # 基隆七堵
+    "CoCo都可 土城廣福店",  # 已進入待發布佇列(1/3)
 }
 
 def load_data():
@@ -107,8 +112,8 @@ def analyze():
         sid = store["id"] if store else None
 
         # Check if already resolved
-        if sid and sid in all_resolved_ids:
-            filtered_already_resolved.append((sid, name, r))
+        if (sid and sid in all_resolved_ids) or (name in all_resolved_ids):
+            filtered_already_resolved.append((sid or name, name, r))
             continue
 
         # If reported with new coordinates

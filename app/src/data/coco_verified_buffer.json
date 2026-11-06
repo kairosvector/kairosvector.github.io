@@ -1,0 +1,17 @@
+[
+  {
+    "id": "coco-351",
+    "city": "新北市",
+    "name": "CoCo都可 土城廣福店",
+    "shortName": "新北土城廣福",
+    "address": "新北市土城區學府路一段146號",
+    "phone": "02 2270 4575",
+    "lat": 24.98723,
+    "lng": 121.45489,
+    "coordsText": "24.98723, 121.45489",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98723,121.45489",
+    "route": "新北其餘",
+    "verified_at": "2026-11-06 08:35 (UTC+8)",
+    "note": "使用者查核提供，學府路一段146號（廣福國小旁）"
+  }
+]
