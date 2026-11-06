@@ -23,7 +23,34 @@ def haversine(lat1, lon1, lat2, lon2):
 GAS_URL = "https://script.google.com/macros/s/AKfycbzgtI_7aWF-x5-y3ETnkDLHrb7wXCGeCw8zfZ-2TAMdty-UI6fox2-NR1EKhJhbdNGZLA/exec"
 STATE_FILE = "app/src/data/coco_sync_state.json"
 PROD_FILE = "app/src/data/coco_stores.json"
-STAGING_FILE = "app/src/data/coco_stores_staging.json"
+PENDING_FILE = "app/src/data/coco_pending_verification.json"
+
+STORE_ALIASES = {
+    "CoCo都可 南華店": "coco-101",
+    "CoCo都可 中和永華店": "coco-101",
+    "CoCo都可 台中遠雄店": "coco-305",
+    "CoCo都可 台中遠雄": "coco-305",
+    "CoCo都可 新竹巨城店": "coco-244",
+    "CoCo都可(石牌商城店)": "coco-34",
+    "CoCo都可 石牌商城店": "coco-34",
+    "CoCo都可 新竹金山2店": "coco-250",
+    "CoCo都可龍江2店": "coco-20",
+}
+
+# Stores that have been reviewed and verified by user/operator as resolved
+RESOLVED_STORES = {
+    "coco-20",    # 龍江2店 (舊回報4.2km異常，已審核不採納)
+    "coco-244",   # 新竹巨城店 (中央路207號正確，巨城館內另立coco-348)
+    "coco-250",   # 新竹金山2店 (已立新竹園區2店coco-347處理完畢)
+    "coco-305",   # 台中遠雄 (已去重並校正)
+    "coco-101",   # 南華店 (已更名為中和永華店)
+    "coco-34",    # 石牌商城 (已微調完成)
+    "coco-346",   # 西屯水湳
+    "coco-347",   # 園區2
+    "coco-348",   # 遠東巨城
+    "coco-349",   # 南屯向心南
+    "coco-350",   # 基隆七堵
+}
 
 def load_data():
     req = urllib.request.Request(GAS_URL, headers={"User-Agent": "Mozilla/5.0"})
@@ -39,6 +66,12 @@ def load_data():
     return sheet_rows, state, stores
 
 def match_store(reported_name, city, stores):
+    if reported_name in STORE_ALIASES:
+        target_id = STORE_ALIASES[reported_name]
+        for s in stores:
+            if s["id"] == target_id:
+                return s
+
     for s in stores:
         if s["name"] == reported_name:
             return s
@@ -52,112 +85,124 @@ def match_store(reported_name, city, stores):
 
 def analyze():
     sheet_rows, state, stores = load_data()
-    last_idx = state.get("last_processed_row_index", -1)
 
-    # All stores updated across all batches
-    all_updated_ids = set()
+    # Build set of resolved IDs
+    all_resolved_ids = set(RESOLVED_STORES)
     for b in state.get("batches", []):
         for s in b.get("updated_stores", []):
-            all_updated_ids.add(s["id"])
-    all_updated_ids.update({"coco-332", "coco-333"})
-    all_updated_ids.update(set(state.get("confirmed_correct_stores", [])))
-    for r in state.get("removed_stores", []):
-        all_updated_ids.add(r["id"])
-        all_updated_ids.add(r["name"])
+            all_resolved_ids.add(s["id"])
+    all_resolved_ids.update(set(state.get("all_updated_ids", [])))
+    all_resolved_ids.update(set(state.get("confirmed_correct_stores", [])))
 
-
-    # 1. Track stores reported wrong but WITHOUT coords
-    stores_without_coords = {}
-    stores_with_new_coords_all = {}
+    pending_list = []
+    filtered_already_resolved = []
+    filtered_exact_match = []
 
     for idx, r in enumerate(sheet_rows):
         ts, name, city, orig_coords, rtype, new_coords, note = r
         if "測試" in name:
             continue
-        store = match_store(name, city, stores)
-        sid = store["id"] if store else name
 
-        if new_coords.strip() and rtype != "單純回報有誤":
-            stores_with_new_coords_all[sid] = (idx, r, store)
-            if sid in stores_without_coords:
-                del stores_without_coords[sid]
-        else:
-            if sid not in stores_with_new_coords_all:
-                stores_without_coords[sid] = (idx, r, store)
-
-    pending_no_coords = {k: v for k, v in stores_without_coords.items() if k not in all_updated_ids}
-
-    # 2. Track ALL un-updated reports with new coords across the entire sheet
-    new_unprocessed_dict = {}
-    for idx, r in enumerate(sheet_rows):
-        ts, name, city, orig_coords, rtype, new_coords, note = r
-        if "測試" in name:
-            continue
         store = match_store(name, city, stores)
         sid = store["id"] if store else None
 
-        if not sid or sid in all_updated_ids:
+        # Check if already resolved
+        if sid and sid in all_resolved_ids:
+            filtered_already_resolved.append((sid, name, r))
             continue
 
+        # If reported with new coordinates
         if new_coords.strip() and rtype != "單純回報有誤":
             try:
-                parts = [float(x.strip()) for x in new_coords.split(",") if x.strip()]
+                clean_c = new_coords.strip().strip("()（）")
+                # Handle space or comma separated
+                if "," in clean_c:
+                    parts = [float(x.strip()) for x in clean_c.split(",") if x.strip()][:2]
+                else:
+                    parts = [float(x.strip()) for x in clean_c.split() if x.strip()][:2]
                 lat, lng = parts[0], parts[1]
-                diff = haversine(store["lat"], store["lng"], lat, lng) if store else 0
+                diff = haversine(store["lat"], store["lng"], lat, lng) if store else 999999
                 
-                # If store already has these exact coordinates (within 10m), it's already updated
-                if diff < 10:
+                # If store already has these exact coordinates (within 15m), it's already updated
+                if diff < 15:
+                    filtered_exact_match.append((sid, name, diff))
                     continue
 
-                # Geographic plausibility check
                 if diff <= 2000:
                     geo_status = f"合理（偏移 {diff:.0f} 公尺）"
                 elif diff <= 5000:
                     geo_status = f"需注意（偏移 {diff/1000:.1f} 公里）"
                 else:
                     geo_status = f"可疑/跨區（偏移 {diff/1000:.1f} 公里）"
-            except Exception:
+            except Exception as e:
                 lat, lng, diff = None, None, 0
-                geo_status = "座標格式解析失敗"
+                geo_status = f"座標格式解析失敗: {e}"
 
-            new_unprocessed_dict[sid] = {
+            item = {
                 "row_index": idx,
                 "timestamp": ts,
-                "name": name,
+                "store_id": sid,
+                "store_name": store["name"] if store else name,
                 "city": city,
-                "store": store,
-                "new_lat": lat,
-                "new_lng": lng,
+                "current_address": store["address"] if store else "無登記地址",
+                "current_coords": f"{store['lat']}, {store['lng']}" if store else orig_coords,
+                "reported_coords": f"{lat:.5f}, {lng:.5f}" if lat and lng else new_coords,
                 "diff_meters": diff,
                 "geo_status": geo_status,
-                "note": note
+                "user_note": note,
+                "report_type": rtype
             }
+            pending_list.append(item)
+        elif rtype == "單純回報有誤":
+            # Reported error without coords
+            item = {
+                "row_index": idx,
+                "timestamp": ts,
+                "store_id": sid,
+                "store_name": store["name"] if store else name,
+                "city": city,
+                "current_address": store["address"] if store else "無登記地址",
+                "current_coords": f"{store['lat']}, {store['lng']}" if store else orig_coords,
+                "reported_coords": "無（僅單純回報有誤）",
+                "diff_meters": 0,
+                "geo_status": "待補座標",
+                "user_note": note,
+                "report_type": rtype
+            }
+            pending_list.append(item)
 
+    # De-duplicate pending_list by store_id or name (keep latest)
+    deduped_pending = {}
+    for p in pending_list:
+        key = p["store_id"] if p["store_id"] else p["store_name"]
+        deduped_pending[key] = p
+    final_pending = list(deduped_pending.values())
 
-    return state, pending_no_coords, list(new_unprocessed_dict.values()), len(sheet_rows)
+    # Save to pending verification json file
+    with open(PENDING_FILE, "w", encoding="utf-8") as f:
+        json.dump(final_pending, f, ensure_ascii=False, indent=2)
+
+    return final_pending, len(sheet_rows), len(filtered_already_resolved), len(filtered_exact_match)
 
 if __name__ == "__main__":
-    state, pending_no_coords, new_unprocessed, total_sheet_rows = analyze()
+    pending, total_rows, resolved_count, exact_count = analyze()
     print("=" * 65)
-    print(f"【CoCo 點位回報追蹤總表】(目前最新總回報數：{total_sheet_rows} 筆)")
-    print(f"上次水線切齊時間：{state['last_processed_local_time']}")
+    print(f"【CoCo 門市回報智能過濾與待驗證清單】")
+    print(f"表單總回報數：{total_rows} 筆")
+    print(f"自動過濾已處理/已解決：{resolved_count} 筆")
+    print(f"自動過濾吻合無須更新：{exact_count} 筆")
+    print(f"待使用者驗證項目：{len(pending)} 筆")
     print("=" * 65)
 
-    print(f"\n1. 錯誤但尚未提供 GPS 座標的待補清單（共 {len(pending_no_coords)} 間）：")
-    for sid, (idx, r, store) in pending_no_coords.items():
-        addr = store["address"] if store else "無地址"
-        sname = store["name"] if store else r[1]
-        print(f"   - [{sid}] {sname} ({r[2]}) | 地址: {addr} | 原座標: {r[3]}")
-
-    print(f"\n2. 使用者回報且有提供點位、待更新清單（共 {len(new_unprocessed)} 間）：")
-    if not new_unprocessed:
-        print("   (目前無待更新項目)")
-    for item in new_unprocessed:
-        s = item["store"]
-        sid = s["id"] if s else "未知"
-        print(f"   - [{sid}] {item['name']} ({item['city']})")
-        print(f"     原座標: {s['lat']}, {s['lng']}")
-        print(f"     新座標: {item['new_lat']:.5f}, {item['new_lng']:.5f}")
-        print(f"     地理合理性粗略檢查: {item['geo_status']}")
-        if item["note"]:
-            print(f"     備註: {item['note']}")
+    if not pending:
+        print("\n✅ 目前無任何待驗證項目，所有回報皆已處理或已過濾完畢！")
+    else:
+        print(f"\n📋 以下為待驗證清單：")
+        for idx, item in enumerate(pending, 1):
+            print(f"\n{idx}. [{item['store_id'] or '新門市'}] {item['store_name']} ({item['city']})")
+            print(f"   - 目前地址: {item['current_address']}")
+            print(f"   - 目前座標: {item['current_coords']}")
+            print(f"   - 網友回報座標: {item['reported_coords']}")
+            print(f"   - 檢查判斷: {item['geo_status']}")
+            if item['user_note']:
+                print(f"   - 網友備註: {item['user_note']}")
