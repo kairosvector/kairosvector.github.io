@@ -582,6 +582,32 @@
           "source": "使用者以遊戲官方內核實微調至官方點"
         }
       ]
+    },
+    {
+      "batch_id": 29,
+      "applied_at": "2026-11-06 14:05:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 3,
+      "updated_stores": [
+        {
+          "id": "coco-5",
+          "name": "CoCo都可 基隆海豐店",
+          "coords": "25.13602, 121.78700",
+          "source": "使用者微調精準點位（新豐街306號）"
+        },
+        {
+          "id": "coco-68",
+          "name": "CoCo都可 三重自強店",
+          "coords": "25.06732, 121.49258",
+          "source": "使用者微調精準點位（自強路一段250號）"
+        },
+        {
+          "id": "coco-325",
+          "name": "CoCo都可 萬家福店",
+          "coords": "22.60508, 120.30445",
+          "source": "網友回報經使用者查核確認微調（高雄家樂福成功店/萬家福商場）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -625,6 +651,9 @@
     "coco-49",
     "coco-51",
     "coco-52",
-    "coco-53"
+    "coco-53",
+    "coco-5",
+    "coco-68",
+    "coco-325"
   ]
 }

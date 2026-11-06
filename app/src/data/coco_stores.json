@@ -58,10 +58,10 @@
     "shortName": "基隆海豐",
     "address": "基隆市中正區新豐街306號",
     "phone": "02 2469 1018",
-    "lat": 25.13591,
-    "lng": 121.78704,
-    "coordsText": "25.13591, 121.78704",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13591,121.78704",
+    "lat": 25.13602,
+    "lng": 121.787,
+    "coordsText": "25.13602, 121.78700",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13602,121.78700",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
   },
   {
@@ -890,10 +890,10 @@
     "shortName": "新北三重自強",
     "address": "新北市三重區自強路一段250號",
     "phone": "02 2980 6452",
-    "lat": 25.06739,
-    "lng": 121.49267,
-    "coordsText": "25.06739, 121.49267",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06739,121.49267",
+    "lat": 25.06732,
+    "lng": 121.49258,
+    "coordsText": "25.06732, 121.49258",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06732,121.49258",
     "route": "台北其餘＋新北西線"
   },
   {
@@ -4244,10 +4244,10 @@
     "shortName": "高雄萬家福",
     "address": "高雄市前鎮區中華五路1111號1樓",
     "phone": "07 536 1668",
-    "lat": 22.60494,
-    "lng": 120.30415,
-    "coordsText": "22.60494, 120.30415",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.60494,120.30415",
+    "lat": 22.60508,
+    "lng": 120.30445,
+    "coordsText": "22.60508, 120.30445",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.60508,120.30445",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
