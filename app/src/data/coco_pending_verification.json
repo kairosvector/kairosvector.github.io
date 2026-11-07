@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "row_index": 245,
+    "timestamp": "2026-11-07T04:12:57.000Z",
+    "store_id": "coco-151",
+    "store_name": "廣福店",
+    "city": "桃園市",
+    "current_address": "桃園市八德區廣福路126號",
+    "current_coords": "24.95944, 121.29653",
+    "reported_coords": "121.29649, 24.95942",
+    "diff_meters": 7298210.664941988,
+    "geo_status": "可疑/跨區（偏移 7298.2 公里）",
+    "user_note": "",
+    "report_type": "提供正確點位"
+  },
+  {
+    "row_index": 247,
+    "timestamp": "2026-11-07T04:36:28.000Z",
+    "store_id": "coco-245",
+    "store_name": "CoCo都可(巨城民生店)",
+    "city": "新竹市",
+    "current_address": "300新竹市東區復中里民生路121號",
+    "current_coords": "24.81014, 120.97682",
+    "reported_coords": "無（僅單純回報有誤）",
+    "diff_meters": 0,
+    "geo_status": "待補座標",
+    "user_note": "",
+    "report_type": "單純回報有誤"
+  }
+]

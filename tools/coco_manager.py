@@ -26,6 +26,8 @@ PROD_FILE = "app/src/data/coco_stores.json"
 PENDING_FILE = "app/src/data/coco_pending_verification.json"
 
 STORE_ALIASES = {
+    "廣福店": "coco-151",
+    "CoCo都可 苓雅忠孝店": "coco-352",
     "CoCo都可 南華店": "coco-101",
     "CoCo都可 中和永華店": "coco-101",
     "CoCo都可 台中遠雄店": "coco-305",
@@ -47,6 +49,8 @@ RESOLVED_STORES = {
     "coco-266",   # 新豐尚仁店 (第33波已重新上架並校正為 24.86688, 120.99024)
     "coco-45",    # 台北民生店 (第34波已微調至 25.05739, 121.51761)
     "coco-328",   # 楠梓德賢店 (第34波已微調至 22.72646, 120.30658)
+    "coco-151",   # 八德廣福店 (第35波已微調至 24.95942, 121.29649)
+    "coco-352",   # 苓雅忠孝店 (第35波已新增至 22.62000, 120.30774)
     "CoCo都可(新豐尚仁店)",
     "coco-305",   # 台中遠雄 (已去重並校正)
     "coco-101",   # 南華店 (已更名為中和永華店)

@@ -709,6 +709,30 @@
           "source": "使用者實勘微調（德賢路167號，微調10.3m至正門前方）"
         }
       ]
+    },
+    {
+      "batch_id": 35,
+      "applied_at": "2026-11-07 15:48:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-352",
+          "name": "CoCo都可 苓雅忠孝店",
+          "city": "高雄市",
+          "action": "新增門市",
+          "coords": "22.62000, 120.30774",
+          "source": "使用者與朋友實勘提報新增（高雄市苓雅區苓雅一路293號，高雄市增至 11 間，全台總店數增至 351 店）"
+        },
+        {
+          "id": "coco-151",
+          "name": "CoCo都可 八德廣福店",
+          "city": "桃園市",
+          "action": "點位微調",
+          "coords": "24.95942, 121.29649",
+          "source": "玩家回報經緯度顛倒還原核實微調 4.6m 至店門口（桃園市八德區廣福路126號）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [

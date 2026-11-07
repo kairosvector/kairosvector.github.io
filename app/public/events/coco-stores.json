@@ -2556,15 +2556,15 @@
     "shortName": "桃園廣福",
     "address": "桃園市八德區廣福路126號",
     "phone": "03 371 3989",
-    "lat": 24.95944,
-    "lng": 121.29653,
-    "coordsText": "24.95944, 121.29653",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95944,121.29653",
+    "lat": 24.95942,
+    "lng": 121.29649,
+    "coordsText": "24.95942, 121.29649",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95942,121.29649",
     "route": "桃園北線＋新竹市北／香山",
-    "isUpdated": false,
-    "updateStatus": "未更新 (初始點位)",
-    "updateDetail": "",
-    "updateBatch": null
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 35 波 點位微調)",
+    "updateDetail": "玩家回報經緯度顛倒還原核實微調 4.6m 至店門口（桃園市八德區廣福路126號）",
+    "updateBatch": 35
   },
   {
     "id": "coco-152",
@@ -5948,5 +5948,22 @@
     "updateStatus": "已更新 (第 27 波 新增門市)",
     "updateDetail": "使用者驗證新增門市（土城廣福店實體店核實補全，學府路一段146號）",
     "updateBatch": 27
+  },
+  {
+    "id": "coco-352",
+    "city": "高雄市",
+    "name": "CoCo都可 苓雅忠孝店",
+    "shortName": "高雄苓雅忠孝",
+    "address": "高雄市苓雅區苓雅一路293號",
+    "phone": "07 333 0618",
+    "lat": 22.62,
+    "lng": 120.30774,
+    "coordsText": "22.62000, 120.30774",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.62000,120.30774",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 35 波 新增門市)",
+    "updateDetail": "使用者與朋友實勘提報新增（高雄市苓雅區苓雅一路293號，高雄市增至 11 間，全台總店數增至 351 店）",
+    "updateBatch": 35
   }
 ]
