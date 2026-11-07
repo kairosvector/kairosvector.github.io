@@ -10,7 +10,11 @@
     "lng": 121.69608,
     "coordsText": "25.08176, 121.69608",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08176,121.69608",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 32 波 點位微調)",
+    "updateDetail": "使用者指定微調精準點位（基隆市七堵區百三街60號，微調5.4米至店門口）",
+    "updateBatch": 32
   },
   {
     "id": "coco-2",
@@ -23,7 +27,11 @@
     "lng": 121.72662,
     "coordsText": "25.14503, 121.72662",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.14503,121.72662",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-3",
@@ -36,7 +44,11 @@
     "lng": 121.77191,
     "coordsText": "25.1509, 121.77191",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.1509,121.77191",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-4",
@@ -49,7 +61,11 @@
     "lng": 121.7509,
     "coordsText": "25.13725, 121.7509",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13725,121.7509",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-5",
@@ -62,7 +78,11 @@
     "lng": 121.787,
     "coordsText": "25.13602, 121.78700",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13602,121.78700",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 29 波 點位微調)",
+    "updateDetail": "使用者微調精準點位（新豐街306號）",
+    "updateBatch": 29
   },
   {
     "id": "coco-6",
@@ -75,7 +95,11 @@
     "lng": 121.74226,
     "coordsText": "25.12756, 121.74226",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12756,121.74226",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-7",
@@ -88,7 +112,11 @@
     "lng": 121.73697,
     "coordsText": "25.12775, 121.73697",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12775,121.73697",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-8",
@@ -101,7 +129,11 @@
     "lng": 121.70921,
     "coordsText": "25.14026, 121.70921",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.14026,121.70921",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-9",
@@ -114,7 +146,11 @@
     "lng": 121.72307,
     "coordsText": "25.12044, 121.72307",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12044,121.72307",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 32 波 點位微調)",
+    "updateDetail": "現場玩家回報精準微調（基隆市安樂區安樂路二段229號，微調4.1米至醫院商圈店門）",
+    "updateBatch": 32
   },
   {
     "id": "coco-10",
@@ -127,7 +163,11 @@
     "lng": 121.79702,
     "coordsText": "24.68484, 121.79702",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68484,121.79702",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-11",
@@ -140,7 +180,11 @@
     "lng": 121.76791,
     "coordsText": "24.66721, 121.76791",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.66721,121.76791",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-12",
@@ -153,7 +197,11 @@
     "lng": 121.7842,
     "coordsText": "24.74718, 121.7842",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.74718,121.7842",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-13",
@@ -166,7 +214,11 @@
     "lng": 121.75319,
     "coordsText": "24.7606, 121.75319",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.7606,121.75319",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-14",
@@ -179,7 +231,11 @@
     "lng": 121.77172,
     "coordsText": "24.82641, 121.77172",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82641,121.77172",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-15",
@@ -192,7 +248,11 @@
     "lng": 121.76724,
     "coordsText": "24.67764, 121.76724",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.67764,121.76724",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-16",
@@ -205,7 +265,11 @@
     "lng": 121.85129,
     "coordsText": "24.59615, 121.85129",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.59615,121.85129",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-17",
@@ -218,7 +282,11 @@
     "lng": 121.82508,
     "coordsText": "24.85752, 121.82508",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.85752,121.82508",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-18",
@@ -231,7 +299,11 @@
     "lng": 121.54628,
     "coordsText": "25.08265, 121.54628",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08265,121.54628",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-19",
@@ -244,7 +316,11 @@
     "lng": 121.52545,
     "coordsText": "25.06049, 121.52545",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06049,121.52545",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-20",
@@ -257,7 +333,11 @@
     "lng": 121.54087,
     "coordsText": "25.0658, 121.54087",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0658,121.54087",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-21",
@@ -270,7 +350,11 @@
     "lng": 121.56334,
     "coordsText": "25.02763, 121.56334",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02763,121.56334",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-22",
@@ -283,7 +367,11 @@
     "lng": 121.57891,
     "coordsText": "25.04944, 121.57891",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04944,121.57891",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 1 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 1
   },
   {
     "id": "coco-23",
@@ -296,7 +384,11 @@
     "lng": 121.56889,
     "coordsText": "25.0443, 121.56889",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0443,121.56889",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-24",
@@ -309,7 +401,11 @@
     "lng": 121.567,
     "coordsText": "25.08352, 121.567",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08352,121.567",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-25",
@@ -322,7 +418,11 @@
     "lng": 121.61169,
     "coordsText": "25.0707, 121.61169",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0707,121.61169",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-26",
@@ -335,7 +435,11 @@
     "lng": 121.59222,
     "coordsText": "25.0818, 121.59222",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0818,121.59222",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-27",
@@ -348,7 +452,11 @@
     "lng": 121.61389,
     "coordsText": "25.06894, 121.61389",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06894,121.61389",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-28",
@@ -361,7 +469,11 @@
     "lng": 121.58591,
     "coordsText": "25.06878, 121.58591",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06878,121.58591",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-29",
@@ -374,7 +486,11 @@
     "lng": 121.59332,
     "coordsText": "25.08474, 121.59332",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08474,121.59332",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-30",
@@ -387,7 +503,11 @@
     "lng": 121.50048,
     "coordsText": "25.14037, 121.50048",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.14037,121.50048",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-31",
@@ -400,7 +520,11 @@
     "lng": 121.4957,
     "coordsText": "25.1366, 121.4957",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.1366,121.4957",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-32",
@@ -413,7 +537,11 @@
     "lng": 121.50652,
     "coordsText": "25.11816, 121.50652",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11816,121.50652",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-33",
@@ -426,7 +554,11 @@
     "lng": 121.46721,
     "coordsText": "25.12207, 121.46721",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12207,121.46721",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-34",
@@ -439,7 +571,11 @@
     "lng": 121.51621,
     "coordsText": "25.11618, 121.51621",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11618,121.51621",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 24 波 點位微調)",
+    "updateDetail": "使用者驗證微調精確座標（25.1161823, 121.5162096）",
+    "updateBatch": 24
   },
   {
     "id": "coco-35",
@@ -452,7 +588,11 @@
     "lng": 121.58395,
     "coordsText": "25.04525, 121.58395",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04525,121.58395",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-36",
@@ -465,7 +605,11 @@
     "lng": 121.61803,
     "coordsText": "25.05925, 121.61803",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05925,121.61803",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 1 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 1
   },
   {
     "id": "coco-37",
@@ -478,7 +622,11 @@
     "lng": 121.60582,
     "coordsText": "25.05635, 121.60582",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05635,121.60582",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-38",
@@ -491,7 +639,11 @@
     "lng": 121.52198,
     "coordsText": "25.09461, 121.52198",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09461,121.52198",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-39",
@@ -504,7 +656,11 @@
     "lng": 121.51839,
     "coordsText": "25.08882, 121.51839",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08882,121.51839",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-40",
@@ -517,7 +673,11 @@
     "lng": 121.50854,
     "coordsText": "25.08862, 121.50854",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08862,121.50854",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-41",
@@ -530,7 +690,11 @@
     "lng": 121.52889,
     "coordsText": "25.10797, 121.52889",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.10797,121.52889",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-42",
@@ -543,7 +707,11 @@
     "lng": 121.51955,
     "coordsText": "25.083, 121.51955",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.083,121.51955",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-43",
@@ -556,7 +724,11 @@
     "lng": 121.511,
     "coordsText": "25.06457, 121.511",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06457,121.511",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-44",
@@ -569,7 +741,11 @@
     "lng": 121.51614,
     "coordsText": "25.06601, 121.51614",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06601,121.51614",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-45",
@@ -582,7 +758,11 @@
     "lng": 121.51761,
     "coordsText": "25.05739, 121.51761",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05739,121.51761",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 34 波 點位微調)",
+    "updateDetail": "使用者實勘微調（民生西路159號，向東微調20.0m至大門口）",
+    "updateBatch": 34
   },
   {
     "id": "coco-46",
@@ -595,7 +775,11 @@
     "lng": 121.54583,
     "coordsText": "25.052, 121.54583",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.052,121.54583",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-47",
@@ -608,7 +792,11 @@
     "lng": 121.56087,
     "coordsText": "25.05054, 121.56087",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05054,121.56087",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-48",
@@ -621,7 +809,11 @@
     "lng": 121.555,
     "coordsText": "25.05231, 121.555",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05231,121.555",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-49",
@@ -634,7 +826,11 @@
     "lng": 121.51627,
     "coordsText": "25.04499, 121.51627",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04499,121.51627",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 28 波 點位微調)",
+    "updateDetail": "使用者以遊戲官方內核實校正（名稱去除括號、點位微調至官方點）",
+    "updateBatch": 28
   },
   {
     "id": "coco-50",
@@ -647,7 +843,11 @@
     "lng": 121.51659,
     "coordsText": "25.03023, 121.51659",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03023,121.51659",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-51",
@@ -660,7 +860,11 @@
     "lng": 121.51764,
     "coordsText": "25.04640, 121.51764",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04640,121.51764",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 28 波 點位微調)",
+    "updateDetail": "使用者以遊戲官方內核實校正（修正原南陽街疊標211米偏差，移至M3出口真實點位）",
+    "updateBatch": 28
   },
   {
     "id": "coco-52",
@@ -673,7 +877,11 @@
     "lng": 121.51845,
     "coordsText": "25.04817, 121.51845",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04817,121.51845",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 28 波 點位微調)",
+    "updateDetail": "使用者以遊戲官方內核實微調至官方點",
+    "updateBatch": 28
   },
   {
     "id": "coco-53",
@@ -686,7 +894,11 @@
     "lng": 121.51351,
     "coordsText": "25.04610, 121.51351",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04610,121.51351",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 28 波 點位微調)",
+    "updateDetail": "使用者以遊戲官方內核實微調至官方點",
+    "updateBatch": 28
   },
   {
     "id": "coco-54",
@@ -699,7 +911,11 @@
     "lng": 121.52424,
     "coordsText": "25.04355, 121.52424",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04355,121.52424",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-55",
@@ -712,7 +928,11 @@
     "lng": 121.52696,
     "coordsText": "25.03438, 121.52696",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03438,121.52696",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-56",
@@ -725,7 +945,11 @@
     "lng": 121.55482,
     "coordsText": "25.02102, 121.55482",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02102,121.55482",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-57",
@@ -738,7 +962,11 @@
     "lng": 121.53818,
     "coordsText": "25.03272, 121.53818",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03272,121.53818",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-58",
@@ -751,7 +979,11 @@
     "lng": 121.54508,
     "coordsText": "25.04150, 121.54508",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04150,121.54508",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 30 波 點位微調)",
+    "updateDetail": "使用者微調精準點位（忠孝東路三段302號B1捷運出口）",
+    "updateBatch": 30
   },
   {
     "id": "coco-59",
@@ -764,7 +996,11 @@
     "lng": 121.55589,
     "coordsText": "25.00013, 121.55589",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00013,121.55589",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-60",
@@ -777,7 +1013,11 @@
     "lng": 121.56146,
     "coordsText": "24.98473, 121.56146",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98473,121.56146",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-61",
@@ -790,7 +1030,11 @@
     "lng": 121.4941,
     "coordsText": "25.02633, 121.4941",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02633,121.4941",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-62",
@@ -803,7 +1047,11 @@
     "lng": 121.50834,
     "coordsText": "25.04432, 121.50834",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04432,121.50834",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-332",
@@ -816,7 +1064,11 @@
     "lng": 121.50629,
     "coordsText": "25.02825, 121.50629",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02825,121.50629",
-    "route": "台北市中正區南機場"
+    "route": "台北市中正區南機場",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 31 波 點位微調)",
+    "updateDetail": "網友回報經核實精準微調（台北市中正區中華路二段307巷18號，微調7米至店門口）",
+    "updateBatch": 31
   },
   {
     "id": "coco-63",
@@ -829,7 +1081,11 @@
     "lng": 121.4832,
     "coordsText": "25.0788, 121.4832",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0788,121.4832",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-64",
@@ -842,7 +1098,11 @@
     "lng": 121.48557,
     "coordsText": "25.06317, 121.48557",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06317,121.48557",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-65",
@@ -855,7 +1115,11 @@
     "lng": 121.47716,
     "coordsText": "25.06948, 121.47716",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06948,121.47716",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-66",
@@ -868,7 +1132,11 @@
     "lng": 121.49152,
     "coordsText": "25.08371, 121.49152",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08371,121.49152",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-67",
@@ -881,7 +1149,11 @@
     "lng": 121.49793,
     "coordsText": "25.0609, 121.49793",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0609,121.49793",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-68",
@@ -894,7 +1166,11 @@
     "lng": 121.49258,
     "coordsText": "25.06732, 121.49258",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06732,121.49258",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 29 波 點位微調)",
+    "updateDetail": "使用者微調精準點位（自強路一段250號）",
+    "updateBatch": 29
   },
   {
     "id": "coco-69",
@@ -907,7 +1183,11 @@
     "lng": 121.49119,
     "coordsText": "25.0542, 121.49119",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0542,121.49119",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-70",
@@ -920,7 +1200,11 @@
     "lng": 121.49639,
     "coordsText": "25.07257, 121.49639",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07257,121.49639",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-71",
@@ -933,7 +1217,11 @@
     "lng": 121.45043,
     "coordsText": "25.10149, 121.45043",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.10149,121.45043",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-72",
@@ -946,7 +1234,11 @@
     "lng": 121.43865,
     "coordsText": "25.08456, 121.43865",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08456,121.43865",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-73",
@@ -959,7 +1251,11 @@
     "lng": 121.44604,
     "coordsText": "25.08961, 121.44604",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08961,121.44604",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 2 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 2
   },
   {
     "id": "coco-74",
@@ -972,7 +1268,11 @@
     "lng": 121.44744,
     "coordsText": "25.04944, 121.44744",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04944,121.44744",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-75",
@@ -985,7 +1285,11 @@
     "lng": 121.45243,
     "coordsText": "25.04497, 121.45243",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04497,121.45243",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-76",
@@ -998,7 +1302,11 @@
     "lng": 121.45757,
     "coordsText": "25.0654, 121.45757",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0654,121.45757",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-77",
@@ -1011,7 +1319,11 @@
     "lng": 121.46621,
     "coordsText": "25.05484, 121.46621",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05484,121.46621",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-78",
@@ -1024,7 +1336,11 @@
     "lng": 121.42456,
     "coordsText": "25.02465, 121.42456",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02465,121.42456",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-79",
@@ -1037,7 +1353,11 @@
     "lng": 121.43416,
     "coordsText": "25.03074, 121.43416",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03074,121.43416",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-80",
@@ -1050,7 +1370,11 @@
     "lng": 121.4494,
     "coordsText": "25.03463, 121.4494",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03463,121.4494",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-81",
@@ -1063,7 +1387,11 @@
     "lng": 121.45475,
     "coordsText": "25.05081, 121.45475",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05081,121.45475",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-82",
@@ -1076,7 +1404,11 @@
     "lng": 121.42613,
     "coordsText": "25.01673, 121.42613",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01673,121.42613",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-83",
@@ -1089,7 +1421,11 @@
     "lng": 121.42159,
     "coordsText": "25.01946, 121.42159",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01946,121.42159",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-84",
@@ -1102,7 +1438,11 @@
     "lng": 121.47931,
     "coordsText": "25.0152, 121.47931",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0152,121.47931",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-85",
@@ -1115,7 +1455,11 @@
     "lng": 121.44738,
     "coordsText": "24.99777, 121.44738",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99777,121.44738",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 5 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 5
   },
   {
     "id": "coco-86",
@@ -1128,7 +1472,11 @@
     "lng": 121.46123,
     "coordsText": "25.02252, 121.46123",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02252,121.46123",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-87",
@@ -1141,7 +1489,11 @@
     "lng": 121.47843,
     "coordsText": "25.0311, 121.47843",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0311,121.47843",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-88",
@@ -1154,7 +1506,11 @@
     "lng": 121.47169,
     "coordsText": "25.00837, 121.47169",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00837,121.47169",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-89",
@@ -1167,7 +1523,11 @@
     "lng": 121.47114,
     "coordsText": "25.0244, 121.47114",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0244,121.47114",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-90",
@@ -1180,7 +1540,11 @@
     "lng": 121.46275,
     "coordsText": "25.00249, 121.46275",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00249,121.46275",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-91",
@@ -1193,7 +1557,11 @@
     "lng": 121.42874,
     "coordsText": "24.98522, 121.42874",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98522,121.42874",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-92",
@@ -1206,7 +1574,11 @@
     "lng": 121.46489,
     "coordsText": "25.08188, 121.46489",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08188,121.46489",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-93",
@@ -1219,7 +1591,11 @@
     "lng": 121.47945,
     "coordsText": "25.08625, 121.47945",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08625,121.47945",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-94",
@@ -1232,7 +1608,11 @@
     "lng": 121.47394,
     "coordsText": "25.09102, 121.47394",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09102,121.47394",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-95",
@@ -1245,7 +1625,11 @@
     "lng": 121.45905,
     "coordsText": "25.09082, 121.45905",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09082,121.45905",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-96",
@@ -1258,7 +1642,11 @@
     "lng": 121.46253,
     "coordsText": "25.08023, 121.46253",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08023,121.46253",
-    "route": "台北其餘＋新北西線"
+    "route": "台北其餘＋新北西線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-97",
@@ -1271,7 +1659,11 @@
     "lng": 121.37323,
     "coordsText": "24.93133, 121.37323",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93133,121.37323",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-98",
@@ -1284,7 +1676,11 @@
     "lng": 121.37029,
     "coordsText": "24.93736, 121.37029",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93736,121.37029",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-99",
@@ -1297,7 +1693,11 @@
     "lng": 121.37424,
     "coordsText": "24.94391, 121.37424",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.94391,121.37424",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-100",
@@ -1310,7 +1710,11 @@
     "lng": 121.50222,
     "coordsText": "25.25880, 121.50222",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.25880,121.50222",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 5 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 5
   },
   {
     "id": "coco-101",
@@ -1323,7 +1727,11 @@
     "lng": 121.50421,
     "coordsText": "24.9971, 121.50421",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9971,121.50421",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 24 波 點位校正)",
+    "updateDetail": "使用者驗證門市更名（原南華店更名為中和永華店，座標維持不動）",
+    "updateBatch": 24
   },
   {
     "id": "coco-102",
@@ -1336,7 +1744,11 @@
     "lng": 121.48118,
     "coordsText": "25.00163, 121.48118",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00163,121.48118",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-103",
@@ -1349,7 +1761,11 @@
     "lng": 121.49248,
     "coordsText": "24.99062, 121.49248",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99062,121.49248",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-104",
@@ -1362,7 +1778,11 @@
     "lng": 121.48826,
     "coordsText": "24.99928, 121.48826",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99928,121.48826",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-105",
@@ -1375,7 +1795,11 @@
     "lng": 121.46897,
     "coordsText": "25.00346, 121.46897",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00346,121.46897",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-106",
@@ -1388,7 +1812,11 @@
     "lng": 121.50471,
     "coordsText": "24.99307, 121.50471",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99307,121.50471",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-107",
@@ -1401,7 +1829,11 @@
     "lng": 121.49879,
     "coordsText": "25.0053, 121.49879",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0053,121.49879",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-108",
@@ -1414,7 +1846,11 @@
     "lng": 121.52237,
     "coordsText": "24.99312, 121.52237",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99312,121.52237",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-109",
@@ -1427,7 +1863,11 @@
     "lng": 121.50956,
     "coordsText": "24.9884, 121.50956",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9884,121.50956",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-110",
@@ -1440,7 +1880,11 @@
     "lng": 121.49912,
     "coordsText": "24.99853, 121.49912",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99853,121.49912",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-111",
@@ -1453,7 +1897,11 @@
     "lng": 121.39809,
     "coordsText": "25.14672, 121.39809",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.14672,121.39809",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-112",
@@ -1466,7 +1914,11 @@
     "lng": 121.45286,
     "coordsText": "25.12589, 121.45286",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12589,121.45286",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-113",
@@ -1479,7 +1931,11 @@
     "lng": 121.44116,
     "coordsText": "24.974, 121.44116",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.974,121.44116",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-115",
@@ -1492,7 +1948,11 @@
     "lng": 121.46353,
     "coordsText": "24.98733, 121.46353",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98733,121.46353",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-116",
@@ -1505,7 +1965,11 @@
     "lng": 121.54653,
     "coordsText": "24.97807, 121.54653",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97807,121.54653",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 19 波 點位微調)",
+    "updateDetail": "表單玩家提供微調（自建築中心微調31米至B1美食街櫃位）",
+    "updateBatch": 19
   },
   {
     "id": "coco-117",
@@ -1518,7 +1982,11 @@
     "lng": 121.54034,
     "coordsText": "24.96509, 121.54034",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96509,121.54034",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-118",
@@ -1531,7 +1999,11 @@
     "lng": 121.49318,
     "coordsText": "24.95332, 121.49318",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95332,121.49318",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-119",
@@ -1544,7 +2016,11 @@
     "lng": 121.51487,
     "coordsText": "24.96375, 121.51487",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96375,121.51487",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-120",
@@ -1557,7 +2033,11 @@
     "lng": 121.53642,
     "coordsText": "24.9754, 121.53642",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9754,121.53642",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-121",
@@ -1570,7 +2050,11 @@
     "lng": 121.39409,
     "coordsText": "25.07733, 121.39409",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07733,121.39409",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-122",
@@ -1583,7 +2067,11 @@
     "lng": 121.37061,
     "coordsText": "25.0731, 121.37061",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0731,121.37061",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-123",
@@ -1596,7 +2084,11 @@
     "lng": 121.3739,
     "coordsText": "25.07759, 121.37390",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07759,121.37390",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 6 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 6
   },
   {
     "id": "coco-124",
@@ -1609,7 +2101,11 @@
     "lng": 121.41881,
     "coordsText": "24.9811, 121.41881",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9811,121.41881",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-125",
@@ -1622,7 +2118,11 @@
     "lng": 121.42259,
     "coordsText": "24.99498, 121.42259",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99498,121.42259",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-126",
@@ -1635,7 +2135,11 @@
     "lng": 121.42552,
     "coordsText": "24.9911, 121.42552",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9911,121.42552",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-127",
@@ -1648,7 +2152,11 @@
     "lng": 121.37998,
     "coordsText": "24.94723, 121.37998",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.94723,121.37998",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-128",
@@ -1661,7 +2169,11 @@
     "lng": 121.51104,
     "coordsText": "25.0028, 121.51104",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0028,121.51104",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-129",
@@ -1674,7 +2186,11 @@
     "lng": 121.51537,
     "coordsText": "24.99694, 121.51537",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99694,121.51537",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-130",
@@ -1687,7 +2203,11 @@
     "lng": 121.51245,
     "coordsText": "25.01309, 121.51245",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01309,121.51245",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-131",
@@ -1700,7 +2220,11 @@
     "lng": 121.52549,
     "coordsText": "24.99912, 121.52549",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99912,121.52549",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-132",
@@ -1713,7 +2237,11 @@
     "lng": 121.66263,
     "coordsText": "25.0673, 121.66263",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0673,121.66263",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-133",
@@ -1726,7 +2254,11 @@
     "lng": 121.65008,
     "coordsText": "25.06247, 121.65008",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06247,121.65008",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 7 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 7
   },
   {
     "id": "coco-134",
@@ -1739,7 +2271,11 @@
     "lng": 121.64218,
     "coordsText": "25.06586, 121.64218",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06586,121.64218",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-135",
@@ -1752,7 +2288,11 @@
     "lng": 121.63447,
     "coordsText": "25.06527, 121.63447",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06527,121.63447",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-136",
@@ -1765,7 +2305,11 @@
     "lng": 121.43172,
     "coordsText": "25.05958, 121.43172",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05958,121.43172",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-137",
@@ -1778,7 +2322,11 @@
     "lng": 121.42489,
     "coordsText": "25.04083, 121.42489",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04083,121.42489",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-138",
@@ -1791,7 +2339,11 @@
     "lng": 121.44389,
     "coordsText": "25.17779, 121.44389",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.17779,121.44389",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-139",
@@ -1804,7 +2356,11 @@
     "lng": 121.45937,
     "coordsText": "25.1563, 121.45937",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.1563,121.45937",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-140",
@@ -1817,7 +2373,11 @@
     "lng": 121.46179,
     "coordsText": "25.13619, 121.46179",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13619,121.46179",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-141",
@@ -1830,7 +2390,11 @@
     "lng": 121.42409,
     "coordsText": "25.18345, 121.42409",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.18345,121.42409",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-142",
@@ -1843,7 +2407,11 @@
     "lng": 121.45191,
     "coordsText": "25.2275, 121.45191",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.2275,121.45191",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-143",
@@ -1856,7 +2424,11 @@
     "lng": 121.44578,
     "coordsText": "25.17095, 121.44578",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.17095,121.44578",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-144",
@@ -1869,7 +2441,11 @@
     "lng": 121.61902,
     "coordsText": "25.0023, 121.61902",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0023,121.61902",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-145",
@@ -1882,7 +2458,11 @@
     "lng": 121.80606,
     "coordsText": "25.10775, 121.80606",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.10775,121.80606",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-146",
@@ -1895,7 +2475,11 @@
     "lng": 121.63806,
     "coordsText": "25.22112, 121.63806",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.22112,121.63806",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-147",
@@ -1908,7 +2492,11 @@
     "lng": 121.33725,
     "coordsText": "24.94035, 121.33725",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.94035,121.33725",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-148",
@@ -1921,7 +2509,11 @@
     "lng": 121.34824,
     "coordsText": "24.95341, 121.34824",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95341,121.34824",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-149",
@@ -1934,7 +2526,11 @@
     "lng": 121.29729,
     "coordsText": "24.93251, 121.29729",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93251,121.29729",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-150",
@@ -1947,7 +2543,11 @@
     "lng": 121.29745,
     "coordsText": "24.9483, 121.29745",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9483,121.29745",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-151",
@@ -1960,7 +2560,11 @@
     "lng": 121.29653,
     "coordsText": "24.95944, 121.29653",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95944,121.29653",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-152",
@@ -1973,7 +2577,11 @@
     "lng": 121.32718,
     "coordsText": "24.97072, 121.32718",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97072,121.32718",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-153",
@@ -1986,7 +2594,11 @@
     "lng": 121.27121,
     "coordsText": "24.97544, 121.27121",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97544,121.27121",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-154",
@@ -1999,7 +2611,11 @@
     "lng": 121.30378,
     "coordsText": "24.96354, 121.30378",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96354,121.30378",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-155",
@@ -2012,7 +2628,11 @@
     "lng": 121.28678,
     "coordsText": "24.92921, 121.28678",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.92921,121.28678",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-156",
@@ -2025,7 +2645,11 @@
     "lng": 121.19694,
     "coordsText": "25.06462, 121.19694",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06462,121.19694",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-157",
@@ -2038,7 +2662,11 @@
     "lng": 121.22852,
     "coordsText": "25.00492, 121.22852",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00492,121.22852",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 4 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 4
   },
   {
     "id": "coco-158",
@@ -2051,7 +2679,11 @@
     "lng": 121.18028,
     "coordsText": "25.06669, 121.18028",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06669,121.18028",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-159",
@@ -2064,7 +2696,11 @@
     "lng": 121.25931,
     "coordsText": "25.07462, 121.25931",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07462,121.25931",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 5 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 5
   },
   {
     "id": "coco-160",
@@ -2077,7 +2713,11 @@
     "lng": 121.21392,
     "coordsText": "25.00951, 121.21392",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00951,121.21392",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-161",
@@ -2090,7 +2730,11 @@
     "lng": 121.292,
     "coordsText": "24.98967, 121.292",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98967,121.292",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-162",
@@ -2103,7 +2747,11 @@
     "lng": 121.30343,
     "coordsText": "25.00693, 121.30343",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.00693,121.30343",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-163",
@@ -2116,7 +2764,11 @@
     "lng": 121.31045,
     "coordsText": "24.99068, 121.31045",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99068,121.31045",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-164",
@@ -2129,7 +2781,11 @@
     "lng": 121.29549,
     "coordsText": "25.01711, 121.29549",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01711,121.29549",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-165",
@@ -2142,7 +2798,11 @@
     "lng": 121.31257,
     "coordsText": "24.98955, 121.31257",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98955,121.31257",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-166",
@@ -2155,7 +2815,11 @@
     "lng": 121.31101,
     "coordsText": "25.01553, 121.31101",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01553,121.31101",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-167",
@@ -2168,7 +2832,11 @@
     "lng": 121.31702,
     "coordsText": "25.01269, 121.31702",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01269,121.31702",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-168",
@@ -2181,7 +2849,11 @@
     "lng": 121.31851,
     "coordsText": "24.98372, 121.31851",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98372,121.31851",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-169",
@@ -2194,7 +2866,11 @@
     "lng": 121.29974,
     "coordsText": "24.99284, 121.29974",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99284,121.29974",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-170",
@@ -2207,7 +2883,11 @@
     "lng": 121.28012,
     "coordsText": "24.98976, 121.28012",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98976,121.28012",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-171",
@@ -2220,7 +2900,11 @@
     "lng": 121.29821,
     "coordsText": "25.05578, 121.29821",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05578,121.29821",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-172",
@@ -2233,7 +2917,11 @@
     "lng": 121.28606,
     "coordsText": "25.08494, 121.28606",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08494,121.28606",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-173",
@@ -2246,7 +2934,11 @@
     "lng": 121.28681,
     "coordsText": "25.06568, 121.28681",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06568,121.28681",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-174",
@@ -2259,7 +2951,11 @@
     "lng": 121.29109,
     "coordsText": "25.05019, 121.29109",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05019,121.29109",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-175",
@@ -2272,7 +2968,11 @@
     "lng": 121.26594,
     "coordsText": "25.01974, 121.26594",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01974,121.26594",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-176",
@@ -2285,7 +2985,11 @@
     "lng": 121.25971,
     "coordsText": "25.02385, 121.25971",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02385,121.25971",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-177",
@@ -2298,7 +3002,11 @@
     "lng": 121.28933,
     "coordsText": "25.03981, 121.28933",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03981,121.28933",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-178",
@@ -2311,7 +3019,11 @@
     "lng": 121.2939,
     "coordsText": "25.04683, 121.2939",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04683,121.2939",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-179",
@@ -2324,7 +3036,11 @@
     "lng": 121.26135,
     "coordsText": "25.10066, 121.26135",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.10066,121.26135",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-180",
@@ -2337,7 +3053,11 @@
     "lng": 121.33688,
     "coordsText": "24.99356, 121.33688",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99356,121.33688",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-181",
@@ -2350,7 +3070,11 @@
     "lng": 121.34387,
     "coordsText": "24.99148, 121.34387",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99148,121.34387",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-182",
@@ -2363,7 +3087,11 @@
     "lng": 121.32318,
     "coordsText": "24.99085, 121.32318",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99085,121.32318",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-183",
@@ -2376,7 +3104,11 @@
     "lng": 121.36271,
     "coordsText": "25.05577, 121.36271",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05577,121.36271",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-184",
@@ -2389,7 +3121,11 @@
     "lng": 121.36897,
     "coordsText": "25.05985, 121.36897",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05985,121.36897",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-185",
@@ -2402,7 +3138,11 @@
     "lng": 121.38804,
     "coordsText": "25.04039, 121.38804",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04039,121.38804",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 8 波 點位校正)",
+    "updateDetail": "使用者驗證",
+    "updateBatch": 8
   },
   {
     "id": "coco-186",
@@ -2415,7 +3155,11 @@
     "lng": 121.30232,
     "coordsText": "25.03526, 121.30232",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03526,121.30232",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 31 波 點位微調)",
+    "updateDetail": "現場玩家回報精準微調（桃園市龜山區民生北路一段168號，微調5米至店門口紅磚道）",
+    "updateBatch": 31
   },
   {
     "id": "coco-187",
@@ -2428,7 +3172,11 @@
     "lng": 121.4024,
     "coordsText": "25.01692, 121.4024",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01692,121.4024",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-188",
@@ -2441,7 +3189,11 @@
     "lng": 120.93713,
     "coordsText": "24.84092, 120.93713",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.84092,120.93713",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-189",
@@ -2454,7 +3206,11 @@
     "lng": 120.95263,
     "coordsText": "24.80515, 120.95263",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80515,120.95263",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-190",
@@ -2467,7 +3223,11 @@
     "lng": 120.96423,
     "coordsText": "24.81248, 120.96423",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.81248,120.96423",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-191",
@@ -2480,7 +3240,11 @@
     "lng": 120.97517,
     "coordsText": "24.82145, 120.97517",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82145,120.97517",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-192",
@@ -2493,7 +3257,11 @@
     "lng": 120.96538,
     "coordsText": "24.80463, 120.96538",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80463,120.96538",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-193",
@@ -2506,7 +3274,11 @@
     "lng": 120.97436,
     "coordsText": "24.81593, 120.97436",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.81593,120.97436",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-194",
@@ -2519,7 +3291,11 @@
     "lng": 120.90589,
     "coordsText": "24.74282, 120.90589",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.74282,120.90589",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-195",
@@ -2532,7 +3308,11 @@
     "lng": 120.9417,
     "coordsText": "24.79669, 120.9417",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.79669,120.9417",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-196",
@@ -2545,7 +3325,11 @@
     "lng": 120.95267,
     "coordsText": "24.75657, 120.95267",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.75657,120.95267",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-197",
@@ -2558,7 +3342,11 @@
     "lng": 120.92795,
     "coordsText": "24.7898, 120.92795",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.7898,120.92795",
-    "route": "桃園北線＋新竹市北／香山"
+    "route": "桃園北線＋新竹市北／香山",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-198",
@@ -2571,7 +3359,11 @@
     "lng": 121.24722,
     "coordsText": "24.94546, 121.24722",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.94546,121.24722",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-199",
@@ -2584,7 +3376,11 @@
     "lng": 121.22553,
     "coordsText": "24.95449, 121.22553",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95449,121.22553",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-200",
@@ -2597,7 +3393,11 @@
     "lng": 121.18109,
     "coordsText": "24.98851, 121.18109",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98851,121.18109",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-201",
@@ -2610,7 +3410,11 @@
     "lng": 121.25011,
     "coordsText": "24.96938, 121.25011",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96938,121.25011",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-202",
@@ -2623,7 +3427,11 @@
     "lng": 121.23516,
     "coordsText": "24.97182, 121.23516",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97182,121.23516",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-203",
@@ -2636,7 +3444,11 @@
     "lng": 121.25593,
     "coordsText": "24.97418, 121.25593",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97418,121.25593",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-204",
@@ -2649,7 +3461,11 @@
     "lng": 121.22555,
     "coordsText": "24.9642, 121.22555",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9642,121.22555",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-205",
@@ -2662,7 +3478,11 @@
     "lng": 121.26418,
     "coordsText": "24.95586, 121.26418",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95586,121.26418",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-206",
@@ -2675,7 +3495,11 @@
     "lng": 121.21445,
     "coordsText": "24.95751, 121.21445",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95751,121.21445",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-207",
@@ -2688,7 +3512,11 @@
     "lng": 121.26143,
     "coordsText": "24.96494, 121.26143",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96494,121.26143",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-208",
@@ -2701,7 +3529,11 @@
     "lng": 121.20507,
     "coordsText": "24.95755, 121.20507",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95755,121.20507",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-209",
@@ -2714,7 +3546,11 @@
     "lng": 121.16657,
     "coordsText": "24.95815, 121.16657",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95815,121.16657",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-210",
@@ -2727,7 +3563,11 @@
     "lng": 121.23286,
     "coordsText": "24.96744, 121.23286",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96744,121.23286",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-211",
@@ -2740,7 +3580,11 @@
     "lng": 121.25743,
     "coordsText": "24.97035, 121.25743",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97035,121.25743",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-212",
@@ -2753,7 +3597,11 @@
     "lng": 121.25019,
     "coordsText": "24.97919, 121.25019",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97919,121.25019",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-213",
@@ -2766,7 +3614,11 @@
     "lng": 121.2341,
     "coordsText": "24.93567, 121.2341",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93567,121.2341",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-214",
@@ -2779,7 +3631,11 @@
     "lng": 121.28361,
     "coordsText": "24.90085, 121.28361",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90085,121.28361",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-215",
@@ -2792,7 +3648,11 @@
     "lng": 121.28897,
     "coordsText": "24.88135, 121.28897",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.88135,121.28897",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-216",
@@ -2805,7 +3665,11 @@
     "lng": 121.21626,
     "coordsText": "24.94163, 121.21626",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.94163,121.21626",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-217",
@@ -2818,7 +3682,11 @@
     "lng": 121.2104,
     "coordsText": "24.9154, 121.2104",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9154,121.2104",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-218",
@@ -2831,7 +3699,11 @@
     "lng": 121.20905,
     "coordsText": "24.90023, 121.20905",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90023,121.20905",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-219",
@@ -2844,7 +3716,11 @@
     "lng": 121.20336,
     "coordsText": "24.95197, 121.20336",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95197,121.20336",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-220",
@@ -2857,7 +3733,11 @@
     "lng": 121.21032,
     "coordsText": "24.95192, 121.21032",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.95192,121.21032",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-221",
@@ -2870,7 +3750,11 @@
     "lng": 121.2512,
     "coordsText": "24.92189, 121.25120",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.92189,121.25120",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 31 波 點位微調)",
+    "updateDetail": "現場玩家回報精準微調（桃園市平鎮區龍南路336號，微調4米修正騎樓遮蔽角）",
+    "updateBatch": 31
   },
   {
     "id": "coco-222",
@@ -2883,7 +3767,11 @@
     "lng": 121.03052,
     "coordsText": "24.98906, 121.03052",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98906,121.03052",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-223",
@@ -2896,7 +3784,11 @@
     "lng": 121.1048,
     "coordsText": "24.97289, 121.1048",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97289,121.1048",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-224",
@@ -2909,7 +3801,11 @@
     "lng": 121.0817,
     "coordsText": "24.93627, 121.0817",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93627,121.0817",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-225",
@@ -2922,7 +3818,11 @@
     "lng": 121.18483,
     "coordsText": "24.9177, 121.18483",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.9177,121.18483",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-226",
@@ -2935,7 +3835,11 @@
     "lng": 121.14567,
     "coordsText": "24.90814, 121.14567",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90814,121.14567",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-227",
@@ -2948,7 +3852,11 @@
     "lng": 121.1832,
     "coordsText": "24.91174, 121.1832",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.91174,121.1832",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-228",
@@ -2961,7 +3869,11 @@
     "lng": 121.177,
     "coordsText": "24.90628, 121.177",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90628,121.177",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-229",
@@ -2974,7 +3886,11 @@
     "lng": 121.12297,
     "coordsText": "24.93437, 121.12297",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.93437,121.12297",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-230",
@@ -2987,7 +3903,11 @@
     "lng": 121.15634,
     "coordsText": "24.91101, 121.15634",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.91101,121.15634",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-231",
@@ -3000,7 +3920,11 @@
     "lng": 121.17747,
     "coordsText": "24.92252, 121.17747",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.92252,121.17747",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-232",
@@ -3013,7 +3937,11 @@
     "lng": 121.15103,
     "coordsText": "24.96488, 121.15103",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.96488,121.15103",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 12 波 點位微調)",
+    "updateDetail": "表單提供點位（重大偏差校正）",
+    "updateBatch": 12
   },
   {
     "id": "coco-233",
@@ -3026,7 +3954,11 @@
     "lng": 121.08243,
     "coordsText": "25.03663, 121.08243",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03663,121.08243",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-234",
@@ -3039,7 +3971,11 @@
     "lng": 121.13573,
     "coordsText": "25.01293, 121.13573",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01293,121.13573",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-235",
@@ -3052,7 +3988,11 @@
     "lng": 121.14275,
     "coordsText": "25.04753, 121.14275",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04753,121.14275",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-236",
@@ -3065,7 +4005,11 @@
     "lng": 121.11805,
     "coordsText": "25.05153, 121.11805",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05153,121.11805",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-237",
@@ -3078,7 +4022,11 @@
     "lng": 121.19281,
     "coordsText": "24.82956, 121.19281",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82956,121.19281",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-238",
@@ -3091,7 +4039,11 @@
     "lng": 121.21718,
     "coordsText": "24.86452, 121.21718",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.86452,121.21718",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-239",
@@ -3104,7 +4056,11 @@
     "lng": 121.23019,
     "coordsText": "24.84889, 121.23019",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.84889,121.23019",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-240",
@@ -3117,7 +4073,11 @@
     "lng": 121.23378,
     "coordsText": "24.8738, 121.23378",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.8738,121.23378",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-241",
@@ -3130,7 +4090,11 @@
     "lng": 121.2115,
     "coordsText": "24.87834, 121.2115",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.87834,121.2115",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-242",
@@ -3143,7 +4107,11 @@
     "lng": 121.21392,
     "coordsText": "24.86598, 121.21392",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.86598,121.21392",
-    "route": "桃園南線"
+    "route": "桃園南線",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-243",
@@ -3156,7 +4124,11 @@
     "lng": 120.96672,
     "coordsText": "24.78891, 120.96672",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.78891,120.96672",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-244",
@@ -3169,7 +4141,11 @@
     "lng": 120.97385,
     "coordsText": "24.80877, 120.97385",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80877,120.97385",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-245",
@@ -3182,7 +4158,11 @@
     "lng": 120.97682,
     "coordsText": "24.81014, 120.97682",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.81014,120.97682",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-246",
@@ -3195,7 +4175,11 @@
     "lng": 120.96505,
     "coordsText": "24.79968, 120.96505",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.79968,120.96505",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-247",
@@ -3208,7 +4192,11 @@
     "lng": 120.99853,
     "coordsText": "24.79637, 120.99853",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.79637,120.99853",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-248",
@@ -3221,7 +4209,11 @@
     "lng": 120.97185,
     "coordsText": "24.80429, 120.97185",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80429,120.97185",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-249",
@@ -3234,7 +4226,11 @@
     "lng": 120.99726,
     "coordsText": "24.79832, 120.99726",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.79832,120.99726",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-250",
@@ -3247,7 +4243,11 @@
     "lng": 121.02341,
     "coordsText": "24.77707, 121.02341",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.77707,121.02341",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-251",
@@ -3260,7 +4260,11 @@
     "lng": 121.01832,
     "coordsText": "24.78575, 121.01832",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.78575,121.01832",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-252",
@@ -3273,7 +4277,11 @@
     "lng": 120.97575,
     "coordsText": "24.79696, 120.97575",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.79696,120.97575",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-253",
@@ -3286,7 +4294,11 @@
     "lng": 121.00899,
     "coordsText": "24.82599, 121.00899",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82599,121.00899",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 3 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 3
   },
   {
     "id": "coco-254",
@@ -3299,7 +4311,11 @@
     "lng": 121.02646,
     "coordsText": "24.82281, 121.02646",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82281,121.02646",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-255",
@@ -3312,7 +4328,11 @@
     "lng": 121.03402,
     "coordsText": "24.80766, 121.03402",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80766,121.03402",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-256",
@@ -3325,7 +4345,11 @@
     "lng": 121.00028,
     "coordsText": "24.84094, 121.00028",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.84094,121.00028",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-257",
@@ -3338,7 +4362,11 @@
     "lng": 121.01035,
     "coordsText": "24.83391, 121.01035",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.83391,121.01035",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-258",
@@ -3351,7 +4379,11 @@
     "lng": 121.01352,
     "coordsText": "24.83507, 121.01352",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.83507,121.01352",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-259",
@@ -3364,7 +4396,11 @@
     "lng": 121.02327,
     "coordsText": "24.8187, 121.02327",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.8187,121.02327",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-260",
@@ -3377,7 +4413,11 @@
     "lng": 121.04682,
     "coordsText": "24.90094, 121.04682",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90094,121.04682",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-261",
@@ -3390,7 +4430,11 @@
     "lng": 121.0265,
     "coordsText": "24.8634, 121.0265",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.8634,121.0265",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-262",
@@ -3403,7 +4447,11 @@
     "lng": 121.02635,
     "coordsText": "24.8699, 121.02635",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.8699,121.02635",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-263",
@@ -3416,7 +4464,11 @@
     "lng": 121.04429,
     "coordsText": "24.90249, 121.04429",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.90249,121.04429",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-264",
@@ -3429,7 +4481,11 @@
     "lng": 121.01485,
     "coordsText": "24.87296, 121.01485",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.87296,121.01485",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-265",
@@ -3442,7 +4498,11 @@
     "lng": 120.99587,
     "coordsText": "24.87083, 120.99587",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.87083,120.99587",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-266",
@@ -3455,7 +4515,11 @@
     "lng": 120.99024,
     "coordsText": "24.86688, 120.99024",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.86688,120.99024",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 33 波 點位校正)",
+    "updateDetail": "使用者查得重大線索：實體門市仍在營業（新豐鄉尚仁街2-3號門口，原第14波下架解除，全台總店數由 349 增至 350 店）",
+    "updateBatch": 33
   },
   {
     "id": "coco-267",
@@ -3468,7 +4532,11 @@
     "lng": 120.98655,
     "coordsText": "24.89969, 120.98655",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.89969,120.98655",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-268",
@@ -3481,7 +4549,11 @@
     "lng": 121.08068,
     "coordsText": "24.82778, 121.08068",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.82778,121.08068",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-269",
@@ -3494,7 +4566,11 @@
     "lng": 121.07807,
     "coordsText": "24.77684, 121.07807",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.77684,121.07807",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-270",
@@ -3507,7 +4583,11 @@
     "lng": 120.99044,
     "coordsText": "24.76514, 120.99044",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.76514,120.99044",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-271",
@@ -3520,7 +4600,11 @@
     "lng": 121.05588,
     "coordsText": "24.76736, 121.05588",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.76736,121.05588",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 12 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 12
   },
   {
     "id": "coco-272",
@@ -3533,7 +4617,11 @@
     "lng": 121.09629,
     "coordsText": "24.72193, 121.09629",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.72193,121.09629",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-273",
@@ -3546,7 +4634,11 @@
     "lng": 121.08906,
     "coordsText": "24.73738, 121.08906",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.73738,121.08906",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-274",
@@ -3559,7 +4651,11 @@
     "lng": 121.08369,
     "coordsText": "24.7438, 121.08369",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.7438,121.08369",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-275",
@@ -3572,7 +4668,11 @@
     "lng": 121.09596,
     "coordsText": "24.73634, 121.09596",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.73634,121.09596",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-276",
@@ -3585,7 +4685,11 @@
     "lng": 121.05732,
     "coordsText": "24.70163, 121.05732",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.70163,121.05732",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-333",
@@ -3598,7 +4702,11 @@
     "lng": 120.99509,
     "coordsText": "24.84311, 120.99509",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.84311,120.99509",
-    "route": "新竹縣竹北市中正西路"
+    "route": "新竹縣竹北市中正西路",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-277",
@@ -3611,7 +4719,11 @@
     "lng": 120.8707,
     "coordsText": "24.68744, 120.8707",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68744,120.8707",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-278",
@@ -3624,7 +4736,11 @@
     "lng": 120.87936,
     "coordsText": "24.6882, 120.87936",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.6882,120.87936",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-279",
@@ -3637,7 +4753,11 @@
     "lng": 120.87822,
     "coordsText": "24.68564, 120.87822",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68564,120.87822",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-280",
@@ -3650,7 +4770,11 @@
     "lng": 120.90746,
     "coordsText": "24.68624, 120.90746",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68624,120.90746",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-281",
@@ -3663,7 +4787,11 @@
     "lng": 120.89938,
     "coordsText": "24.69915, 120.89938",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.69915,120.89938",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 5 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 5
   },
   {
     "id": "coco-282",
@@ -3676,7 +4804,11 @@
     "lng": 120.94657,
     "coordsText": "24.68035, 120.94657",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68035,120.94657",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-283",
@@ -3689,7 +4821,11 @@
     "lng": 120.90615,
     "coordsText": "24.68363, 120.90615",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68363,120.90615",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-284",
@@ -3702,7 +4838,11 @@
     "lng": 120.91297,
     "coordsText": "24.69374, 120.91297",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.69374,120.91297",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-285",
@@ -3715,7 +4855,11 @@
     "lng": 120.91008,
     "coordsText": "24.68637, 120.91008",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.68637,120.91008",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-286",
@@ -3728,7 +4872,11 @@
     "lng": 120.81996,
     "coordsText": "24.56919, 120.81996",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.56919,120.81996",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-287",
@@ -3741,7 +4889,11 @@
     "lng": 120.81859,
     "coordsText": "24.5606, 120.81859",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.5606,120.81859",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-288",
@@ -3754,7 +4906,11 @@
     "lng": 120.816,
     "coordsText": "24.55186, 120.816",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.55186,120.816",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-289",
@@ -3767,7 +4923,11 @@
     "lng": 120.82704,
     "coordsText": "24.50488, 120.82704",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.50488,120.82704",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-290",
@@ -3780,7 +4940,11 @@
     "lng": 120.78738,
     "coordsText": "24.48816, 120.78738",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.48816,120.78738",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-291",
@@ -3793,7 +4957,11 @@
     "lng": 120.76841,
     "coordsText": "24.41105, 120.76841",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.41105,120.76841",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 10 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 10
   },
   {
     "id": "coco-292",
@@ -3806,7 +4974,11 @@
     "lng": 120.78979,
     "coordsText": "24.6149, 120.78979",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.6149,120.78979",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-293",
@@ -3819,7 +4991,11 @@
     "lng": 120.67809,
     "coordsText": "24.48930, 120.67809",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.48930,120.67809",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 2 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 2
   },
   {
     "id": "coco-294",
@@ -3832,7 +5008,11 @@
     "lng": 120.65238,
     "coordsText": "24.44296, 120.65238",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.44296,120.65238",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-295",
@@ -3845,7 +5025,11 @@
     "lng": 120.69031,
     "coordsText": "24.17755, 120.69031",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17755,120.69031",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-296",
@@ -3858,7 +5042,11 @@
     "lng": 120.64577,
     "coordsText": "24.12969, 120.64577",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.12969,120.64577",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 2 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 2
   },
   {
     "id": "coco-297",
@@ -3871,7 +5059,11 @@
     "lng": 120.71164,
     "coordsText": "24.33035, 120.71164",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.33035,120.71164",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-298",
@@ -3884,7 +5076,11 @@
     "lng": 120.72494,
     "coordsText": "24.30892, 120.72494",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.30892,120.72494",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-299",
@@ -3897,7 +5093,11 @@
     "lng": 120.62036,
     "coordsText": "24.34677, 120.62036",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.34677,120.62036",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-300",
@@ -3910,7 +5110,11 @@
     "lng": 120.68981,
     "coordsText": "24.10671, 120.68981",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.10671,120.68981",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-301",
@@ -3923,7 +5127,11 @@
     "lng": 120.68136,
     "coordsText": "24.11519, 120.68136",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.11519,120.68136",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-302",
@@ -3936,7 +5144,11 @@
     "lng": 120.70319,
     "coordsText": "24.09075, 120.70319",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.09075,120.70319",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-303",
@@ -3949,7 +5161,11 @@
     "lng": 120.64899,
     "coordsText": "24.22508, 120.64899",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.22508,120.64899",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-304",
@@ -3962,7 +5178,11 @@
     "lng": 120.71744,
     "coordsText": "24.15219, 120.71744",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.15219,120.71744",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 2 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 2
   },
   {
     "id": "coco-305",
@@ -3975,7 +5195,11 @@
     "lng": 120.68766,
     "coordsText": "24.13600, 120.68766",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13600,120.68766",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 22 波 點位微調)",
+    "updateDetail": "使用者驗證去重並校正（移除重複之coco-346，保留coco-305精準點位）",
+    "updateBatch": 22
   },
   {
     "id": "coco-306",
@@ -3988,7 +5212,11 @@
     "lng": 120.53058,
     "coordsText": "24.2554, 120.53058",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.2554,120.53058",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-307",
@@ -4001,7 +5229,11 @@
     "lng": 120.57368,
     "coordsText": "24.2289, 120.57368",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.2289,120.57368",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-308",
@@ -4014,7 +5246,11 @@
     "lng": 120.55894,
     "coordsText": "24.23584, 120.55894",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.23584,120.55894",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-309",
@@ -4027,7 +5263,11 @@
     "lng": 120.57602,
     "coordsText": "24.27107, 120.57602",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.27107,120.57602",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-310",
@@ -4040,7 +5280,11 @@
     "lng": 120.70082,
     "coordsText": "24.21002, 120.70082",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.21002,120.70082",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-311",
@@ -4053,7 +5297,11 @@
     "lng": 120.64485,
     "coordsText": "24.17015, 120.64485",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17015,120.64485",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 4 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 4
   },
   {
     "id": "coco-312",
@@ -4066,7 +5314,11 @@
     "lng": 120.72746,
     "coordsText": "24.24518, 120.72746",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.24518,120.72746",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-313",
@@ -4079,7 +5331,11 @@
     "lng": 120.69874,
     "coordsText": "24.06371, 120.69874",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.06371,120.69874",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-314",
@@ -4092,7 +5348,11 @@
     "lng": 120.5927,
     "coordsText": "24.18209, 120.59270",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.18209,120.59270",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 30 波 點位微調)",
+    "updateDetail": "使用者微調精準點位（台灣大道五段3巷32號）",
+    "updateBatch": 30
   },
   {
     "id": "coco-315",
@@ -4105,7 +5365,11 @@
     "lng": 120.49928,
     "coordsText": "24.11134, 120.49928",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.11134,120.49928",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-316",
@@ -4118,7 +5382,11 @@
     "lng": 120.53989,
     "coordsText": "24.07505, 120.53989",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.07505,120.53989",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-317",
@@ -4131,7 +5399,11 @@
     "lng": 120.71165,
     "coordsText": "23.90005, 120.71165",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.90005,120.71165",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 2 波 點位校正)",
+    "updateDetail": "表單提供點位",
+    "updateBatch": 2
   },
   {
     "id": "coco-318",
@@ -4144,7 +5416,11 @@
     "lng": 120.68447,
     "coordsText": "23.98176, 120.68447",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.98176,120.68447",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-319",
@@ -4157,7 +5433,11 @@
     "lng": 120.47742,
     "coordsText": "23.78876, 120.47742",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.78876,120.47742",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 1 波 點位校正)",
+    "updateDetail": "表單提供點位 (類別A)",
+    "updateBatch": 1
   },
   {
     "id": "coco-320",
@@ -4170,7 +5450,11 @@
     "lng": 120.19921,
     "coordsText": "22.99757, 120.19921",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99757,120.19921",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-321",
@@ -4183,7 +5467,11 @@
     "lng": 120.29521,
     "coordsText": "23.08416, 120.29521",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.08416,120.29521",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-322",
@@ -4196,7 +5484,11 @@
     "lng": 120.23268,
     "coordsText": "22.99059, 120.23268",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99059,120.23268",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 27 波 點位微調)",
+    "updateDetail": "使用者驗證精確微調（南紡購物中心B1美食街，22.9905907, 120.2326752）",
+    "updateBatch": 27
   },
   {
     "id": "coco-323",
@@ -4209,7 +5501,11 @@
     "lng": 120.22732,
     "coordsText": "22.96959, 120.22732",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.96959,120.22732",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-324",
@@ -4222,7 +5518,11 @@
     "lng": 120.23368,
     "coordsText": "23.00874, 120.23368",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.00874,120.23368",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-334",
@@ -4235,7 +5535,11 @@
     "lng": 120.16823,
     "coordsText": "22.98922, 120.16823",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.98922,120.16823",
-    "route": "台南市區"
+    "route": "台南市區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 9 波 新增門市)",
+    "updateDetail": "使用者驗證新增",
+    "updateBatch": 9
   },
   {
     "id": "coco-335",
@@ -4248,7 +5552,11 @@
     "lng": 120.25413,
     "coordsText": "22.99937, 120.25413",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.99937,120.25413",
-    "route": "台南市區"
+    "route": "台南市區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 9 波 新增門市)",
+    "updateDetail": "使用者驗證新增",
+    "updateBatch": 9
   },
   {
     "id": "coco-325",
@@ -4261,7 +5569,11 @@
     "lng": 120.30445,
     "coordsText": "22.60508, 120.30445",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.60508,120.30445",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 29 波 點位微調)",
+    "updateDetail": "網友回報經使用者查核確認微調（高雄家樂福成功店/萬家福商場）",
+    "updateBatch": 29
   },
   {
     "id": "coco-326",
@@ -4274,7 +5586,11 @@
     "lng": 120.30697,
     "coordsText": "22.59486, 120.30697",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.59486,120.30697",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 1 波 點位校正)",
+    "updateDetail": "表單提供點位 (類別A)",
+    "updateBatch": 1
   },
   {
     "id": "coco-327",
@@ -4287,7 +5603,11 @@
     "lng": 120.31101,
     "coordsText": "22.66437, 120.31101",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.66437,120.31101",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-328",
@@ -4300,7 +5620,11 @@
     "lng": 120.30658,
     "coordsText": "22.72646, 120.30658",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.72646,120.30658",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 34 波 點位微調)",
+    "updateDetail": "使用者實勘微調（德賢路167號，微調10.3m至正門前方）",
+    "updateBatch": 34
   },
   {
     "id": "coco-329",
@@ -4313,7 +5637,11 @@
     "lng": 120.30435,
     "coordsText": "22.61292, 120.30435",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.61292,120.30435",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 1 波 點位校正)",
+    "updateDetail": "表單提供點位 (類別A)",
+    "updateBatch": 1
   },
   {
     "id": "coco-330",
@@ -4326,7 +5654,11 @@
     "lng": 118.31932,
     "coordsText": "24.43473, 118.31932",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.43473,118.31932",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-331",
@@ -4339,7 +5671,11 @@
     "lng": 118.4157,
     "coordsText": "24.44141, 118.4157",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.44141,118.4157",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": false,
+    "updateStatus": "未更新 (初始點位)",
+    "updateDetail": "",
+    "updateBatch": null
   },
   {
     "id": "coco-336",
@@ -4352,7 +5688,11 @@
     "lng": 120.3001,
     "coordsText": "22.77993, 120.30010",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.77993,120.30010",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 13 波 新增門市)",
+    "updateDetail": "使用者回報新增門市（高雄實體店核實補全）",
+    "updateBatch": 13
   },
   {
     "id": "coco-337",
@@ -4365,7 +5705,11 @@
     "lng": 120.3301,
     "coordsText": "22.58334, 120.33010",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.58334,120.33010",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 13 波 新增門市)",
+    "updateDetail": "使用者回報新增門市（高雄實體店核實補全）",
+    "updateBatch": 13
   },
   {
     "id": "coco-338",
@@ -4378,7 +5722,11 @@
     "lng": 120.35117,
     "coordsText": "22.63975, 120.35117",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.63975,120.35117",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 13 波 新增門市)",
+    "updateDetail": "使用者回報新增門市（高雄實體店核實補全）",
+    "updateBatch": 13
   },
   {
     "id": "coco-339",
@@ -4391,7 +5739,11 @@
     "lng": 120.30921,
     "coordsText": "22.68780, 120.30921",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.68780,120.30921",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 13 波 新增門市)",
+    "updateDetail": "使用者回報新增門市（高雄實體店核實補全）",
+    "updateBatch": 13
   },
   {
     "id": "coco-340",
@@ -4404,7 +5756,11 @@
     "lng": 120.43351,
     "coordsText": "23.70814, 120.43351",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70814,120.43351",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 15 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（雲林實體店核實補全）",
+    "updateBatch": 15
   },
   {
     "id": "coco-341",
@@ -4417,7 +5773,11 @@
     "lng": 120.53048,
     "coordsText": "23.70152, 120.53048",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.70152,120.53048",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 16 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（雲林斗六萬家福實體店核實補全）",
+    "updateBatch": 16
   },
   {
     "id": "coco-342",
@@ -4430,7 +5790,11 @@
     "lng": 120.24413,
     "coordsText": "23.46367, 120.24413",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=23.46367,120.24413",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 17 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（嘉義縣首間實體店核實補全）",
+    "updateBatch": 17
   },
   {
     "id": "coco-343",
@@ -4443,7 +5807,11 @@
     "lng": 120.30649,
     "coordsText": "22.65613, 120.30649",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.65613,120.30649",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 18 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（高雄義享時尚廣場實體店核實補全）",
+    "updateBatch": 18
   },
   {
     "id": "coco-344",
@@ -4456,7 +5824,11 @@
     "lng": 121.56601,
     "coordsText": "25.03459, 121.56601",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03459,121.56601",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 19 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（微風南山B2實體店核實補全）",
+    "updateBatch": 19
   },
   {
     "id": "coco-345",
@@ -4469,7 +5841,11 @@
     "lng": 120.68713,
     "coordsText": "24.13701, 120.68713",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13701,120.68713",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 20 波 新增門市)",
+    "updateDetail": "使用者提供新增門市（台中火車站鐵鹿大街實體店核實補全）",
+    "updateBatch": 20
   },
   {
     "id": "coco-346",
@@ -4482,7 +5858,11 @@
     "lng": 120.66778,
     "coordsText": "24.17809, 120.66778",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.17809,120.66778",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 22 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（西屯水湳店實體店核實補全）",
+    "updateBatch": 22
   },
   {
     "id": "coco-347",
@@ -4495,7 +5875,11 @@
     "lng": 121.02319,
     "coordsText": "24.78133, 121.02319",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.78133,121.02319",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 22 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（新竹園區2店實體店核實補全）",
+    "updateBatch": 22
   },
   {
     "id": "coco-348",
@@ -4508,7 +5892,11 @@
     "lng": 120.975,
     "coordsText": "24.80954, 120.97500",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.80954,120.97500",
-    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+    "route": "新竹市東區＋新竹縣＋苗栗北／中",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 23 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（巨城雙門市核實：保留中央路207號新竹巨城店，新增中央路229號遠東巨城店）",
+    "updateBatch": 23
   },
   {
     "id": "coco-349",
@@ -4521,7 +5909,11 @@
     "lng": 120.64398,
     "coordsText": "24.13730, 120.64398",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.13730,120.64398",
-    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 25 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（南屯向心南店實體店核實補全）",
+    "updateBatch": 25
   },
   {
     "id": "coco-350",
@@ -4534,7 +5926,11 @@
     "lng": 121.71289,
     "coordsText": "25.09744, 121.71289",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09744,121.71289",
-    "route": "東北線：基隆＋宜蘭＋台北東北區"
+    "route": "東北線：基隆＋宜蘭＋台北東北區",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 26 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（基隆七堵店實體店核實補全，25.0974408, 121.7128851）",
+    "updateBatch": 26
   },
   {
     "id": "coco-351",
@@ -4547,6 +5943,10 @@
     "lng": 121.45489,
     "coordsText": "24.98723, 121.45489",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98723,121.45489",
-    "route": "新北其餘"
+    "route": "新北其餘",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 27 波 新增門市)",
+    "updateDetail": "使用者驗證新增門市（土城廣福店實體店核實補全，學府路一段146號）",
+    "updateBatch": 27
   }
 ]
