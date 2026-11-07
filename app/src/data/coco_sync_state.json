@@ -654,6 +654,26 @@
           "source": "現場玩家回報精準微調（桃園市平鎮區龍南路336號，微調4米修正騎樓遮蔽角）"
         }
       ]
+    },
+    {
+      "batch_id": 32,
+      "applied_at": "2026-11-07 09:05:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-1",
+          "name": "CoCo都可（百福門市）",
+          "coords": "25.08176, 121.69608",
+          "source": "使用者指定微調精準點位（基隆市七堵區百三街60號，微調5.4米至店門口）"
+        },
+        {
+          "id": "coco-9",
+          "name": "CoCo都可 基隆長庚店",
+          "coords": "25.12044, 121.72307",
+          "source": "現場玩家回報精準微調（基隆市安樂區安樂路二段229號，微調4.1米至醫院商圈店門）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -705,6 +725,8 @@
     "coco-314",
     "coco-332",
     "coco-186",
-    "coco-221"
+    "coco-221",
+    "coco-1",
+    "coco-9"
   ]
 }
