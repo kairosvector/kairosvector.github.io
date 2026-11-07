@@ -4,6 +4,7 @@ import sys
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+import csv
 
 def export_coco_excel():
     sys.stdout.reconfigure(encoding='utf-8')
@@ -13,7 +14,7 @@ def export_coco_excel():
 
     wb = openpyxl.Workbook()
     ws = wb.active
-    ws.title = "CoCo全台350店資料庫"
+    ws.title = f"CoCo全台{len(stores)}店資料庫"
 
     # Define styles
     header_fill = PatternFill(start_color="FF6600", end_color="FF6600", fill_type="solid")  # CoCo Orange
@@ -103,13 +104,12 @@ def export_coco_excel():
 
     # Save to Google_shared
     output_dir = r"D:\Google_shared"
-    output_file = os.path.join(output_dir, "CoCo都可_全台350店門市總資料庫.xlsx")
+    output_file = os.path.join(output_dir, f"CoCo都可_全台{len(stores)}店門市總資料庫.xlsx")
     wb.save(output_file)
     print(f"Excel saved successfully: {output_file}")
 
     # Also save a CSV version for direct sheets import
-    csv_file = os.path.join(output_dir, "CoCo都可_全台350店門市總資料庫.csv")
-    import csv
+    csv_file = os.path.join(output_dir, f"CoCo都可_全台{len(stores)}店門市總資料庫.csv")
     with open(csv_file, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(headers)
@@ -128,6 +128,35 @@ def export_coco_excel():
                 s.get("route", "")
             ])
     print(f"CSV saved successfully: {csv_file}")
+
+    # Export to public/events for online cloud access & Google Sheets =IMPORTDATA formula
+    public_events_dir = 'app/public/events'
+    os.makedirs(public_events_dir, exist_ok=True)
+    
+    pub_json = os.path.join(public_events_dir, 'coco-stores.json')
+    with open(pub_json, 'w', encoding='utf-8') as f:
+        json.dump(stores, f, ensure_ascii=False, indent=2)
+    print(f"Public JSON saved: {pub_json}")
+
+    pub_csv = os.path.join(public_events_dir, 'coco-stores.csv')
+    with open(pub_csv, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(headers)
+        for s in stores:
+            writer.writerow([
+                s.get("id", ""),
+                s.get("city", ""),
+                s.get("name", ""),
+                s.get("shortName", ""),
+                s.get("address", ""),
+                s.get("phone", ""),
+                s.get("lat", 0.0),
+                s.get("lng", 0.0),
+                s.get("coordsText", ""),
+                s.get("gmapUrl", ""),
+                s.get("route", "")
+            ])
+    print(f"Public CSV saved: {pub_csv}")
 
 if __name__ == '__main__':
     export_coco_excel()
