@@ -255,7 +255,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
-                複製【{group.cityName}】巡航路徑
+                <span class="btn-copy-label">複製【{group.cityName}】巡航路徑</span>
               </button>
             </div>
 
@@ -997,13 +997,40 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       // Show/Hide City Sections based on visible cards
       document.querySelectorAll('.city-section').forEach((sec) => {
         const secCity = sec.getAttribute('data-city-section');
-        const anyVisible = sec.querySelectorAll('.store-card:not([style*="display: none"])').length > 0;
+        const visibleCards = Array.from(sec.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none');
+        const anyVisible = visibleCards.length > 0;
         if (currentCity !== 'all' && secCity !== currentCity) {
           sec.style.display = 'none';
         } else {
           sec.style.display = anyVisible ? '' : 'none';
         }
+
+        // Dynamically update section header copy button label
+        const copyBtn = sec.querySelector('.btn-copy-region-route');
+        if (copyBtn) {
+          const btnLabel = copyBtn.querySelector('.btn-copy-label');
+          const statusText = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+          if (btnLabel) {
+            if (statusText) {
+              btnLabel.textContent = `複製【${secCity} · ${statusText}】巡航 (${visibleCards.length})`;
+              copyBtn.setAttribute('title', `複製【${secCity} · ${statusText}】共 ${visibleCards.length} 間門市巡航路徑`);
+            } else {
+              btnLabel.textContent = `複製【${secCity}】巡航路徑 (${visibleCards.length})`;
+              copyBtn.setAttribute('title', `複製該縣市所有門市座標，可直接貼入 GeoSim 巡航佇列`);
+            }
+          }
+        }
       });
+
+      // Update tools panel copy all button label
+      const copyAllBtn = document.querySelector('.btn-copy-all-route');
+      if (copyAllBtn) {
+        if (currentCity !== 'all' || currentStatus !== 'all') {
+          copyAllBtn.textContent = `複製目前篩選的 ${visibleCount} 店巡航路徑`;
+        } else {
+          copyAllBtn.textContent = `複製全台 ${stores.length} 店巡航路徑`;
+        }
+      }
 
       const statText = document.getElementById('stat-summary-text');
       if (statText) statText.textContent = `顯示 ${visibleCount} 家門市`;
@@ -1060,22 +1087,45 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // Button: Copy Region Route
+      // Button: Copy Region Route (Smart Dynamic Filter)
       document.querySelectorAll('.btn-copy-region-route').forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          const route = btn.getAttribute('data-route');
           const city = btn.getAttribute('data-city');
-          copyToClipboard(route, `已複製【${city}】巡航路徑，可貼入 GeoSim`);
+          const sec = btn.closest('.city-section');
+          const visibleCards = sec ? Array.from(sec.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none') : [];
+          if (visibleCards.length > 0) {
+            const dynamicRoute = visibleCards.map(c => c.getAttribute('data-coords')).filter(Boolean).join('\n');
+            const statusLabel = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+            const desc = statusLabel ? `【${city} · ${statusLabel}】(共 ${visibleCards.length} 店)` : `【${city}】(共 ${visibleCards.length} 店)`;
+            copyToClipboard(dynamicRoute, `已複製${desc}巡航路徑，可貼入 GeoSim`);
+          } else {
+            showToast(`目前【${city}】沒有符合篩選條件的門市`);
+          }
         });
       });
 
-      // Button: Copy All 331 Route in Hero & Tools Panel
+      // Button: Copy Filtered Route in Hero & Tools Panel (Smart Dynamic Filter)
       document.querySelectorAll('#btn-copy-all-route, .btn-copy-all-route').forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          const route = btn.getAttribute('data-route');
-          copyToClipboard(route, `已複製全台 {stores.length} 店巡航路徑，可貼入 GeoSim`);
+          const allVisibleCards = Array.from(document.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none');
+          if (allVisibleCards.length > 0) {
+            const dynamicRoute = allVisibleCards.map(c => c.getAttribute('data-coords')).filter(Boolean).join('\n');
+            let desc = `目前篩選的 ${allVisibleCards.length} 間門市`;
+            if (currentCity !== 'all' && currentStatus !== 'all') {
+              const statusName = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : '冷卻完畢');
+              desc = `【${currentCity} · ${statusName}】(共 ${allVisibleCards.length} 店)`;
+            } else if (currentCity !== 'all') {
+              desc = `【${currentCity}】(共 ${allVisibleCards.length} 店)`;
+            } else if (currentStatus !== 'all') {
+              const statusName = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : '冷卻完畢');
+              desc = `全台【${statusName}】(共 ${allVisibleCards.length} 店)`;
+            }
+            copyToClipboard(dynamicRoute, `已複製${desc}巡航路徑，可貼入 GeoSim`);
+          } else {
+            showToast('目前篩選條件下沒有任何門市');
+          }
         });
       });
 
