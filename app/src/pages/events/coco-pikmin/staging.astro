@@ -1235,17 +1235,21 @@ function extractDistrict(address: string, city: string) {
       }
 
       bar.style.display = 'flex';
-      let html = '<button class="district-pill ' + (currentDistrict === 'all' ? 'active' : '') + '" data-district="all">全部 <span class="pill-count">' + totalCityStores + '</span></button>';
+      let html = '<button class="district-pill ' + (currentDistrict === 'all' ? 'active' : '') + '" data-district="all" role="tab" aria-selected="' + (currentDistrict === 'all' ? 'true' : 'false') + '">全部 <span class="pill-count">' + totalCityStores + '</span></button>';
       districts.forEach((dist) => {
         const isActive = currentDistrict === dist ? 'active' : '';
-        html += '<button class="district-pill ' + isActive + '" data-district="' + dist + '">' + dist + ' <span class="pill-count">' + districtCounts[dist] + '</span></button>';
+        html += '<button class="district-pill ' + isActive + '" data-district="' + dist + '" role="tab" aria-selected="' + (currentDistrict === dist ? 'true' : 'false') + '">' + dist + ' <span class="pill-count">' + districtCounts[dist] + '</span></button>';
       });
       bar.innerHTML = html;
 
       bar.querySelectorAll('.district-pill').forEach((btn) => {
         btn.addEventListener('click', () => {
-          bar.querySelectorAll('.district-pill').forEach((b) => b.classList.remove('active'));
+          bar.querySelectorAll('.district-pill').forEach((b) => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
           btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
           currentDistrict = btn.getAttribute('data-district') || 'all';
           filterStores();
         });
@@ -3797,63 +3801,70 @@ function extractDistrict(address: string, city: string) {
     cursor: not-allowed;
   }
 
-  /* Tier 1.5: District Pills (Horizontal Scroll under City Bar) */
-  .tier-district-bar {
-    display: flex;
-    gap: 0.35rem;
-    overflow-x: auto;
-    padding: 0.15rem 0 0.45rem 0;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 0.35rem;
-    align-items: center;
+  /* Tier 1.5: Dynamic District Pills (Horizontal Scroll under City Bar, Mirrors Tier 1 City Pills) */
+  :global(#tier-district-bar),
+  :global(.tier-district-bar) {
+    display: flex !important;
+    gap: 0.45rem !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.35rem !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 0.45rem !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
   }
-  .tier-district-bar::-webkit-scrollbar {
-    display: none;
+  :global(#tier-district-bar::-webkit-scrollbar),
+  :global(.tier-district-bar::-webkit-scrollbar) {
+    display: none !important;
   }
-  .district-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.32rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid #E7E5E4;
-    background: #FAFAF9;
-    color: #57534E;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s ease;
-    flex-shrink: 0;
+  :global(.district-pill) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.35rem !important;
+    padding: 0.42rem 0.9rem !important;
+    border-radius: 9999px !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    border: 1px solid var(--color-border, #DCD8D0) !important;
+    background: var(--color-surface, #FFFFFF) !important;
+    color: var(--color-text-primary, #44403C) !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+    transition: all 0.15s ease !important;
+    flex-shrink: 0 !important;
+    line-height: 1.2 !important;
   }
-  :global(html[data-theme="vibrant"]) .district-pill {
-    background: #F5F5F4;
-    border-color: #E7E5E4;
-    color: #44403C;
+  :global(html[data-theme="vibrant"] .district-pill) {
+    background: #FFFFFF !important;
+    border-color: #DCD8D0 !important;
+    color: #44403C !important;
   }
-  .district-pill:hover {
-    border-color: #EA580C;
-    color: #EA580C;
-    background: #FFF7ED;
+  :global(.district-pill:hover) {
+    border-color: #E05326 !important;
   }
-  .district-pill.active {
-    background: #EA580C !important;
+  :global(.district-pill.active) {
+    background: #292524 !important;
     color: #FFFFFF !important;
-    border-color: #C2410C !important;
-    font-weight: 700;
-    box-shadow: 0 1px 4px rgba(234, 88, 12, 0.25);
+    border-color: #292524 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
   }
-  .district-pill .pill-count {
-    font-size: 0.75rem;
-    opacity: 0.85;
-    background: rgba(0, 0, 0, 0.06);
-    padding: 0.05rem 0.35rem;
-    border-radius: 9999px;
+  :global(html[data-theme="vibrant"] .district-pill.active) {
+    background: #1C1917 !important;
+    color: #FFFFFF !important;
+    border-color: #1C1917 !important;
   }
-  .district-pill.active .pill-count {
-    background: rgba(255, 255, 255, 0.3);
-    color: #FFFFFF;
+  :global(.district-pill .pill-count) {
+    font-size: 0.8rem !important;
+    opacity: 0.85 !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    padding: 0.1rem 0.45rem !important;
+    border-radius: 9999px !important;
+  }
+  :global(.district-pill.active .pill-count) {
+    background: rgba(255, 255, 255, 0.25) !important;
+    color: #FFFFFF !important;
   }
 
   /* Tier 2: City Pills (Horizontal Scroll on Mobile) */
