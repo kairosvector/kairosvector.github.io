@@ -733,6 +733,22 @@
           "source": "玩家回報經緯度顛倒還原核實微調 4.6m 至店門口（桃園市八德區廣福路126號）"
         }
       ]
+    },
+    {
+      "batch_id": 36,
+      "applied_at": "2026-11-07 15:52:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-353",
+          "name": "CoCo都可 高雄小港機場店",
+          "city": "高雄市",
+          "action": "新增門市",
+          "coords": "22.57120, 120.34020",
+          "source": "使用者提報新增高雄國際航空站航廈門市（中山四路2號國際線1F到達大廳，高雄市增至 12 間，全台總店數增至 352 店）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
