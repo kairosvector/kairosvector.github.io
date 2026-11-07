@@ -674,6 +674,21 @@
           "source": "現場玩家回報精準微調（基隆市安樂區安樂路二段229號，微調4.1米至醫院商圈店門）"
         }
       ]
+    },
+    {
+      "batch_id": 33,
+      "applied_at": "2026-11-07 09:57:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-266",
+          "name": "CoCo都可 新豐尚仁店",
+          "city": "新竹縣",
+          "coords": "24.86688, 120.99024",
+          "source": "使用者查得重大線索：實體門市仍在營業（新豐鄉尚仁街2-3號門口，原第14波下架解除，全台總店數由 349 增至 350 店）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
@@ -688,12 +703,6 @@
       "name": "CoCo都可 土城廣福店",
       "reason": "已歇業/撤店，由使用者指示移除點位",
       "removed_at": "2026-11-05 15:05:30 (UTC+8)"
-    },
-    {
-      "id": "coco-266",
-      "name": "CoCo都可(新豐尚仁店)",
-      "reason": "已歇業/撤店，由使用者指示移除點位",
-      "removed_at": "2026-11-05 20:10:00 (UTC+8)"
     }
   ],
   "all_updated_ids": [

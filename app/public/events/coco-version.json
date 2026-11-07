@@ -1,8 +1,7 @@
 {
-  "batch_id": 32,
-  "version": "32",
-  "updated_at": "11/07 09:05",
-  "store_count": 349,
-  "description": "第 32 波更新 · 基隆百福門市、基隆長庚店 2 間門市座標精準微調",
-  "ticker": "最新第 32 波：基隆百福門市、基隆長庚店 座標已校準！"
+  "batch_id": 33,
+  "version": "33",
+  "updated_at": "11/07 09:57",
+  "store_count": 350,
+  "description": "第 33 波更新 · 重新上架新竹新豐尚仁店（全台總店數恢復為 350 間）"
 }

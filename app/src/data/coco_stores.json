@@ -3445,6 +3445,19 @@
     "route": "新竹市東區＋新竹縣＋苗栗北／中"
   },
   {
+    "id": "coco-266",
+    "city": "新竹縣",
+    "name": "CoCo都可 新豐尚仁店",
+    "shortName": "新竹新豐尚仁",
+    "address": "304新竹縣新豐鄉松柏村尚仁街2-3號",
+    "phone": "03 557 6078",
+    "lat": 24.86688,
+    "lng": 120.99024,
+    "coordsText": "24.86688, 120.99024",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.86688,120.99024",
+    "route": "新竹市東區＋新竹縣＋苗栗北／中"
+  },
+  {
     "id": "coco-267",
     "city": "新竹縣",
     "name": "CoCo都可 新豐新市店",
