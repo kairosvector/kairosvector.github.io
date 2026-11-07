@@ -56,6 +56,19 @@ const cityGroups = availableCities.map((cityName) => {
 
 const allRouteText = stores.map((s) => `${s.lat.toFixed(5)},${s.lng.toFixed(5)}`).join('\n');
 const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
+
+function extractDistrict(address: string, city: string) {
+  let clean = (address || '').replace(/^\d+\s*/, '');
+  const cityAlias = city.includes('台') ? city.replace('台', '臺') : city.replace('臺', '台');
+  for (const c of [city, cityAlias, '台灣省']) {
+    if (clean.startsWith(c)) {
+      clean = clean.slice(c.length);
+      break;
+    }
+  }
+  const m = clean.match(/^([^\d\s]{1,4}?區)/) || clean.match(/^([^\d\s]{1,4}?(?:鄉|鎮|市))/);
+  return m ? m[1] : '';
+}
 ---
 
 <BaseLayout
@@ -198,6 +211,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           ))}
         </div>
 
+        <!-- Tier 1.5: 依行政區過濾 (選取縣市後動態展開鄉鎮市區膠囊) -->
+        <div class="tier-district-bar" id="tier-district-bar" role="tablist" aria-label="行政區篩選" style="display: none;">
+          <!-- Dynamically populated via JS when city is selected -->
+        </div>
+
         <!-- Tier 2: 依狀態過濾 (全部 / 尚未前往 / 7天冷卻中 / 冷卻完畢可再次領取) -->
         <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
           <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
@@ -269,6 +287,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   class="store-card muse-card"
                   data-store-id={store.id}
                   data-city={store.city}
+                  data-district={extractDistrict(store.address, store.city)}
                   data-name={store.name}
                   data-short={store.shortName}
                   data-lat={store.lat}
@@ -996,6 +1015,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
 
     let currentCity = 'all';
+    let currentDistrict = 'all';
     let currentStatus = 'all';
     let currentSearch = '';
 
@@ -1187,6 +1207,51 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       showToast(msg || '已複製至剪貼簿');
     }
 
+    // 5.5 Dynamic District Bar Handler
+    function updateDistrictBar() {
+      const bar = document.getElementById('tier-district-bar');
+      if (!bar) return;
+      if (currentCity === 'all') {
+        bar.style.display = 'none';
+        bar.innerHTML = '';
+        currentDistrict = 'all';
+        return;
+      }
+
+      const districtCounts = {};
+      let totalCityStores = 0;
+      document.querySelectorAll('.store-card[data-city="' + currentCity + '"]').forEach((card) => {
+        totalCityStores++;
+        const dist = card.getAttribute('data-district') || '其他';
+        districtCounts[dist] = (districtCounts[dist] || 0) + 1;
+      });
+
+      const districts = Object.keys(districtCounts).sort((a, b) => districtCounts[b] - districtCounts[a]);
+      if (districts.length <= 1) {
+        bar.style.display = 'none';
+        bar.innerHTML = '';
+        currentDistrict = 'all';
+        return;
+      }
+
+      bar.style.display = 'flex';
+      let html = '<button class="district-pill ' + (currentDistrict === 'all' ? 'active' : '') + '" data-district="all">全部 <span class="pill-count">' + totalCityStores + '</span></button>';
+      districts.forEach((dist) => {
+        const isActive = currentDistrict === dist ? 'active' : '';
+        html += '<button class="district-pill ' + isActive + '" data-district="' + dist + '">' + dist + ' <span class="pill-count">' + districtCounts[dist] + '</span></button>';
+      });
+      bar.innerHTML = html;
+
+      bar.querySelectorAll('.district-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          bar.querySelectorAll('.district-pill').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentDistrict = btn.getAttribute('data-district') || 'all';
+          filterStores();
+        });
+      });
+    }
+
     // 6. Multi-Dimensional Filtering Logic
     function filterStores() {
       const q = currentSearch.trim().toLowerCase();
@@ -1199,22 +1264,27 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const coords = card.getAttribute('data-coords') || '';
         const state = card.getAttribute('data-status-state') || 'todo';
 
+        const district = card.getAttribute('data-district') || '';
+
         // 1. City match
         const cityMatch = (currentCity === 'all' || city === currentCity);
 
-        // 2. Status match (all / todo / cooling / ready)
+        // 2. District match
+        const districtMatch = (currentDistrict === 'all' || district === currentDistrict);
+
+        // 3. Status match (all / todo / cooling / ready)
         let statusMatch = true;
         if (currentStatus !== 'all') {
           statusMatch = (state === currentStatus);
         }
 
-        // 3. Keyword search match
+        // 4. Keyword search match
         let searchMatch = true;
         if (q) {
-          searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q);
+          searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q) || district.includes(q);
         }
 
-        if (cityMatch && statusMatch && searchMatch) {
+        if (cityMatch && districtMatch && statusMatch && searchMatch) {
           card.style.display = '';
           visibleCount++;
         } else {
@@ -1238,10 +1308,12 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         if (copyBtn) {
           const btnLabel = copyBtn.querySelector('.btn-copy-label');
           const statusText = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+          const distText = currentDistrict !== 'all' ? ` · ${currentDistrict}` : '';
           if (btnLabel) {
-            if (statusText) {
-              btnLabel.textContent = `複製【${secCity} · ${statusText}】巡航 (${visibleCards.length})`;
-              copyBtn.setAttribute('title', `複製【${secCity} · ${statusText}】共 ${visibleCards.length} 間門市巡航路徑`);
+            if (statusText || distText) {
+              const fullDesc = `${secCity}${distText}${statusText ? ' · ' + statusText : ''}`;
+              btnLabel.textContent = `複製【${fullDesc}】巡航 (${visibleCards.length})`;
+              copyBtn.setAttribute('title', `複製【${fullDesc}】共 ${visibleCards.length} 間門市巡航路徑`);
             } else {
               btnLabel.textContent = `複製【${secCity}】巡航路徑 (${visibleCards.length})`;
               copyBtn.setAttribute('title', `複製該縣市所有門市座標，可直接貼入 GeoSim 巡航佇列`);
@@ -1270,6 +1342,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     // 7. Event Listeners Setup
     function setupEventListeners() {
       updateAllStoreStates();
+      updateDistrictBar();
 
       // Checkbox click: Toggle 7-Day Cooldown
       document.querySelectorAll('.check-toggle__input').forEach((cb) => {
@@ -1325,7 +1398,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           if (visibleCards.length > 0) {
             const dynamicRoute = visibleCards.map(c => c.getAttribute('data-coords')).filter(Boolean).join('\n');
             const statusLabel = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
-            const desc = statusLabel ? `【${city} · ${statusLabel}】(共 ${visibleCards.length} 店)` : `【${city}】(共 ${visibleCards.length} 店)`;
+            const distLabel = currentDistrict !== 'all' ? ` · ${currentDistrict}` : '';
+            const desc = (statusLabel || distLabel) ? `【${city}${distLabel}${statusLabel ? ' · ' + statusLabel : ''}】(共 ${visibleCards.length} 店)` : `【${city}】(共 ${visibleCards.length} 店)`;
             copyToClipboard(dynamicRoute, `已複製${desc}巡航路徑，可貼入 GeoSim`);
           } else {
             showToast(`目前【${city}】沒有符合篩選條件的門市`);
@@ -1367,6 +1441,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           btn.classList.add('active');
           btn.setAttribute('aria-selected', 'true');
           currentCity = btn.getAttribute('data-city');
+          currentDistrict = 'all';
+          updateDistrictBar();
           filterStores();
         });
       });
@@ -3719,6 +3795,65 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   .day-pill.disabled {
     opacity: 0.45;
     cursor: not-allowed;
+  }
+
+  /* Tier 1.5: District Pills (Horizontal Scroll under City Bar) */
+  .tier-district-bar {
+    display: flex;
+    gap: 0.35rem;
+    overflow-x: auto;
+    padding: 0.15rem 0 0.45rem 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.35rem;
+    align-items: center;
+  }
+  .tier-district-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .district-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.32rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #E7E5E4;
+    background: #FAFAF9;
+    color: #57534E;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  :global(html[data-theme="vibrant"]) .district-pill {
+    background: #F5F5F4;
+    border-color: #E7E5E4;
+    color: #44403C;
+  }
+  .district-pill:hover {
+    border-color: #EA580C;
+    color: #EA580C;
+    background: #FFF7ED;
+  }
+  .district-pill.active {
+    background: #EA580C !important;
+    color: #FFFFFF !important;
+    border-color: #C2410C !important;
+    font-weight: 700;
+    box-shadow: 0 1px 4px rgba(234, 88, 12, 0.25);
+  }
+  .district-pill .pill-count {
+    font-size: 0.75rem;
+    opacity: 0.85;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 0.05rem 0.35rem;
+    border-radius: 9999px;
+  }
+  .district-pill.active .pill-count {
+    background: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
   }
 
   /* Tier 2: City Pills (Horizontal Scroll on Mobile) */
