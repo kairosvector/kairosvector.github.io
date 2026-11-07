@@ -579,9 +579,9 @@
     "address": "臺北市大同區民生西路159號",
     "phone": "02 2553 1569",
     "lat": 25.05739,
-    "lng": 121.51741,
-    "coordsText": "25.05739, 121.51741",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05739,121.51741",
+    "lng": 121.51761,
+    "coordsText": "25.05739, 121.51761",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05739,121.51761",
     "route": "東北線：基隆＋宜蘭＋台北東北區"
   },
   {
@@ -4296,10 +4296,10 @@
     "shortName": "高雄楠梓德賢",
     "address": "高雄市楠梓區德賢路167號",
     "phone": "07 301 2671",
-    "lat": 22.72655,
-    "lng": 120.30655,
-    "coordsText": "22.72655, 120.30655",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.72655,120.30655",
+    "lat": 22.72646,
+    "lng": 120.30658,
+    "coordsText": "22.72646, 120.30658",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.72646,120.30658",
     "route": "苗栗南＋台中→高雄中南線（＋金門另飛）"
   },
   {
