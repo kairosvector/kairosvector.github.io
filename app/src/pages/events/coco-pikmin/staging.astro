@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import stores from '../../../data/coco_stores_staging.json';
+import syncState from '../../../data/coco_sync_state.json';
+
+const latestBatch = syncState.batches && syncState.batches.length > 0 ? syncState.batches[syncState.batches.length - 1] : null;
+const currentBatchId = latestBatch ? latestBatch.batch_id : 34;
+const latestBatchDesc = latestBatch && latestBatch.updated_stores ? latestBatch.updated_stores.map((s: any) => s.name).join('、') + ' 已校準！' : '全台門市點位已更新！';
 
 const title = `Pikmin Bloom × CoCo 都可全台門市 GPS 座標地圖與打卡清單 (${stores.length}店完整版) | GeoSim`;
 const description = `2026/11/5 ~ 11/22 Pikmin Bloom 與 CoCo 都可合作活動。全台 ${stores.length} 間 CoCo 門市經緯度 GPS 座標完整清單，涵蓋雙北、基隆、桃竹苗、中南部、金門等 15 縣市。支援手機一鍵直接啟動 GeoSim、直開遊戲帶座標、縣市快速切換、7 天領取冷卻打卡追蹤。`;
@@ -68,14 +73,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>
     <!-- Top Fixed Version & Force Refresh Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="32" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id={currentBatchId} data-store-count={stores.length}>
       <div class="container top-sticky-version-inner">
                 <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
           <span class="version-tag" id="version-badge">{stores.length} 店最新</span>
           <div class="version-marquee-box" id="version-marquee-box">
             <span class="version-ticker-text" id="version-ticker">
-              <span class="ticker-badge">最新</span>基隆百福門市、基隆長庚店 已校準！</span>
+              <span class="ticker-badge">最新</span>{latestBatchDesc}</span>
           </div>
         </div>
         <button id="btn-force-refresh" class="btn-top-refresh" type="button" title="清除快取載入最新門市點位">
