@@ -812,10 +812,10 @@
     "shortName": "台北南機場",
     "address": "台北市中正區中華路二段307巷18號",
     "phone": "02 2301 0042",
-    "lat": 25.0282,
-    "lng": 121.50624,
-    "coordsText": "25.02820, 121.50624",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02820,121.50624",
+    "lat": 25.02825,
+    "lng": 121.50629,
+    "coordsText": "25.02825, 121.50629",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02825,121.50629",
     "route": "台北市中正區南機場"
   },
   {
@@ -2411,10 +2411,10 @@
     "shortName": "桃園龜山民生北",
     "address": "桃園市龜山區民生北路一段168號",
     "phone": "03 357 0256",
-    "lat": 25.03525,
-    "lng": 121.30237,
-    "coordsText": "25.03525, 121.30237",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03525,121.30237",
+    "lat": 25.03526,
+    "lng": 121.30232,
+    "coordsText": "25.03526, 121.30232",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03526,121.30232",
     "route": "桃園北線＋新竹市北／香山"
   },
   {
@@ -2866,10 +2866,10 @@
     "shortName": "桃園平鎮龍南",
     "address": "桃園市平鎮區龍南路336號",
     "phone": "03 450 5388",
-    "lat": 24.92185,
-    "lng": 121.25121,
-    "coordsText": "24.92185, 121.25121",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.92185,121.25121",
+    "lat": 24.92189,
+    "lng": 121.2512,
+    "coordsText": "24.92189, 121.25120",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.92189,121.25120",
     "route": "桃園南線"
   },
   {

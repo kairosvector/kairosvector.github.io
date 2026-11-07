@@ -68,15 +68,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>
     <!-- Top Fixed Version & Force Refresh Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="30" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="coco-version-card" data-batch-id="31" data-store-count={stores.length}>
       <div class="container top-sticky-version-inner">
                 <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
           <span class="version-tag" id="version-badge">{stores.length} 店最新</span>
           <div class="version-marquee-box" id="version-marquee-box">
             <span class="version-ticker-text" id="version-ticker">
-              <span class="ticker-badge">最新</span>忠孝復興店、台中東海店 已校準！
-            </span>
+              <span class="ticker-badge">最新</span>南機場店、龜山民生北店、平鎮龍南店 已校準！</span>
           </div>
         </div>
         <button id="btn-force-refresh" class="btn-top-refresh" type="button" title="清除快取載入最新門市點位">
@@ -508,6 +507,26 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </section>
 
+    <!-- Community Support Section -->
+    <section class="coco-support-section" aria-label="支持站長">
+      <div class="container">
+        <div class="coco-support-card">
+          <div class="coco-support-content">
+            <div class="coco-support-badge">☕ 支持獨立維護</div>
+            <h2 class="coco-support-title">喜歡這份皮克敏全台點位地圖嗎？</h2>
+            <p class="coco-support-desc">
+              全台 349 間門市點位由站長「小阿飛」一人持續手動校準並過濾社群回報，堅持<strong>完全免費、無蓋版廣告</strong>。<br />
+              如果這張地圖為你的直飛或散步省下時間，歡迎請站長喝杯 CoCo 百香雙響炮（約 NT）或是隨意支持！
+            </p>
+          </div>
+          <button id="btn-section-donate" class="btn-section-donate" type="button">
+            <span class="btn-donate-icon">🥤</span>
+            <span>請站長喝杯 CoCo</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- How to Use Section -->
     <section id="how-to-use" class="how-to-use-section">
       <div class="container">
@@ -646,6 +665,109 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </div>
 
+    <!-- Floating Donate Button (Bottom-Right) -->
+    <button id="btn-floating-donate" class="btn-floating-donate" type="button" title="贊助支持站長喝杯飲料">
+      <span class="fab-icon">☕</span>
+      <span class="fab-text">請站長喝杯 CoCo</span>
+    </button>
+
+    <!-- Modal Dialog for Donation (JKOPAY TWQR) -->
+    <div id="donate-modal-backdrop" class="donate-backdrop" style="display: none;">
+      <div id="donate-sheet" class="donate-sheet" role="dialog" aria-modal="true" aria-labelledby="donate-sheet-title">
+        <div class="donate-sheet__header">
+          <div class="donate-sheet__title-box">
+            <span class="donate-sheet__emoji">☕</span>
+            <div>
+              <h3 id="donate-sheet-title" class="donate-sheet__title">請站長喝杯飲料</h3>
+              <div class="donate-sheet__subtitle">全台資料持續校對維護中, 感謝您的支持 !</div>
+            </div>
+          </div>
+          <button id="btn-close-donate" class="donate-sheet__close" aria-label="關閉視窗">✕</button>
+        </div>
+
+        <div class="donate-sheet__body">
+          <!-- Option 1: Portaly Online Payment (Credit Card & LINE Pay) -->
+          <div class="donate-portaly-box">
+            <a href="https://portaly.cc/afaye" target="_blank" rel="noopener noreferrer" class="btn-donate-portaly" id="btn-portaly-link">
+              <span class="portaly-icon">💳</span>
+              <div class="portaly-content">
+                <div class="portaly-title">線上贊助（信用卡 / LINE Pay）</div>
+                <div class="portaly-sub">免下載 App · 點擊直接在瀏覽器結帳 ➜</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Divider -->
+          <div class="donate-divider">
+            <span class="donate-divider-line"></span>
+            <span class="donate-divider-text">或使用街口 / 網銀轉帳</span>
+            <span class="donate-divider-line"></span>
+          </div>
+
+          <!-- Quick Copy & Actions Card (Clean & Pure Text) -->
+          <div class="donate-account-card">
+            <div class="donate-account-grid">
+              <div class="account-item">
+                <span class="acc-label">機構代碼</span>
+                <span class="acc-val highlight">396 <span class="acc-sub">(街口支付)</span></span>
+              </div>
+              <div class="account-item">
+                <span class="acc-label">收款戶名</span>
+                <span class="acc-val">小阿飛</span>
+              </div>
+              <div class="account-item account-item--full">
+                <span class="acc-label">轉帳帳號</span>
+                <span class="acc-val highlight acc-number" id="donate-acc-num">901553660</span>
+              </div>
+            </div>
+
+            <div class="donate-actions-row">
+              <button id="btn-copy-donate-acc" class="btn-copy-donate" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copy-donate-text">一鍵複製帳號 (901553660)</span>
+              </button>
+              <a href="jkos://" id="btn-open-jko" class="btn-open-jko" title="在手機中打開街口 App 轉帳">
+                📱 直開街口 App
+              </a>
+            </div>
+          </div>
+
+          <!-- Collapsible QR Code Toggle -->
+          <div class="donate-qr-collapse-wrapper">
+            <button id="btn-toggle-qr" class="btn-toggle-qr" type="button">
+              <span id="qr-toggle-icon">📷</span>
+              <span id="qr-toggle-text">展開查看 QR Code 收款碼</span>
+            </button>
+            <div id="donate-qr-collapsible" class="donate-qr-collapsible" style="display: none;">
+              <img 
+                src="/events/images/jko_donate_poster.png" 
+                alt="街口支付 TWQR 收款碼" 
+                class="donate-qr-img" 
+                loading="lazy"
+              />
+              <div class="donate-qr-tip">
+                💡 手機可長按圖片儲存，或用另一台裝置掃碼轉帳
+              </div>
+            </div>
+          </div>
+
+          <!-- TWQR Info & Warm Note -->
+          <div class="donate-footer-note">
+            <div class="twqr-badge-pill">
+              <span class="twqr-dot"></span>
+              <strong>TWQR 跨機構支援</strong>：玉山、台新、國泰、台灣銀行、全支付等網銀 App 皆可掃描轉帳
+            </div>
+            <p class="donate-cheer-text">
+              歡迎請站長喝杯 CoCo 百香雙響炮（約 NT）或是隨意支持！🥤✨
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </BaseLayout>
 
@@ -689,6 +811,107 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           const bar = document.getElementById('inapp-browser-bar');
           if (bar) bar.style.display = 'none';
         });
+      }
+    })();
+
+    // 0.5 Donate Modal Handlers
+    (function initDonateModal() {
+      const donateBackdrop = document.getElementById('donate-modal-backdrop');
+      const btnCloseDonate = document.getElementById('btn-close-donate');
+      const btnCopyAcc = document.getElementById('btn-copy-donate-acc');
+      const copyText = document.getElementById('copy-donate-text');
+      const copyToast = document.getElementById('copy-toast');
+
+      function showCopyToast(msg) {
+        if (!copyToast) return;
+        copyToast.textContent = msg;
+        copyToast.classList.add('show');
+        setTimeout(() => {
+          copyToast.classList.remove('show');
+        }, 2200);
+      }
+
+      function openDonate() {
+        if (donateBackdrop) {
+          donateBackdrop.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeDonate() {
+        if (donateBackdrop) {
+          donateBackdrop.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+
+      ['btn-floating-donate', 'btn-section-donate'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', openDonate);
+      });
+
+      if (btnCloseDonate) btnCloseDonate.addEventListener('click', closeDonate);
+
+      if (donateBackdrop) {
+        donateBackdrop.addEventListener('click', (e) => {
+          if (e.target === donateBackdrop) closeDonate();
+        });
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && donateBackdrop && donateBackdrop.style.display === 'flex') {
+          closeDonate();
+        }
+      });
+
+      const btnToggleQr = document.getElementById('btn-toggle-qr');
+      const qrCollapsible = document.getElementById('donate-qr-collapsible');
+      const qrToggleText = document.getElementById('qr-toggle-text');
+
+      if (btnToggleQr && qrCollapsible) {
+        btnToggleQr.addEventListener('click', () => {
+          const isHidden = qrCollapsible.style.display === 'none';
+          qrCollapsible.style.display = isHidden ? 'block' : 'none';
+          if (qrToggleText) {
+            qrToggleText.textContent = isHidden ? '收合 QR Code 收款碼 ▲' : '展開查看 QR Code 收款碼 ▼';
+          }
+        });
+      }
+
+      if (btnCopyAcc) {
+        btnCopyAcc.addEventListener('click', () => {
+          const acc = '901553660';
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(acc).then(() => {
+              if (copyText) copyText.textContent = '✓ 已複製帳號：901553660 (代碼 396)';
+              showCopyToast('已複製街口帳號 901553660 (機構代碼 396)');
+              setTimeout(() => {
+                if (copyText) copyText.textContent = '一鍵複製街口帳號 (901553660)';
+              }, 2500);
+            }).catch(() => fallbackCopy(acc));
+          } else {
+            fallbackCopy(acc);
+          }
+        });
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          if (copyText) copyText.textContent = '✓ 已複製帳號：901553660 (代碼 396)';
+          showCopyToast('已複製街口帳號 901553660 (機構代碼 396)');
+          setTimeout(() => {
+            if (copyText) copyText.textContent = '一鍵複製街口帳號 (901553660)';
+          }, 2500);
+        } catch (err) {}
+        document.body.removeChild(ta);
       }
     })();
 
@@ -4138,4 +4361,514 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
 
-  </style>
+    /* Top Sticky Version Actions */
+  .top-sticky-version-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .btn-top-donate {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    background: #FFF7ED !important;
+    border: 1px solid #FDBA74 !important;
+    color: #EA580C !important;
+    font-size: 0.75rem !important;
+    font-weight: 800 !important;
+    padding: 0.25rem 0.55rem !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    transition: all 0.15s ease !important;
+  }
+
+  .btn-top-donate:hover {
+    background: #FFEDD5 !important;
+    border-color: #FB923C !important;
+    color: #C2410C !important;
+    transform: translateY(-1px);
+  }
+
+  /* Floating Action Button for Donation */
+  .btn-floating-donate {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 950;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: linear-gradient(135deg, #FF7A00 0%, #EA580C 100%);
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 0.65rem 1.15rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(234, 88, 12, 0.38), 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  }
+
+  .btn-floating-donate:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 22px rgba(234, 88, 12, 0.48), 0 3px 8px rgba(0, 0, 0, 0.12);
+  }
+
+  .btn-floating-donate:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn-floating-donate .fab-icon {
+    font-size: 1.05rem;
+  }
+
+  @media (max-width: 640px) {
+    .btn-floating-donate {
+      bottom: 20px;
+      right: 16px;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Community Support Section */
+  .coco-support-section {
+    padding: 2.5rem 0 1rem;
+  }
+
+  .coco-support-card {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FFF7ED 100%);
+    border: 1.5px solid #FED7AA;
+    border-radius: 18px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.08);
+  }
+
+  .coco-support-badge {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #B45309;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid #FDE68A;
+    margin-bottom: 8px;
+  }
+
+  .coco-support-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #78350F;
+    margin: 0 0 6px;
+  }
+
+  .coco-support-desc {
+    font-size: 0.88rem;
+    color: #92400E;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .btn-section-donate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FF7A00 0%, #EA580C 100%);
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-section-donate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.42);
+  }
+
+  @media (max-width: 768px) {
+    .coco-support-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    .btn-section-donate {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* Donate Modal Styles */
+  .donate-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.65);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    padding: 16px;
+    box-sizing: border-box;
+    animation: fadeInModal 0.2s ease;
+  }
+
+  @keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .donate-sheet {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 20px 22px 24px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: popModal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes popModal {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .donate-sheet__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F1F5F9;
+    margin-bottom: 16px;
+  }
+
+  .donate-sheet__title-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .donate-sheet__emoji {
+    font-size: 1.6rem;
+  }
+
+  .donate-sheet__title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0;
+  }
+
+  .donate-sheet__subtitle {
+    font-size: 0.76rem;
+    color: #64748B;
+    margin-top: 2px;
+  }
+
+  .donate-sheet__close {
+    background: #F1F5F9;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #64748B;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .donate-sheet__close:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+  }
+
+  /* QR Wrapper */
+  .donate-qr-wrapper {
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-radius: 18px;
+    padding: 4px 0 10px;
+    margin-bottom: 12px;
+    box-shadow: none;
+  }
+
+  .donate-qr-img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(217, 29, 36, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .donate-qr-tip {
+    font-size: 0.74rem;
+    color: #64748B;
+    background: #F8FAFC;
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin-top: 10px;
+    line-height: 1.4;
+    border: 1px solid #F1F5F9;
+  }
+
+  /* Account Card */
+  .donate-account-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .donate-account-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .account-item--full {
+    grid-column: span 2;
+  }
+
+  .acc-label {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748B;
+    font-weight: 600;
+    margin-bottom: 1px;
+  }
+
+  .acc-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1E293B;
+  }
+
+  .acc-val.highlight {
+    color: #EA580C;
+  }
+
+  .acc-val.acc-number {
+    font-family: monospace;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+  }
+
+  .acc-sub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748B;
+  }
+
+  .btn-copy-donate {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #EA580C;
+    color: #FFFFFF;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .btn-copy-donate:hover {
+    background: #C2410C;
+  }
+
+  /* Footer Note */
+  .donate-footer-note {
+    text-align: center;
+  }
+
+  .twqr-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ECFDF5;
+    color: #065F46;
+    font-size: 0.72rem;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid #A7F3D0;
+    margin-bottom: 8px;
+  }
+
+  .twqr-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+    flex-shrink: 0;
+  }
+
+  .donate-cheer-text {
+    font-size: 0.76rem;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .donate-actions-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .btn-open-jko {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: #FFF7ED;
+    color: #EA580C;
+    border: 1px solid #FDBA74;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 9px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .btn-open-jko:hover {
+    background: #FFEDD5;
+    border-color: #FB923C;
+  }
+
+  .donate-qr-collapse-wrapper {
+    margin-bottom: 14px;
+  }
+
+  .btn-toggle-qr {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #F1F5F9;
+    border: 1px dashed #CBD5E1;
+    color: #475569;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .btn-toggle-qr:hover {
+    background: #E2E8F0;
+    color: #1E293B;
+  }
+
+  .donate-qr-collapsible {
+    margin-top: 10px;
+    text-align: center;
+    animation: fadeInModal 0.2s ease;
+  }
+
+  /* Portaly Online Payment Button */
+  .donate-portaly-box {
+    margin-bottom: 14px;
+  }
+
+  .btn-donate-portaly {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 13px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.28);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-donate-portaly:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+    color: #FFFFFF !important;
+  }
+
+  .portaly-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .portaly-content {
+    flex: 1;
+    text-align: left;
+  }
+
+  .portaly-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .portaly-sub {
+    font-size: 0.72rem;
+    opacity: 0.92;
+    margin-top: 2px;
+  }
+
+  /* Divider */
+  .donate-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0 14px;
+  }
+
+  .donate-divider-line {
+    flex: 1;
+    height: 1px;
+    background: #E2E8F0;
+  }
+
+  .donate-divider-text {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #94A3B8;
+    white-space: nowrap;
+  }
+
+</style>
