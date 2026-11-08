@@ -47,6 +47,12 @@ BUFFER_FILE = "app/src/data/coco_verified_buffer.json"
 
 # Stores that have been reviewed and verified by user/operator as resolved
 RESOLVED_STORES = {
+    "coco-55",    # 金山店 (第39波已校正)
+    "coco-203",   # 內壢忠孝店 (第39波已校正)
+    "coco-214",   # 大溪崎頂店 (第39波已校正)
+    "coco-149",   # 桃園介壽店 (使用者確認Pass)
+    "coco-42",    # 台北華齡店 (使用者確認Pass)
+    "coco-19",    # 台北林森北店 (使用者確認Pass)
     "coco-354",   # 豐原太平洋店 (第38波新增門市)
     "CoCo都可 豐原太平洋店",
     "coco-15",    # 羅東門市 (第37波已校正)

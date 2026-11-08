@@ -794,13 +794,45 @@
           "source": "使用者提報新增台中豐原太平洋百貨B1門市（復興路2號B1，台中市增至 24 間，全台總店數增至 353 店）"
         }
       ]
+    },
+    {
+      "batch_id": 39,
+      "applied_at": "2026-11-09 07:15:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 3,
+      "updated_stores": [
+        {
+          "id": "coco-55",
+          "name": "CoCo都可 金山店",
+          "city": "台北市",
+          "coords": "25.03440, 121.52719",
+          "source": "使用者實勘微調（台北金山店信義路二段91-4號，偏移約 23.5m 至金山南路口騎樓門市）"
+        },
+        {
+          "id": "coco-203",
+          "name": "CoCo都可 內壢忠孝店",
+          "city": "桃園市",
+          "coords": "24.97405, 121.25575",
+          "source": "使用者實勘微調（桃園內壢忠孝店中壢區忠孝路69號，偏移約 23.1m 至店面正門）"
+        },
+        {
+          "id": "coco-214",
+          "name": "CoCo都可 大溪崎頂店",
+          "city": "桃園市",
+          "coords": "24.90101, 121.28363",
+          "source": "使用者實勘微調（桃園大溪崎頂店介壽路844-5號，偏移約 17.9m 至店面門牌）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
     "coco-1",
     "coco-328",
     "coco-114",
-    "coco-51"
+    "coco-51",
+    "coco-149",
+    "coco-42",
+    "coco-19"
   ],
   "removed_stores": [
     {
