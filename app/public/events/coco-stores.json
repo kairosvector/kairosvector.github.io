@@ -5982,5 +5982,22 @@
     "updateStatus": "已更新 (第 36 波 新增門市)",
     "updateDetail": "使用者提報新增高雄國際航空站航廈門市（中山四路2號國際線1F到達大廳，高雄市增至 12 間，全台總店數增至 352 店）",
     "updateBatch": 36
+  },
+  {
+    "id": "coco-354",
+    "city": "台中市",
+    "name": "CoCo都可 豐原太平洋店",
+    "shortName": "豐原太平洋",
+    "address": "台中市豐原區復興路2號 (太平洋百貨B1生活美食街)",
+    "phone": "04 2525 0253",
+    "lat": 24.25098,
+    "lng": 120.72066,
+    "coordsText": "24.25098, 120.72066",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.25098,120.72066",
+    "route": "苗栗南＋台中→高雄中南線（＋金門另飛）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 38 波 新增門市)",
+    "updateDetail": "使用者提報新增台中豐原太平洋百貨B1門市（復興路2號B1，台中市增至 24 間，全台總店數增至 353 店）",
+    "updateBatch": 38
   }
 ]
