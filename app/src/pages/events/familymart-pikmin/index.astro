@@ -258,23 +258,22 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-route={route.routeText}
                   data-title={route.title}
                   data-count={route.storeCount}
-                  title="一鍵複製本路線所有門市座標隊列"
+                  title={`複製【${route.title}】所有點位坐標`}
                 >
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>複製巡航隊列</span>
+                  <span>複製這條路線({route.storeCount}點)</span>
                 </button>
 
                 <button
                   type="button"
-                  class="btn-hot-geosim btn-launch-geosim"
-                  data-lat={route.firstStore.lat}
-                  data-lng={route.firstStore.lng}
-                  data-name={route.firstStore.name}
-                  data-coords={route.firstStore.coordsText}
-                  title="用 GeoSim 直接定位直飛這條路線起點"
+                  class="btn-apply-geosim-route"
+                  data-route={route.routeText}
+                  data-title={route.title}
+                  data-count={route.storeCount}
+                  title={`分享【${route.title}】至 GeoSim 多點巡航`}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
-                  <span>直飛起點</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                  <span>套用至GeoSim</span>
                 </button>
               </div>
             </div>
@@ -1013,7 +1012,49 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           const title = btn.getAttribute('data-title') || '熱門路線';
           const count = btn.getAttribute('data-count') || '';
           if (!route) return;
-          copyToClipboard(route, `已成功複製【${title}】${count} 間全家巡航隊列！`);
+          copyToClipboard(route, `已複製【${title}】${count} 點路線坐標！可直接貼入巡航工具`);
+        });
+      });
+
+      // Apply Route to GeoSim (via Web Share API or JS Bridge)
+      document.querySelectorAll('.btn-apply-geosim-route').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route') || '';
+          const title = btn.getAttribute('data-title') || '熱門路線';
+          const count = btn.getAttribute('data-count') || '';
+          if (!route) return;
+
+          // 1. AndroidGeoSim WebView Bridge
+          if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
+            try {
+              window.AndroidGeoSim.setRoute(route);
+              showToast(`已直接將【${title}】(${count}點) 套用至 GeoSim！`);
+              return;
+            } catch (err) {
+              console.warn('AndroidGeoSim setRoute error:', err);
+            }
+          }
+
+          // 2. Web Share API (Android System Share -> User picks GeoSim)
+          const shareData = {
+            title: `GeoSim 巡航路線 - ${title}`,
+            text: route
+          };
+
+          if (navigator.share) {
+            try {
+              await navigator.share(shareData);
+              return;
+            } catch (err) {
+              if (err.name === 'AbortError') {
+                return;
+              }
+            }
+          }
+
+          // 3. Fallback: Copy to clipboard
+          copyToClipboard(route, `已複製【${title}】${count} 點坐標！請至手機 GeoSim 或分享貼上套用。`);
         });
       });
 
@@ -2620,20 +2661,24 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
   .btn-copy-hot-route {
+    flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.45rem;
+    gap: 0.35rem;
     background: linear-gradient(135deg, var(--fm-green) 0%, var(--fm-green-dark) 100%);
     color: #FFFFFF;
     border: none;
-    padding: 0.7rem 0.9rem;
+    padding: 0.65rem 0.5rem;
     border-radius: 8px;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     font-weight: 800;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 160, 64, 0.25);
     transition: all 0.15s ease;
+    white-space: nowrap;
+    min-width: 0;
+    text-align: center;
   }
 
   .btn-copy-hot-route:hover {
@@ -2641,26 +2686,30 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     box-shadow: 0 4px 14px rgba(0, 160, 64, 0.4);
   }
 
-  .btn-hot-geosim {
+  .btn-apply-geosim-route {
+    flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    background: var(--fm-blue-light);
-    color: var(--fm-blue);
-    border: 1px solid rgba(0, 112, 192, 0.25);
-    padding: 0.7rem 0.9rem;
+    background: linear-gradient(135deg, #0070C0 0%, #005694 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.65rem 0.5rem;
     border-radius: 8px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 800;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 112, 192, 0.25);
     white-space: nowrap;
     transition: all 0.15s ease;
+    min-width: 0;
+    text-align: center;
   }
 
-  .btn-hot-geosim:hover {
-    background: rgba(0, 112, 192, 0.15);
-    color: var(--fm-blue-dark);
+  .btn-apply-geosim-route:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 14px rgba(0, 112, 192, 0.4);
   }
 
 </style>

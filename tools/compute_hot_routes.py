@@ -129,7 +129,7 @@ def main():
         walk_time_min = round(total_km / 4.0 * 60) # 4 km/h walking speed
         
         route_coords = [f"{s['lat']:.5f},{s['lng']:.5f}" for s in ordered_route]
-        route_text = " ".join(route_coords)
+        route_text = "\n".join(route_coords)
         first_store = ordered_route[0]
 
         hot_routes.append({
