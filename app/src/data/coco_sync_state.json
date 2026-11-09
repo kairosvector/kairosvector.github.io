@@ -845,6 +845,22 @@
           "source": "使用者實勘微調（苗栗三義店中正路168號，偏移約 9.8m 至實體店門口）"
         }
       ]
+    },
+    {
+      "batch_id": 41,
+      "applied_at": "2026-11-09 19:30:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 1,
+      "updated_stores": [
+        {
+          "id": "coco-355",
+          "name": "CoCo都可 楠梓後昌店",
+          "city": "高雄市",
+          "action": "新增門市",
+          "coords": "22.70957, 120.29667",
+          "source": "使用者提報新增高雄楠梓後昌店（後昌路737號1樓，全台總數增至 354 店）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [

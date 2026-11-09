@@ -5999,5 +5999,22 @@
     "updateStatus": "已更新 (第 38 波 新增門市)",
     "updateDetail": "使用者提報新增台中豐原太平洋百貨B1門市（復興路2號B1，台中市增至 24 間，全台總店數增至 353 店）",
     "updateBatch": 38
+  },
+  {
+    "id": "coco-355",
+    "city": "高雄市",
+    "name": "CoCo都可 楠梓後昌店",
+    "shortName": "楠梓後昌店",
+    "address": "高雄市楠梓區後昌路737號1樓",
+    "phone": "07 301 0032",
+    "lat": 22.70957,
+    "lng": 120.29667,
+    "coordsText": "22.70957, 120.29667",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=22.7095709,120.29667",
+    "route": "【中南部】高屏南台南線（含外島）",
+    "isUpdated": true,
+    "updateStatus": "已更新 (第 41 波 新增門市)",
+    "updateDetail": "使用者提報新增高雄楠梓後昌店（後昌路737號1樓，全台總數增至 354 店）",
+    "updateBatch": 41
   }
 ]

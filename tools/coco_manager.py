@@ -26,6 +26,9 @@ PROD_FILE = "app/src/data/coco_stores.json"
 PENDING_FILE = "app/src/data/coco_pending_verification.json"
 
 STORE_ALIASES = {
+    "CoCo都可 南梓後昌店": "coco-355",
+    "CoCo都可(南梓後昌店)": "coco-355",
+    "南梓後昌店": "coco-355",
     "CoCo都可(巨城民生店)": "coco-245",
     "CoCo都可 台中后里店": "coco-298",
     "廣福店": "coco-151",
@@ -47,6 +50,9 @@ BUFFER_FILE = "app/src/data/coco_verified_buffer.json"
 
 # Stores that have been reviewed and verified by user/operator as resolved
 RESOLVED_STORES = {
+    "coco-355",   # 楠梓後昌店 (第41波新增門市)
+    "CoCo都可 楠梓後昌店",
+    "CoCo都可 南梓後昌店",
     "coco-78",    # 新莊富國店 (第40波已校正)
     "coco-291",   # 苗栗三義店 (第40波已校正)
     "coco-55",    # 金山店 (第39波已校正)
