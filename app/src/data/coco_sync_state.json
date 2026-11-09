@@ -823,6 +823,28 @@
           "source": "使用者實勘微調（桃園大溪崎頂店介壽路844-5號，偏移約 17.9m 至店面門牌）"
         }
       ]
+    },
+    {
+      "batch_id": 40,
+      "applied_at": "2026-11-09 14:18:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-78",
+          "name": "CoCo都可 新莊富國店",
+          "city": "新北市",
+          "coords": "25.02450, 121.42470",
+          "source": "使用者實勘微調（新北新莊富國店富國路131號，偏移約 21.2m 至實體店門口）"
+        },
+        {
+          "id": "coco-291",
+          "name": "CoCo都可(苗栗三義店)",
+          "city": "苗栗縣",
+          "coords": "24.41110, 120.76849",
+          "source": "使用者實勘微調（苗栗三義店中正路168號，偏移約 9.8m 至實體店門口）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [
