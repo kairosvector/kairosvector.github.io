@@ -40,11 +40,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   hideThemeSwitcher={true}
 >
   <div class="fm-page">
-    <!-- Staging Environment Indicator Banner -->
-    <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
-      [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
-    </div>
-    <!-- Top Sticky Version & Live Update Notification Banner -->
+    <!-- Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) -->
     <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id="1" data-store-count={stores.length}>
       <div class="top-sticky-version-inner">
         <div class="top-sticky-version-left">
@@ -65,6 +61,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           <span class="refresh-label">強制重整</span>
         </button>
       </div>
+    </div>
+    <div class="top-sticky-spacer" aria-hidden="true"></div>
+    <!-- Staging Environment Indicator Banner -->
+    <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
+      [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>
 
     <!-- Top Fixed Hero Header -->
@@ -2504,18 +2505,31 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
 
-  /* Top Sticky Version & Live Update Notification Banner */
+  /* Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) */
   .top-sticky-version-wrapper {
-    position: sticky;
-    top: var(--nav-height, 64px);
-    left: 0;
-    right: 0;
+    position: fixed !important;
+    top: var(--nav-height, 64px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 38px !important;
+    z-index: 990 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .top-sticky-spacer {
+    height: 38px;
     width: 100%;
-    z-index: 990;
-    background: #FFFFFF;
-    border-bottom: 1px solid #E2E8F0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    transition: all 0.25s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .top-sticky-version-wrapper {
+    background: #FFFFFF !important;
+    border-bottom-color: #E2E8F0 !important;
   }
 
   html.is-embed .top-sticky-version-wrapper {
@@ -2530,13 +2544,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
   .top-sticky-version-inner {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0.35rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    min-height: 38px;
+    padding: 0 1rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    height: 100% !important;
   }
 
   .top-sticky-version-left {
