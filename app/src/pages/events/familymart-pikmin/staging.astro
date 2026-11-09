@@ -66,7 +66,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <h2 class="ad-title">人還沒到，定位先到全家門市</h2>
             </div>
             <p class="ad-desc">
-              台北市 696 間門市不用手打座標。點一下「導入 GeoSim」落點到店門口，再開遊戲領取 5 週年金色花苗，跑店快人一步。
+              台北市 696 間門市不用手打座標。點一下「用GeoSim直飛」落點到店門口，再開遊戲領取 5 週年金色花苗，跑店快人一步。
             </p>
             <div class="ad-action-line">
               <a class="ad-cta-btn" href={playStoreUrl} target="_blank" rel="noopener">
@@ -77,7 +77,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                 </svg>
                 免費下載 GeoSim
               </a>
-              <span class="ad-note">門市卡片點「導入 GeoSim」，未安裝將自動導向 Google Play</span>
+              <span class="ad-note">門市卡片點「用GeoSim直飛」，未安裝將自動導向 Google Play</span>
             </div>
           </div>
         </aside>
@@ -269,10 +269,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                       data-lat={store.lat}
                       data-lng={store.lng}
                       data-name={store.shortName}
-                      title="直接喚醒 Pikmin Bloom 並移動至此店座標"
+                      title="直接開啟 Pikmin Bloom 遊戲地圖"
                     >
                       <span class="btn-icon">🌸</span>
-                      <span>進遊戲領苗</span>
+                      <span>看遊戲地圖</span>
                     </button>
 
                     <button
@@ -281,10 +281,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                       data-lng={store.lng}
                       data-name={store.name}
                       data-coords={store.coordsText}
-                      title="導入 GeoSim 定位模擬器"
+                      title="用 GeoSim 直接定位直飛"
                     >
                       <span class="btn-icon">🎯</span>
-                      <span>導入 GeoSim</span>
+                      <span>用GeoSim直飛</span>
                     </button>
 
                     <a
@@ -420,9 +420,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           <div class="steps-grid">
             <div class="step-card">
               <div class="step-card__number">1</div>
-              <h3 class="step-card__title">導入 GeoSim（自動導向商店）</h3>
+              <h3 class="step-card__title">用GeoSim直飛（自動導向商店）</h3>
               <p>
-                在手機瀏覽器點擊門市卡片上的 <strong>「導入 GeoSim」</strong> 按鈕，系統將直接啟動 App 並定位在該門市。若尚未安裝，將自動前往 Google Play 商店下載。
+                在手機瀏覽器點擊門市卡片上的 <strong>「用GeoSim直飛」</strong> 按鈕，系統將直接啟動 App 並定位在該門市。若尚未安裝，將自動前往 Google Play 商店下載。
               </p>
             </div>
             <div class="step-card">
@@ -1454,8 +1454,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   /* Card Actions */
   .card-actions {
     display: grid;
-    grid-template-columns: 1.2fr 1fr auto;
-    gap: 0.4rem;
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: 0.35rem;
   }
 
   .btn-action {
