@@ -737,6 +737,19 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     }
 
     function setupEventListeners() {
+      // Mouse Wheel Horizontal Scroll Support on Desktop when scrollable
+      const districtBar = document.querySelector('.tier-district-bar');
+      if (districtBar) {
+        districtBar.addEventListener('wheel', (e) => {
+          if (districtBar.scrollWidth > districtBar.clientWidth) {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault();
+              districtBar.scrollLeft += e.deltaY;
+            }
+          }
+        }, { passive: false });
+      }
+
       updateAllStoreStates();
 
       // Checkbox click
@@ -1011,14 +1024,35 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     display: flex;
     gap: 0.45rem;
     overflow-x: auto;
-    padding-bottom: 0.35rem;
-    scrollbar-width: none;
+    padding-bottom: 0.45rem;
     -webkit-overflow-scrolling: touch;
     margin-bottom: 0.55rem;
     align-items: center;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
   }
   .tier-district-bar::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+  }
+  .tier-district-bar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 999px;
+  }
+  .tier-district-bar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+  }
+  .tier-district-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Desktop and Tablet: auto-wrap so all 12 districts are immediately visible without scrolling */
+  @media (min-width: 768px) {
+    .tier-district-bar {
+      flex-wrap: wrap;
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
   }
 
   .district-pill {
