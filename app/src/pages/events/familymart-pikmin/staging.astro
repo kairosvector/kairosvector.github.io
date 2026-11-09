@@ -347,29 +347,45 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-coords={store.coordsText}
                   data-status-state="todo"
                 >
-                  <!-- Card Header: Cooldown toggle & Store Name -->
+                  <!-- Card Header: Cooldown toggle, Store Name & Report Button -->
                   <div class="card-head">
-                    <label class="check-toggle" title="勾選標記已前往（自動啟動 7 天冷卻倒數）">
-                      <input
-                        type="checkbox"
-                        class="check-toggle__input"
-                        data-store-id={store.id}
-                      />
-                      <span class="check-toggle__box">
-                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                      </span>
-                      <span class="check-toggle__text">已造訪</span>
-                    </label>
+                    <div class="card-head-left">
+                      <label class="check-toggle" title="勾選標記已前往（自動啟動 7 天冷卻倒數）">
+                        <input
+                          type="checkbox"
+                          class="check-toggle__input"
+                          data-store-id={store.id}
+                        />
+                        <span class="check-toggle__box">
+                          <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <span class="check-toggle__text">已造訪</span>
+                      </label>
 
-                    <div class="store-name-box">
-                      <h3 class="store-name" title={store.name}>
-                        {store.shortName}
-                      </h3>
-                      <span class="store-badge-fami">全家</span>
-                      <span class="store-badge-reported" data-reported-badge={store.id} style="display: none;">已回報</span>
+                      <div class="store-name-box">
+                        <h3 class="store-name" title={store.name}>
+                          {store.shortName}
+                        </h3>
+                        <span class="store-badge-fami">全家</span>
+                        <span class="store-badge-reported" data-reported-badge={store.id} style="display: none;">已回報</span>
+                      </div>
                     </div>
+
+                    <button
+                      type="button"
+                      class="btn-open-store-report btn-card-report"
+                      data-store-id={store.id}
+                      data-store-name={store.name}
+                      data-store-short={store.shortName}
+                      data-store-coords={store.coordsText}
+                      data-store-district={store.district}
+                      title="回報此門市問題或坐標更正"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                      <span>回報</span>
+                    </button>
                   </div>
 
                   <!-- 7-Day Cooldown Notice Banner -->
@@ -692,11 +708,15 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           <div class="report-tabs">
             <button type="button" class="report-tab active" id="tab-store-gps" data-store-tab="gps">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span>提供正確坐標</span>
+              <span>坐標誤差更正</span>
             </button>
             <button type="button" class="report-tab" id="tab-store-closed" data-store-tab="closed">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              <span>門市已歇業 / 搬遷</span>
+              <span>已歇業 / 搬遷</span>
+            </button>
+            <button type="button" class="report-tab" id="tab-store-issue" data-store-tab="issue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>其他門市問題</span>
             </button>
           </div>
 
@@ -742,6 +762,20 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                 class="form-textarea"
                 rows="2"
                 placeholder="例如：現場招牌已拆除、搬遷至同路段對面等..."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Tab Panel: Other Issue -->
+          <div id="store-panel-issue" class="store-tab-panel" style="display: none;">
+            <p class="tab-panel-intro">現場無花苗 / 特別地點、店名不符、大門位置偏差或其他問題回報。</p>
+            <div class="form-group">
+              <label class="form-label" for="store-issue-note">問題說明 <span class="required">*</span></label>
+              <textarea
+                id="store-issue-note"
+                class="form-textarea"
+                rows="3"
+                placeholder="請簡述門市現場狀況（例如：現場無 Pikmin Bloom 特別地點、店名已變更為某某店、大門在轉角另一側...）"
               ></textarea>
             </div>
           </div>
@@ -799,13 +833,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     const storeSuccess = document.getElementById('store-report-success');
     const tabStoreGps = document.getElementById('tab-store-gps');
     const tabStoreClosed = document.getElementById('tab-store-closed');
+    const tabStoreIssue = document.getElementById('tab-store-issue');
     const panelStoreGps = document.getElementById('store-panel-gps');
     const panelStoreClosed = document.getElementById('store-panel-closed');
+    const panelStoreIssue = document.getElementById('store-panel-issue');
     const btnFetchGps = document.getElementById('btn-fetch-current-gps');
     const gpsStatusMsg = document.getElementById('gps-status-msg');
     const inputStoreCoords = document.getElementById('store-corrected-coords');
     const inputStoreGpsNote = document.getElementById('store-gps-note');
     const inputStoreClosedNote = document.getElementById('store-closed-note');
+    const inputStoreIssueNote = document.getElementById('store-issue-note');
     const btnSubmitStore = document.getElementById('btn-submit-store-report');
     let currentStoreData = null;
     let currentStoreTab = 'gps';
@@ -916,29 +953,47 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
     function switchStoreTab(tab) {
       currentStoreTab = tab;
+      [tabStoreGps, tabStoreClosed, tabStoreIssue].forEach(t => t && t.classList.remove('active'));
+      [panelStoreGps, panelStoreClosed, panelStoreIssue].forEach(p => p && (p.style.display = 'none'));
+
       if (tab === 'gps') {
         if (tabStoreGps) tabStoreGps.classList.add('active');
-        if (tabStoreClosed) tabStoreClosed.classList.remove('active');
         if (panelStoreGps) panelStoreGps.style.display = 'block';
-        if (panelStoreClosed) panelStoreClosed.style.display = 'none';
-      } else {
+      } else if (tab === 'closed') {
         if (tabStoreClosed) tabStoreClosed.classList.add('active');
-        if (tabStoreGps) tabStoreGps.classList.remove('active');
         if (panelStoreClosed) panelStoreClosed.style.display = 'block';
-        if (panelStoreGps) panelStoreGps.style.display = 'none';
+      } else if (tab === 'issue') {
+        if (tabStoreIssue) tabStoreIssue.classList.add('active');
+        if (panelStoreIssue) panelStoreIssue.style.display = 'block';
       }
     }
 
     async function submitStoreReport() {
       if (!currentStoreData) return;
-      const isGps = currentStoreTab === 'gps';
-      const correctedCoords = isGps ? (inputStoreCoords ? inputStoreCoords.value.trim() : '') : '';
-      const note = isGps ? (inputStoreGpsNote ? inputStoreGpsNote.value.trim() : '') : (inputStoreClosedNote ? inputStoreClosedNote.value.trim() : '');
+      let rType = '全家門市問題';
+      let correctedCoords = '';
+      let note = '';
 
-      if (isGps && !correctedCoords) {
-        alert('請輸入或使用定位按鈕讀取正確 GPS 座標！');
-        if (inputStoreCoords) inputStoreCoords.focus();
-        return;
+      if (currentStoreTab === 'gps') {
+        rType = '全家坐標更正';
+        correctedCoords = inputStoreCoords ? inputStoreCoords.value.trim() : '';
+        note = inputStoreGpsNote ? inputStoreGpsNote.value.trim() : '';
+        if (!correctedCoords) {
+          alert('請輸入或使用定位按鈕讀取正確 GPS 座標！');
+          if (inputStoreCoords) inputStoreCoords.focus();
+          return;
+        }
+      } else if (currentStoreTab === 'closed') {
+        rType = '全家門市已歇業';
+        note = inputStoreClosedNote ? inputStoreClosedNote.value.trim() : '';
+      } else {
+        rType = '全家門市現場問題';
+        note = inputStoreIssueNote ? inputStoreIssueNote.value.trim() : '';
+        if (!note) {
+          alert('請填寫門市現場問題說明！');
+          if (inputStoreIssueNote) inputStoreIssueNote.focus();
+          return;
+        }
       }
 
       if (btnSubmitStore) {
@@ -951,7 +1006,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         storeName: '全家' + currentStoreData.shortName,
         city: '台北市' + currentStoreData.district,
         originalCoords: currentStoreData.coords,
-        reportType: isGps ? '全家坐標更正' : '全家門市已歇業',
+        reportType: rType,
         correctedCoords: correctedCoords,
         note: note,
         timestamp: new Date().toISOString()
@@ -1499,6 +1554,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       // Store Tabs Switch Listeners
       if (tabStoreGps) tabStoreGps.addEventListener('click', () => switchStoreTab('gps'));
       if (tabStoreClosed) tabStoreClosed.addEventListener('click', () => switchStoreTab('closed'));
+      if (tabStoreIssue) tabStoreIssue.addEventListener('click', () => switchStoreTab('issue'));
 
       // Geolocation Fetch Button Listener
       if (btnFetchGps) {
@@ -3227,6 +3283,44 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     transition: all 0.15s ease;
   }
   .btn-open-route-report:hover {
+    color: #0070C0;
+    background: #E1F0FA;
+    border-color: #93C5FD;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .card-head-left {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .btn-card-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #64748B;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-card-report:hover {
     color: #0070C0;
     background: #E1F0FA;
     border-color: #93C5FD;
