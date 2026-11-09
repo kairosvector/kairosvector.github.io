@@ -146,9 +146,10 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           ))}
         </div>
 
-        <!-- Tier 2: Status Pills Filter -->
-        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
+        <!-- Tier 2: Status Pills Filter (With "玩家回報有" Category) -->
+        <div class="tier-status-bar" role="tablist" aria-label="活動與冷卻狀態篩選">
           <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
+          <button class="status-pill status-pill--has-event" data-status="has_event">🔥 玩家回報有 (<span id="count-has-event">0</span>)</button>
           <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
           <button class="status-pill" data-status="cooling">7 天冷卻中 (<span id="count-cooling">0</span>)</button>
           <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
@@ -162,6 +163,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
             <span id="btn-copy-label">複製目前篩選巡航路徑 (696)</span>
+          </button>
+
+          <button id="btn-open-new-store-modal" class="fm-btn fm-btn--report" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>回報新門市（不在地圖上）</span>
           </button>
 
           <button id="btn-toggle-search" class="fm-btn fm-btn--outline">
@@ -258,7 +267,22 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                         {store.shortName}
                       </h3>
                       <span class="store-badge-fami">全家</span>
+                      <span class="badge-has-event" data-event-badge={store.id} style="display: none;">🔥 玩家回報有</span>
                     </div>
+
+                    <button
+                      type="button"
+                      class="btn-card-report"
+                      data-store-id={store.id}
+                      data-name={store.name}
+                      data-short={store.shortName}
+                      data-district={store.district}
+                      data-coords={store.coordsText}
+                      title="回報這間全家是否有五週年特別地點"
+                    >
+                      <svg class="report-flag-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                      <span class="btn-card-report-text">回報</span>
+                    </button>
                   </div>
 
                   <!-- 7-Day Cooldown Notice Banner -->
@@ -481,6 +505,96 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </section>
 
+    <!-- Card Event Verification Modal -->
+    <div id="fm-card-report-backdrop" class="fm-modal-backdrop" style="display: none;" role="dialog" aria-modal="true">
+      <div class="fm-modal-sheet">
+        <div class="fm-modal-header">
+          <div class="fm-modal-header-left">
+            <span class="fm-modal-badge">門市實測回報</span>
+            <h3 id="fm-card-modal-title" class="fm-modal-title">全家 圓山店</h3>
+            <p id="fm-card-modal-meta" class="fm-modal-sub">中山區  |  25.04849, 121.52070</p>
+          </div>
+          <button type="button" class="fm-modal-close" id="btn-close-card-modal" aria-label="關閉">✕</button>
+        </div>
+
+        <div class="fm-modal-body">
+          <p class="fm-report-prompt">請問這間門市現場是否有 Pikmin Bloom 五週年金色花苗特別地點？</p>
+
+          <div class="fm-choice-grid">
+            <button type="button" class="fm-choice-btn fm-choice--yes" id="btn-choice-yes">
+              <span class="choice-icon">🟢</span>
+              <div class="choice-text-wrap">
+                <span class="choice-title">實測【有】特別地點！</span>
+                <span class="choice-desc">現場有出五週年金色花苗</span>
+              </div>
+            </button>
+            <button type="button" class="fm-choice-btn fm-choice--no" id="btn-choice-no">
+              <span class="choice-icon">❌</span>
+              <div class="choice-text-wrap">
+                <span class="choice-title">實測【沒有】活動</span>
+                <span class="choice-desc">為普通門市，無特別地點</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="fm-form-group">
+            <label for="fm-card-report-note" class="fm-form-label">補充情報 / 備註（選填）：</label>
+            <input type="text" id="fm-card-report-note" class="fm-form-input" placeholder="例如：今天下午刷到、店內有貼海報..." maxlength="60" />
+          </div>
+
+          <button type="button" id="btn-submit-card-report" class="fm-btn-submit" disabled>
+            請先點選上方「有」或「沒有」
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Store Report Modal (Store not on map) -->
+    <div id="fm-new-store-backdrop" class="fm-modal-backdrop" style="display: none;" role="dialog" aria-modal="true">
+      <div class="fm-modal-sheet">
+        <div class="fm-modal-header">
+          <div class="fm-modal-header-left">
+            <span class="fm-modal-badge fm-modal-badge--orange">新門市情報</span>
+            <h3 class="fm-modal-title">回報新門市（不在地圖上）</h3>
+            <p class="fm-modal-sub">在其他縣市或未收錄地區發現有特別地點的全家？歡迎回報！</p>
+          </div>
+          <button type="button" class="fm-modal-close" id="btn-close-new-modal" aria-label="關閉">✕</button>
+        </div>
+
+        <div class="fm-modal-body">
+          <div class="fm-form-group">
+            <label for="fm-new-name" class="fm-form-label">全家門市名稱 <span class="required-star">*必填</span>：</label>
+            <input type="text" id="fm-new-name" class="fm-form-input" placeholder="例如：全家 板橋新站店、全家 台中逢甲店" maxlength="40" required />
+          </div>
+
+          <div class="fm-form-row">
+            <div class="fm-form-group fm-form-half">
+              <label for="fm-new-city" class="fm-form-label">所在縣市／地區（選填）：</label>
+              <input type="text" id="fm-new-city" class="fm-form-input" placeholder="例如：新北市板橋區、台中市西屯區" maxlength="30" />
+            </div>
+
+            <div class="fm-form-group fm-form-half">
+              <label for="fm-new-coords" class="fm-form-label">GPS 座標（選填）：</label>
+              <div class="input-with-action">
+                <input type="text" id="fm-new-coords" class="fm-form-input" placeholder="不知道可留空！" maxlength="40" />
+                <button type="button" id="btn-fetch-new-gps" class="btn-gps-pill" title="抓取目前手機經緯度">📍 目前定位</button>
+              </div>
+            </div>
+          </div>
+          <p class="fm-hint-text">💡 <strong>不知道經緯度請直接留空</strong>，只要店名正確，站長會自動查詢地址與座標補齊！</p>
+
+          <div class="fm-form-group">
+            <label for="fm-new-note" class="fm-form-label">情報來源／活動狀況（選填）：</label>
+            <input type="text" id="fm-new-note" class="fm-form-input" placeholder="例如：朋友說有金色花苗、看 Threads 說的..." maxlength="80" />
+          </div>
+
+          <button type="button" id="btn-submit-new-store" class="fm-btn-submit fm-btn-submit--orange">
+            送出新門市情報 🚀
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Floating Quick Copy Toast -->
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite"></div>
   </div>
@@ -489,10 +603,16 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     const STORAGE_KEY_PREFIX = 'fm_visited_tpe_';
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
+    const FM_REPORT_URL = 'https://script.google.com/macros/s/AKfycbzgtI_7aWF-x5-y3ETnkDLHrb7wXCGeCw8zfZ-2TAMdty-UI6fox2-NR1EKhJhbdNGZLA/exec';
+    const FM_REPORTED_KEY_PREFIX = 'fm_reported_';
+    const FM_HAS_EVENT_KEY_PREFIX = 'fm_has_event_';
 
     let currentDistrict = 'all';
     let currentStatus = 'all';
     let currentSearch = '';
+    let currentCardReportStore = null;
+    let currentCardChoice = null;
+
 
     
     // Version Polling and Force Refresh Logic
@@ -783,7 +903,255 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       showToast(msg || '已複製至剪貼簿');
     }
 
-    // Filter Stores Function
+
+    // ==========================================================================
+    // Reporting System & Event Verification Logic
+    // ==========================================================================
+    function updateEventStatusBadges() {
+      let countHasEvent = 0;
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const storeId = card.getAttribute('data-store-id');
+        const badge = card.querySelector('.badge-has-event');
+        const btnReport = card.querySelector('.btn-card-report');
+        const btnReportText = card.querySelector('.btn-card-report-text');
+
+        const userChoice = localStorage.getItem(FM_HAS_EVENT_KEY_PREFIX + storeId);
+        const isReported = localStorage.getItem(FM_REPORTED_KEY_PREFIX + storeId);
+
+        if (userChoice === 'yes') {
+          card.setAttribute('data-has-event', 'true');
+          if (badge) badge.style.display = 'inline-flex';
+          countHasEvent++;
+        } else {
+          card.removeAttribute('data-has-event');
+          if (badge) badge.style.display = 'none';
+        }
+
+        if (isReported && btnReport) {
+          btnReport.classList.add('is-reported');
+          if (btnReportText) btnReportText.textContent = userChoice === 'yes' ? '實測有' : '實測無';
+        }
+      });
+
+      const countEl = document.getElementById('count-has-event');
+      if (countEl) countEl.textContent = `${countHasEvent}`;
+    }
+
+    function setupReportingHandlers() {
+      // 1. Card Report Modal Triggers
+      const cardBackdrop = document.getElementById('fm-card-report-backdrop');
+      const cardModalTitle = document.getElementById('fm-card-modal-title');
+      const cardModalMeta = document.getElementById('fm-card-modal-meta');
+      const cardNoteInput = document.getElementById('fm-card-report-note');
+      const btnChoiceYes = document.getElementById('btn-choice-yes');
+      const btnChoiceNo = document.getElementById('btn-choice-no');
+      const btnSubmitCard = document.getElementById('btn-submit-card-report');
+      const btnCloseCard = document.getElementById('btn-close-card-modal');
+
+      function openCardModal(store) {
+        currentCardReportStore = store;
+        currentCardChoice = null;
+        if (cardModalTitle) cardModalTitle.textContent = store.name;
+        if (cardModalMeta) cardModalMeta.textContent = `${store.district}  |  ${store.coords}`;
+        if (cardNoteInput) cardNoteInput.value = '';
+        if (btnChoiceYes) btnChoiceYes.classList.remove('selected');
+        if (btnChoiceNo) btnChoiceNo.classList.remove('selected');
+        if (btnSubmitCard) {
+          btnSubmitCard.disabled = true;
+          btnSubmitCard.textContent = '請先點選上方「有」或「沒有」';
+          btnSubmitCard.className = 'fm-btn-submit';
+        }
+        if (cardBackdrop) cardBackdrop.style.display = 'flex';
+      }
+
+      function closeCardModal() {
+        if (cardBackdrop) cardBackdrop.style.display = 'none';
+        currentCardReportStore = null;
+        currentCardChoice = null;
+      }
+
+      document.querySelectorAll('.btn-card-report').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openCardModal({
+            id: btn.getAttribute('data-store-id'),
+            name: btn.getAttribute('data-name'),
+            shortName: btn.getAttribute('data-short'),
+            district: btn.getAttribute('data-district'),
+            coords: btn.getAttribute('data-coords')
+          });
+        });
+      });
+
+      if (btnCloseCard) btnCloseCard.addEventListener('click', closeCardModal);
+      if (cardBackdrop) {
+        cardBackdrop.addEventListener('click', (e) => {
+          if (e.target === cardBackdrop) closeCardModal();
+        });
+      }
+
+      if (btnChoiceYes) {
+        btnChoiceYes.addEventListener('click', () => {
+          currentCardChoice = 'yes';
+          btnChoiceYes.classList.add('selected');
+          if (btnChoiceNo) btnChoiceNo.classList.remove('selected');
+          if (btnSubmitCard) {
+            btnSubmitCard.disabled = false;
+            btnSubmitCard.textContent = '確認送出：實測【有】特別地點！';
+            btnSubmitCard.className = 'fm-btn-submit fm-btn-submit--green';
+          }
+        });
+      }
+
+      if (btnChoiceNo) {
+        btnChoiceNo.addEventListener('click', () => {
+          currentCardChoice = 'no';
+          btnChoiceNo.classList.add('selected');
+          if (btnChoiceYes) btnChoiceYes.classList.remove('selected');
+          if (btnSubmitCard) {
+            btnSubmitCard.disabled = false;
+            btnSubmitCard.textContent = '確認送出：實測【沒有】活動';
+            btnSubmitCard.className = 'fm-btn-submit fm-btn-submit--gray';
+          }
+        });
+      }
+
+      if (btnSubmitCard) {
+        btnSubmitCard.addEventListener('click', () => {
+          if (!currentCardReportStore || !currentCardChoice) return;
+          const store = currentCardReportStore;
+          const choice = currentCardChoice;
+          const note = cardNoteInput ? cardNoteInput.value.trim() : '';
+
+          // Save to LocalStorage
+          localStorage.setItem(FM_REPORTED_KEY_PREFIX + store.id, 'true');
+          localStorage.setItem(FM_HAS_EVENT_KEY_PREFIX + store.id, choice);
+
+          // Update UI
+          updateEventStatusBadges();
+          filterStores();
+          closeCardModal();
+          showToast(`感謝回報！已記錄【${store.shortName || store.name}】為${choice === 'yes' ? '有活動' : '無活動'}`);
+
+          // Send to Google Sheets
+          const payload = {
+            eventType: 'familymart',
+            reportCategory: 'card_verify',
+            storeId: store.id,
+            storeName: store.name,
+            district: store.district,
+            coords: store.coords,
+            hasEvent: choice === 'yes' ? '實測有特別地點' : '實測沒有活動',
+            note: note,
+            timestamp: new Date().toISOString()
+          };
+          try {
+            fetch(FM_REPORT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload)
+            }).catch(() => {});
+          } catch (e) {}
+        });
+      }
+
+      // 2. New Store Modal (Store not on map)
+      const newBackdrop = document.getElementById('fm-new-store-backdrop');
+      const btnOpenNew = document.getElementById('btn-open-new-store-modal');
+      const btnCloseNew = document.getElementById('btn-close-new-modal');
+      const inputNewName = document.getElementById('fm-new-name');
+      const inputNewCity = document.getElementById('fm-new-city');
+      const inputNewCoords = document.getElementById('fm-new-coords');
+      const inputNewNote = document.getElementById('fm-new-note');
+      const btnFetchGps = document.getElementById('btn-fetch-new-gps');
+      const btnSubmitNew = document.getElementById('btn-submit-new-store');
+
+      function openNewModal() {
+        if (inputNewName) inputNewName.value = '';
+        if (inputNewCity) inputNewCity.value = '';
+        if (inputNewCoords) inputNewCoords.value = '';
+        if (inputNewNote) inputNewNote.value = '';
+        if (newBackdrop) newBackdrop.style.display = 'flex';
+        if (inputNewName) inputNewName.focus();
+      }
+
+      function closeNewModal() {
+        if (newBackdrop) newBackdrop.style.display = 'none';
+      }
+
+      if (btnOpenNew) btnOpenNew.addEventListener('click', openNewModal);
+      if (btnCloseNew) btnCloseNew.addEventListener('click', closeNewModal);
+      if (newBackdrop) {
+        newBackdrop.addEventListener('click', (e) => {
+          if (e.target === newBackdrop) closeNewModal();
+        });
+      }
+
+      if (btnFetchGps && inputNewCoords) {
+        btnFetchGps.addEventListener('click', () => {
+          if (!navigator.geolocation) {
+            showToast('您的裝置不支援地理定位');
+            return;
+          }
+          btnFetchGps.textContent = '抓取中...';
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const lat = pos.coords.latitude.toFixed(5);
+              const lng = pos.coords.longitude.toFixed(5);
+              inputNewCoords.value = `${lat}, ${lng}`;
+              btnFetchGps.textContent = '✓ 已帶入';
+              showToast('已成功獲取目前 GPS 座標！');
+            },
+            () => {
+              btnFetchGps.textContent = '定位失敗';
+              showToast('無法取得定位，請直接留空，站長會協助查詢！');
+            },
+            { timeout: 8000 }
+          );
+        });
+      }
+
+      if (btnSubmitNew) {
+        btnSubmitNew.addEventListener('click', () => {
+          const storeName = inputNewName ? inputNewName.value.trim() : '';
+          if (!storeName) {
+            showToast('請務必填寫全家門市名稱！');
+            if (inputNewName) inputNewName.focus();
+            return;
+          }
+          const city = inputNewCity ? inputNewCity.value.trim() : '';
+          const coords = inputNewCoords ? inputNewCoords.value.trim() : '';
+          const note = inputNewNote ? inputNewNote.value.trim() : '';
+
+          closeNewModal();
+          showToast(`感謝回報【${storeName}】！站長會盡速查詢並補齊座標上線！`);
+
+          const payload = {
+            eventType: 'familymart',
+            reportCategory: 'new_store',
+            storeName: storeName,
+            city: city,
+            coords: coords,
+            hasEvent: '新門市情報（回報有）',
+            note: note,
+            timestamp: new Date().toISOString()
+          };
+
+          try {
+            fetch(FM_REPORT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload)
+            }).catch(() => {});
+          } catch (e) {}
+        });
+      }
+    }
+
+    // Filter Stores Function (Supporting "玩家回報有" category)
     function filterStores() {
       const q = currentSearch.trim().toLowerCase();
       let visibleCount = 0;
@@ -794,10 +1162,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const shortName = (card.getAttribute('data-short') || '').toLowerCase();
         const coords = card.getAttribute('data-coords') || '';
         const state = card.getAttribute('data-status-state') || 'todo';
+        const hasEvent = card.getAttribute('data-has-event') === 'true';
 
         const districtMatch = (currentDistrict === 'all' || district === currentDistrict);
         let statusMatch = true;
-        if (currentStatus !== 'all') {
+        if (currentStatus === 'has_event') {
+          statusMatch = hasEvent;
+        } else if (currentStatus !== 'all') {
           statusMatch = (state === currentStatus);
         }
 
@@ -829,7 +1200,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const copyBtn = sec.querySelector('.btn-copy-district-route');
         if (copyBtn) {
           const btnLabel = copyBtn.querySelector('.btn-district-copy-label');
-          const statusText = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+          const statusText = currentStatus === 'has_event' ? '玩家回報有' : (currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : '')));
           if (btnLabel) {
             if (statusText) {
               btnLabel.textContent = `複製【${secDist} · ${statusText}】巡航 (${visibleCards.length})`;
@@ -846,7 +1217,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         let label = `複製目前篩選巡航路徑 (${visibleCount})`;
         if (currentDistrict !== 'all' || currentStatus !== 'all') {
           const distLabel = currentDistrict !== 'all' ? currentDistrict : '台北市';
-          const statusLabel = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+          const statusLabel = currentStatus === 'has_event' ? '玩家回報有' : (currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : '')));
           label = `複製【${distLabel}${statusLabel ? ' · ' + statusLabel : ''}】巡航 (${visibleCount})`;
         }
         btnCopyLabel.textContent = label;
@@ -874,6 +1245,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       }
 
       updateAllStoreStates();
+      updateEventStatusBadges();
+      setupReportingHandlers();
 
       // Checkbox click
       document.querySelectorAll('.check-toggle__input').forEach((cb) => {
@@ -2284,6 +2657,338 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     .version-marquee-box {
       display: none;
     }
+  }
+
+
+  /* -------------------------------------------------------------
+   * Event Verification & Reporting System Styles
+   * ------------------------------------------------------------- */
+  .status-pill--has-event {
+    background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%) !important;
+    color: #FFFFFF !important;
+    border: 1px solid #F97316 !important;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35);
+  }
+  .status-pill--has-event.active {
+    background: #FFD700 !important;
+    color: #7C2D12 !important;
+    border-color: #FBBF24 !important;
+    font-weight: 800;
+  }
+
+  .fm-btn--report {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    color: #FFFFFF !important;
+    border: 1px solid #FBBF24;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  }
+  .fm-btn--report:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  /* Card Head Report Button & Badge */
+  .badge-has-event {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #C2410C;
+    background: #FFEDD5;
+    border: 1px solid #FDBA74;
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-card-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    background: #F1F5F9;
+    color: #64748B;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-card-report:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+    border-color: #94A3B8;
+  }
+  .btn-card-report.is-reported {
+    background: #ECFDF5;
+    color: #059669;
+    border-color: #6EE7B7;
+  }
+
+  /* Modal Backdrops & Sheets */
+  .fm-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    animation: fadeIn 0.2s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .fm-modal-sheet {
+    background: #FFFFFF;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px) scale(0.97); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+
+  .fm-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem 0.85rem;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  .fm-modal-header-left {
+    flex: 1;
+    min-width: 0;
+  }
+  .fm-modal-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #008234;
+    background: #E8F5E9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    margin-bottom: 0.3rem;
+  }
+  .fm-modal-badge--orange {
+    color: #C2410C;
+    background: #FFEDD5;
+  }
+  .fm-modal-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+  }
+  .fm-modal-sub {
+    font-size: 0.82rem;
+    color: #64748B;
+    margin: 0;
+  }
+  .fm-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #94A3B8;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    line-height: 1;
+    margin-left: 0.5rem;
+  }
+  .fm-modal-close:hover {
+    color: #0F172A;
+    background: #F1F5F9;
+  }
+
+  .fm-modal-body {
+    padding: 1.1rem 1.25rem 1.4rem;
+  }
+  .fm-report-prompt {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1E293B;
+    margin: 0 0 1rem;
+    line-height: 1.45;
+  }
+
+  /* Two Big Choice Buttons */
+  .fm-choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .fm-choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.4rem;
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid #E2E8F0;
+    background: #F8FAFC;
+    transition: all 0.2s ease;
+  }
+  .fm-choice-btn .choice-icon {
+    font-size: 1.5rem;
+  }
+  .fm-choice-btn .choice-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #1E293B;
+    line-height: 1.3;
+  }
+  .fm-choice-btn .choice-desc {
+    font-size: 0.76rem;
+    color: #64748B;
+    line-height: 1.3;
+  }
+  .fm-choice-btn:hover {
+    border-color: #CBD5E1;
+    background: #FFFFFF;
+  }
+  .fm-choice--yes.selected {
+    border-color: #00A040 !important;
+    background: #F0FDF4 !important;
+    box-shadow: 0 4px 12px rgba(0, 160, 64, 0.18);
+  }
+  .fm-choice--yes.selected .choice-title {
+    color: #008234 !important;
+  }
+  .fm-choice--no.selected {
+    border-color: #EF4444 !important;
+    background: #FEF2F2 !important;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.18);
+  }
+  .fm-choice--no.selected .choice-title {
+    color: #DC2626 !important;
+  }
+
+  /* Form Elements */
+  .fm-form-group {
+    margin-bottom: 1rem;
+  }
+  .fm-form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 0.35rem;
+  }
+  .required-star {
+    color: #EF4444;
+  }
+  .fm-form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.8rem;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #0F172A;
+    background: #FFFFFF;
+    transition: border-color 0.15s ease;
+  }
+  .fm-form-input:focus {
+    outline: none;
+    border-color: #00A040;
+    box-shadow: 0 0 0 3px rgba(0, 160, 64, 0.15);
+  }
+
+  .fm-form-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .fm-form-half {
+    flex: 1;
+    min-width: 0;
+  }
+  .input-with-action {
+    display: flex;
+    gap: 0.35rem;
+  }
+  .btn-gps-pill {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #CBD5E1;
+    background: #F1F5F9;
+    color: #334155;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .btn-gps-pill:hover {
+    background: #E2E8F0;
+    border-color: #94A3B8;
+  }
+
+  .fm-hint-text {
+    font-size: 0.8rem;
+    color: #059669;
+    background: #ECFDF5;
+    border-left: 3px solid #10B981;
+    padding: 0.4rem 0.65rem;
+    border-radius: 4px;
+    margin: 0.2rem 0 1rem;
+    line-height: 1.45;
+  }
+
+  .fm-btn-submit {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    background: #CBD5E1;
+    color: #64748B;
+    transition: all 0.2s ease;
+  }
+  .fm-btn-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+  .fm-btn-submit--green {
+    background: linear-gradient(135deg, #00A040 0%, #008234 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(0, 160, 64, 0.35);
+  }
+  .fm-btn-submit--green:hover {
+    filter: brightness(1.08);
+  }
+  .fm-btn-submit--gray {
+    background: #475569 !important;
+    color: #FFFFFF !important;
+  }
+  .fm-btn-submit--orange {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
   }
 
 </style>
