@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import stores from '../../../data/fm_taipei_stores.json';
+import hotRoutes from '../../../data/fm_hot_routes.json';
 
 const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 696 店) | GeoSim`;
 const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 696 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
@@ -40,8 +41,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   hideThemeSwitcher={true}
 >
   <div class="fm-page">
-    
-    <!-- Top Sticky Version & Live Update Notification Banner -->
+    <!-- Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) -->
     <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id="1" data-store-count={stores.length}>
       <div class="top-sticky-version-inner">
         <div class="top-sticky-version-left">
@@ -63,6 +63,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </button>
       </div>
     </div>
+    <div class="top-sticky-spacer" aria-hidden="true"></div>
+    
 
     <!-- Top Fixed Hero Header -->
     <header class="fm-hero">
@@ -143,8 +145,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           ))}
         </div>
 
-        <!-- Tier 2: Status Pills Filter -->
-        <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
+        <!-- Tier 2: Status Pills Filter (With "玩家回報有" Category) -->
+        <div class="tier-status-bar" role="tablist" aria-label="活動與冷卻狀態篩選">
           <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
           <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
           <button class="status-pill" data-status="cooling">7 天冷卻中 (<span id="count-cooling">0</span>)</button>
@@ -160,6 +162,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             </svg>
             <span id="btn-copy-label">複製目前篩選巡航路徑 (696)</span>
           </button>
+
 
           <button id="btn-toggle-search" class="fm-btn fm-btn--outline">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -185,6 +188,99 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </div>
       </div>
     </header>
+
+    <!-- Recommended Hot High-Density Routes Section -->
+    <section class="hot-routes-section" id="hot-routes">
+      <div class="fm-container">
+        <div class="hot-routes-header">
+          <div class="hot-routes-title-wrap">
+            <span class="hot-routes-kicker">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 23c-4.97 0-9-4.03-9-9 0-3.8 2.37-7.06 5.75-8.35.5-.19.98.24.91.77-.47 3.51 1.7 4.96 2.34 5.34.4.24.92-.02.94-.49.07-2.1.8-4.52 2.76-6.44.38-.37 1-.16 1.11.35.7 3.25 2.62 4.41 3.19 5.32C20.67 11.66 21 12.8 21 14c0 4.97-4.03 9-9 9z"/></svg>
+              效率專區
+            </span>
+            <h2 class="hot-routes-title">推薦熱門高密度巡航路線</h2>
+          </div>
+          <p class="hot-routes-desc">
+            針對全家 5 週年活動門市，由演算法與玩家精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（含台北 6 大密集商圈 ✕ 日本池袋、沖繩熱門遠征線），一鍵複製或分享至 GeoSim 巡航！
+          </p>
+        </div>
+
+        <div class="hot-routes-grid">
+          {hotRoutes.map((route, rIdx) => (
+            <div class="hot-route-card" data-route-id={route.id}>
+              <div class="hot-route-card__top">
+                <div class="hot-route-badge-row">
+                  <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}40;`}>
+                    {route.tag}
+                  </span>
+                  <span class="hot-route-rank">TOP {rIdx + 1}</span>
+                </div>
+                <h3 class="hot-route-name">{route.title}</h3>
+                <p class="hot-route-subtitle">{route.subtitle}</p>
+              </div>
+
+              <!-- Stats Bar -->
+              <div class="hot-route-stats">
+                <div class="stat-col">
+                  <span class="stat-val stat-val--green">{route.storeCount}</span>
+                  <span class="stat-lbl">間全家門市</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat-col">
+                  <span class="stat-val">{route.totalKm}</span>
+                  <span class="stat-lbl">公里總長</span>
+                </div>
+                <div class="stat-sep"></div>
+                <div class="stat-col">
+                  <span class="stat-val">{route.avgGapMeters}m</span>
+                  <span class="stat-lbl">平均站距</span>
+                </div>
+              </div>
+
+              <p class="hot-route-info">{route.desc}</p>
+
+              <!-- Sample Stores -->
+              <div class="hot-route-samples">
+                <span class="samples-title">精選途經：</span>
+                <div class="samples-pills">
+                  {route.sampleStores.map(name => (
+                    <span class="sample-pill">{name}</span>
+                  ))}
+                  <span class="sample-more">...等 {route.storeCount} 店</span>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="hot-route-actions">
+                <button
+                  type="button"
+                  class="btn-copy-hot-route"
+                  data-route={route.routeText}
+                  data-title={route.title}
+                  data-count={route.storeCount}
+                  title={`複製【${route.title}】所有點位坐標`}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>複製這條路線({route.storeCount}點)</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-apply-geosim-route"
+                  data-route={route.routeText}
+                  data-title={route.title}
+                  data-count={route.storeCount}
+                  title={`分享【${route.title}】至 GeoSim 多點巡航`}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                  <span>套用至GeoSim</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <!-- Main Store List Container -->
     <main class="fm-main">
@@ -491,6 +587,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     let currentStatus = 'all';
     let currentSearch = '';
 
+
     
     // Version Polling and Force Refresh Logic
     let latestRemoteVersion = null;
@@ -532,17 +629,17 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       }
       if (dot) dot.classList.add('has-update');
       if (badge) {
-        badge.textContent = '⚡ 發現新資料！';
+        badge.textContent = '發現新資料！';
         badge.classList.add('has-update');
       }
       if (ticker) {
-        ticker.innerHTML = '<span class="ticker-badge has-update">新發布</span><strong>' + (remote.description || '最新門市資料已更新') + '</strong> ➔ <span style="text-decoration: underline;">點此立即更新</span>';
+        ticker.innerHTML = '<span class="ticker-badge has-update">新發布</span><strong>' + (remote.description || '最新門市資料已更新') + '</strong> &rarr; <span style="text-decoration: underline;">點此立即更新</span>';
         ticker.classList.add('has-update');
       }
       if (btn) {
         btn.classList.add('has-update');
         const label = btn.querySelector('.refresh-label');
-        if (label) label.textContent = '點我立即更新 ↻';
+        if (label) label.textContent = '點我立即更新';
         btn.setAttribute('title', '已有新更新發布，請點此強制重整載入最新點位！');
       }
     }
@@ -780,7 +877,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       showToast(msg || '已複製至剪貼簿');
     }
 
-    // Filter Stores Function
+
+    // Filter Stores Function (Supporting "玩家回報有" category)
     function filterStores() {
       const q = currentSearch.trim().toLowerCase();
       let visibleCount = 0;
@@ -791,6 +889,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         const shortName = (card.getAttribute('data-short') || '').toLowerCase();
         const coords = card.getAttribute('data-coords') || '';
         const state = card.getAttribute('data-status-state') || 'todo';
+        const hasEvent = card.getAttribute('data-has-event') === 'true';
 
         const districtMatch = (currentDistrict === 'all' || district === currentDistrict);
         let statusMatch = true;
@@ -902,6 +1001,60 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           const name = btn.getAttribute('data-name');
           const coords = btn.getAttribute('data-coords');
           launchGeoSim(lat, lng, name, coords);
+        });
+      });
+
+      // 0. Copy Hot Route Queue Button
+      document.querySelectorAll('.btn-copy-hot-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route') || '';
+          const title = btn.getAttribute('data-title') || '熱門路線';
+          const count = btn.getAttribute('data-count') || '';
+          if (!route) return;
+          copyToClipboard(route, `已複製【${title}】${count} 點路線坐標！可直接貼入巡航工具`);
+        });
+      });
+
+      // Apply Route to GeoSim (via Web Share API or JS Bridge)
+      document.querySelectorAll('.btn-apply-geosim-route').forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route') || '';
+          const title = btn.getAttribute('data-title') || '熱門路線';
+          const count = btn.getAttribute('data-count') || '';
+          if (!route) return;
+
+          // 1. AndroidGeoSim WebView Bridge
+          if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setRoute === 'function') {
+            try {
+              window.AndroidGeoSim.setRoute(route);
+              showToast(`已直接將【${title}】(${count}點) 套用至 GeoSim！`);
+              return;
+            } catch (err) {
+              console.warn('AndroidGeoSim setRoute error:', err);
+            }
+          }
+
+          // 2. Web Share API (Android System Share -> User picks GeoSim)
+          const shareData = {
+            title: `GeoSim 巡航路線 - ${title}`,
+            text: route
+          };
+
+          if (navigator.share) {
+            try {
+              await navigator.share(shareData);
+              return;
+            } catch (err) {
+              if (err.name === 'AbortError') {
+                return;
+              }
+            }
+          }
+
+          // 3. Fallback: Copy to clipboard
+          copyToClipboard(route, `已複製【${title}】${count} 點坐標！請至手機 GeoSim 或分享貼上套用。`);
         });
       });
 
@@ -2128,18 +2281,31 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
 
-  /* Top Sticky Version & Live Update Notification Banner */
+  /* Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) */
   .top-sticky-version-wrapper {
-    position: sticky;
-    top: var(--nav-height, 64px);
-    left: 0;
-    right: 0;
+    position: fixed !important;
+    top: var(--nav-height, 64px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 38px !important;
+    z-index: 990 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .top-sticky-spacer {
+    height: 38px;
     width: 100%;
-    z-index: 990;
-    background: #FFFFFF;
-    border-bottom: 1px solid #E2E8F0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    transition: all 0.25s ease;
+  }
+
+  :global(html[data-theme="vibrant"]) .top-sticky-version-wrapper {
+    background: #FFFFFF !important;
+    border-bottom-color: #E2E8F0 !important;
   }
 
   html.is-embed .top-sticky-version-wrapper {
@@ -2154,13 +2320,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
   .top-sticky-version-inner {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0.35rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    min-height: 38px;
+    padding: 0 1rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    height: 100% !important;
   }
 
   .top-sticky-version-left {
@@ -2281,6 +2448,268 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     .version-marquee-box {
       display: none;
     }
+  }
+
+
+  /* -------------------------------------------------------------
+   * Recommended Hot Routes Section (FamilyMart Brand Vibrant Style)
+   * ------------------------------------------------------------- */
+  .hot-routes-section {
+    padding: 2.2rem 0 2rem;
+    background: #F1F5F9;
+    border-bottom: 2px solid var(--fm-border);
+  }
+
+  .hot-routes-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .hot-routes-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+  }
+
+  .hot-routes-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #FEE2E2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .hot-routes-title {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    margin: 0;
+  }
+
+  .hot-routes-desc {
+    font-size: 0.9rem;
+    color: var(--fm-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .hot-routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .hot-routes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hot-route-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--fm-border);
+    border-radius: 14px;
+    padding: 1.35rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .hot-route-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 160, 64, 0.12);
+    border-color: var(--fm-green);
+  }
+
+  .hot-route-card__top {
+    margin-bottom: 0.85rem;
+  }
+
+  .hot-route-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .hot-route-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .hot-route-rank {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #64748B;
+    background: #F1F5F9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .hot-route-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+  }
+
+  .hot-route-subtitle {
+    font-size: 0.82rem;
+    color: var(--fm-muted);
+    margin: 0;
+  }
+
+  .hot-route-stats {
+    display: flex;
+    align-items: center;
+    background: #F8FAFC;
+    border: 1px solid var(--fm-border);
+    border-radius: 10px;
+    padding: 0.65rem 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .stat-col {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-val {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    line-height: 1.2;
+  }
+
+  .stat-val--green {
+    color: var(--fm-green);
+  }
+
+  .stat-lbl {
+    font-size: 0.7rem;
+    color: var(--fm-muted);
+    font-weight: 600;
+    margin-top: 0.15rem;
+  }
+
+  .stat-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--fm-border);
+  }
+
+  .hot-route-info {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 0 0.85rem;
+  }
+
+  .hot-route-samples {
+    margin-bottom: 1.1rem;
+    font-size: 0.78rem;
+  }
+
+  .samples-title {
+    color: var(--fm-muted);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+
+  .samples-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .sample-pill {
+    background: var(--fm-green-light);
+    color: var(--fm-green-dark);
+    border: 1px solid #A5D6A7;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  .sample-more {
+    color: #94A3B8;
+    font-size: 0.72rem;
+  }
+
+  .hot-route-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .btn-copy-hot-route {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: linear-gradient(135deg, var(--fm-green) 0%, var(--fm-green-dark) 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.65rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 160, 64, 0.25);
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .btn-copy-hot-route:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 4px 14px rgba(0, 160, 64, 0.4);
+  }
+
+  .btn-apply-geosim-route {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: linear-gradient(135deg, #0070C0 0%, #005694 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.65rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 112, 192, 0.25);
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .btn-apply-geosim-route:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 4px 14px rgba(0, 112, 192, 0.4);
   }
 
 </style>
