@@ -148,6 +148,9 @@ def analyze():
         ts, name, city, orig_coords, rtype, new_coords, note = r
         if "測試" in name:
             continue
+        # Shield against FamilyMart crowdsourced reports
+        if "全家" in name or "全家" in rtype or "familymart" in rtype.lower() or "familymart" in name.lower() or "特別地點" in rtype:
+            continue
 
         store = match_store(name, city, stores)
         sid = store["id"] if store else None
