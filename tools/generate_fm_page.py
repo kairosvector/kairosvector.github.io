@@ -732,38 +732,39 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
     }
 
-    // Launch GeoSim
-    function launchGeoSim(lat, lng, name, coords) {
-      const LAT = Number(lat).toFixed(7);
-      const LNG = Number(lng).toFixed(7);
-      const encodedName = encodeURIComponent(name);
-      const ua = navigator.userAgent || '';
-      const isAndroid = /Android/i.test(ua);
-
-      if (!isAndroid) {
-        copyToClipboard(coords, `已複製【${name}】座標，可在手機 GeoSim 中貼上定位`);
+    // Launch GeoSim (Identical to CoCo: window.AndroidGeoSim + intent://location?lat=...&lng=...&label=...)
+    async function launchGeoSim(lat, lng, storeName, coordsText) {
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
+        showToast(`已帶入 GeoSim: ${storeName}`);
         return;
       }
+      showToast(`正在開啟 GeoSim (${storeName})...`);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const encodedName = encodeURIComponent(storeName);
+      const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
 
-      showToast(`正在喚醒 GeoSim (${name})...`);
+      if (isAndroid) {
+        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
+        let appOpened = false;
+        const fallbackTimer = setTimeout(() => {
+          if (!appOpened && !document.hidden) {
+            window.location.href = PLAY_STORE_URL;
+          }
+        }, 1800);
 
-      let appOpened = false;
-      const timer = setTimeout(() => {
-        if (!appOpened && !document.hidden) {
-          window.location.href = PLAY_STORE_URL;
-        }
-      }, 1800);
-
-      const onVisibilityChange = () => {
-        if (document.hidden) {
-          appOpened = true;
-          clearTimeout(timer);
-        }
-      };
-      window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
-      window.addEventListener('pagehide', onVisibilityChange, { once: true });
-
-      window.location.href = `intent://teleport?lat=${LAT}&lng=${LNG}&name=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`;
+        const onVisibilityChange = () => {
+          if (document.hidden) {
+            appOpened = true;
+            clearTimeout(fallbackTimer);
+          }
+        };
+        window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+        window.addEventListener('pagehide', onVisibilityChange, { once: true });
+        window.location.href = intentUri;
+      } else {
+        copyToClipboard(coordsText, `已複製【${storeName}】座標，可在手機 GeoSim 中貼上定位`);
+      }
     }
 
     function copyToClipboard(text, msg) {
