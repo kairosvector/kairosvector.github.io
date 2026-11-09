@@ -2732,5 +2732,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     print(f"Generated {target_path} successfully!")
 
 if __name__ == '__main__':
+    import sys
+    # STRICT RULE: Only touch staging by default. Never overwrite production unless explicitly specified via --prod.
     generate_page(is_staging=True)
-    generate_page(is_staging=False)
+    if '--prod' in sys.argv:
+        generate_page(is_staging=False)
+        print('PROD PAGE GENERATED (--prod flag supplied)')
+    else:
+        print('STAGING ONLY: Production (index.astro) protected from overwrite.')
