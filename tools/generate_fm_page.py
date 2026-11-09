@@ -3009,4 +3009,4 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
 if __name__ == '__main__':
     generate_page(is_staging=True)
-    generate_page(is_staging=False)
+    # generate_page(is_staging=False)  # Kept on staging only until confirmed by user
