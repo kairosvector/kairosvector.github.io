@@ -1050,9 +1050,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             reportCategory: 'card_verify',
             storeId: store.id,
             storeName: store.name,
+            city: store.district || '台北市',
             district: store.district,
+            originalCoords: store.coords,
             coords: store.coords,
+            reportType: choice === 'yes' ? '全家實測(有特別地點)' : '全家實測(無活動)',
             hasEvent: choice === 'yes' ? '實測有特別地點' : '實測沒有活動',
+            correctedCoords: '',
             note: note,
             timestamp: new Date().toISOString()
           };
@@ -1141,10 +1145,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           const payload = {
             eventType: 'familymart',
             reportCategory: 'new_store',
-            storeName: storeName,
+            storeId: 'new',
+            storeName: storeName.startsWith('全家') ? storeName : `全家便利商店 ${storeName}`,
             city: city,
+            originalCoords: '',
             coords: coords,
+            reportType: '全家新門市回報(玩家回報有)',
             hasEvent: '新門市情報（回報有）',
+            correctedCoords: coords,
             note: note,
             timestamp: new Date().toISOString()
           };
