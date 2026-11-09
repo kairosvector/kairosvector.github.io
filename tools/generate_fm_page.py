@@ -1,17 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Generator for FamilyMart Pikmin 5th Anniversary Event Page
-Features:
-1. Recommended Hot High-Density Routes (6 major commercial swarm clusters in Taipei)
-2. Complete Taipei City Store Directory (696 stores across 12 districts)
-3. Advanced Search & 7-Day Cooldown Tracker
-4. One-click Route Queue Copy & GeoSim Direct Teleport
-"""
 import os
-import sys
+import json
 
-def generate_page(is_staging=True):
+def generate_page(is_staging=False):
     target_path = 'app/src/pages/events/familymart-pikmin/staging.astro' if is_staging else 'app/src/pages/events/familymart-pikmin/index.astro'
+    os.makedirs(os.path.dirname(target_path), exist_ok=True)
 
     staging_banner = '''<!-- Staging Environment Indicator Banner -->
     <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
@@ -23,8 +15,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import stores from '../../../data/fm_taipei_stores.json';
 import hotRoutes from '../../../data/fm_hot_routes.json';
 
-const title = `全家便利商店 x Pikmin Bloom 五週年黃金巡航地圖 (台北市 696 店) | GeoSim`;
-const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！精選台北市 6 大高密度黃金刷苗圈、696 間門市 GPS 精準座標、12 行政區篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
+const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 696 店) | GeoSim`;
+const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 696 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
 
 // Group stores by district
 const districtOrder = [
@@ -69,7 +61,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           <span class="version-tag" id="version-badge">台北 {stores.length} 店最新</span>
           <div class="version-marquee-box" id="version-marquee-box">
             <span class="version-ticker-text" id="version-ticker">
-              <span class="ticker-badge">最新</span>初始建置 · 台北市 12 行政區 {stores.length} 間全家門市座標全齊
+              <span class="ticker-badge">最新</span>初始建置 · 台北市 12 行政區 {stores.length} 間全家門市
             </span>
           </div>
         </div>
@@ -94,27 +86,133 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           <span class="fm-badge fm-badge--blue">五週年紀念聯名 · 特別地點</span>
           <span class="fm-badge fm-badge--gold">7 款零食金色花苗</span>
         </div>
-        <h1 class="fm-hero__title">
-          全家便利商店 x Pikmin Bloom <span class="fm-title-gradient">五週年巡航地圖</span>
+
+        <h1 class="fm-title">
+          全家便利商店 <span class="fm-title__highlight">台北市 696 店</span> 巡航地圖
         </h1>
-        <p class="fm-hero__desc">
-          2026/11/10 ~ 12/7 期間，全家便利商店門市皆有金色花苗特別地點！為您精算<strong>台北市 6 大高密度黃金巡航圈</strong>與 <strong>696 間門市精準座標</strong>，支援一鍵複製巡航、7 天冷卻倒數與 GeoSim 一鍵直飛。
+
+        <p class="fm-subtitle">
+          活動期間 2026/11/10 ～ 12/07 · 向下滑動特別地點領取五週年金色花苗 · 7 天冷卻追蹤 · 一鍵導入 GeoSim 巡航
         </p>
+
+        <!-- Compact GeoSim Recommendation Card -->
+        <aside class="geosim-compact-ad" aria-label="GeoSim 下載推薦">
+          <div class="ad-icon" aria-hidden="true">
+            <img src="/images/geosim-icon.png" alt="GeoSim App Icon" class="ad-icon-img" width="44" height="44" />
+          </div>
+          <div class="ad-content">
+            <div class="ad-head">
+              <span class="ad-tag">跑店神器 · 免費下載</span>
+              <h2 class="ad-title">人還沒到，定位先到全家門市</h2>
+            </div>
+            <p class="ad-desc">
+              台北市 696 間門市不用手打座標。點一下「用GeoSim直飛」落點到店門口，再開遊戲領取 5 週年金色花苗，跑店快人一步。
+            </p>
+            <div class="ad-action-line">
+              <a class="ad-cta-btn" href={playStoreUrl} target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3v12"></path>
+                  <path d="M6.5 10.5L12 16l5.5-5.5"></path>
+                  <path d="M4 20h16"></path>
+                </svg>
+                免費下載 GeoSim
+              </a>
+              <span class="ad-note">門市卡片點「用GeoSim直飛」，未安裝將自動導向 Google Play</span>
+            </div>
+          </div>
+        </aside>
+
+
+        <!-- Stats Bar -->
+        <div class="fm-stats-bar">
+          <div class="fm-stat-item">
+            <span class="fm-stat-val">696</span>
+            <span class="fm-stat-lbl">台北市全家總數</span>
+          </div>
+          <div class="fm-stat-item">
+            <span class="fm-stat-val">12</span>
+            <span class="fm-stat-lbl">行政區完整覆蓋</span>
+          </div>
+          <div class="fm-stat-item">
+            <span class="fm-stat-val" id="pill-cooling-count">0</span>
+            <span class="fm-stat-lbl">7 天冷卻中</span>
+          </div>
+          <div class="fm-stat-item">
+            <span class="fm-stat-val" id="pill-todo-count">696</span>
+            <span class="fm-stat-lbl">尚未前往</span>
+          </div>
+        </div>
+
+        <!-- Tier 1: 12 Districts Filter Pills -->
+        <div class="tier-district-bar" role="tablist" aria-label="台北市行政區篩選">
+          {districts.map(d => (
+            <button
+              class={`district-pill ${d.id === 'all' ? 'active' : ''}`}
+              data-district={d.id}
+              role="tab"
+              aria-selected={d.id === 'all' ? 'true' : 'false'}
+            >
+              {d.name} <span class="pill-count">{d.count}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Tier 2: Status Pills Filter (With "玩家回報有" Category) -->
+        <div class="tier-status-bar" role="tablist" aria-label="活動與冷卻狀態篩選">
+          <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
+          <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
+          <button class="status-pill" data-status="cooling">7 天冷卻中 (<span id="count-cooling">0</span>)</button>
+          <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
+        </div>
+
+        <!-- Action Tools Bar -->
+        <div class="fm-tools-bar">
+          <button id="btn-copy-filtered-route" class="fm-btn fm-btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="btn-copy-label">複製目前篩選巡航路徑 (696)</span>
+          </button>
+
+
+          <button id="btn-toggle-search" class="fm-btn fm-btn--outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>搜尋門市 / 關鍵字</span>
+          </button>
+        </div>
+
+        <!-- Expandable Search Box -->
+        <div id="fm-search-panel" class="fm-search-panel" style="display: none;">
+          <div class="search-input-wrap">
+            <input
+              type="text"
+              id="fm-search-input"
+              class="fm-search-input"
+              placeholder="搜尋店名（如：市民店）、地址、路名（如：南京東路）或經緯度..."
+              autocomplete="off"
+            />
+            <button id="fm-clear-search" class="fm-clear-btn" type="button" aria-label="清除搜尋">✕</button>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- SECTION 1: Recommended Hot High-Density Routes -->
+    <!-- Recommended Hot High-Density Routes Section -->
     <section class="hot-routes-section" id="hot-routes">
-      <div class="container hot-routes-container">
+      <div class="fm-container">
         <div class="hot-routes-header">
-          <div class="hot-routes-title-box">
+          <div class="hot-routes-title-wrap">
             <span class="hot-routes-kicker">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 23c-4.97 0-9-4.03-9-9 0-3.8 2.37-7.06 5.75-8.35.5-.19.98.24.91.77-.47 3.51 1.7 4.96 2.34 5.34.4.24.92-.02.94-.49.07-2.1.8-4.52 2.76-6.44.38-.37 1-.16 1.11.35.7 3.25 2.62 4.41 3.19 5.32C20.67 11.66 21 12.8 21 14c0 4.97-4.03 9-9 9z"/></svg>
               效率專區
             </span>
             <h2 class="hot-routes-title">推薦熱門高密度巡航路線</h2>
           </div>
-          <p class="hot-routes-subdesc">
+          <p class="hot-routes-desc">
             全家門市眾多，不用盲目奔波！由演算法依最短路徑規劃出台北市密度最高、站距最近的 6 條黃金刷苗圈，一鍵複製隊列直接開刷：
           </p>
         </div>
@@ -122,14 +220,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         <div class="hot-routes-grid">
           {hotRoutes.map((route, rIdx) => (
             <div class="hot-route-card" data-route-id={route.id}>
-              <div class="hot-route-top">
+              <div class="hot-route-card__top">
                 <div class="hot-route-badge-row">
-                  <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}35;`}>
+                  <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}40;`}>
                     {route.tag}
                   </span>
                   <span class="hot-route-rank">TOP {rIdx + 1}</span>
                 </div>
-                <h3 class="hot-route-title">{route.title}</h3>
+                <h3 class="hot-route-name">{route.title}</h3>
                 <p class="hot-route-subtitle">{route.subtitle}</p>
               </div>
 
@@ -151,9 +249,9 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                 </div>
               </div>
 
-              <p class="hot-route-desc">{route.desc}</p>
+              <p class="hot-route-info">{route.desc}</p>
 
-              <!-- Sample Stores Pill Bar -->
+              <!-- Sample Stores -->
               <div class="hot-route-samples">
                 <span class="samples-title">精選途經：</span>
                 <div class="samples-pills">
@@ -174,8 +272,8 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-count={route.storeCount}
                   title="一鍵複製本路線所有門市座標隊列"
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>複製這條巡航隊列</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>複製巡航隊列</span>
                 </button>
 
                 <button
@@ -197,100 +295,38 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </section>
 
-    <!-- SECTION 2: Complete Taipei City Store Directory & Filter -->
+    <!-- Main Store List Container -->
     <main class="fm-main">
-      <div class="container">
-        <!-- Section Title -->
-        <div class="directory-section-header">
-          <div class="directory-title-wrap">
-            <span class="directory-badge">全區查詢</span>
-            <h2 class="directory-title">台北市全區門市查詢與冷卻追蹤</h2>
-          </div>
-          <p class="directory-desc">
-            台北市共 12 行政區、696 間門市。支援店名/地址模糊搜尋、冷卻狀態打勾記錄與行政區一鍵巡航複製：
-          </p>
-        </div>
-
-        <!-- Sticky Controls Bar -->
-        <div class="fm-controls-card">
-          <!-- Search Row -->
-          <div class="fm-search-row">
-            <div class="fm-search-wrap">
-              <svg class="fm-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="text"
-                id="fm-search-input"
-                class="fm-search-input"
-                placeholder="搜尋門市名稱、街道地址（例：市民、中山北路、西門）..."
-                autocomplete="off"
-              />
-              <button id="fm-clear-search" class="fm-clear-btn" type="button" aria-label="清除搜尋" style="display: none;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Tier 1: District Filter Pills (Horizontal Scroll on Mobile) -->
-          <div class="tier-district-bar" role="tablist" aria-label="台北市行政區篩選">
-            {districts.map(d => (
-              <button
-                class={`district-pill ${d.id === 'all' ? 'active' : ''}`}
-                data-district={d.id}
-                role="tab"
-                aria-selected={d.id === 'all' ? 'true' : 'false'}
-              >
-                <span>{d.name}</span>
-                <span class="pill-count">{d.count}</span>
-              </button>
-            ))}
-          </div>
-
-          <!-- Tier 2: Status Pills Filter -->
-          <div class="tier-status-bar" role="tablist" aria-label="冷卻狀態篩選">
-            <button class="status-pill active" data-status="all">全部 ({stores.length})</button>
-            <button class="status-pill" data-status="todo">尚未前往 (<span id="count-todo">{stores.length}</span>)</button>
-            <button class="status-pill" data-status="cooling">7 天冷卻中 (<span id="count-cooling">0</span>)</button>
-            <button class="status-pill" data-status="ready">冷卻完畢 (<span id="count-ready">0</span>)</button>
-          </div>
-
-          <!-- Action Tools Bar -->
-          <div class="fm-tools-bar">
-            <button id="btn-copy-filtered-route" class="fm-btn fm-btn--primary">
-              <svg class="fm-btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span id="btn-copy-label">複製目前篩選巡航路徑 ({stores.length})</span>
-            </button>
-
-            <button id="btn-mark-all-cooling" class="fm-btn fm-btn--outline" title="將目前篩選的門市全部標記為已造訪進入 7 天冷卻">
-              <svg class="fm-btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>目前篩選全部打勾</span>
-            </button>
-
-            <button id="btn-reset-cooldown" class="fm-btn fm-btn--ghost" title="重置本機所有門市的冷卻狀態">
-              <svg class="fm-btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-              <span>重置冷卻記錄</span>
-            </button>
+      <div class="fm-container">
+        <!-- Results Counter & Summary -->
+        <div class="fm-results-bar">
+          <span id="stat-summary-text" class="stat-text">顯示 696 家全家門市</span>
+          <div class="fm-legend">
+            <span class="legend-item"><span class="dot dot-todo"></span>尚未前往</span>
+            <span class="legend-item"><span class="dot dot-cooling"></span>7天冷卻中</span>
+            <span class="legend-item"><span class="dot dot-ready"></span>滿7天可再次領取</span>
           </div>
         </div>
 
-        <!-- Store Groups List (By District) -->
+        <!-- District Sections -->
         {districtGroups.map(group => (
-          <section class="district-section" data-district-section={group.name}>
-            <div class="district-section__header">
-              <div class="district-title-wrap">
+          <section class="district-section" data-district-section={group.name} id={`sec-${group.name}`}>
+            <div class="district-header">
+              <div class="district-header__left">
+                <span class="district-pin-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00A040" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
                 <h2 class="district-title">{group.name}</h2>
-                <span class="district-count-tag">{group.count} 間門市</span>
+                <span class="district-store-count">共 {group.count} 店</span>
               </div>
               <button
-                type="button"
                 class="btn-copy-district-route"
-                data-district-name={group.name}
-                title={`複製【${group.name}】目前門市巡航隊列`}
+                data-district={group.name}
+                title={`複製${group.name}所有門市座標`}
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span class="btn-district-copy-label">複製【{group.name}】巡航 ({group.count})</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span class="btn-district-copy-label">複製【{group.name}】巡航</span>
               </button>
             </div>
 
@@ -301,66 +337,67 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                   data-store-id={store.id}
                   data-district={store.district}
                   data-name={store.name}
-                  data-address={store.address}
+                  data-short={store.shortName}
                   data-lat={store.lat}
                   data-lng={store.lng}
+                  data-coords={store.coordsText}
+                  data-status-state="todo"
                 >
-                  <!-- Card Header -->
-                  <div class="store-card__header">
+                  <!-- Card Header: Cooldown toggle & Store Name -->
+                  <div class="card-head">
+                    <label class="check-toggle" title="勾選標記已前往（自動啟動 7 天冷卻倒數）">
+                      <input
+                        type="checkbox"
+                        class="check-toggle__input"
+                        data-store-id={store.id}
+                      />
+                      <span class="check-toggle__box">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </span>
+                      <span class="check-toggle__text">已造訪</span>
+                    </label>
+
                     <div class="store-name-box">
                       <h3 class="store-name" title={store.name}>
                         {store.shortName}
                       </h3>
                       <span class="store-badge-fami">全家</span>
                     </div>
-
-                    <!-- 7-Day Cooldown Toggle Checkbox -->
-                    <label class="check-toggle" title="標記已造訪並開始 7 天冷卻倒數">
-                      <input
-                        type="checkbox"
-                        class="check-toggle__input"
-                        data-store-id={store.id}
-                        aria-label={`記錄造訪 ${store.shortName} 並啟動 7 天冷卻`}
-                      />
-                      <span class="check-toggle__label">
-                        <span class="check-box-icon">
-                          <svg class="check-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </span>
-                        <span class="check-text">7天冷卻</span>
-                      </span>
-                    </label>
                   </div>
 
                   <!-- 7-Day Cooldown Notice Banner -->
                   <div class="cooldown-banner" style="display: none;">
                     <span class="cooldown-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"></path><path d="M5 2h14"></path><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path></svg></span>
-                    <span class="cooldown-text">7 天冷卻中（剩餘 6 天 23 小時）</span>
+                    <span class="cooldown-text">冷卻中 · 下次可領: <strong class="next-available-date">--/-- --:--</strong></span>
                   </div>
 
-                  <!-- Card Body -->
+                  <!-- Address & GPS Info -->
                   <div class="card-body">
-                    <div class="addr-row" title={store.address}>
-                      <svg class="addr-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                      <span class="addr-text">{store.address}</span>
+                    <div class="addr-row">
+                      <svg class="addr-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                      <span class="addr-text" title={store.address}>{store.address}</span>
                     </div>
 
                     <div class="coord-row">
-                      <span class="coord-tag">GPS</span>
-                      <code class="coord-val">{store.coordsText}</code>
+                      <span class="coord-label">GPS:</span>
+                      <code class="coord-code">{store.coordsText}</code>
                       <button
-                        type="button"
-                        class="btn-copy-single"
+                        class="btn-copy-coord"
                         data-coords={store.coordsText}
                         data-name={store.shortName}
-                        title="複製這間門市的經緯度座標"
+                        title="複製這間店的經緯度座標"
                       >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        <span>複製</span>
+                        複製
                       </button>
                     </div>
                   </div>
 
-                  <!-- Card Actions (Direct Launch & Navigation) -->
+                  <!-- Action Buttons -->
                   <div class="card-actions">
                     <button
                       class="btn-action btn-pikmin btn-launch-pikmin"
@@ -404,21 +441,156 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
         <!-- No Results Fallback -->
         <div id="no-results-box" class="no-results-box" style="display: none;">
-          <div class="no-results-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </div>
-          <h3>找不到符合的台北市全家門市</h3>
-          <p>請嘗試其他關鍵字（例如捷運站名或街道名），或清除搜尋關鍵字。</p>
-          <button id="btn-clear-search-fallback" class="fm-btn fm-btn--outline" type="button">清除篩選條件</button>
+          <p class="no-results-text"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align: middle; margin-right: 4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>查無符合條件的全家門市，請嘗試清除關鍵字或切換行政區篩選。</p>
         </div>
       </div>
     </main>
+
+
+    <!-- GeoSim Introduction Section (Product Spotlight) -->
+    <section id="geosim-intro" class="geosim-intro-section">
+      <div class="fm-container">
+        <div class="geosim-intro-card">
+          <div class="geosim-intro-header">
+            <div class="geosim-intro-logo">
+              <img
+                src="/images/geosim-icon.png"
+                alt="GeoSim App Icon"
+                width="72"
+                height="72"
+                class="geosim-app-img"
+              />
+            </div>
+            <div class="geosim-intro-heading">
+              <span class="badge badge--geosim">推薦搭配工具</span>
+              <h2 class="geosim-intro-title">GeoSim — 自由定位，探索無界限</h2>
+              <p class="geosim-intro-tagline">
+                專為 Android 打造的 GPS 位置模擬與路線規劃測試工具。適合遊戲玩家探索地圖、收集五週年全家飾品皮克敏，以及開發者測試位置服務。
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature Columns for Pikmin Players -->
+          <div class="geosim-features-grid">
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">懸浮虛擬搖桿</h3>
+              <p class="feature-item__desc">
+                遊戲上方懸浮覆蓋控制面板，支援隨意拖曳與 360 度方向控制，自訂行走速度（1~24 km/h），在家也能自然散步。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">依線巡航與自動折返</h3>
+              <p class="feature-item__desc">
+                貼入多間門市座標即可自動連成路徑，支援平滑速度前進與自動循環，輕鬆達成「走 2,000 步」地點挑戰。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                  <line x1="8" y1="2" x2="8" y2="18"></line>
+                  <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">區內漫步隨機遊走</h3>
+              <p class="feature-item__desc">
+                在地圖選定 3 個以上頂點繪製多邊形區域，自動在範圍內隨機自然漫步，模擬最真實的戶外散步走動軌跡。
+              </p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-item__icon-wrap">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="feature-item__title">自訂書籤與純點庫</h3>
+              <p class="feature-item__desc">
+                支援建立景點資料夾、標籤分類與匯入匯出備份。官方更提供全台純點座標庫與每週主題巡航專欄。
+              </p>
+            </div>
+          </div>
+
+          <!-- Download Action Bar -->
+          <div class="geosim-intro-actions">
+            <a
+              href={playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-playstore"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 1.329-2.822 1.634-2.116-2.116 2.636-2.847zm-4.529-4.528L4.864 1.367 15.8 7.7l-2.63 2.88z"/>
+              </svg>
+              前往 Google Play 免費下載 GeoSim
+            </a>
+            <a href="/geosim" class="btn-geosim-outline">
+              閱讀 GeoSim 完整功能介紹
+            </a>
+            <a href="/geosim/spot-map" class="btn-geosim-ghost">
+              探索全球純點座標庫
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section id="how-to-use" class="how-to-use-section">
+      <div class="fm-container">
+        <div class="how-to-use-card">
+          <h2 class="how-to-use__title">如何在全家活動中搭配 GeoSim 使用</h2>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-card__number">1</div>
+              <h3 class="step-card__title">用GeoSim直飛（自動導向商店）</h3>
+              <p>
+                在手機瀏覽器點擊門市卡片上的 <strong>「用GeoSim直飛」</strong> 按鈕，系統將直接啟動 App 並定位在該門市。若尚未安裝，將自動前往 Google Play 商店下載。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">2</div>
+              <h3 class="step-card__title">複製座標貼上</h3>
+              <p>
+                點擊卡片上的 <strong>「複製」</strong>，經緯度直接複製進剪貼簿。切換到 GeoSim 主畫面或懸浮控制器的搜尋欄即可貼上前往。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">3</div>
+              <h3 class="step-card__title">整區巡航自動走 2,000 步</h3>
+              <p>
+                點擊各區頂部的 <strong>「複製巡航」</strong> 或頂部 <strong>「複製目前篩選巡航路徑」</strong>，可一次取得所有門市路徑。貼入 GeoSim 的「依線巡航」，自動掛機散步 2,000 步並依序抵達門市領花苗。
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-card__number">4</div>
+              <h3 class="step-card__title">7 天冷卻打卡記錄</h3>
+              <p>
+                每刷完一間門市，勾選 <strong>「已造訪」</strong>，手機會自動記錄日期並鎖定 7 天倒數，下次可刷日期一清二楚。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Floating Quick Copy Toast -->
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite"></div>
   </div>
 
-  <!-- Client Script -->
   <script is:inline>
     const STORAGE_KEY_PREFIX = 'fm_visited_tpe_';
     const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
@@ -428,28 +600,36 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     let currentStatus = 'all';
     let currentSearch = '';
 
-    // ==========================================================================
-    // Force Refresh & Version Checking Logic
-    // ==========================================================================
-    function triggerForceRefresh() {
-      const btn = document.getElementById('btn-force-refresh');
-      if (btn) btn.classList.add('is-refreshing');
 
-      const url = new URL(window.location.href);
-      url.searchParams.set('_t', Date.now().toString());
-
-      if ('caches' in window) {
-        caches.keys().then((names) => {
-          return Promise.all(names.map((n) => caches.delete(n)));
-        }).catch(() => {}).finally(() => {
-          window.location.replace(url.toString());
-        });
-      } else {
-        window.location.replace(url.toString());
-      }
+    
+    // Version Polling and Force Refresh Logic
+    let latestRemoteVersion = null;
+    const btnForceRefresh = document.getElementById('btn-force-refresh');
+    if (btnForceRefresh) {
+      btnForceRefresh.addEventListener('click', function (e) {
+        e.stopPropagation();
+        triggerForceRefresh();
+      });
     }
 
-    function showUpdateBanner(remote) {
+    function triggerForceRefresh() {
+      if (btnForceRefresh) {
+        btnForceRefresh.classList.add('is-refreshing');
+        const label = btnForceRefresh.querySelector('.refresh-label');
+        if (label) label.textContent = '載入最新中...';
+      }
+      showToast('正在強制清除快取並載入最新點位...');
+      const u = new URL(window.location.href);
+      const targetVer = latestRemoteVersion || '1.0';
+      u.searchParams.set('v', targetVer);
+      u.searchParams.set('t', Date.now().toString());
+      setTimeout(function () {
+        window.location.href = u.toString();
+      }, 250);
+    }
+
+    function applyRemoteUpdateNotice(remote) {
+      latestRemoteVersion = remote.version || remote.batch_id;
       const card = document.getElementById('fm-version-card');
       const dot = document.getElementById('version-dot');
       const badge = document.getElementById('version-badge');
@@ -483,70 +663,275 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       const localBatch = parseInt(card.getAttribute('data-batch-id') || '0', 10);
       const localCount = parseInt(card.getAttribute('data-store-count') || '0', 10);
 
-      fetch('/events/fm-meta.json?t=' + Date.now(), { cache: 'no-cache' })
-        .then((res) => {
-          if (!res.ok) throw new Error('No remote meta');
-          return res.json();
-        })
-        .then((remote) => {
-          if (remote.batchId > localBatch || remote.storeCount > localCount) {
-            showUpdateBanner(remote);
+      fetch('/events/fm-version.json')
+        .then(function (res) { return res.json(); })
+        .then(function (remote) {
+          if (!remote || !remote.batch_id) return;
+          if (remote.batch_id > localBatch || remote.store_count > localCount) {
+            applyRemoteUpdateNotice(remote);
           }
         })
-        .catch(() => {});
+        .catch(function () {});
     }
 
-    // ==========================================================================
-    // Toast Notification
-    // ==========================================================================
+    // Smart version detection: Check once on load
+    checkRemoteVersion();
+
+    // Check when user resumes the tab (throttled to at least 60s)
+    let lastVersionCheck = Date.now();
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden && (Date.now() - lastVersionCheck > 60000)) {
+        lastVersionCheck = Date.now();
+        checkRemoteVersion();
+      }
+    });
+
+    // Gentle passive interval (every 5 minutes, ONLY when tab is visible)
+    setInterval(function() {
+      if (!document.hidden) {
+        lastVersionCheck = Date.now();
+        checkRemoteVersion();
+      }
+    }, 300000);
+
+    const toast = document.getElementById('copy-toast');
     let toastTimer = null;
+
     function showToast(msg) {
-      const toast = document.getElementById('copy-toast');
       if (!toast) return;
       toast.textContent = msg;
       toast.classList.add('show');
-      if (toastTimer) clearTimeout(toastTimer);
+      clearTimeout(toastTimer);
       toastTimer = setTimeout(() => {
         toast.classList.remove('show');
-      }, 3000);
+      }, 2400);
     }
 
-    // ==========================================================================
-    // Filter Stores Function
-    // ==========================================================================
-    function filterStores() {
-      let visibleCount = 0;
-      const term = currentSearch.toLowerCase().trim();
+    // Visited & 7-Day Cooldown state in localStorage
+    function getVisitedTime(storeId) {
+      try {
+        const val = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
+        return val ? parseInt(val, 10) : 0;
+      } catch (e) {
+        return 0;
+      }
+    }
 
+    function setVisited(storeId, isVisited) {
+      try {
+        if (isVisited) {
+          localStorage.setItem(STORAGE_KEY_PREFIX + storeId, Date.now().toString());
+        } else {
+          localStorage.removeItem(STORAGE_KEY_PREFIX + storeId);
+        }
+      } catch (e) {}
+      updateAllStoreStates();
+      filterStores();
+    }
+
+    function formatDate(ms) {
+      const d = new Date(ms);
+      return `${d.getMonth() + 1}/${d.getDate()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    }
+
+    function updateAllStoreStates() {
+      const now = Date.now();
+      let countTodo = 0;
+      let countCooling = 0;
+      let countReady = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const storeId = card.getAttribute('data-store-id');
+        const visitedTime = getVisitedTime(storeId);
+        const checkbox = card.querySelector('.check-toggle__input');
+        const banner = card.querySelector('.cooldown-banner');
+        const dateSpan = card.querySelector('.next-available-date');
+
+        if (!visitedTime) {
+          card.classList.remove('is-visited', 'is-cooling', 'is-ready');
+          card.setAttribute('data-status-state', 'todo');
+          if (checkbox) checkbox.checked = false;
+          if (banner) banner.style.display = 'none';
+          countTodo++;
+        } else if (now - visitedTime < SEVEN_DAYS_MS) {
+          card.classList.add('is-visited', 'is-cooling');
+          card.classList.remove('is-ready');
+          card.setAttribute('data-status-state', 'cooling');
+          if (checkbox) checkbox.checked = true;
+          if (banner) {
+            banner.style.display = 'flex';
+            banner.className = 'cooldown-banner is-cooling-badge';
+            const nextDate = visitedTime + SEVEN_DAYS_MS;
+            if (dateSpan) dateSpan.textContent = formatDate(nextDate);
+          }
+          countCooling++;
+        } else {
+          card.classList.add('is-visited', 'is-ready');
+          card.classList.remove('is-cooling');
+          card.setAttribute('data-status-state', 'ready');
+          if (checkbox) checkbox.checked = false;
+          if (banner) {
+            banner.style.display = 'flex';
+            banner.className = 'cooldown-banner is-ready-badge';
+            if (dateSpan) dateSpan.textContent = '滿 7 天可再次領取！';
+          }
+          countReady++;
+        }
+      });
+
+      // Update Top Status Counter
+      const elCoolingTop = document.getElementById('pill-cooling-count');
+      const elTodoTop = document.getElementById('pill-todo-count');
+      if (elCoolingTop) elCoolingTop.textContent = `${countCooling}`;
+      if (elTodoTop) elTodoTop.textContent = `${countTodo}`;
+
+      const elTodo = document.getElementById('count-todo');
+      const elCooling = document.getElementById('count-cooling');
+      const elReady = document.getElementById('count-ready');
+      if (elTodo) elTodo.textContent = `${countTodo}`;
+      if (elCooling) elCooling.textContent = `${countCooling}`;
+      if (elReady) elReady.textContent = `${countReady}`;
+    }
+
+    // Launch Pikmin Bloom
+    function openInPikmin(lat, lng) {
+      const LAT = Number(lat).toFixed(7);
+      const LNG = Number(lng).toFixed(7);
+      const ua = navigator.userAgent || '';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+      const playStore = 'https://play.google.com/store/apps/details?id=com.nianticlabs.pikmin';
+      const appStore = 'https://apps.apple.com/app/id1492797348';
+      const fallbackUrl = isIOS ? appStore : playStore;
+
+      showToast('正在開啟 Pikmin Bloom...');
+
+      let appOpened = false;
+      const fallbackTimer = setTimeout(() => {
+        if (!appOpened && !document.hidden) {
+          window.location.href = fallbackUrl;
+        }
+      }, 1800);
+
+      const onVisibilityChange = () => {
+        if (document.hidden) {
+          appOpened = true;
+          clearTimeout(fallbackTimer);
+        }
+      };
+      window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+      window.addEventListener('pagehide', onVisibilityChange, { once: true });
+
+      if (isAndroid) {
+        location.href = 'intent:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG
+          + '#Intent;scheme=pikminbloom;package=com.nianticlabs.pikmin;S.browser_fallback_url=' + encodeURIComponent(playStore) + ';end';
+        return;
+      }
+      location.href = 'pikminbloom:///WIDE_AREA_MAP?LATITUDE=' + LAT + '&LONGITUDE=' + LNG;
+    }
+
+    // Launch GeoSim (Identical to CoCo: window.AndroidGeoSim + intent://location?lat=...&lng=...&label=...)
+    async function launchGeoSim(lat, lng, storeName, coordsText) {
+      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
+        window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), storeName);
+        showToast(`已帶入 GeoSim: ${storeName}`);
+        return;
+      }
+      showToast(`正在開啟 GeoSim (${storeName})...`);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      const encodedName = encodeURIComponent(storeName);
+      const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
+
+      if (isAndroid) {
+        const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
+        let appOpened = false;
+        const fallbackTimer = setTimeout(() => {
+          if (!appOpened && !document.hidden) {
+            window.location.href = PLAY_STORE_URL;
+          }
+        }, 1800);
+
+        const onVisibilityChange = () => {
+          if (document.hidden) {
+            appOpened = true;
+            clearTimeout(fallbackTimer);
+          }
+        };
+        window.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+        window.addEventListener('pagehide', onVisibilityChange, { once: true });
+        window.location.href = intentUri;
+      } else {
+        copyToClipboard(coordsText, `已複製【${storeName}】座標，可在手機 GeoSim 中貼上定位`);
+      }
+    }
+
+    function copyToClipboard(text, msg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast(msg || '已複製至剪貼簿'))
+          .catch(() => fallbackCopy(text, msg));
+      } else {
+        fallbackCopy(text, msg);
+      }
+    }
+
+    function fallbackCopy(text, msg) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+      } catch (e) {}
+      document.body.removeChild(ta);
+      showToast(msg || '已複製至剪貼簿');
+    }
+
+
+    // Filter Stores Function (Supporting "玩家回報有" category)
+    function filterStores() {
+      const q = currentSearch.trim().toLowerCase();
+      let visibleCount = 0;
+
+      document.querySelectorAll('.store-card').forEach((card) => {
+        const district = card.getAttribute('data-district') || '';
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const shortName = (card.getAttribute('data-short') || '').toLowerCase();
+        const coords = card.getAttribute('data-coords') || '';
+        const state = card.getAttribute('data-status-state') || 'todo';
+        const hasEvent = card.getAttribute('data-has-event') === 'true';
+
+        const districtMatch = (currentDistrict === 'all' || district === currentDistrict);
+        let statusMatch = true;
+        if (currentStatus !== 'all') {
+          statusMatch = (state === currentStatus);
+        }
+
+        let searchMatch = true;
+        if (q) {
+          searchMatch = name.includes(q) || shortName.includes(q) || coords.includes(q) || district.includes(q);
+        }
+
+        if (districtMatch && statusMatch && searchMatch) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Show/Hide District Sections
       document.querySelectorAll('.district-section').forEach((sec) => {
         const secDist = sec.getAttribute('data-district-section');
-        const isDistMatch = (currentDistrict === 'all' || currentDistrict === secDist);
-
-        let distVisibleCount = 0;
-        const visibleCards = [];
-
-        sec.querySelectorAll('.store-card').forEach((card) => {
-          const sName = (card.getAttribute('data-name') || '').toLowerCase();
-          const sAddr = (card.getAttribute('data-address') || '').toLowerCase();
-          const sStatus = card.getAttribute('data-status-state') || 'todo';
-
-          const isSearchMatch = !term || sName.includes(term) || sAddr.includes(term) || secDist.includes(term);
-          const isStatusMatch = (currentStatus === 'all' || currentStatus === sStatus);
-
-          if (isDistMatch && isSearchMatch && isStatusMatch) {
-            card.style.display = 'flex';
-            distVisibleCount++;
-            visibleCount++;
-            visibleCards.push(card);
-          } else {
-            card.style.display = 'none';
-          }
-        });
-
-        if (distVisibleCount > 0) {
-          sec.style.display = 'block';
-        } else {
+        const visibleCards = Array.from(sec.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none');
+        const anyVisible = visibleCards.length > 0;
+        if (currentDistrict !== 'all' && secDist !== currentDistrict) {
           sec.style.display = 'none';
+        } else {
+          sec.style.display = anyVisible ? '' : 'none';
         }
 
         // Update district section copy button label
@@ -576,241 +961,54 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         btnCopyLabel.textContent = label;
       }
 
-      // No results fallback
+      const statText = document.getElementById('stat-summary-text');
+      if (statText) statText.textContent = `顯示 ${visibleCount} 家全家門市`;
+
       const noResults = document.getElementById('no-results-box');
-      if (noResults) {
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-      }
+      if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
-    // ==========================================================================
-    // Update Cooldown State for Store Card
-    // ==========================================================================
-    function updateCardState(card, storeId) {
-      const recordStr = localStorage.getItem(STORAGE_KEY_PREFIX + storeId);
-      const cb = card.querySelector('.check-toggle__input');
-      const banner = card.querySelector('.cooldown-banner');
-      const bannerText = card.querySelector('.cooldown-text');
-
-      if (!recordStr) {
-        card.setAttribute('data-status-state', 'todo');
-        if (cb) cb.checked = false;
-        if (banner) banner.style.display = 'none';
-        return 'todo';
-      }
-
-      const visitedTime = parseInt(recordStr, 10);
-      const now = Date.now();
-      const elapsed = now - visitedTime;
-
-      if (elapsed < SEVEN_DAYS_MS) {
-        card.setAttribute('data-status-state', 'cooling');
-        if (cb) cb.checked = true;
-        if (banner) {
-          banner.style.display = 'flex';
-          banner.className = 'cooldown-banner is-cooling-badge';
-          const remainingMs = SEVEN_DAYS_MS - elapsed;
-          const remainingDays = Math.floor(remainingMs / (24 * 60 * 60 * 1000));
-          const remainingHours = Math.floor((remainingMs % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-          if (bannerText) {
-            bannerText.textContent = `7 天冷卻中（剩餘 ${remainingDays} 天 ${remainingHours} 小時）`;
+    function setupEventListeners() {
+      // Mouse Wheel Horizontal Scroll Support on Desktop when scrollable
+      const districtBar = document.querySelector('.tier-district-bar');
+      if (districtBar) {
+        districtBar.addEventListener('wheel', (e) => {
+          if (districtBar.scrollWidth > districtBar.clientWidth) {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+              e.preventDefault();
+              districtBar.scrollLeft += e.deltaY;
+            }
           }
-        }
-        return 'cooling';
-      } else {
-        card.setAttribute('data-status-state', 'ready');
-        if (cb) cb.checked = true;
-        if (banner) {
-          banner.style.display = 'flex';
-          banner.className = 'cooldown-banner is-ready-badge';
-          if (bannerText) {
-            bannerText.textContent = `冷卻完畢！可再次前往領取`;
-          }
-        }
-        return 'ready';
+        }, { passive: false });
       }
-    }
 
-    function updateAllStoreStates() {
-      let countTodo = 0;
-      let countCooling = 0;
-      let countReady = 0;
+      updateAllStoreStates();
 
-      document.querySelectorAll('.store-card').forEach((card) => {
-        const sid = card.getAttribute('data-store-id');
-        const st = updateCardState(card, sid);
-        if (st === 'todo') countTodo++;
-        else if (st === 'cooling') countCooling++;
-        else if (st === 'ready') countReady++;
-      });
-
-      const elTodo = document.getElementById('count-todo');
-      const elCooling = document.getElementById('count-cooling');
-      const elReady = document.getElementById('count-ready');
-
-      if (elTodo) elTodo.textContent = `${countTodo}`;
-      if (elCooling) elCooling.textContent = `${countCooling}`;
-      if (elReady) elReady.textContent = `${countReady}`;
-    }
-
-    // ==========================================================================
-    // Event Handlers Setup
-    // ==========================================================================
-    function setupEventHandlers() {
-      // 1. Copy Hot Route Queue Button
-      document.querySelectorAll('.btn-copy-hot-route').forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const route = btn.getAttribute('data-route') || '';
-          const title = btn.getAttribute('data-title') || '熱門路線';
-          const count = btn.getAttribute('data-count') || '';
-          if (!route) return;
-          navigator.clipboard.writeText(route).then(() => {
-            showToast(`已成功複製【${title}】${count} 間全家巡航隊列！`);
-          }).catch(() => {
-            showToast('複製失敗，請手動複製');
-          });
-        });
-      });
-
-      // 2. Cooldown Checkbox toggle
+      // Checkbox click
       document.querySelectorAll('.check-toggle__input').forEach((cb) => {
         cb.addEventListener('change', (e) => {
-          const sid = cb.getAttribute('data-store-id');
-          const card = cb.closest('.store-card');
-          if (cb.checked) {
-            localStorage.setItem(STORAGE_KEY_PREFIX + sid, Date.now().toString());
-          } else {
-            localStorage.removeItem(STORAGE_KEY_PREFIX + sid);
-          }
-          if (card) updateCardState(card, sid);
-          updateAllStoreStates();
-          filterStores();
+          const storeId = e.target.getAttribute('data-store-id');
+          setVisited(storeId, e.target.checked);
         });
       });
 
-      // 3. Search Input
-      const searchInput = document.getElementById('fm-search-input');
-      const clearBtn = document.getElementById('fm-clear-search');
-      if (searchInput) {
-        searchInput.addEventListener('input', () => {
-          currentSearch = searchInput.value;
-          if (clearBtn) clearBtn.style.display = currentSearch ? 'inline-flex' : 'none';
-          filterStores();
-        });
-      }
-      if (clearBtn && searchInput) {
-        clearBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          currentSearch = '';
-          clearBtn.style.display = 'none';
-          filterStores();
-          searchInput.focus();
-        });
-      }
-
-      // 4. District Pill Click
-      document.querySelectorAll('.district-pill').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.district-pill').forEach((b) => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-          currentDistrict = btn.getAttribute('data-district') || 'all';
-          filterStores();
-        });
-      });
-
-      // 5. Status Pill Click
-      document.querySelectorAll('.status-pill').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.status-pill').forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentStatus = btn.getAttribute('data-status') || 'all';
-          filterStores();
-        });
-      });
-
-      // 6. Copy Filtered Route
-      const btnCopyFiltered = document.getElementById('btn-copy-filtered-route');
-      if (btnCopyFiltered) {
-        btnCopyFiltered.addEventListener('click', () => {
-          const coordsList = [];
-          document.querySelectorAll('.store-card').forEach((card) => {
-            if (card.style.display !== 'none') {
-              const lat = card.getAttribute('data-lat');
-              const lng = card.getAttribute('data-lng');
-              if (lat && lng) coordsList.push(`${lat},${lng}`);
-            }
-          });
-          if (coordsList.length === 0) {
-            showToast('目前篩選無門市可複製');
-            return;
-          }
-          const text = coordsList.join(' ');
-          navigator.clipboard.writeText(text).then(() => {
-            showToast(`已複製目前篩選的 ${coordsList.length} 間全家門市巡航隊列！`);
-          }).catch(() => {
-            showToast('複製失敗，請手動複製');
-          });
-        });
-      }
-
-      // 7. District Header Copy Route
-      document.querySelectorAll('.btn-copy-district-route').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const sec = btn.closest('.district-section');
-          if (!sec) return;
-          const distName = btn.getAttribute('data-district-name') || '';
-          const coordsList = [];
-          sec.querySelectorAll('.store-card').forEach((card) => {
-            if (card.style.display !== 'none') {
-              const lat = card.getAttribute('data-lat');
-              const lng = card.getAttribute('data-lng');
-              if (lat && lng) coordsList.push(`${lat},${lng}`);
-            }
-          });
-          if (coordsList.length === 0) {
-            showToast(`【${distName}】目前篩選無門市可複製`);
-            return;
-          }
-          const text = coordsList.join(' ');
-          navigator.clipboard.writeText(text).then(() => {
-            showToast(`已複製【${distName}】${coordsList.length} 間門市巡航隊列！`);
-          }).catch(() => {
-            showToast('複製失敗，請手動複製');
-          });
-        });
-      });
-
-      // 8. Single Copy Button
-      document.querySelectorAll('.btn-copy-single').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const coords = btn.getAttribute('data-coords') || '';
-          const name = btn.getAttribute('data-name') || '';
-          navigator.clipboard.writeText(coords).then(() => {
-            showToast(`已複製【${name}】座標 (${coords})`);
-          }).catch(() => {
-            showToast('複製失敗');
-          });
-        });
-      });
-
-      // 9. Launch Pikmin Bloom
+      // Launch Pikmin Bloom
       document.querySelectorAll('.btn-launch-pikmin').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lat = btn.getAttribute('data-lat');
-          const lng = btn.getAttribute('data-lng');
-          const name = btn.getAttribute('data-name');
-          launchPikminBloom(lat, lng, name);
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lat = parseFloat(btn.getAttribute('data-lat'));
+          const lng = parseFloat(btn.getAttribute('data-lng'));
+          const name = btn.getAttribute('data-name') || '';
+          if (!isNaN(lat) && !isNaN(lng)) {
+            openInPikmin(lat, lng);
+          }
         });
       });
 
-      // 10. Launch GeoSim Direct
+      // Launch GeoSim
       document.querySelectorAll('.btn-launch-geosim').forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
           const lat = btn.getAttribute('data-lat');
           const lng = btn.getAttribute('data-lng');
           const name = btn.getAttribute('data-name');
@@ -819,982 +1017,686 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         });
       });
 
-      // 11. Mark All Currently Filtered as Visited
-      const btnMarkAll = document.getElementById('btn-mark-all-cooling');
-      if (btnMarkAll) {
-        btnMarkAll.addEventListener('click', () => {
-          const visible = [];
-          document.querySelectorAll('.store-card').forEach((card) => {
-            if (card.style.display !== 'none') {
-              visible.push(card.getAttribute('data-store-id'));
-            }
-          });
-          if (visible.length === 0) {
-            showToast('目前無可標記之門市');
-            return;
+      // 0. Copy Hot Route Queue Button
+      document.querySelectorAll('.btn-copy-hot-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const route = btn.getAttribute('data-route') || '';
+          const title = btn.getAttribute('data-title') || '熱門路線';
+          const count = btn.getAttribute('data-count') || '';
+          if (!route) return;
+          copyToClipboard(route, `已成功複製【${title}】${count} 間全家巡航隊列！`);
+        });
+      });
+
+      // Copy Single Coordinate
+      document.querySelectorAll('.btn-copy-coord').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const coords = btn.getAttribute('data-coords');
+          const name = btn.getAttribute('data-name');
+          copyToClipboard(coords, `已複製【${name}】座標 (${coords})`);
+        });
+      });
+
+      // Copy District Route Button
+      document.querySelectorAll('.btn-copy-district-route').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const dist = btn.getAttribute('data-district');
+          const sec = document.getElementById('sec-' + dist);
+          if (!sec) return;
+          const visibleCards = Array.from(sec.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none');
+          if (visibleCards.length > 0) {
+            const dynamicRoute = visibleCards.map(c => c.getAttribute('data-coords')).filter(Boolean).join('\\n');
+            const statusLabel = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+            const desc = statusLabel ? `【${dist} · ${statusLabel}】(共 ${visibleCards.length} 店)` : `【${dist}】(共 ${visibleCards.length} 店)`;
+            copyToClipboard(dynamicRoute, `已複製${desc}巡航路徑，可貼入 GeoSim`);
+          } else {
+            showToast(`目前【${dist}】沒有符合篩選條件的門市`);
           }
-          if (confirm(`確定要將目前篩選出的 ${visible.length} 間門市全部標記為「已造訪（進入 7 天冷卻）」嗎？`)) {
-            const now = Date.now().toString();
-            visible.forEach((sid) => {
-              localStorage.setItem(STORAGE_KEY_PREFIX + sid, now);
-            });
-            updateAllStoreStates();
-            filterStores();
-            showToast(`已將 ${visible.length} 間門市全部標記為 7 天冷卻中！`);
+        });
+      });
+
+      // Copy Top Filtered Route Button
+      const btnCopyAll = document.getElementById('btn-copy-filtered-route');
+      if (btnCopyAll) {
+        btnCopyAll.addEventListener('click', (e) => {
+          e.preventDefault();
+          const allVisible = Array.from(document.querySelectorAll('.store-card')).filter(c => c.style.display !== 'none');
+          if (allVisible.length > 0) {
+            const dynamicRoute = allVisible.map(c => c.getAttribute('data-coords')).filter(Boolean).join('\\n');
+            const distLabel = currentDistrict !== 'all' ? currentDistrict : '台北市';
+            const statusLabel = currentStatus === 'todo' ? '尚未前往' : (currentStatus === 'cooling' ? '冷卻中' : (currentStatus === 'ready' ? '冷卻完畢' : ''));
+            const desc = `【${distLabel}${statusLabel ? ' · ' + statusLabel : ''}】(共 ${allVisible.length} 店)`;
+            copyToClipboard(dynamicRoute, `已複製${desc}巡航路徑，可直接貼入 GeoSim 巡航佇列！`);
+          } else {
+            showToast('目前篩選條件下沒有任何門市');
           }
         });
       }
 
-      // 12. Reset All Cooldown Records
-      const btnReset = document.getElementById('btn-reset-cooldown');
-      if (btnReset) {
-        btnReset.addEventListener('click', () => {
-          if (confirm('確定要清空所有門市的 7 天冷卻打勾記錄嗎？（清空後全部恢復為尚未前往）')) {
-            Object.keys(localStorage).forEach((key) => {
-              if (key.startsWith(STORAGE_KEY_PREFIX)) {
-                localStorage.removeItem(key);
-              }
-            });
-            updateAllStoreStates();
-            filterStores();
-            showToast('已清空所有門市冷卻記錄！');
-          }
+      // Tier 1: District Filter Pills
+      document.querySelectorAll('.district-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.district-pill').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          currentDistrict = btn.getAttribute('data-district');
+          filterStores();
+        });
+      });
+
+      // Tier 2: Status Filter Pills
+      document.querySelectorAll('.status-pill').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentStatus = btn.getAttribute('data-status');
+          filterStores();
+        });
+      });
+
+      // Search toggle
+      const btnSearchToggle = document.getElementById('btn-toggle-search');
+      const searchPanel = document.getElementById('fm-search-panel');
+      const searchInput = document.getElementById('fm-search-input');
+      const clearBtn = document.getElementById('fm-clear-search');
+
+      if (btnSearchToggle && searchPanel) {
+        btnSearchToggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const isOpen = searchPanel.style.display !== 'none';
+          searchPanel.style.display = isOpen ? 'none' : 'block';
+          if (!isOpen && searchInput) searchInput.focus();
         });
       }
 
-      // 13. Fallback clear filter
-      const btnClearFallback = document.getElementById('btn-clear-search-fallback');
-      if (btnClearFallback) {
-        btnClearFallback.addEventListener('click', () => {
-          if (searchInput) searchInput.value = '';
-          currentSearch = '';
-          if (clearBtn) clearBtn.style.display = 'none';
-          currentDistrict = 'all';
-          currentStatus = 'all';
-          document.querySelectorAll('.district-pill').forEach((b) => {
-            b.classList.toggle('active', b.getAttribute('data-district') === 'all');
-          });
-          document.querySelectorAll('.status-pill').forEach((b) => {
-            b.classList.toggle('active', b.getAttribute('data-status') === 'all');
-          });
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value;
           filterStores();
         });
       }
 
-      // 14. Force Refresh Button
-      const btnForceRefresh = document.getElementById('btn-force-refresh');
-      if (btnForceRefresh) {
-        btnForceRefresh.addEventListener('click', triggerForceRefresh);
+      if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentSearch = '';
+          filterStores();
+        });
       }
     }
 
-    // ==========================================================================
-    // App Launchers (GeoSim & Pikmin Bloom)
-    // ==========================================================================
-    function launchPikminBloom(lat, lng, name) {
-      const encodedName = encodeURIComponent(name);
-      const uri = `intent://geo:${lat},${lng}?q=${lat},${lng}(${encodedName})#Intent;scheme=geo;package=com.nianticlabs.pikmin;end`;
-      const fallbackUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-
-      const now = Date.now();
-      window.location.href = uri;
-
-      setTimeout(() => {
-        if (Date.now() - now < 1500) {
-          window.open(fallbackUrl, '_blank');
-        }
-      }, 1000);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEventListeners);
+    } else {
+      setupEventListeners();
     }
-
-    function launchGeoSim(lat, lng, name, coords) {
-      // 1. Android GeoSim WebView Bridge
-      if (window.AndroidGeoSim && typeof window.AndroidGeoSim.setCoordinate === 'function') {
-        try {
-          window.AndroidGeoSim.setCoordinate(parseFloat(lat), parseFloat(lng), name);
-          showToast(`已成功傳送【${name}】座標給 GeoSim！`);
-          return;
-        } catch (e) {
-          console.warn('AndroidGeoSim bridge error:', e);
-        }
-      }
-
-      // 2. Standard Deep Link via Android IntentFilter
-      const encodedName = encodeURIComponent(name);
-      const fallbackUrlEncoded = encodeURIComponent(PLAY_STORE_URL);
-      const intentUri = `intent://location?lat=${lat}&lng=${lng}&label=${encodedName}#Intent;scheme=geosim;package=com.kairosvector.geosim;S.browser_fallback_url=${fallbackUrlEncoded};end`;
-
-      // Copy coordinate to clipboard as backup
-      if (coords) {
-        navigator.clipboard.writeText(coords).catch(() => {});
-      }
-
-      const start = Date.now();
-      window.location.href = intentUri;
-
-      setTimeout(() => {
-        if (Date.now() - start < 1500) {
-          showToast(`已複製座標 (${coords})，若未安裝 GeoSim 將開啟商店下載`);
-        }
-      }, 1200);
-    }
-
-    // ==========================================================================
-    // Initialization
-    // ==========================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-      updateAllStoreStates();
-      setupEventHandlers();
-      filterStores();
-      checkRemoteVersion();
-    });
   </script>
 </BaseLayout>
 
 <style>
-  :global(html), :global(body) {
+  /* FamilyMart Green & Blue Modern Palette */
+  :root {
+    --fm-green: #00A040;
+    --fm-green-dark: #008234;
+    --fm-green-light: #E8F5E9;
+    --fm-blue: #0070C0;
+    --fm-blue-dark: #005696;
+    --fm-blue-light: #E1F0FA;
+    --fm-text: #1E293B;
+    --fm-muted: #64748B;
+    --fm-border: #E2E8F0;
+    --fm-card-bg: #FFFFFF;
+    --fm-bg: #F8FAFC;
+  }
+
+  :global(html) {
     overflow-x: hidden !important;
     max-width: 100vw !important;
+    width: 100% !important;
+  }
+
+  :global(body) {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
   }
 
   .fm-page {
+    background: var(--fm-bg);
     min-height: 100vh;
-    background: #F8FAFC;
-    color: #0F172A;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    padding-bottom: 5rem;
-    overflow-x: hidden !important;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) */
-  .top-sticky-version-wrapper {
-    position: fixed !important;
-    top: var(--nav-height, 64px) !important;
-    left: 0 !important;
-    right: 0 !important;
     width: 100% !important;
-    height: 38px !important;
-    z-index: 990 !important;
-    background: #FFFFFF !important;
-    border-bottom: 1px solid #E2E8F0 !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
-    display: flex !important;
-    align-items: center !important;
-    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    padding-top: var(--nav-height, 64px);
+    padding-bottom: 4rem;
+    color: var(--fm-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
   }
 
-  .top-sticky-spacer {
-    height: 38px;
-    width: 100%;
+  /* Structural containment for all sections */
+  .fm-hero,
+  .fm-hero__inner,
+  .fm-main,
+  .fm-container,
+  .geosim-intro-section,
+  .how-to-use-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  :global(html[data-theme="vibrant"]) .top-sticky-version-wrapper {
-    background: #FFFFFF !important;
-    border-bottom-color: #E2E8F0 !important;
+  html.is-embed .fm-page {
+    padding-top: 0 !important;
   }
 
-  html.is-embed .top-sticky-version-wrapper {
-    top: 0 !important;
-  }
-
-  .top-sticky-version-wrapper.has-update {
-    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%) !important;
-    border-bottom: 2px solid #F59E0B !important;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
-  }
-
-  .top-sticky-version-inner {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 0.75rem !important;
-    height: 100% !important;
-  }
-
-  .top-sticky-version-left {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .version-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #10B981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
-    display: inline-block;
-    flex-shrink: 0;
-  }
-  .version-dot.has-update {
-    background: #D97706 !important;
-    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.35) !important;
-  }
-
-  .version-tag {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #047857;
-    background: #D1FAE5;
-    padding: 0.1rem 0.45rem;
-    border-radius: 999px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .version-tag.has-update {
-    background: #D97706 !important;
-    color: #FFFFFF !important;
-  }
-
-  .version-marquee-box {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    min-width: 0;
-    font-size: 0.78rem;
-    color: #64748B;
-  }
-
-  .ticker-badge {
-    background: #3B82F6;
-    color: #FFFFFF;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
-    margin-right: 0.35rem;
-  }
-  .ticker-badge.has-update {
-    background: #EF4444 !important;
-    animation: pulse-badge 1.5s infinite;
-  }
-
-  .btn-top-refresh {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: #F1F5F9;
-    border: 1px solid #CBD5E1;
-    color: #334155;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: all 0.15s ease;
-  }
-  .btn-top-refresh:hover {
-    background: #E2E8F0;
-    color: #0F172A;
-  }
-  .btn-top-refresh.is-refreshing .refresh-icon {
-    animation: spin 0.8s linear infinite;
-  }
-  .btn-top-refresh.has-update {
-    background: #D97706 !important;
-    color: #FFFFFF !important;
-    border-color: #B45309 !important;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  /* Hero Header */
+  /* Hero Section */
   .fm-hero {
-    background: #FFFFFF;
-    border-bottom: 1px solid #E2E8F0;
-    padding: 2.2rem 1rem 1.8rem;
-    text-align: center;
+    background: linear-gradient(135deg, #00A040 0%, #008234 40%, #0070C0 100%);
+    color: #FFFFFF;
+    padding: 2.2rem 1rem 1.6rem;
+    box-shadow: 0 4px 16px rgba(0, 160, 64, 0.18);
   }
 
   .fm-hero__inner {
-    max-width: 820px;
+    max-width: 1080px;
     margin: 0 auto;
   }
 
   .fm-badge-row {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.85rem;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
   }
 
   .fm-badge {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: 999px;
-  }
-
-  .fm-badge--green {
-    background: #E8F5E9;
-    color: #008234;
-    border: 1px solid #A5D6A7;
-  }
-
-  .fm-badge--blue {
-    background: #E1F5FE;
-    color: #0077C8;
-    border: 1px solid #81D4FA;
-  }
-
-  .fm-badge--gold {
-    background: #FFF8E1;
-    color: #B78103;
-    border: 1px solid #FFE082;
-  }
-
-  .fm-hero__title {
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    font-weight: 900;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    color: #0F172A;
-    margin: 0.2rem 0 0.8rem;
-  }
-
-  .fm-title-gradient {
-    background: linear-gradient(135deg, #008234 0%, #0077C8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .fm-hero__desc {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #475569;
-    margin: 0;
-  }
-
-  /* SECTION 1: Recommended Hot Routes Section */
-  .hot-routes-section {
-    padding: 2rem 0;
-    background: linear-gradient(180deg, #F1F5F9 0%, #F8FAFC 100%);
-    border-bottom: 2px solid #E2E8F0;
-  }
-
-  .hot-routes-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .hot-routes-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .hot-routes-title-box {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.4rem;
-  }
-
-  .hot-routes-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: #FEE2E2;
-    color: #DC2626;
-    border: 1px solid #FECACA;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
-  }
-
-  .hot-routes-title {
-    font-size: 1.45rem;
-    font-weight: 900;
-    color: #0F172A;
-    margin: 0;
-  }
-
-  .hot-routes-subdesc {
-    font-size: 0.88rem;
-    color: #475569;
-    margin: 0;
-    line-height: 1.55;
-  }
-
-  .hot-routes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .hot-route-card {
-    background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-  }
-
-  .hot-route-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: #94A3B8;
-  }
-
-  .hot-route-top {
-    margin-bottom: 0.85rem;
-  }
-
-  .hot-route-badge-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.45rem;
-  }
-
-  .hot-route-tag {
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
     letter-spacing: 0.02em;
   }
 
-  .hot-route-rank {
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #64748B;
-    background: #F1F5F9;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
-  }
-
-  .hot-route-title {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #0F172A;
-    margin: 0 0 0.2rem;
-  }
-
-  .hot-route-subtitle {
-    font-size: 0.82rem;
-    color: #64748B;
-    margin: 0;
-  }
-
-  .hot-route-stats {
-    display: flex;
-    align-items: center;
-    background: #F8FAFC;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    padding: 0.6rem 0.75rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .stat-col {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stat-val {
-    font-size: 1.15rem;
-    font-weight: 900;
-    color: #0F172A;
-    line-height: 1.2;
-  }
-
-  .stat-val--green {
+  .fm-badge--green {
+    background: rgba(255, 255, 255, 0.95);
     color: #008234;
   }
 
-  .stat-lbl {
-    font-size: 0.68rem;
-    color: #64748B;
-    font-weight: 600;
-    margin-top: 0.1rem;
-  }
-
-  .stat-sep {
-    width: 1px;
-    height: 24px;
-    background: #E2E8F0;
-  }
-
-  .hot-route-desc {
-    font-size: 0.82rem;
-    color: #475569;
-    line-height: 1.45;
-    margin: 0 0 0.85rem;
-  }
-
-  .hot-route-samples {
-    margin-bottom: 1rem;
-    font-size: 0.75rem;
-  }
-
-  .samples-title {
-    color: #64748B;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    display: block;
-  }
-
-  .samples-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    align-items: center;
-  }
-
-  .sample-pill {
-    background: #E8F5E9;
-    color: #008234;
-    border: 1px solid #C8E6C9;
-    padding: 0.15rem 0.45rem;
-    border-radius: 4px;
-    font-weight: 600;
-  }
-
-  .sample-more {
-    color: #94A3B8;
-    font-style: italic;
-    font-size: 0.72rem;
-  }
-
-  .hot-route-actions {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.5rem;
-    margin-top: auto;
-  }
-
-  .btn-copy-hot-route {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    background: #008234;
+  .fm-badge--blue {
+    background: rgba(0, 112, 192, 0.9);
     color: #FFFFFF;
-    border: none;
-    padding: 0.65rem 0.85rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
-  .btn-copy-hot-route:hover {
-    background: #006829;
-    box-shadow: 0 2px 8px rgba(0, 130, 52, 0.3);
-  }
-
-  .btn-hot-geosim {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    background: #E1F5FE;
-    color: #0284C7;
-    border: 1px solid #BAE6FD;
-    padding: 0.65rem 0.85rem;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.15s ease;
-  }
-
-  .btn-hot-geosim:hover {
-    background: #BAE6FD;
-    color: #0369A1;
-  }
-
-  /* SECTION 2: Directory Section */
-  .fm-main {
-    padding: 2rem 0;
-  }
-
-  .directory-section-header {
-    margin-bottom: 1.25rem;
-  }
-
-  .directory-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .directory-badge {
-    background: #E0E7FF;
-    color: #4338CA;
-    font-size: 0.72rem;
+  .fm-badge--gold {
+    background: #FFD700;
+    color: #854D0E;
     font-weight: 800;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
   }
 
-  .directory-title {
-    font-size: 1.45rem;
+  .fm-title {
+    font-size: 1.65rem;
     font-weight: 900;
-    color: #0F172A;
-    margin: 0;
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    margin: 0 0 0.45rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
   }
 
-  .directory-desc {
-    font-size: 0.88rem;
-    color: #475569;
-    margin: 0;
+  .fm-title__highlight {
+    background: #FFD700;
+    color: #1E293B !important;
+    text-shadow: none !important;
+    padding: 0.05rem 0.5rem;
+    border-radius: 6px;
+    margin-left: 0.2rem;
   }
 
-  /* Controls Card */
-  .fm-controls-card {
-    background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    margin-bottom: 2rem;
+  .fm-subtitle {
+    font-size: 0.92rem;
+    color: #FFFFFF !important;
+    opacity: 0.95;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin: 0 0 1.2rem;
+    line-height: 1.5;
   }
 
-  .fm-search-row {
-    margin-bottom: 1rem;
-  }
-
-  .fm-search-wrap {
-    position: relative;
-    width: 100%;
-  }
-
-  .fm-search-icon {
-    position: absolute;
-    left: 0.85rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #94A3B8;
-    pointer-events: none;
-  }
-
-  .fm-search-input {
+  /* Stats Bar */
+  .fm-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
     width: 100%;
     box-sizing: border-box;
-    padding: 0.75rem 2.5rem 0.75rem 2.6rem;
-    font-size: 0.95rem;
-    color: #0F172A;
-    background: #F8FAFC;
-    border: 1px solid #CBD5E1;
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.15s ease;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 0.65rem 0.6rem;
+    margin-bottom: 1.1rem;
   }
 
-  .fm-search-input:focus {
-    background: #FFFFFF;
-    border-color: #008234;
-    box-shadow: 0 0 0 3px rgba(0, 130, 52, 0.15);
-  }
-
-  .fm-clear-btn {
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #94A3B8;
-    cursor: pointer;
-    padding: 0.25rem;
-    display: inline-flex;
+  .fm-stat-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    text-align: center;
   }
 
-  .fm-clear-btn:hover {
-    color: #475569;
+  .fm-stat-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #FFFFFF !important;
   }
 
-  /* District Pills (Tier 1) */
+  .fm-stat-lbl {
+    font-size: 0.72rem;
+    color: #FFFFFF !important;
+    opacity: 0.95;
+    margin-top: 0.15rem;
+  }
+
+  /* Tier 1: District Filter Pills */
   .tier-district-bar {
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    overflow-x: auto;
+    gap: 0.45rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
     overscroll-behavior-x: contain !important;
-    padding-bottom: 0.65rem;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid #F1F5F9;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 0.55rem;
+    align-items: center;
     scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+  }
+  .tier-district-bar::-webkit-scrollbar {
+    height: 5px;
+  }
+  .tier-district-bar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 999px;
+  }
+  .tier-district-bar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+  }
+  .tier-district-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Desktop and Tablet: auto-wrap so all 12 districts are immediately visible without scrolling */
+  @media (min-width: 768px) {
+    .tier-district-bar {
+      flex-wrap: wrap;
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
   }
 
   .district-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.4rem 0.85rem;
-    background: #F1F5F9;
-    border: 1px solid #E2E8F0;
-    color: #475569;
-    border-radius: 999px;
-    font-size: 0.85rem;
+    padding: 0.42rem 0.88rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
     font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.22);
+    color: #FFFFFF !important;
     cursor: pointer;
     white-space: nowrap;
-    flex-shrink: 0;
     transition: all 0.15s ease;
+    flex-shrink: 0;
   }
-
   .district-pill:hover {
-    background: #E2E8F0;
-    color: #0F172A;
+    background: rgba(255, 255, 255, 0.32);
   }
-
   .district-pill.active {
-    background: #008234;
-    border-color: #008234;
-    color: #FFFFFF;
-    box-shadow: 0 2px 6px rgba(0, 130, 52, 0.25);
+    background: #FFFFFF !important;
+    color: #008234 !important;
+    border-color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
-
-  .pill-count {
-    font-size: 0.72rem;
-    background: rgba(0, 0, 0, 0.08);
-    padding: 0.1rem 0.4rem;
-    border-radius: 999px;
+  .district-pill .pill-count {
+    font-size: 0.76rem;
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.22);
+    color: #FFFFFF !important;
+    padding: 0.08rem 0.42rem;
+    border-radius: 9999px;
   }
-
   .district-pill.active .pill-count {
-    background: rgba(255, 255, 255, 0.25);
-    color: #FFFFFF;
+    background: #E8F5E9 !important;
+    color: #008234 !important;
   }
 
-  /* Status Pills (Tier 2) */
+  /* Tier 2: Status Pills */
   .tier-status-bar {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    overflow-x: auto;
+    gap: 0.4rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
     overscroll-behavior-x: contain !important;
-    padding-bottom: 0.65rem;
-    margin-bottom: 1rem;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.4rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 0.9rem;
+  }
+  .tier-status-bar::-webkit-scrollbar {
+    display: none;
   }
 
   .status-pill {
-    padding: 0.35rem 0.85rem;
-    background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    color: #64748B;
+    padding: 0.35rem 0.75rem;
     border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.25);
+    color: #FFFFFF !important;
     cursor: pointer;
     white-space: nowrap;
-    flex-shrink: 0;
     transition: all 0.15s ease;
+    flex-shrink: 0;
   }
-
-  .status-pill:hover {
-    background: #F8FAFC;
-    border-color: #94A3B8;
-  }
-
   .status-pill.active {
-    background: #0077C8;
-    border-color: #0077C8;
-    color: #FFFFFF;
-    box-shadow: 0 2px 6px rgba(0, 119, 200, 0.25);
+    background: #FFD700 !important;
+    color: #1E293B !important;
+    border-color: #FFD700 !important;
+    font-weight: 800;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
-  /* Tools Bar */
+  /* Action Tools Bar */
   .fm-tools-bar {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 0.65rem;
-    padding-top: 0.5rem;
+    gap: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 520px) {
+    .fm-tools-bar {
+      flex-direction: column;
+    }
+    .fm-btn {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
   }
 
   .fm-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.55rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
     font-weight: 700;
-    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.15s ease;
     border: none;
+    transition: all 0.15s ease;
   }
 
   .fm-btn--primary {
-    background: #008234;
-    color: #FFFFFF;
+    background: #FFFFFF;
+    color: #008234;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
   .fm-btn--primary:hover {
-    background: #006829;
-    box-shadow: 0 2px 8px rgba(0, 130, 52, 0.3);
+    background: #F8FAFC;
+    transform: translateY(-1px);
   }
 
   .fm-btn--outline {
-    background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    color: #334155;
+    background: rgba(255, 255, 255, 0.18);
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
   .fm-btn--outline:hover {
-    background: #F1F5F9;
-    border-color: #94A3B8;
+    background: rgba(255, 255, 255, 0.28);
   }
 
-  .fm-btn--ghost {
-    background: transparent;
-    color: #64748B;
+  /* Search Panel */
+  .fm-search-panel {
+    margin-top: 0.8rem;
   }
-  .fm-btn--ghost:hover {
-    background: #F1F5F9;
-    color: #0F172A;
+  .search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
+  .fm-search-input {
+    width: 100%;
+    padding: 0.65rem 2.2rem 0.65rem 0.95rem;
+    border-radius: 10px;
+    border: 1px solid #CBD5E1;
+    font-size: 0.92rem;
+    outline: none;
+    background: #FFFFFF;
+    color: #1E293B;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  .fm-search-input:focus {
+    border-color: #00A040;
+    box-shadow: 0 0 0 3px rgba(0, 160, 64, 0.2);
+  }
+  .fm-clear-btn {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: #94A3B8;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.2rem;
+  }
+
+  /* Main Container */
+  .fm-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 1.2rem 1rem 3rem;
+  }
+
+  .fm-results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+    font-size: 0.85rem;
+    color: var(--fm-muted);
+  }
+
+  .fm-legend {
+    display: flex;
+    gap: 0.8rem;
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+  }
+  .dot-todo { background: #94A3B8; }
+  .dot-cooling { background: #00A040; }
+  .dot-ready { background: #EAB308; }
 
   /* District Section */
   .district-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
 
-  .district-section__header {
+  .district-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    align-items: center;
     border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 0.55rem;
+    margin-bottom: 1rem;
   }
 
-  .district-title-wrap {
+  .district-header__left {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
   .district-title {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: #0F172A;
     margin: 0;
   }
 
-  .district-count-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    background: #E8F5E9;
-    color: #008234;
-    border: 1px solid #A5D6A7;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
+  .district-store-count {
+    font-size: 0.85rem;
+    color: #64748B;
+    background: #F1F5F9;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    font-weight: 600;
   }
 
   .btn-copy-district-route {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    color: #008234;
-    font-size: 0.78rem;
+    gap: 0.3rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
     font-weight: 700;
-    padding: 0.35rem 0.7rem;
-    border-radius: 6px;
+    border: 1px solid #CBD5E1;
+    background: #FFFFFF;
+    color: #008234;
     cursor: pointer;
     transition: all 0.15s ease;
   }
   .btn-copy-district-route:hover {
-    background: #E8F5E9;
-    border-color: #008234;
+    border-color: #00A040;
+    background: #F0FDF4;
   }
 
-  /* Store Grid */
+  /* Store Card Grid */
   .store-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.85rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 
-  @media (max-width: 640px) {
-    .store-grid {
-      grid-template-columns: 1fr;
-    }
-    .hot-routes-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* Store Card */
   .store-card {
     background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    border-radius: 10px;
-    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 0.95rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.18s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
 
   .store-card:hover {
+    border-color: #00A040;
+    box-shadow: 0 4px 12px rgba(0, 160, 64, 0.12);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    border-color: #94A3B8;
   }
 
-  .store-card__header {
+  /* Card Head */
+  .card-head {
     display: flex;
-    align-items: flex-start;
     justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.6rem;
+    align-items: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .check-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #64748B;
+    user-select: none;
+  }
+
+  .check-toggle__input {
+    display: none;
+  }
+
+  .check-toggle__box {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid #CBD5E1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    background: #FFFFFF;
+  }
+
+  .check-icon {
+    display: none;
+    color: #FFFFFF;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box {
+    background: #00A040;
+    border-color: #00A040;
+  }
+
+  .check-toggle__input:checked + .check-toggle__box .check-icon {
+    display: block;
   }
 
   .store-name-box {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.35rem;
+    max-width: 65%;
   }
 
   .store-name {
     font-size: 1.05rem;
     font-weight: 800;
-    color: #0F172A;
     margin: 0;
+    color: #0F172A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .store-badge-fami {
@@ -1805,68 +1707,6 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
     flex-shrink: 0;
-  }
-
-  /* Checkbox Toggle */
-  .check-toggle {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    flex-shrink: 0;
-  }
-
-  .check-toggle__input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .check-toggle__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 0.25rem 0.55rem;
-    background: #F1F5F9;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #64748B;
-    transition: all 0.15s ease;
-  }
-
-  .check-box-icon {
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    border: 1.5px solid #94A3B8;
-    background: #FFFFFF;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s ease;
-  }
-
-  .check-svg {
-    display: none;
-    stroke: #FFFFFF;
-  }
-
-  .check-toggle__input:checked + .check-toggle__label {
-    background: #E8F5E9;
-    border-color: #81C784;
-    color: #008234;
-  }
-
-  .check-toggle__input:checked + .check-toggle__label .check-box-icon {
-    background: #008234;
-    border-color: #008234;
-  }
-
-  .check-toggle__input:checked + .check-toggle__label .check-svg {
-    display: block;
   }
 
   /* Cooldown Banner */
@@ -1928,118 +1768,90 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     gap: 0.4rem;
     font-size: 0.78rem;
     background: #F8FAFC;
-    padding: 0.3rem 0.5rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 6px;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #F1F5F9;
   }
 
-  .coord-tag {
-    font-weight: 800;
-    color: #64748B;
-    font-size: 0.7rem;
+  .coord-label {
+    color: #94A3B8;
+    font-weight: 600;
   }
 
-  .coord-val {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  .coord-code {
+    font-family: monospace;
+    font-size: 0.82rem;
     color: #334155;
     font-weight: 600;
-    flex: 1;
   }
 
-  .btn-copy-single {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
+  .btn-copy-coord {
+    margin-left: auto;
     background: #FFFFFF;
     border: 1px solid #CBD5E1;
-    color: #475569;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.15rem 0.4rem;
     border-radius: 4px;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.45rem;
+    color: #475569;
     cursor: pointer;
-    transition: all 0.12s ease;
+    font-weight: 600;
   }
-
-  .btn-copy-single:hover {
-    background: #F1F5F9;
-    color: #0F172A;
+  .btn-copy-coord:hover {
+    border-color: #00A040;
+    color: #00A040;
   }
 
   /* Card Actions */
   .card-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 0.4rem;
-    margin-top: auto;
+    grid-template-columns: 1fr 1.2fr auto;
+    gap: 0.35rem;
   }
 
   .btn-action {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
-    padding: 0.5rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
+    gap: 0.25rem;
+    padding: 0.42rem 0.55rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.15s ease;
     border: 1px solid transparent;
-    white-space: nowrap;
+    transition: all 0.15s ease;
   }
 
   .btn-pikmin {
     background: #E8F5E9;
     color: #008234;
-    border-color: #C8E6C9;
+    border-color: #C6F6D5;
   }
   .btn-pikmin:hover {
-    background: #C8E6C9;
+    background: #00A040;
+    color: #FFFFFF;
   }
 
   .btn-geosim {
-    background: #E1F5FE;
+    background: #E0F2FE;
     color: #0284C7;
     border-color: #BAE6FD;
   }
   .btn-geosim:hover {
-    background: #BAE6FD;
+    background: #0284C7;
+    color: #FFFFFF;
   }
 
   .btn-gmap {
     background: #F1F5F9;
     color: #475569;
     border-color: #E2E8F0;
-    padding: 0.5rem 0.65rem;
+    padding: 0.42rem 0.65rem;
   }
   .btn-gmap:hover {
     background: #E2E8F0;
-    color: #0F172A;
-  }
-
-  /* No Results Box */
-  .no-results-box {
-    text-align: center;
-    padding: 3rem 1rem;
-    background: #FFFFFF;
-    border-radius: 12px;
-    border: 1px dashed #CBD5E1;
-    margin-top: 1.5rem;
-  }
-  .no-results-icon {
-    margin-bottom: 0.75rem;
-  }
-  .no-results-box h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.15rem;
-    color: #0F172A;
-  }
-  .no-results-box p {
-    color: #64748B;
-    font-size: 0.9rem;
-    margin: 0 0 1.25rem;
+    color: #1E293B;
   }
 
   /* Toast */
@@ -2047,26 +1859,822 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     position: fixed;
     bottom: 2rem;
     left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: rgba(15, 23, 42, 0.94);
+    transform: translateX(-50%) translateY(20px);
+    background: #1E293B;
     color: #FFFFFF;
     padding: 0.75rem 1.4rem;
-    border-radius: 999px;
-    font-size: 0.88rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
     font-weight: 700;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    white-space: nowrap;
-    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    max-width: 90vw;
+    text-align: center;
   }
-
   .copy-toast.show {
     opacity: 1;
+    visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
+
+  .no-results-box {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #64748B;
+  }
+
+  @media (max-width: 640px) {
+    .fm-title {
+      font-size: 1.35rem;
+    }
+    .fm-stats-bar {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .store-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Compact GeoSim Recommendation Card */
+  .geosim-compact-ad {
+    margin: 1rem 0 1.25rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+  }
+
+  .geosim-compact-ad .ad-icon {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .geosim-compact-ad .ad-icon-img {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+  }
+
+  .geosim-compact-ad .ad-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .geosim-compact-ad .ad-head {
+    margin-bottom: 4px;
+  }
+
+  .geosim-compact-ad .ad-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: 4px;
+  }
+
+  .geosim-compact-ad .ad-title {
+    margin: 2px 0 4px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.35;
+  }
+
+  .geosim-compact-ad .ad-desc {
+    margin: 0 0 10px;
+    color: #334155;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .geosim-compact-ad .ad-action-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .geosim-compact-ad .ad-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .geosim-compact-ad .ad-cta-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
+  }
+
+  .geosim-compact-ad .ad-note {
+    font-size: 12px;
+    color: #64748B;
+  }
+
+  @media (max-width: 520px) {
+    .geosim-compact-ad {
+      padding: 12px;
+      gap: 10px;
+    }
+    .geosim-compact-ad .ad-icon,
+    .geosim-compact-ad .ad-icon-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+    .geosim-compact-ad .ad-title {
+      font-size: 0.98rem;
+    }
+    .geosim-compact-ad .ad-desc {
+      font-size: 12.5px;
+      margin-bottom: 8px;
+    }
+    .geosim-compact-ad .ad-action-line {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .geosim-compact-ad .ad-cta-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* GeoSim Introduction Section */
+  .geosim-intro-section {
+    padding: 2.5rem 0;
+  }
+
+  .geosim-intro-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 18px;
+    padding: 2.25rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(0, 160, 64, 0.03) 100%);
+  }
+
+  .geosim-intro-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .geosim-app-img {
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
+  }
+
+  .geosim-intro-heading {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .badge--geosim {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    padding: 2px 10px;
+    border-radius: 9999px;
+  }
+
+  .geosim-intro-title {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0.35rem 0 0.5rem;
+  }
+
+  .geosim-intro-tagline {
+    font-size: 0.95rem;
+    color: #64748B;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .geosim-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .feature-item__icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(124, 58, 237, 0.1);
+    color: #7C3AED;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-item__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.35rem;
+  }
+
+  .feature-item__desc {
+    font-size: 0.85rem;
+    color: #64748B;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .geosim-intro-actions {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-playstore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    color: #FFFFFF;
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    transition: all 0.2s;
+  }
+
+  .btn-playstore:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+  }
+
+  .btn-geosim-outline {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.3rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    border: 1px solid #CBD5E1;
+    color: #334155;
+    background: #FFFFFF;
+    transition: all 0.2s;
+  }
+
+  .btn-geosim-outline:hover {
+    border-color: #7C3AED;
+    color: #7C3AED;
+    background: #F8FAFC;
+  }
+
+  .btn-geosim-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    color: #64748B;
+    transition: color 0.2s;
+  }
+
+  .btn-geosim-ghost:hover {
+    color: #0F172A;
+  }
+
+  /* How to Use Section */
+  .how-to-use-section {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .how-to-use-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .how-to-use__title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .step-card {
+    position: relative;
+    padding: 1.25rem;
+    background: #F8FAFC;
+    border-radius: 14px;
+    border: 1px solid #F1F5F9;
+  }
+
+  .step-card__number {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(124, 58, 237, 0.25);
+  }
+
+  .step-card__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .step-card p {
+    font-size: 0.85rem;
+    color: #334155;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+
+  /* Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) */
+  .top-sticky-version-wrapper {
+    position: fixed !important;
+    top: var(--nav-height, 64px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 38px !important;
+    z-index: 990 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .top-sticky-spacer {
+    height: 38px;
+    width: 100%;
+  }
+
+  :global(html[data-theme="vibrant"]) .top-sticky-version-wrapper {
+    background: #FFFFFF !important;
+    border-bottom-color: #E2E8F0 !important;
+  }
+
+  html.is-embed .top-sticky-version-wrapper {
+    top: 0 !important;
+  }
+  .top-sticky-version-wrapper.has-update {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%) !important;
+    border-bottom: 2px solid #F59E0B !important;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
+  }
+
+  .top-sticky-version-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    height: 100% !important;
+  }
+
+  .top-sticky-version-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .version-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .version-dot.has-update {
+    background: #D97706 !important;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.35) !important;
+    animation: dot-pulse 1.2s infinite ease-in-out;
+  }
+  @keyframes dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.7; }
+  }
+
+  .version-tag {
+    background: #ECFDF5;
+    color: #065F46;
+    font-weight: 800;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .version-tag.has-update {
+    background: #B45309 !important;
+    color: #FFFFFF !important;
+    animation: tag-attention 1s infinite alternate ease-in-out;
+  }
+  @keyframes tag-attention {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+
+  .version-marquee-box {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .version-ticker-text {
+    font-size: 0.8rem;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .version-ticker-text.has-update {
+    color: #92400E !important;
+    font-weight: 700;
+  }
+
+  .ticker-badge {
+    background: #E2E8F0;
+    color: #334155;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+  }
+  .ticker-badge.has-update {
+    background: #F59E0B !important;
+    color: #FFFFFF !important;
+  }
+
+  .btn-top-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    color: #334155;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .btn-top-refresh:hover {
+    background: #E2E8F0;
+    border-color: #94A3B8;
+    color: #0F172A;
+  }
+  .btn-top-refresh.has-update {
+    background: #D97706 !important;
+    color: #FFFFFF !important;
+    border-color: #B45309 !important;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4) !important;
+  }
+  .btn-top-refresh.is-refreshing .refresh-icon {
+    animation: spin-refresh 0.8s linear infinite;
+  }
+  @keyframes spin-refresh {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 640px) {
+    .version-marquee-box {
+      display: none;
+    }
+  }
+
+
+  /* -------------------------------------------------------------
+   * Recommended Hot Routes Section (FamilyMart Brand Vibrant Style)
+   * ------------------------------------------------------------- */
+  .hot-routes-section {
+    padding: 2.2rem 0 2rem;
+    background: #F1F5F9;
+    border-bottom: 2px solid var(--fm-border);
+  }
+
+  .hot-routes-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .hot-routes-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.4rem;
+  }
+
+  .hot-routes-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: #FEE2E2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .hot-routes-title {
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    margin: 0;
+  }
+
+  .hot-routes-desc {
+    font-size: 0.9rem;
+    color: var(--fm-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .hot-routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .hot-routes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hot-route-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--fm-border);
+    border-radius: 14px;
+    padding: 1.35rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .hot-route-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 160, 64, 0.12);
+    border-color: var(--fm-green);
+  }
+
+  .hot-route-card__top {
+    margin-bottom: 0.85rem;
+  }
+
+  .hot-route-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .hot-route-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .hot-route-rank {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #64748B;
+    background: #F1F5F9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .hot-route-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    margin: 0 0 0.25rem;
+    line-height: 1.3;
+  }
+
+  .hot-route-subtitle {
+    font-size: 0.82rem;
+    color: var(--fm-muted);
+    margin: 0;
+  }
+
+  .hot-route-stats {
+    display: flex;
+    align-items: center;
+    background: #F8FAFC;
+    border: 1px solid var(--fm-border);
+    border-radius: 10px;
+    padding: 0.65rem 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .stat-col {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-val {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    line-height: 1.2;
+  }
+
+  .stat-val--green {
+    color: var(--fm-green);
+  }
+
+  .stat-lbl {
+    font-size: 0.7rem;
+    color: var(--fm-muted);
+    font-weight: 600;
+    margin-top: 0.15rem;
+  }
+
+  .stat-sep {
+    width: 1px;
+    height: 26px;
+    background: var(--fm-border);
+  }
+
+  .hot-route-info {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 0 0.85rem;
+  }
+
+  .hot-route-samples {
+    margin-bottom: 1.1rem;
+    font-size: 0.78rem;
+  }
+
+  .samples-title {
+    color: var(--fm-muted);
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+
+  .samples-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .sample-pill {
+    background: var(--fm-green-light);
+    color: var(--fm-green-dark);
+    border: 1px solid #A5D6A7;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  .sample-more {
+    color: #94A3B8;
+    font-size: 0.72rem;
+  }
+
+  .hot-route-actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .btn-copy-hot-route {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    background: linear-gradient(135deg, var(--fm-green) 0%, var(--fm-green-dark) 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 160, 64, 0.25);
+    transition: all 0.15s ease;
+  }
+
+  .btn-copy-hot-route:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 4px 14px rgba(0, 160, 64, 0.4);
+  }
+
+  .btn-hot-geosim {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    background: var(--fm-blue-light);
+    color: var(--fm-blue);
+    border: 1px solid rgba(0, 112, 192, 0.25);
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .btn-hot-geosim:hover {
+    background: rgba(0, 112, 192, 0.15);
+    color: var(--fm-blue-dark);
+  }
+
 </style>
 """
 
