@@ -1,0 +1,6 @@
+/events/coco-version.json
+  Cache-Control: public, max-age=60, s-maxage=60, stale-while-revalidate=30
+/events/coco-stores.json
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=60
+/events/coco-stores.csv
+  Cache-Control: public, max-age=300, s-maxage=300, stale-while-revalidate=60

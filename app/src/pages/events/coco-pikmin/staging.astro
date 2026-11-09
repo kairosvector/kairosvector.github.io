@@ -994,7 +994,8 @@ function extractDistrict(address: string, city: string) {
       const localBatch = parseInt(card.getAttribute('data-batch-id') || '0', 10);
       const localCount = parseInt(card.getAttribute('data-store-count') || '0', 10);
 
-      fetch('/events/coco-version.json?_t=' + Date.now(), { cache: 'no-store' })
+      // Cache-friendly fetch without aggressive millisecond busts
+      fetch('/events/coco-version.json')
         .then(function (res) { return res.json(); })
         .then(function (remote) {
           if (!remote || !remote.batch_id) return;
@@ -1005,12 +1006,25 @@ function extractDistrict(address: string, city: string) {
         .catch(function () {});
     }
 
-    // Run check on load, AND poll every 10 seconds for real-time live detection!
+    // Smart version detection: Check once on initial load
     checkRemoteVersion();
-    setInterval(checkRemoteVersion, 10000);
+
+    // Check when user wakes up or resumes the tab (throttled to at least 60s between checks)
+    let lastVersionCheck = Date.now();
     document.addEventListener('visibilitychange', function() {
-      if (!document.hidden) checkRemoteVersion();
+      if (!document.hidden && (Date.now() - lastVersionCheck > 60000)) {
+        lastVersionCheck = Date.now();
+        checkRemoteVersion();
+      }
     });
+
+    // Gentle background interval (every 5 minutes, ONLY when tab is actively visible)
+    setInterval(function() {
+      if (!document.hidden) {
+        lastVersionCheck = Date.now();
+        checkRemoteVersion();
+      }
+    }, 300000);
 
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.kairosvector.geosim';
 
