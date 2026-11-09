@@ -9,11 +9,13 @@ def generate_page(is_staging=False):
     <div style="background: #FEF3C7; border-bottom: 2px solid #F59E0B; padding: 0.5rem 1rem; text-align: center; font-size: 0.875rem; font-weight: 700; color: #92400E; z-index: 50; position: relative;">
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>''' if is_staging else ''
+    routes_json = 'fm_hot_routes_staging.json' if is_staging else 'fm_hot_routes.json'
+    routes_desc = '針對全家 5 週年活動門市，由演算法精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（精選台北 3 大核心商圈），一鍵複製或分享至 GeoSim 巡航！' if is_staging else '針對全家 5 週年活動門市，由演算法與玩家精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（含台北 6 大密集商圈 ✕ 日本池袋、沖繩熱門遠征線），一鍵複製或分享至 GeoSim 巡航！'
 
     code = """---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import stores from '../../../data/fm_taipei_stores.json';
-import hotRoutes from '../../../data/fm_hot_routes.json';
+import hotRoutes from '../../../data/""" + routes_json + """';
 
 const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 696 店) | GeoSim`;
 const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 696 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
@@ -213,7 +215,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <h2 class="hot-routes-title">推薦熱門高密度巡航路線</h2>
           </div>
           <p class="hot-routes-desc">
-            針對全家 5 週年活動門市，由演算法與玩家精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（含台北 6 大密集商圈 ✕ 日本池袋、沖繩熱門遠征線），一鍵複製或分享至 GeoSim 巡航！
+            """ + routes_desc + """
           </p>
         </div>
 
