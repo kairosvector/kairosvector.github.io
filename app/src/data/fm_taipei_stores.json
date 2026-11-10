@@ -329,10 +329,10 @@
     "origName": "全家台北市 圓山飯店",
     "address": "台北市中山區中山北路四段一巷1號1樓（麒麟廳））",
     "phone": "",
-    "lat": 25.07905,
-    "lng": 121.52643,
-    "coordsText": "25.07905, 121.52643",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07905,121.52643",
+    "lat": 25.078501,
+    "lng": 121.526282,
+    "coordsText": "25.07850, 121.52628",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.078501,121.526282",
     "note": "原定位有誤，已重查更正為圓山大飯店"
   },
   {
@@ -441,10 +441,10 @@
     "origName": "全家台北市 新德城店",
     "address": "台北市中山區德惠街16-7號",
     "phone": "",
-    "lat": 25.06661,
-    "lng": 121.5247,
-    "coordsText": "25.06661, 121.52470",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06661,121.52470",
+    "lat": 25.066587,
+    "lng": 121.524222,
+    "coordsText": "25.06659, 121.52422",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.066587,121.524222",
     "note": ""
   },
   {
@@ -2601,10 +2601,10 @@
     "origName": "全家台北市 時代廣場店",
     "address": "台北市中山區樂群二路265巷20號",
     "phone": "",
-    "lat": 25.08123,
-    "lng": 121.56067,
-    "coordsText": "25.08123, 121.56067",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08123,121.56067",
+    "lat": 25.080959,
+    "lng": 121.560437,
+    "coordsText": "25.08096, 121.56044",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.080959,121.560437",
     "note": ""
   },
   {

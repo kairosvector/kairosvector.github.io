@@ -69,7 +69,9 @@
       "fm-tpe-621",
       "fm-tpe-112",
       "fm-tpe-325"
-    ]
+    ],
+    "isOfficial": true,
+    "author": null
   },
   {
     "id": "route-zhongshan-nanxi",
@@ -134,7 +136,9 @@
       "fm-tpe-009",
       "fm-tpe-079",
       "fm-tpe-470"
-    ]
+    ],
+    "isOfficial": true,
+    "author": null
   },
   {
     "id": "route-east-district",
@@ -193,6 +197,8 @@
       "fm-tpe-500",
       "fm-tpe-622",
       "fm-tpe-208"
-    ]
+    ],
+    "isOfficial": true,
+    "author": null
   }
 ]
