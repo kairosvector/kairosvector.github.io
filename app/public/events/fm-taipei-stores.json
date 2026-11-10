@@ -2800,22 +2800,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-178",
-    "city": "臺北市",
-    "district": "信義區",
-    "name": "全家便利商店 台北松興店",
-    "shortName": "松興店",
-    "rawName": "台北松興店",
-    "origName": "全家台北市 松興店",
-    "address": "台北市信義區松山路107號",
-    "phone": "",
-    "lat": 25.04782,
-    "lng": 121.57795,
-    "coordsText": "25.04782, 121.57795",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04782,121.57795",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-179",
     "city": "臺北市",
     "district": "文山區",
@@ -8320,22 +8304,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-527",
-    "city": "臺北市",
-    "district": "信義區",
-    "name": "全家便利商店 台北松永店",
-    "shortName": "松永店",
-    "rawName": "台北松永店",
-    "origName": "全家台北市 松永店",
-    "address": "台北市信義區松德路157號",
-    "phone": "",
-    "lat": 25.03653,
-    "lng": 121.57484,
-    "coordsText": "25.03653, 121.57484",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03653,121.57484",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-528",
     "city": "臺北市",
     "district": "中正區",
@@ -9456,22 +9424,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-599",
-    "city": "臺北市",
-    "district": "信義區",
-    "name": "全家便利商店 台北欣松春店",
-    "shortName": "欣松春店",
-    "rawName": "台北欣松春店",
-    "origName": "全家台北市 欣松春店",
-    "address": "台北市信義區松山路281號1樓",
-    "phone": "",
-    "lat": 25.04308,
-    "lng": 121.57798,
-    "coordsText": "25.04308, 121.57798",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04308,121.57798",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-600",
     "city": "臺北市",
     "district": "信義區",
@@ -10512,22 +10464,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-674",
-    "city": "臺北市",
-    "district": "信義區",
-    "name": "全家便利商店 台北安信店",
-    "shortName": "安信店",
-    "rawName": "台北安信店",
-    "origName": "全家台北市 安信店",
-    "address": "台北市信義區信安街47巷23號1樓",
-    "phone": "",
-    "lat": 25.02337,
-    "lng": 121.55561,
-    "coordsText": "25.02337, 121.55561",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02337,121.55561",
-    "note": "查詢47巷23號，回傳信安街23號（巷號略去）"
-  },
-  {
     "id": "fm-tpe-675",
     "city": "臺北市",
     "district": "中山區",
@@ -10813,22 +10749,6 @@
     "lng": 121.54609,
     "coordsText": "25.03382, 121.54609",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03382,121.54609",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-696",
-    "city": "臺北市",
-    "district": "信義區",
-    "name": "全家便利商店 台北興醫店",
-    "shortName": "興醫店",
-    "rawName": "台北興醫店",
-    "origName": "全家台北市 興醫店",
-    "address": "台北市信義區吳興街284巷18弄1號1樓",
-    "phone": "",
-    "lat": 25.02453,
-    "lng": 121.56339,
-    "coordsText": "25.02453, 121.56339",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02453,121.56339",
     "note": ""
   }
 ]
