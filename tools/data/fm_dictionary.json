@@ -615,21 +615,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06445,121.51121"
   },
   {
-    "id": "fm-tpe-043",
-    "city": "臺北市",
-    "district": "萬華區",
-    "name": "全家便利商店 全家便利商店 台北新廣州店",
-    "rawName": "全家便利商店 台北新廣州店",
-    "shortName": "全家便利商店 台北新廣州店",
-    "origName": "",
-    "address": "台北市萬華區廣州街235-1號",
-    "phone": "",
-    "lat": 25.03678,
-    "lng": 121.4986,
-    "coordsText": "25.03678, 121.49860",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03678,121.49860"
-  },
-  {
     "id": "fm-tpe-044",
     "city": "臺北市",
     "district": "中山區",
@@ -9030,21 +9015,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06023,121.52170"
   },
   {
-    "id": "fm-tpe-605",
-    "city": "臺北市",
-    "district": "南港區",
-    "name": "全家便利商店 全家便利商店 台北經貿店",
-    "rawName": "全家便利商店 台北經貿店",
-    "shortName": "全家便利商店 台北經貿店",
-    "origName": "",
-    "address": "臺北市南港區經貿二路200號1樓",
-    "phone": "",
-    "lat": 25.05982,
-    "lng": 121.61441,
-    "coordsText": "25.05982, 121.61441",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05982,121.61441"
-  },
-  {
     "id": "fm-tpe-606",
     "city": "臺北市",
     "district": "大同區",
@@ -9450,21 +9420,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08113,121.59049"
   },
   {
-    "id": "fm-tpe-633",
-    "city": "臺北市",
-    "district": "萬華區",
-    "name": "全家便利商店 全家便利商店 台北環河店",
-    "rawName": "全家便利商店 台北環河店",
-    "shortName": "全家便利商店 台北環河店",
-    "origName": "",
-    "address": "台北市萬華區環河南路二段250巷44號1樓",
-    "phone": "",
-    "lat": 25.03382,
-    "lng": 121.49075,
-    "coordsText": "25.03382, 121.49075",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03382,121.49075"
-  },
-  {
     "id": "fm-tpe-634",
     "city": "臺北市",
     "district": "萬華區",
@@ -9645,21 +9600,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02116,121.49516"
   },
   {
-    "id": "fm-tpe-646",
-    "city": "臺北市",
-    "district": "南港區",
-    "name": "全家便利商店 全家便利商店 台北成福店",
-    "rawName": "全家便利商店 台北成福店",
-    "shortName": "全家便利商店 台北成福店",
-    "origName": "",
-    "address": "台北市南港區成福路44號1樓",
-    "phone": "",
-    "lat": 25.04495,
-    "lng": 121.58641,
-    "coordsText": "25.04495, 121.58641",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04495,121.58641"
-  },
-  {
     "id": "fm-tpe-647",
     "city": "臺北市",
     "district": "中正區",
@@ -9838,21 +9778,6 @@
     "lng": 121.53277,
     "coordsText": "25.11511, 121.53277",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11511,121.53277"
-  },
-  {
-    "id": "fm-tpe-659",
-    "city": "臺北市",
-    "district": "大同區",
-    "name": "全家便利商店 全家便利商店 台北赤峰店",
-    "rawName": "全家便利商店 台北赤峰店",
-    "shortName": "全家便利商店 台北赤峰店",
-    "origName": "",
-    "address": "台北市大同區赤峰街22號1樓",
-    "phone": "",
-    "lat": 25.05603,
-    "lng": 121.51964,
-    "coordsText": "25.05603, 121.51964",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05603,121.51964"
   },
   {
     "id": "fm-tpe-660",
