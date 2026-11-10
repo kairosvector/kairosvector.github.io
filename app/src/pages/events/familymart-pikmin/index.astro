@@ -1920,23 +1920,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           }
 
           // 2. Web Share API (Android System Share -> User picks GeoSim)
-          const shareData = {
-            title: `GeoSim 巡航路線 - ${title}`,
-            text: route
-          };
-
-          if (navigator.share) {
-            try {
-              await navigator.share(shareData);
-              return;
-            } catch (err) {
-              if (err.name === 'AbortError') {
-                return;
-              }
-            }
-          }
-
-          // 3. Fallback: Copy to clipboard
+          // Direct copy to clipboard (avoid Android system share sheet with screenshot/camera)
           copyToClipboard(route, `已複製【${title}】${count} 點坐標！請至手機 GeoSim 或分享貼上套用。`);
         });
       });
