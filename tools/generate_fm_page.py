@@ -2,6 +2,12 @@ import os
 import json
 
 def generate_page(is_staging=False):
+    try:
+        with open('app/public/events/fm-version.json', 'r', encoding='utf-8') as vf:
+            vdata = json.load(vf)
+            current_batch_id = vdata.get('batch_id', 5)
+    except Exception:
+        current_batch_id = 5
     target_path = 'app/src/pages/events/familymart-pikmin/staging.astro' if is_staging else 'app/src/pages/events/familymart-pikmin/index.astro'
     os.makedirs(os.path.dirname(target_path), exist_ok=True)
 
@@ -59,7 +65,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 >
   <div class="fm-page">
     <!-- Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id="1" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id=""" + json.dumps(str(current_batch_id)) + """ data-store-count={stores.length}>
       <div class="top-sticky-version-inner">
         <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
@@ -1547,11 +1553,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       const localBatch = parseInt(card.getAttribute('data-batch-id') || '0', 10);
       const localCount = parseInt(card.getAttribute('data-store-count') || '0', 10);
 
-      fetch('/events/fm-version.json')
+      fetch('/events/fm-version.json?_t=' + Date.now(), { cache: 'no-store' })
         .then(function (res) { return res.json(); })
         .then(function (remote) {
           if (!remote || !remote.batch_id) return;
-          if (remote.batch_id > localBatch || remote.store_count > localCount) {
+          if (remote.batch_id > localBatch) {
             applyRemoteUpdateNotice(remote);
           }
         })

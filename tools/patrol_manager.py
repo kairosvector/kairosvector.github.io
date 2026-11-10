@@ -287,6 +287,23 @@ def run_patrol(dry_run=False):
         state["auto_calibrated_count"] = state.get("auto_calibrated_count", 0) + len(auto_updated_stores)
         state["auto_routes_count"] = state.get("auto_routes_count", 0) + len(auto_added_routes)
 
+        # Bump fm-version.json
+        try:
+            ver_file = "app/public/events/fm-version.json"
+            ver_data = load_json(ver_file, {"batch_id": 5, "version": "1.5"})
+            ver_data["batch_id"] = ver_data.get("batch_id", 5) + 1
+            ver_data["version"] = f"1.{ver_data['batch_id']}"
+            ver_data["store_count"] = len(fm_stores)
+            import datetime
+            ver_data["updated_at"] = datetime.datetime.now().strftime("%m/%d %H:%M")
+            if auto_added_routes:
+                ver_data["description"] = f"新增社群精選路線 ({auto_added_routes[0]['title']})"
+            elif auto_updated_stores:
+                ver_data["description"] = f"自動校正 {len(auto_updated_stores)} 間門市坐標"
+            save_json(ver_file, ver_data)
+        except Exception as e:
+            print(f"Warning: could not update fm-version.json: {e}")
+
         # Re-generate both pages
         subprocess.run(["python", "tools/generate_fm_page.py", "--prod"], check=True)
         # Build Astro

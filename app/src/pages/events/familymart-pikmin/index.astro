@@ -45,7 +45,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 >
   <div class="fm-page">
     <!-- Top Sticky Version & Live Update Notification Banner (Fixed right below Title Bar) -->
-    <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id="1" data-store-count={stores.length}>
+    <div class="top-sticky-version-wrapper" id="fm-version-card" data-batch-id="5" data-store-count={stores.length}>
       <div class="top-sticky-version-inner">
         <div class="top-sticky-version-left">
           <span class="version-dot" id="version-dot" aria-hidden="true"></span>
@@ -1533,11 +1533,11 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       const localBatch = parseInt(card.getAttribute('data-batch-id') || '0', 10);
       const localCount = parseInt(card.getAttribute('data-store-count') || '0', 10);
 
-      fetch('/events/fm-version.json')
+      fetch('/events/fm-version.json?_t=' + Date.now(), { cache: 'no-store' })
         .then(function (res) { return res.json(); })
         .then(function (remote) {
           if (!remote || !remote.batch_id) return;
-          if (remote.batch_id > localBatch || remote.store_count > localCount) {
+          if (remote.batch_id > localBatch) {
             applyRemoteUpdateNotice(remote);
           }
         })
