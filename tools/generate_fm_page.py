@@ -17,6 +17,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import stores from '../../../data/fm_taipei_stores.json';
 import hotRoutes from '../../../data/""" + routes_json + """';
 
+const officialRoutes = hotRoutes.filter(r => (r as any).isOfficial !== false);
+const communityRoutes = hotRoutes.filter(r => (r as any).isOfficial === false);
+
 const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 696 店) | GeoSim`;
 const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 696 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
 
@@ -219,101 +222,223 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
           </p>
         </div>
 
-        <div class="hot-routes-grid">
-          {hotRoutes.map((route, rIdx) => (
-            <div class="hot-route-card" data-route-id={route.id}>
-              <div class="hot-route-card__top">
-                <div class="hot-route-badge-row">
-                  <div class="hot-route-badge-group">
-                    <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}40;`}>
-                      {route.tag}
-                    </span>
-                    <span class="hot-route-rank">TOP {rIdx + 1}</span>
+        <!-- 1. Official Top 3 Flagship Routes -->
+        <div class="routes-subgroup">
+          <div class="routes-subgroup__header">
+            <div class="routes-subgroup__title-row">
+              <span class="subgroup-badge subgroup-badge--official">🏆 官方精選</span>
+              <h3 class="routes-subgroup__title">TOP 3 旗艦黃金路線</h3>
+              <span class="subgroup-count">全台密度之冠 · {officialRoutes.length} 條</span>
+            </div>
+            <p class="routes-subgroup__desc">經全城門市坐標高精校正與最短步距演算，適合追求最高取苗效率的玩家。</p>
+          </div>
+
+          <div class="hot-routes-grid">
+            {officialRoutes.map((route, rIdx) => (
+              <div class="hot-route-card" data-route-id={route.id}>
+                <div class="hot-route-card__top">
+                  <div class="hot-route-badge-row">
+                    <div class="hot-route-badge-group">
+                      <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}40;`}>
+                        {route.tag}
+                      </span>
+                      <span class="hot-route-rank">TOP {rIdx + 1}</span>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn-open-route-report"
+                      data-route-id={route.id}
+                      data-route-title={route.title}
+                      data-route-tag={route.tag}
+                      data-route-count={route.storeCount}
+                      title="回報此路線問題或建議"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                      <span>問題回報</span>
+                    </button>
                   </div>
+                  <h3 class="hot-route-name">{route.title}</h3>
+                  <p class="hot-route-subtitle">{route.subtitle}</p>
+                  {route.author && (
+                    <div class="hot-route-author-badge">
+                      <span class="author-trophy">🏆</span>
+                      <span class="author-label">路線貢獻者：</span>
+                      <strong class="author-name">@{route.author}</strong>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="hot-route-stats">
+                  <div class="stat-col">
+                    <span class="stat-val stat-val--green">{route.storeCount}</span>
+                    <span class="stat-lbl">間全家門市</span>
+                  </div>
+                  <div class="stat-sep"></div>
+                  <div class="stat-col">
+                    <span class="stat-val">{route.totalKm}</span>
+                    <span class="stat-lbl">公里總長</span>
+                  </div>
+                  <div class="stat-sep"></div>
+                  <div class="stat-col">
+                    <span class="stat-val">{route.avgGapMeters}m</span>
+                    <span class="stat-lbl">平均站距</span>
+                  </div>
+                </div>
+
+                <p class="hot-route-info">{route.desc}</p>
+
+                <!-- Sample Stores -->
+                <div class="hot-route-samples">
+                  <span class="samples-title">精選途經：</span>
+                  <div class="samples-pills">
+                    {route.sampleStores.map(name => (
+                      <span class="sample-pill">{name}</span>
+                    ))}
+                    <span class="sample-more">...等 {route.storeCount} 店</span>
+                  </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="hot-route-actions">
                   <button
                     type="button"
-                    class="btn-open-route-report"
-                    data-route-id={route.id}
-                    data-route-title={route.title}
-                    data-route-tag={route.tag}
-                    data-route-count={route.storeCount}
-                    title="回報此路線問題或建議"
+                    class="btn-copy-hot-route"
+                    data-route={route.routeText}
+                    data-title={route.title}
+                    data-count={route.storeCount}
+                    title={`複製【${route.title}】所有點位坐標`}
                   >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-                    <span>問題回報</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>複製這條路線({route.storeCount}點)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn-apply-geosim-route"
+                    data-route={route.routeText}
+                    data-title={route.title}
+                    data-count={route.storeCount}
+                    title={`分享【${route.title}】至 GeoSim 多點巡航`}
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    <span>套用至GeoSim</span>
                   </button>
                 </div>
-                <h3 class="hot-route-name">{route.title}</h3>
-                <p class="hot-route-subtitle">{route.subtitle}</p>
-                {route.author && (
-                  <div class="hot-route-author-badge">
-                    <span class="author-trophy">🏆</span>
-                    <span class="author-label">路線貢獻者：</span>
-                    <strong class="author-name">@{route.author}</strong>
-                  </div>
-                )}
               </div>
-
-              <!-- Stats Bar -->
-              <div class="hot-route-stats">
-                <div class="stat-col">
-                  <span class="stat-val stat-val--green">{route.storeCount}</span>
-                  <span class="stat-lbl">間全家門市</span>
-                </div>
-                <div class="stat-sep"></div>
-                <div class="stat-col">
-                  <span class="stat-val">{route.totalKm}</span>
-                  <span class="stat-lbl">公里總長</span>
-                </div>
-                <div class="stat-sep"></div>
-                <div class="stat-col">
-                  <span class="stat-val">{route.avgGapMeters}m</span>
-                  <span class="stat-lbl">平均站距</span>
-                </div>
-              </div>
-
-              <p class="hot-route-info">{route.desc}</p>
-
-              <!-- Sample Stores -->
-              <div class="hot-route-samples">
-                <span class="samples-title">精選途經：</span>
-                <div class="samples-pills">
-                  {route.sampleStores.map(name => (
-                    <span class="sample-pill">{name}</span>
-                  ))}
-                  <span class="sample-more">...等 {route.storeCount} 店</span>
-                </div>
-              </div>
-
-              <!-- Actions -->
-              <div class="hot-route-actions">
-                <button
-                  type="button"
-                  class="btn-copy-hot-route"
-                  data-route={route.routeText}
-                  data-title={route.title}
-                  data-count={route.storeCount}
-                  title={`複製【${route.title}】所有點位坐標`}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                  <span>複製這條路線({route.storeCount}點)</span>
-                </button>
-
-                <button
-                  type="button"
-                  class="btn-apply-geosim-route"
-                  data-route={route.routeText}
-                  data-title={route.title}
-                  data-count={route.storeCount}
-                  title={`分享【${route.title}】至 GeoSim 多點巡航`}
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                  <span>套用至GeoSim</span>
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <!-- 2. Community Contributed Routes Subgroup -->
+        {communityRoutes.length > 0 && (
+          <div class="routes-subgroup routes-subgroup--community">
+            <div class="routes-subgroup__header">
+              <div class="routes-subgroup__title-row">
+                <span class="subgroup-badge subgroup-badge--community">🌟 玩家私房</span>
+                <h3 class="routes-subgroup__title">社群貢獻精選路線</h3>
+                <span class="subgroup-count">飛友實測分享 · {communityRoutes.length} 條</span>
+              </div>
+              <p class="routes-subgroup__desc">由熱心玩家實測貢獻的私房單車線、生活圈與順路速刷路徑，榮譽感謝每位路線作者！</p>
+            </div>
+
+            <div class="hot-routes-grid">
+              {communityRoutes.map((route, rIdx) => (
+                <div class="hot-route-card hot-route-card--community" data-route-id={route.id}>
+                  <div class="hot-route-card__top">
+                    <div class="hot-route-badge-row">
+                      <div class="hot-route-badge-group">
+                        <span class="hot-route-tag" style={`background: ${route.tagColor}15; color: ${route.tagColor}; border: 1px solid ${route.tagColor}40;`}>
+                          {route.tag}
+                        </span>
+                        <span class="hot-route-community-tag">玩家投稿</span>
+                      </div>
+                      <button
+                        type="button"
+                        class="btn-open-route-report"
+                        data-route-id={route.id}
+                        data-route-title={route.title}
+                        data-route-tag={route.tag}
+                        data-route-count={route.storeCount}
+                        title="回報此路線問題或建議"
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                        <span>問題回報</span>
+                      </button>
+                    </div>
+                    <h3 class="hot-route-name">{route.title}</h3>
+                    <p class="hot-route-subtitle">{route.subtitle}</p>
+                    {route.author && (
+                      <div class="hot-route-author-badge">
+                        <span class="author-trophy">🏆</span>
+                        <span class="author-label">路線貢獻者：</span>
+                        <strong class="author-name">@{route.author}</strong>
+                      </div>
+                    )}
+                  </div>
+
+                  <!-- Stats Bar -->
+                  <div class="hot-route-stats">
+                    <div class="stat-col">
+                      <span class="stat-val stat-val--purple">{route.storeCount}</span>
+                      <span class="stat-lbl">間全家門市</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-col">
+                      <span class="stat-val">{route.totalKm}</span>
+                      <span class="stat-lbl">公里總長</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-col">
+                      <span class="stat-val">{route.avgGapMeters}m</span>
+                      <span class="stat-lbl">平均站距</span>
+                    </div>
+                  </div>
+
+                  <p class="hot-route-info">{route.desc}</p>
+
+                  <!-- Sample Stores -->
+                  <div class="hot-route-samples">
+                    <span class="samples-title">精選途經：</span>
+                    <div class="samples-pills">
+                      {route.sampleStores.map(name => (
+                        <span class="sample-pill">{name}</span>
+                      ))}
+                      <span class="sample-more">...等 {route.storeCount} 店</span>
+                    </div>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="hot-route-actions">
+                    <button
+                      type="button"
+                      class="btn-copy-hot-route"
+                      data-route={route.routeText}
+                      data-title={route.title}
+                      data-count={route.storeCount}
+                      title={`複製【${route.title}】所有點位坐標`}
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                      <span>複製這條路線({route.storeCount}點)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="btn-apply-geosim-route"
+                      data-route={route.routeText}
+                      data-title={route.title}
+                      data-count={route.storeCount}
+                      title={`分享【${route.title}】至 GeoSim 多點巡航`}
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                      <span>套用至GeoSim</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
 
@@ -3428,7 +3553,96 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
 
   .hot-routes-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .routes-subgroup {
+    margin-bottom: 2rem;
+  }
+
+  .routes-subgroup--community {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1.5px dashed #CBD5E1;
+  }
+
+  .routes-subgroup__header {
+    margin-bottom: 1.15rem;
+  }
+
+  .routes-subgroup__title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+
+  .subgroup-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    letter-spacing: 0.02em;
+  }
+
+  .subgroup-badge--official {
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+  }
+
+  .subgroup-badge--community {
+    background: #EDE9FE;
+    color: #6D28D9;
+    border: 1px solid #DDD6FE;
+  }
+
+  .routes-subgroup__title {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--fm-text);
+    margin: 0;
+  }
+
+  .subgroup-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748B;
+    background: #FFFFFF;
+    border: 1px solid var(--fm-border);
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+  }
+
+  .routes-subgroup__desc {
+    font-size: 0.85rem;
+    color: var(--fm-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .hot-route-card--community {
+    border-color: #E2E8F0;
+  }
+
+  .hot-route-card--community:hover {
+    border-color: #8B5CF6;
+    box-shadow: 0 10px 28px rgba(139, 92, 246, 0.14);
+  }
+
+  .hot-route-community-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #7C3AED;
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .stat-val--purple {
+    color: #7C3AED;
   }
 
   /* Crowdsourced Route Submission Section (Bottom) */
