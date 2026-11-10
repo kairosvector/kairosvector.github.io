@@ -207,12 +207,23 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     <section class="hot-routes-section" id="hot-routes">
       <div class="fm-container">
         <div class="hot-routes-header">
-          <div class="hot-routes-title-wrap">
-            <span class="hot-routes-kicker">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 23c-4.97 0-9-4.03-9-9 0-3.8 2.37-7.06 5.75-8.35.5-.19.98.24.91.77-.47 3.51 1.7 4.96 2.34 5.34.4.24.92-.02.94-.49.07-2.1.8-4.52 2.76-6.44.38-.37 1-.16 1.11.35.7 3.25 2.62 4.41 3.19 5.32C20.67 11.66 21 12.8 21 14c0 4.97-4.03 9-9 9z"/></svg>
-              效率專區
-            </span>
-            <h2 class="hot-routes-title">推薦熱門高密度巡航路線</h2>
+          <div class="hot-routes-header__top">
+            <div class="hot-routes-title-wrap">
+              <span class="hot-routes-kicker">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 23c-4.97 0-9-4.03-9-9 0-3.8 2.37-7.06 5.75-8.35.5-.19.98.24.91.77-.47 3.51 1.7 4.96 2.34 5.34.4.24.92-.02.94-.49.07-2.1.8-4.52 2.76-6.44.38-.37 1-.16 1.11.35.7 3.25 2.62 4.41 3.19 5.32C20.67 11.66 21 12.8 21 14c0 4.97-4.03 9-9 9z"/></svg>
+                效率專區
+              </span>
+              <h2 class="hot-routes-title">推薦熱門高密度巡航路線</h2>
+            </div>
+            <button
+              type="button"
+              class="btn-open-submit-route"
+              id="btn-open-submit-route"
+              title="投稿並分享您的全家私房巡航路線"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <span>+ 投稿私房路線</span>
+            </button>
           </div>
           <p class="hot-routes-desc">
             """ + routes_desc + """
@@ -245,6 +256,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                 </div>
                 <h3 class="hot-route-name">{route.title}</h3>
                 <p class="hot-route-subtitle">{route.subtitle}</p>
+                {route.author && (
+                  <div class="hot-route-author-badge">
+                    <span class="author-trophy">🏆</span>
+                    <span class="author-label">路線共線者：</span>
+                    <strong class="author-name">@{route.author}</strong>
+                  </div>
+                )}
               </div>
 
               <!-- Stats Bar -->
@@ -649,6 +667,126 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     <!-- Floating Quick Copy Toast -->
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite"></div>
 
+    <!-- Crowdsourced Route Submission Modal -->
+    <div id="fm-submit-route-backdrop" class="report-backdrop" style="display: none;">
+      <div class="report-sheet report-sheet--wide" role="dialog" aria-modal="true" aria-labelledby="submit-route-title">
+        <div class="report-sheet__header">
+          <div>
+            <h3 id="submit-route-title" class="report-sheet__title">投稿我的全家私房路線</h3>
+            <p class="report-sheet__subtitle">分享實測好走的巡航路徑，審核通過後將常駐收錄並標記您為【路線共線者】！</p>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-submit-route" aria-label="關閉">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div id="submit-route-form" class="report-sheet__body">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="route-submit-author">
+                共線者暱稱 / 社群 ID <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="route-submit-author"
+                class="form-input"
+                placeholder="例如：飛友阿明 或 @ming_walk"
+                maxlength="30"
+              />
+              <span class="form-field-tip">路線上架時卡片將自豪展示：「🏆 路線共線者：@暱稱」</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="route-submit-contact">
+                聯絡方式 (選填，不公開)
+              </label>
+              <input
+                type="text"
+                id="route-submit-contact"
+                class="form-input"
+                placeholder="Email 或 IG / Threads (審核有疑問時聯繫)"
+                maxlength="50"
+              />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="route-submit-title">
+                路線名稱 <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="route-submit-title"
+                class="form-input"
+                placeholder="例如：公館台大商圈 · 18 店速刷單車線"
+                maxlength="40"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="route-submit-district">
+                途經主要區域 / 商圈 <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="route-submit-district"
+                class="form-input"
+                placeholder="例如：台北市大安區 / 中正區"
+                maxlength="40"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="route-submit-desc">
+              路線特色與實測心得 <span class="required">*</span>
+            </label>
+            <textarea
+              id="route-submit-desc"
+              class="form-textarea"
+              rows="2"
+              placeholder="例如：全程走平路不需爬天橋、避開地下街無訊號區、實測約 40 分鐘刷完..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label class="form-label" for="route-submit-coords">
+                路線坐標清單 (每行一組經緯度) <span class="required">*</span>
+              </label>
+              <span class="coords-live-badge" id="submit-coords-counter">未偵測到坐標</span>
+            </div>
+            <textarea
+              id="route-submit-coords"
+              class="form-textarea font-mono"
+              rows="5"
+              placeholder="請直接貼上坐標（一行一組經緯度），支援 GeoSim / Google 地圖格式：&#10;25.04053, 121.51897&#10;25.04363, 121.51581&#10;25.04732, 121.51605"
+            ></textarea>
+            <span class="form-field-tip">可從 GeoSim 路線、記事本或 Google 地圖複製多個點位貼上，建議至少包含 5 間以上門市點位。</span>
+          </div>
+
+          <div class="report-sheet__actions">
+            <button type="button" class="btn-modal-cancel" id="btn-cancel-submit-route">取消</button>
+            <button type="button" class="btn-modal-submit" id="btn-do-submit-route">
+              <span>送出路線投稿</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="submit-route-success" class="report-sheet__success" style="display: none;">
+          <div class="success-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00A040" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <h4 class="success-title">🎉 路線投稿成功！</h4>
+          <p class="success-desc">
+            非常感謝您的熱心分享！站長將在實測路線順暢度後盡速收錄，並在路線卡片常駐展示您為<strong>【路線共線者】</strong>！
+          </p>
+          <button type="button" class="btn-modal-submit" id="btn-finish-submit-route">完成</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Route Issue Report Modal (Option 2) -->
     <div id="fm-route-report-backdrop" class="report-backdrop" style="display: none;">
       <div class="report-sheet" role="dialog" aria-modal="true" aria-labelledby="route-report-title">
@@ -882,6 +1020,137 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     // ==========================================================================
     const GAS_REPORT_URL = 'https://script.google.com/macros/s/AKfycbzgtI_7aWF-x5-y3ETnkDLHrb7wXCGeCw8zfZ-2TAMdty-UI6fox2-NR1EKhJhbdNGZLA/exec';
     const STORE_REPORTED_KEY_PREFIX = 'fm_store_reported_';
+
+    // Submit Route Modal Elements
+    const submitRouteModal = document.getElementById('fm-submit-route-backdrop');
+    const submitRouteForm = document.getElementById('submit-route-form');
+    const submitRouteSuccess = document.getElementById('submit-route-success');
+    const inputSubmitAuthor = document.getElementById('route-submit-author');
+    const inputSubmitContact = document.getElementById('route-submit-contact');
+    const inputSubmitTitle = document.getElementById('route-submit-title');
+    const inputSubmitDistrict = document.getElementById('route-submit-district');
+    const inputSubmitDesc = document.getElementById('route-submit-desc');
+    const inputSubmitCoords = document.getElementById('route-submit-coords');
+    const counterSubmitCoords = document.getElementById('submit-coords-counter');
+    const btnDoSubmitRoute = document.getElementById('btn-do-submit-route');
+
+    function parseCoordinateLines(text) {
+      if (!text) return [];
+      const lines = text.split(String.fromCharCode(10));
+      const valid = [];
+      const coordRegex = /(-?[0-9]+[.]?[0-9]*)[ ,	]+(-?[0-9]+[.]?[0-9]*)/;
+      for (const line of lines) {
+        const trimmed = line.trim();
+        const match = trimmed.match(coordRegex);
+        if (match) {
+          const lat = parseFloat(match[1]);
+          const lng = parseFloat(match[2]);
+          if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) {
+            valid.push(lat.toFixed(6) + ',' + lng.toFixed(6));
+          }
+        }
+      }
+      return valid;
+    }
+
+    function updateCoordsCounter() {
+      if (!inputSubmitCoords || !counterSubmitCoords) return;
+      const coords = parseCoordinateLines(inputSubmitCoords.value);
+      if (coords.length > 0) {
+        counterSubmitCoords.textContent = '已識別 ' + coords.length + ' 個巡航點';
+        counterSubmitCoords.className = 'coords-live-badge coords-live-badge--valid';
+      } else {
+        counterSubmitCoords.textContent = '未偵測到坐標';
+        counterSubmitCoords.className = 'coords-live-badge';
+      }
+    }
+
+    function openSubmitRouteModal() {
+      if (inputSubmitAuthor) inputSubmitAuthor.value = '';
+      if (inputSubmitContact) inputSubmitContact.value = '';
+      if (inputSubmitTitle) inputSubmitTitle.value = '';
+      if (inputSubmitDistrict) inputSubmitDistrict.value = '';
+      if (inputSubmitDesc) inputSubmitDesc.value = '';
+      if (inputSubmitCoords) inputSubmitCoords.value = '';
+      updateCoordsCounter();
+      if (submitRouteForm) submitRouteForm.style.display = 'block';
+      if (submitRouteSuccess) submitRouteSuccess.style.display = 'none';
+      if (btnDoSubmitRoute) {
+        btnDoSubmitRoute.disabled = false;
+        btnDoSubmitRoute.innerHTML = '<span>送出路線投稿</span>';
+      }
+      if (submitRouteModal) submitRouteModal.style.display = 'flex';
+    }
+
+    function closeSubmitRouteModal() {
+      if (submitRouteModal) submitRouteModal.style.display = 'none';
+    }
+
+    async function handleDoSubmitRoute() {
+      const author = inputSubmitAuthor ? inputSubmitAuthor.value.trim() : '';
+      const contact = inputSubmitContact ? inputSubmitContact.value.trim() : '';
+      const title = inputSubmitTitle ? inputSubmitTitle.value.trim() : '';
+      const district = inputSubmitDistrict ? inputSubmitDistrict.value.trim() : '';
+      const desc = inputSubmitDesc ? inputSubmitDesc.value.trim() : '';
+      const coordsText = inputSubmitCoords ? inputSubmitCoords.value.trim() : '';
+      const validCoords = parseCoordinateLines(coordsText);
+
+      if (!author) {
+        alert('請填寫共線者暱稱，路線上架時將自豪標註您的貢獻！');
+        if (inputSubmitAuthor) inputSubmitAuthor.focus();
+        return;
+      }
+      if (!title) {
+        alert('請填寫路線名稱！');
+        if (inputSubmitTitle) inputSubmitTitle.focus();
+        return;
+      }
+      if (!district) {
+        alert('請填寫主要區域或商圈！');
+        if (inputSubmitDistrict) inputSubmitDistrict.focus();
+        return;
+      }
+      if (!desc) {
+        alert('請簡述路線特色或實測心得！');
+        if (inputSubmitDesc) inputSubmitDesc.focus();
+        return;
+      }
+      if (validCoords.length < 3) {
+        alert('請貼上至少 3 個有效門市經緯度坐標（每行一組）！');
+        if (inputSubmitCoords) inputSubmitCoords.focus();
+        return;
+      }
+
+      if (btnDoSubmitRoute) {
+        btnDoSubmitRoute.disabled = true;
+        btnDoSubmitRoute.innerHTML = '<span>送出中...</span>';
+      }
+
+      const payload = {
+        storeId: 'fm_route_submit_' + Date.now(),
+        storeName: '[路線投稿] ' + title,
+        city: district,
+        originalCoords: validCoords.length + ' 點',
+        reportType: '全家路線投稿',
+        correctedCoords: validCoords.join(String.fromCharCode(10)),
+        note: '共線者: @' + author + ' | 心得: ' + desc + (contact ? ' | 聯絡: ' + contact : ''),
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        fetch(GAS_REPORT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).catch((e) => console.warn('Route submit status:', e));
+      } catch (err) {
+        console.error('Submit error:', err);
+      }
+
+      if (submitRouteForm) submitRouteForm.style.display = 'none';
+      if (submitRouteSuccess) submitRouteSuccess.style.display = 'block';
+    }
 
     // Route Report Modal Elements
     const routeModal = document.getElementById('fm-route-report-backdrop');
@@ -1571,6 +1840,30 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
       // Initialize Reported Badges
       initReportedBadges();
+
+      // Open Submit Route Modal Listener
+      const btnOpenSubmitRoute = document.getElementById('btn-open-submit-route');
+      if (btnOpenSubmitRoute) {
+        btnOpenSubmitRoute.addEventListener('click', (e) => {
+          e.preventDefault();
+          openSubmitRouteModal();
+        });
+      }
+
+      // Close Submit Route Modal Listeners
+      const btnCloseSubmitRoute = document.getElementById('btn-close-submit-route');
+      const btnCancelSubmitRoute = document.getElementById('btn-cancel-submit-route');
+      const btnFinishSubmitRoute = document.getElementById('btn-finish-submit-route');
+      if (btnCloseSubmitRoute) btnCloseSubmitRoute.addEventListener('click', closeSubmitRouteModal);
+      if (btnCancelSubmitRoute) btnCancelSubmitRoute.addEventListener('click', closeSubmitRouteModal);
+      if (btnFinishSubmitRoute) btnFinishSubmitRoute.addEventListener('click', closeSubmitRouteModal);
+      if (btnDoSubmitRoute) btnDoSubmitRoute.addEventListener('click', handleDoSubmitRoute);
+
+      // Coords input live counter listener
+      if (inputSubmitCoords) {
+        inputSubmitCoords.addEventListener('input', updateCoordsCounter);
+        inputSubmitCoords.addEventListener('change', updateCoordsCounter);
+      }
 
       // Open Route Report Listeners
       document.querySelectorAll('.btn-open-route-report').forEach((btn) => {
@@ -3119,6 +3412,123 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
 
   .hot-routes-header {
     margin-bottom: 1.5rem;
+  }
+
+  .hot-routes-header__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .btn-open-submit-route {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #00A040;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.42rem 0.95rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 160, 64, 0.28);
+    transition: all 0.18s ease;
+  }
+
+  .btn-open-submit-route:hover {
+    background: #008736;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 160, 64, 0.4);
+  }
+
+  .btn-open-submit-route svg {
+    flex-shrink: 0;
+  }
+
+  .hot-route-author-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    color: #92400E;
+    border: 1px solid #F59E0B;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    box-shadow: 0 1px 3px rgba(245, 158, 11, 0.18);
+  }
+
+  .hot-route-author-badge .author-trophy {
+    font-size: 0.85rem;
+  }
+
+  .hot-route-author-badge .author-label {
+    color: #B45309;
+    font-weight: 600;
+  }
+
+  .hot-route-author-badge .author-name {
+    color: #78350F;
+    font-weight: 900;
+  }
+
+  .report-sheet--wide {
+    max-width: 520px;
+  }
+
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 520px) {
+    .form-grid-2 {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  .form-field-tip {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748B;
+    margin-top: 0.25rem;
+    line-height: 1.35;
+  }
+
+  .form-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+  }
+
+  .coords-live-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    background: #F1F5F9;
+    color: #64748B;
+    transition: all 0.2s ease;
+  }
+
+  .coords-live-badge--valid {
+    background: #E8F5E9;
+    color: #008736;
+    border: 1px solid #A5D6A7;
+  }
+
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
   }
 
   .hot-routes-title-wrap {
