@@ -4,6 +4,9 @@ import json
 import math
 import os
 import sys
+import csv
+import shutil
+import datetime
 import subprocess
 
 if sys.stdout.encoding != 'utf-8':
@@ -77,14 +80,54 @@ def match_fm_store(name, city, stores):
             return s
     return None
 
+def sync_fm_all_files(fm_stores, deleted_ids=None):
+    if deleted_ids is None:
+        deleted_ids = set()
+
+    # 1. app/src/data/fm_taipei_stores.json
+    save_json("app/src/data/fm_taipei_stores.json", fm_stores)
+
+    # 2. app/public/events/fm-taipei-stores.json
+    save_json("app/public/events/fm-taipei-stores.json", fm_stores)
+
+    # 3. app/public/events/fm-taipei-stores.csv
+    pub_headers = ['門市編號', '縣市', '行政區', '門市名稱', '地址', '電話', '緯度', '經度', '直飛座標 (複製用)', 'Google Maps 連結', '備註']
+    pub_rows = [pub_headers] + [[
+        s['id'], '台北市', s.get('district', ''), s['name'], s['address'],
+        s.get('phone', ''), s['lat'], s['lng'], s.get('coordsText', ''),
+        s.get('gmapUrl', ''), s.get('note', '')
+    ] for s in fm_stores]
+    with open('app/public/events/fm-taipei-stores.csv', 'w', encoding='utf-8-sig', newline='') as f:
+        csv.writer(f).writerows(pub_rows)
+
+    # 4. tools/data/familymart/fm-taipei.csv
+    tools_headers = ['編號', '縣市', '行政區', '店名', '地址', '電話', '緯度', '經度', '座標文字', 'Google地圖連結']
+    tools_rows = [tools_headers] + [[
+        s['id'], '臺北市', s.get('district', ''), s['name'], s['address'],
+        s.get('phone', ''), s['lat'], s['lng'], f'"{s.get("coordsText", "")}"',
+        s.get('gmapUrl', '')
+    ] for s in fm_stores]
+    with open('tools/data/familymart/fm-taipei.csv', 'w', encoding='utf-8-sig', newline='') as f:
+        csv.writer(f).writerows(tools_rows)
+
+    # 5. tools/data/fm_dictionary.json
+    tools_dict_path = "tools/data/fm_dictionary.json"
+    if os.path.exists(tools_dict_path):
+        dict_list = load_json(tools_dict_path, [])
+        if isinstance(dict_list, list):
+            dict_list = [item for item in dict_list if item.get('id') not in deleted_ids]
+            save_json(tools_dict_path, dict_list)
+
 def run_patrol(dry_run=False):
     rows = fetch_sheet_rows()
     state = load_json(FM_STATE_FILE, {
         "processed_timestamps": [],
         "auto_calibrated_count": 0,
-        "auto_routes_count": 0
+        "auto_routes_count": 0,
+        "pending_closed_stores": []
     })
     processed_set = set(state.get("processed_timestamps", []))
+    pending_closed_stores = state.get("pending_closed_stores", [])
 
     fm_stores = load_json(FM_STORES_FILE, [])
     fm_dict = load_json(FM_DICT_FILE, {})
@@ -93,6 +136,7 @@ def run_patrol(dry_run=False):
 
     auto_updated_stores = []
     auto_added_routes = []
+    auto_deleted_closed_stores = []
     flagged_anomalies = []
     has_changes = False
 
@@ -266,23 +310,67 @@ def run_patrol(dry_run=False):
 
         # 3. Store Closed Report
         if "歇業" in rtype:
-            flagged_anomalies.append({
-                "type": "門市已歇業回報",
-                "name": name,
-                "note": note,
-                "ts": ts
-            })
+            store = match_fm_store(name, city, fm_stores)
+            if store:
+                if not any(p["id"] == store["id"] for p in pending_closed_stores):
+                    pending_closed_stores.append({
+                        "id": store["id"],
+                        "name": store["name"],
+                        "address": store["address"],
+                        "ts": ts
+                    })
+            else:
+                flagged_anomalies.append({
+                    "type": "門市已歇業(未找到門市)",
+                    "name": name,
+                    "note": note,
+                    "ts": ts
+                })
             processed_set.add(ts)
             continue
 
         processed_set.add(ts)
 
-    # If changes made, save and trigger rebuild & deployment
+    # 4. Evaluate Batch Closed Store Deletion Rule:
+    # Rule: 累積達 5 筆，或是最久等待時間超過 1 小時 (3600 秒) 即可更新
+    trigger_deletion = False
+    deletion_reason = ""
+    now_utc = datetime.datetime.now(datetime.timezone.utc)
+
+    if len(pending_closed_stores) >= 5:
+        trigger_deletion = True
+        deletion_reason = f"累積達 {len(pending_closed_stores)} 筆門市（達到 5 筆批量門檻）"
+    elif len(pending_closed_stores) > 0:
+        oldest_ts = min(p["ts"] for p in pending_closed_stores)
+        try:
+            dt = datetime.datetime.fromisoformat(oldest_ts.replace("Z", "+00:00"))
+            elapsed_sec = (now_utc - dt).total_seconds()
+            if elapsed_sec >= 3600:
+                elapsed_min = int(elapsed_sec // 60)
+                trigger_deletion = True
+                deletion_reason = f"等待時間已達 {elapsed_min} 分鐘（達到 1 小時門檻）"
+        except Exception as e:
+            pass
+
+    if trigger_deletion and not dry_run:
+        deleted_ids = set(p["id"] for p in pending_closed_stores)
+        auto_deleted_closed_stores = list(pending_closed_stores)
+        fm_stores = [s for s in fm_stores if s["id"] not in deleted_ids]
+
+        # Sync all static JSON and CSV files
+        sync_fm_all_files(fm_stores, deleted_ids=deleted_ids)
+
+        # Clear pending closed list
+        pending_closed_stores = []
+        has_changes = True
+
+    # Save routes and dictionary if updated
     if has_changes and not dry_run:
         save_json(FM_STORES_FILE, fm_stores)
         save_json(FM_DICT_FILE, fm_dict)
         save_json(FM_PROD_ROUTES_FILE, prod_routes)
         save_json(FM_STAGING_ROUTES_FILE, staging_routes)
+        sync_fm_all_files(fm_stores)
 
         state["auto_calibrated_count"] = state.get("auto_calibrated_count", 0) + len(auto_updated_stores)
         state["auto_routes_count"] = state.get("auto_routes_count", 0) + len(auto_added_routes)
@@ -290,13 +378,14 @@ def run_patrol(dry_run=False):
         # Bump fm-version.json
         try:
             ver_file = "app/public/events/fm-version.json"
-            ver_data = load_json(ver_file, {"batch_id": 5, "version": "1.5"})
-            ver_data["batch_id"] = ver_data.get("batch_id", 5) + 1
+            ver_data = load_json(ver_file, {"batch_id": 10, "version": "1.10"})
+            ver_data["batch_id"] = ver_data.get("batch_id", 10) + 1
             ver_data["version"] = f"1.{ver_data['batch_id']}"
             ver_data["store_count"] = len(fm_stores)
-            import datetime
             ver_data["updated_at"] = datetime.datetime.now().strftime("%m/%d %H:%M")
-            if auto_added_routes:
+            if auto_deleted_closed_stores:
+                ver_data["description"] = f"自動下架 {len(auto_deleted_closed_stores)} 間已歇業門市（共 {len(fm_stores)} 店）"
+            elif auto_added_routes:
                 ver_data["description"] = f"新增社群精選路線 ({auto_added_routes[0]['title']})"
             elif auto_updated_stores:
                 ver_data["description"] = f"自動校正 {len(auto_updated_stores)} 間門市坐標"
@@ -311,16 +400,21 @@ def run_patrol(dry_run=False):
         # Deploy to Cloudflare Pages
         subprocess.run(["npx", "wrangler", "pages", "deploy", "dist", "--project-name", "kairosvector"], cwd="app", shell=True, check=True)
 
-    # Always persist processed reports so we don't repeatedly flag anomalies every cron
+    # Always persist state
     if not dry_run:
         state["processed_timestamps"] = list(processed_set)
+        state["pending_closed_stores"] = pending_closed_stores
         save_json(FM_STATE_FILE, state)
 
     # Output concise mobile report if updates or anomalies occurred
-    if auto_updated_stores or auto_added_routes or flagged_anomalies:
-        import datetime
+    if auto_updated_stores or auto_added_routes or auto_deleted_closed_stores or pending_closed_stores or flagged_anomalies:
         now_str = datetime.datetime.now().strftime("%H:%M")
         print(f"📱 **全家地圖自動巡檢速報** ({now_str})")
+        if auto_deleted_closed_stores:
+            print(f"🗑️ **歇業門市已自動下架 ({len(auto_deleted_closed_stores)} 間 · {deletion_reason})**：")
+            for s in auto_deleted_closed_stores:
+                print(f"  • {s['name']} ({s['address']})")
+            print(f"  • 台北市總門市數降為 **{len(fm_stores)} 店**")
         if auto_updated_stores:
             print(f"✅ **坐標自動校正 ({len(auto_updated_stores)} 間)**：")
             for s in auto_updated_stores:
@@ -329,8 +423,16 @@ def run_patrol(dry_run=False):
             print(f"🏆 **新路線自動上架 ({len(auto_added_routes)} 條)**：")
             for r in auto_added_routes:
                 print(f"  • {r['title']} (@{r['author']}) · {r['storeCount']} 店 ➔ 已發布")
+        if pending_closed_stores:
+            oldest_ts = min(p["ts"] for p in pending_closed_stores)
+            dt = datetime.datetime.fromisoformat(oldest_ts.replace("Z", "+00:00"))
+            elapsed_min = int((now_utc - dt).total_seconds() // 60)
+            remaining_min = max(0, 60 - elapsed_min)
+            print(f"⏳ **待處理歇業門市 (累積 {len(pending_closed_stores)} / 5 筆，已等待 {elapsed_min} 分鐘，距離 1 小時門檻剩 {remaining_min} 分鐘)**：")
+            for p in pending_closed_stores:
+                print(f"  • {p['name']}")
         if flagged_anomalies:
-            print(f"⚠️ **待確認項目 ({len(flagged_anomalies)} 筆)**：")
+            print(f"⚠️ **異常待確認項目 ({len(flagged_anomalies)} 筆)**：")
             for a in flagged_anomalies:
                 print(f"  • [{a['type']}] {a.get('name') or a.get('title')}")
         if has_changes:
