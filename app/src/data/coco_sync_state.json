@@ -861,6 +861,30 @@
           "source": "使用者提報新增高雄楠梓後昌店（後昌路737號1樓，全台總數增至 354 店）"
         }
       ]
+    },
+    {
+      "batch_id": 42,
+      "applied_at": "2026-11-10 17:30:00 (UTC+8)",
+      "target": "Product & Staging",
+      "updated_stores_count": 2,
+      "updated_stores": [
+        {
+          "id": "coco-356",
+          "name": "CoCo都可 苗栗玉清店",
+          "city": "苗栗縣",
+          "action": "新增門市",
+          "coords": "24.56370, 120.82662",
+          "source": "使用者提報新增苗栗玉清店（玉清街9-2號，全台總數增至 355 店）"
+        },
+        {
+          "id": "coco-357",
+          "name": "CoCo都可 後龍三民店",
+          "city": "苗栗縣",
+          "action": "新增門市",
+          "coords": "24.61451, 120.78733",
+          "source": "使用者提報新增後龍三民店（三民路126號，全台總數增至 356 店）"
+        }
+      ]
     }
   ],
   "confirmed_correct_stores": [

@@ -50,6 +50,16 @@ BUFFER_FILE = "app/src/data/coco_verified_buffer.json"
 
 # Stores that have been reviewed and verified by user/operator as resolved
 RESOLVED_STORES = {
+    "coco-356",   # 苗栗玉清店 (第42波新增門市)
+    "CoCo都可 苗栗玉清店",
+    "CoCo都可(苗栗玉清店)",
+    "苗栗玉清店",
+    "苗栗玉清",
+    "coco-357",   # 後龍三民店 (第42波新增門市)
+    "CoCo都可 後龍三民店",
+    "CoCo都可(後龍三民店)",
+    "後龍三民店",
+    "後龍三民",
     "coco-355",   # 楠梓後昌店 (第41波新增門市)
     "CoCo都可 楠梓後昌店",
     "CoCo都可 南梓後昌店",
