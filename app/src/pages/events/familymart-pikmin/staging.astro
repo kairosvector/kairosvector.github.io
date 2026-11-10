@@ -6,8 +6,8 @@ import hotRoutes from '../../../data/fm_hot_routes_staging.json';
 const officialRoutes = hotRoutes.filter(r => (r as any).isOfficial !== false);
 const communityRoutes = hotRoutes.filter(r => (r as any).isOfficial === false);
 
-const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 696 店) | GeoSim`;
-const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 696 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
+const title = `全家便利商店 x Pikmin Bloom 五週年巡航地圖 (台北市 ${stores.length} 店) | GeoSim`;
+const description = `2026/11/10 ~ 12/7 Pikmin Bloom 五週年全家便利商店聯名特別地點！台北市 ${stores.length} 間全家門市 GPS 精準座標、12 行政區動態膠囊篩選、7 天冷卻狀態追蹤、一鍵複製巡航佇列、直接喚醒 Pikmin Bloom / GeoSim。`;
 
 // Group stores by district
 const districtOrder = [
@@ -82,7 +82,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </div>
 
         <h1 class="fm-title">
-          全家便利商店 <span class="fm-title__highlight">台北市 696 店</span> 巡航地圖
+          全家便利商店 <span class="fm-title__highlight">台北市 ${stores.length} 店</span> 巡航地圖
         </h1>
 
         <p class="fm-subtitle">
@@ -100,7 +100,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <h2 class="ad-title">人還沒到，定位先到全家門市</h2>
             </div>
             <p class="ad-desc">
-              台北市 696 間門市不用手打座標。點一下「用GeoSim直飛」落點到店門口，再開遊戲領取 5 週年金色花苗，跑店快人一步。
+              台北市 {stores.length} 間門市不用手打座標。點一下「用GeoSim直飛」落點到店門口，再開遊戲領取 5 週年金色花苗，跑店快人一步。
             </p>
             <div class="ad-action-line">
               <a class="ad-cta-btn" href={playStoreUrl} target="_blank" rel="noopener">
@@ -120,7 +120,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         <!-- Stats Bar -->
         <div class="fm-stats-bar">
           <div class="fm-stat-item">
-            <span class="fm-stat-val">696</span>
+            <span class="fm-stat-val">{stores.length}</span>
             <span class="fm-stat-lbl">台北市全家總數</span>
           </div>
           <div class="fm-stat-item">
@@ -132,7 +132,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <span class="fm-stat-lbl">7 天冷卻中</span>
           </div>
           <div class="fm-stat-item">
-            <span class="fm-stat-val" id="pill-todo-count">696</span>
+            <span class="fm-stat-val" id="pill-todo-count">{stores.length}</span>
             <span class="fm-stat-lbl">尚未前往</span>
           </div>
         </div>
@@ -166,7 +166,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
-            <span id="btn-copy-label">複製目前篩選巡航路徑 (696)</span>
+            <span id="btn-copy-label">複製目前篩選巡航路徑 ({stores.length})</span>
           </button>
 
 
@@ -436,7 +436,7 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       <div class="fm-container">
         <!-- Results Counter & Summary -->
         <div class="fm-results-bar">
-          <span id="stat-summary-text" class="stat-text">顯示 696 家全家門市</span>
+          <span id="stat-summary-text" class="stat-text">顯示 {stores.length} 家全家門市</span>
           <div class="fm-legend">
             <span class="legend-item"><span class="dot dot-todo"></span>尚未前往</span>
             <span class="legend-item"><span class="dot dot-cooling"></span>7天冷卻中</span>

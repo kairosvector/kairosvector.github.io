@@ -3135,21 +3135,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09702,121.51948"
   },
   {
-    "id": "fm-tpe-210",
-    "city": "臺北市",
-    "district": "中正區",
-    "name": "全家便利商店 全家便利商店 台北台鐵東店",
-    "rawName": "全家便利商店 台北台鐵東店",
-    "shortName": "全家便利商店 台北台鐵東店",
-    "origName": "",
-    "address": "臺北市中正區北平西路3號（東北站）",
-    "phone": "",
-    "lat": 25.04758,
-    "lng": 121.51565,
-    "coordsText": "25.04758, 121.51565",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04758,121.51565"
-  },
-  {
     "id": "fm-tpe-211",
     "city": "臺北市",
     "district": "信義區",
