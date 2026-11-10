@@ -407,29 +407,15 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
                     <div class="coord-row">
                       <span class="coord-label">GPS:</span>
                       <code class="coord-code">{store.coordsText}</code>
-                      <div class="coord-actions">
-                        <button
-                          type="button"
-                          class="btn-copy-coord"
-                          data-coords={store.coordsText}
-                          data-name={store.shortName}
-                          title="複製這間店的經緯度座標"
-                        >
-                          複製
-                        </button>
-                        <button
-                          type="button"
-                          class="btn-open-store-report"
-                          data-store-id={store.id}
-                          data-store-name={store.name}
-                          data-store-short={store.shortName}
-                          data-store-coords={store.coordsText}
-                          data-store-district={store.district}
-                          title="回報這間門市的坐標誤差或歇業資訊"
-                        >
-                          更正
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        class="btn-copy-coord"
+                        data-coords={store.coordsText}
+                        data-name={store.shortName}
+                        title="複製這間店的經緯度座標"
+                      >
+                        複製
+                      </button>
                     </div>
                   </div>
 
