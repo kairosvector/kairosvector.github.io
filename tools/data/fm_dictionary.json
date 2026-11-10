@@ -309,10 +309,10 @@
     "origName": "",
     "address": "台北市中山區中山北路四段一巷1號1樓（麒麟廳））",
     "phone": "",
-    "lat": 25.07905,
-    "lng": 121.52643,
-    "coordsText": "25.07905, 121.52643",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07905,121.52643"
+    "lat": 25.078301,
+    "lng": 121.526137,
+    "coordsText": "25.078301, 121.526137",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.078301,121.526137"
   },
   {
     "id": "fm-tpe-022",
@@ -403,21 +403,6 @@
     "lng": 121.52852,
     "coordsText": "25.02335, 121.52852",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02335,121.52852"
-  },
-  {
-    "id": "fm-tpe-028",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 全家便利商店 台北新德城店",
-    "rawName": "全家便利商店 台北新德城店",
-    "shortName": "全家便利商店 台北新德城店",
-    "origName": "",
-    "address": "台北市中山區德惠街16-7號",
-    "phone": "",
-    "lat": 25.06661,
-    "lng": 121.5247,
-    "coordsText": "25.06661, 121.52470",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06661,121.52470"
   },
   {
     "id": "fm-tpe-029",
@@ -10005,21 +9990,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99498,121.57116"
   },
   {
-    "id": "fm-tpe-669",
-    "city": "臺北市",
-    "district": "文山區",
-    "name": "全家便利商店 全家便利商店 台北順新店",
-    "rawName": "全家便利商店 台北順新店",
-    "shortName": "全家便利商店 台北順新店",
-    "origName": "",
-    "address": "台北市文山區忠順街一段26巷29號1樓",
-    "phone": "",
-    "lat": 24.98196,
-    "lng": 121.55991,
-    "coordsText": "24.98196, 121.55991",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.98196,121.55991"
-  },
-  {
     "id": "fm-tpe-670",
     "city": "臺北市",
     "district": "中山區",
@@ -10063,21 +10033,6 @@
     "lng": 121.59253,
     "coordsText": "25.08205, 121.59253",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.08205,121.59253"
-  },
-  {
-    "id": "fm-tpe-673",
-    "city": "臺北市",
-    "district": "文山區",
-    "name": "全家便利商店 全家便利商店 台北樟鑫店",
-    "rawName": "全家便利商店 台北樟鑫店",
-    "shortName": "全家便利商店 台北樟鑫店",
-    "origName": "",
-    "address": "台北市文山區樟新街19號1樓",
-    "phone": "",
-    "lat": 24.97878,
-    "lng": 121.55547,
-    "coordsText": "24.97878, 121.55547",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.97878,121.55547"
   },
   {
     "id": "fm-tpe-674",
