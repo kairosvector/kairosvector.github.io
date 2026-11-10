@@ -1,7 +1,7 @@
 {
-  "batch_id": 8,
-  "version": "1.8",
-  "updated_at": "11/10 14:52",
+  "batch_id": 9,
+  "version": "1.9",
+  "updated_at": "11/10 15:45",
   "store_count": 686,
-  "description": "台北市最新 686 店 · 移除 5 間歇業門市與重算 TOP 2 路線"
+  "description": "自動校正 1 間門市坐標"
 }
