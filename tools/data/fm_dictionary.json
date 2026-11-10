@@ -8820,21 +8820,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05429,121.56369"
   },
   {
-    "id": "fm-tpe-598",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 全家便利商店 台北權勝店",
-    "rawName": "全家便利商店 台北權勝店",
-    "shortName": "全家便利商店 台北權勝店",
-    "origName": "",
-    "address": "台北市中山區松江路400號1樓及地下室",
-    "phone": "",
-    "lat": 25.06377,
-    "lng": 121.53301,
-    "coordsText": "25.06377, 121.53301",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06377,121.53301"
-  },
-  {
     "id": "fm-tpe-600",
     "city": "臺北市",
     "district": "信義區",
@@ -9418,21 +9403,6 @@
     "lng": 121.50993,
     "coordsText": "25.05510, 121.50993",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05510,121.50993"
-  },
-  {
-    "id": "fm-tpe-644",
-    "city": "臺北市",
-    "district": "松山區",
-    "name": "全家便利商店 全家便利商店 台北康寶店",
-    "rawName": "全家便利商店 台北康寶店",
-    "shortName": "全家便利商店 台北康寶店",
-    "origName": "",
-    "address": "台北市松山區健康路400號1樓",
-    "phone": "",
-    "lat": 25.05407,
-    "lng": 121.56608,
-    "coordsText": "25.05407, 121.56608",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05407,121.56608"
   },
   {
     "id": "fm-tpe-645",

@@ -1017,10 +1017,10 @@
     "origName": "全家台北市 台北１０１店",
     "address": "台北市信義區市府路45號Ｂ1（商場編號53）",
     "phone": "",
-    "lat": 25.03353,
-    "lng": 121.56368,
-    "coordsText": "25.03353, 121.56368",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03353,121.56368",
+    "lat": 25.033759,
+    "lng": 121.564118,
+    "coordsText": "25.03376, 121.56412",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.033759,121.564118",
     "note": ""
   },
   {
@@ -9408,22 +9408,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-598",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 台北權勝店",
-    "shortName": "權勝店",
-    "rawName": "台北權勝店",
-    "origName": "全家台北市 權勝店",
-    "address": "台北市中山區松江路400號1樓及地下室",
-    "phone": "",
-    "lat": 25.06377,
-    "lng": 121.53301,
-    "coordsText": "25.06377, 121.53301",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06377,121.53301",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-600",
     "city": "臺北市",
     "district": "信義區",
@@ -9817,10 +9801,10 @@
     "origName": "全家台北市 大巨蛋店",
     "address": "台北市信義區忠孝東路四段515號Ｂ1樓Ｃ-Ｂ102",
     "phone": "",
-    "lat": 25.04195,
-    "lng": 121.55953,
-    "coordsText": "25.04195, 121.55953",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04195,121.55953",
+    "lat": 25.042328,
+    "lng": 121.559526,
+    "coordsText": "25.04233, 121.55953",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.042328,121.559526",
     "note": ""
   },
   {
@@ -10045,22 +10029,6 @@
     "lng": 121.50993,
     "coordsText": "25.05510, 121.50993",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05510,121.50993",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-644",
-    "city": "臺北市",
-    "district": "松山區",
-    "name": "全家便利商店 台北康寶店",
-    "shortName": "康寶店",
-    "rawName": "台北康寶店",
-    "origName": "全家台北市 康寶店",
-    "address": "台北市松山區健康路400號1樓",
-    "phone": "",
-    "lat": 25.05407,
-    "lng": 121.56608,
-    "coordsText": "25.05407, 121.56608",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05407,121.56608",
     "note": ""
   },
   {
