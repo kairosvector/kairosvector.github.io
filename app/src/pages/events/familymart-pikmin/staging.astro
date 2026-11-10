@@ -824,6 +824,35 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
         </div>
       </div>
     </div>
+
+    <!-- Slim Floating Bottom Dock (聯絡站長 & 快捷置頂) -->
+    <div id="fm-bottom-dock" class="fm-bottom-dock" role="complementary" aria-label="快捷工具列">
+      <div class="dock-inner">
+        <div class="dock-left">
+          <span class="dock-icon">💬</span>
+          <span class="dock-text">有非點位問題或功能建議？</span>
+        </div>
+        <div class="dock-actions">
+          <a
+            href="mailto:kairosvectordev@gmail.com?subject=%E3%80%90%E5%85%A8%E5%AE%B6%E6%B4%BB%E5%8B%95%E5%9C%B0%E5%9C%96%E3%80%91%E7%8E%A9%E5%AE%B6%E6%84%8F%E8%A6%8B%E8%88%87%E5%BB%BA%E8%AD%B0"
+            class="dock-btn-mail"
+            title="寄信給站長 (kairosvectordev@gmail.com)"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>聯絡站長</span>
+          </a>
+          <button
+            type="button"
+            class="dock-btn-top"
+            id="dock-btn-scroll-top"
+            title="回到頁面頂端"
+            aria-label="回到頁面頂端"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script is:inline>
@@ -1613,6 +1642,14 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             },
             { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
           );
+        });
+      }
+
+      // Dock Scroll to Top Button
+      const btnScrollTop = document.getElementById('dock-btn-scroll-top');
+      if (btnScrollTop) {
+        btnScrollTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
@@ -3486,6 +3523,119 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
   }
   .link-contact-mail:hover {
     color: #005694;
+  }
+
+  /* Slim Floating Bottom Dock Bar */
+  .fm-bottom-dock {
+    position: fixed;
+    bottom: max(14px, env(safe-area-inset-bottom, 14px));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: min(calc(100% - 24px), 480px);
+    pointer-events: none;
+    animation: dockSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes dockSlideUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  .dock-inner {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.4rem 0.65rem 0.4rem 0.95rem;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+    box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.35), 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+  }
+
+  .dock-left {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .dock-icon {
+    font-size: 0.88rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .dock-text {
+    font-size: 0.75rem;
+    color: #E2E8F0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dock-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .dock-btn-mail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: linear-gradient(135deg, #00A040 0%, #008234 100%);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    box-shadow: 0 2px 6px rgba(0, 160, 64, 0.3);
+    white-space: nowrap;
+  }
+
+  .dock-btn-mail:hover {
+    filter: brightness(1.12);
+    box-shadow: 0 4px 12px rgba(0, 160, 64, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .dock-btn-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #CBD5E1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+  }
+
+  .dock-btn-top:hover {
+    background: rgba(255, 255, 255, 0.22);
+    color: #FFFFFF;
+  }
+
+  @media (max-width: 480px) {
+    .dock-text {
+      font-size: 0.72rem;
+    }
+    .dock-inner {
+      padding: 0.32rem 0.5rem 0.32rem 0.75rem;
+    }
   }
 
   /* Bottom Sheet / Modal Dialogs */
