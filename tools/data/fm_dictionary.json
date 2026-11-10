@@ -6090,21 +6090,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05187,121.51572"
   },
   {
-    "id": "fm-tpe-412",
-    "city": "臺北市",
-    "district": "士林區",
-    "name": "全家便利商店 全家便利商店 台北榮富店",
-    "rawName": "全家便利商店 台北榮富店",
-    "shortName": "全家便利商店 台北榮富店",
-    "origName": "",
-    "address": "台北市士林區中山北路六段72六號北側",
-    "phone": "",
-    "lat": 25.10462,
-    "lng": 121.5246,
-    "coordsText": "25.10462, 121.52460",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.10462,121.52460"
-  },
-  {
     "id": "fm-tpe-413",
     "city": "臺北市",
     "district": "中正區",
@@ -9088,21 +9073,6 @@
     "lng": 121.53031,
     "coordsText": "25.06669, 121.53031",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06669,121.53031"
-  },
-  {
-    "id": "fm-tpe-614",
-    "city": "臺北市",
-    "district": "士林區",
-    "name": "全家便利商店 全家便利商店 台北新陽明店",
-    "rawName": "全家便利商店 台北新陽明店",
-    "shortName": "全家便利商店 台北新陽明店",
-    "origName": "",
-    "address": "臺北市士林區中正路329號",
-    "phone": "",
-    "lat": 25.09455,
-    "lng": 121.52322,
-    "coordsText": "25.09455, 121.52322",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09455,121.52322"
   },
   {
     "id": "fm-tpe-615",
