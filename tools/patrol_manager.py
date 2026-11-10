@@ -284,10 +284,8 @@ def run_patrol(dry_run=False):
         save_json(FM_PROD_ROUTES_FILE, prod_routes)
         save_json(FM_STAGING_ROUTES_FILE, staging_routes)
 
-        state["processed_timestamps"] = list(processed_set)
         state["auto_calibrated_count"] = state.get("auto_calibrated_count", 0) + len(auto_updated_stores)
         state["auto_routes_count"] = state.get("auto_routes_count", 0) + len(auto_added_routes)
-        save_json(FM_STATE_FILE, state)
 
         # Re-generate both pages
         subprocess.run(["python", "tools/generate_fm_page.py", "--prod"], check=True)
@@ -295,6 +293,11 @@ def run_patrol(dry_run=False):
         subprocess.run(["npm", "--prefix", "app", "run", "build"], shell=True, check=True)
         # Deploy to Cloudflare Pages
         subprocess.run(["npx", "wrangler", "pages", "deploy", "dist", "--project-name", "kairosvector"], cwd="app", shell=True, check=True)
+
+    # Always persist processed reports so we don't repeatedly flag anomalies every cron
+    if not dry_run:
+        state["processed_timestamps"] = list(processed_set)
+        save_json(FM_STATE_FILE, state)
 
     # Output concise mobile report if updates or anomalies occurred
     if auto_updated_stores or auto_added_routes or flagged_anomalies:
@@ -313,7 +316,8 @@ def run_patrol(dry_run=False):
             print(f"⚠️ **待確認項目 ({len(flagged_anomalies)} 筆)**：")
             for a in flagged_anomalies:
                 print(f"  • [{a['type']}] {a.get('name') or a.get('title')}")
-        print("🚀 *已自動編譯並推播至 Production 正式版*")
+        if has_changes:
+            print("🚀 *已自動編譯並推播至 Production 正式版*")
     else:
         # Completely silent when no updates
         pass
