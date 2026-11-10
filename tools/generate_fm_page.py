@@ -10,7 +10,7 @@ def generate_page(is_staging=False):
       [測試預覽環境 Staging] 此頁面用於驗證新功能，測試完畢確認無誤後將同步發布至正式版。
     </div>''' if is_staging else ''
     routes_json = 'fm_hot_routes_staging.json' if is_staging else 'fm_hot_routes.json'
-    routes_desc = '針對全家 5 週年活動門市，由演算法精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（精選台北 3 大核心商圈），一鍵複製或分享至 GeoSim 巡航！' if is_staging else '針對全家 5 週年活動門市，由演算法與玩家精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（含台北 6 大密集商圈 ✕ 日本池袋、沖繩熱門遠征線），一鍵複製或分享至 GeoSim 巡航！'
+    routes_desc = '針對全家 5 週年活動門市，由演算法精選出密集度最高、平均步距最短的 {hotRoutes.length} 條黃金巡航路線（精選台北 3 大核心商圈），一鍵複製或分享至 GeoSim 巡航！'
 
     code = """---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
