@@ -620,6 +620,32 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
       </div>
     </section>
 
+    <!-- Contact Webmaster Section -->
+    <section id="contact-webmaster" class="fm-contact-section">
+      <div class="fm-container">
+        <div class="fm-contact-card">
+          <div class="fm-contact-content">
+            <div class="fm-contact-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>意見回饋 & 聯絡站長</span>
+            </div>
+            <h2 class="fm-contact-title">有非點位的問題或建議想告訴站長嗎？</h2>
+            <p class="fm-contact-desc">
+              若您遇到網站使用疑問、功能改善建議、合作想法，或是遭遇其他非單一門市點位的問題，歡迎隨時來信與站長小阿飛聯繫！
+            </p>
+          </div>
+          <a
+            href="mailto:kairosvectordev@gmail.com?subject=%E3%80%90%E5%85%A8%E5%AE%B6%E6%B4%BB%E5%8B%95%E5%9C%B0%E5%9C%96%E3%80%91%E7%8E%A9%E5%AE%B6%E6%84%8F%E8%A6%8B%E8%88%87%E5%BB%BA%E8%AD%B0"
+            class="btn-contact-webmaster"
+            id="btn-contact-webmaster"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>寄信給站長 (kairosvectordev@gmail.com)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Floating Quick Copy Toast -->
     <div id="copy-toast" class="copy-toast" role="alert" aria-live="polite"></div>
 
@@ -674,6 +700,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <button type="button" class="btn-modal-submit" id="btn-submit-route-report">
               <span>送出路線回報</span>
             </button>
+          </div>
+
+          <div class="report-modal-footer-tip">
+            <span>非點位或路線問題？歡迎直接</span>
+            <a href="mailto:kairosvectordev@gmail.com?subject=%E3%80%90%E5%85%A8%E5%AE%B6%E6%B4%BB%E5%8B%95%E5%9C%B0%E5%9C%96%E3%80%91%E7%8E%A9%E5%AE%B6%E5%BB%BA%E8%AD%B0" class="link-contact-mail">
+              寄信給站長
+            </a>
           </div>
         </div>
 
@@ -782,6 +815,13 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
             <button type="button" class="btn-modal-submit" id="btn-submit-store-report">
               <span>送出更正</span>
             </button>
+          </div>
+
+          <div class="report-modal-footer-tip">
+            <span>非點位問題？歡迎直接</span>
+            <a href="mailto:kairosvectordev@gmail.com?subject=%E3%80%90%E5%85%A8%E5%AE%B6%E6%B4%BB%E5%8B%95%E5%9C%B0%E5%9C%96%E3%80%91%E7%8E%A9%E5%AE%B6%E5%BB%BA%E8%AD%B0" class="link-contact-mail">
+              寄信給站長
+            </a>
           </div>
         </div>
 
@@ -3359,6 +3399,104 @@ const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.kairosve
     border-radius: 4px;
     margin-left: 0.35rem;
     line-height: 1.2;
+  }
+
+  /* Contact Webmaster Section */
+  .fm-contact-section {
+    padding: 2.5rem 0;
+    background: #F8FAFC;
+    border-top: 1px solid var(--fm-border);
+  }
+
+  .fm-contact-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  @media (max-width: 768px) {
+    .fm-contact-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem;
+    }
+  }
+
+  .fm-contact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0070C0;
+    background: #E1F0FA;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    margin-bottom: 0.65rem;
+  }
+
+  .fm-contact-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--fm-text);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .fm-contact-desc {
+    font-size: 0.88rem;
+    color: var(--fm-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+  }
+
+  .btn-contact-webmaster {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #0070C0 0%, #005694 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 112, 192, 0.25);
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .btn-contact-webmaster:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px rgba(0, 112, 192, 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* Modal Footer Mail Link */
+  .report-modal-footer-tip {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #E2E8F0;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    text-align: center;
+  }
+
+  .link-contact-mail {
+    color: #0070C0;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 0.25rem;
+  }
+  .link-contact-mail:hover {
+    color: #005694;
   }
 
   /* Bottom Sheet / Modal Dialogs */
