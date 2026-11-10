@@ -1674,10 +1674,10 @@
     "origName": "",
     "address": "台北市萬華區西寧南路31-1號",
     "phone": "",
-    "lat": 25.04774,
-    "lng": 121.50747,
-    "coordsText": "25.04774, 121.50747",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04774,121.50747"
+    "lat": 25.047809,
+    "lng": 121.507602,
+    "coordsText": "25.047809, 121.507602",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.047809,121.507602"
   },
   {
     "id": "fm-tpe-113",
@@ -6129,10 +6129,10 @@
     "origName": "",
     "address": "台北市大同區南京西路16號Ｂ1",
     "phone": "",
-    "lat": 25.05242,
-    "lng": 121.52031,
-    "coordsText": "25.05242, 121.52031",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05242,121.52031"
+    "lat": 25.0528429,
+    "lng": 121.520299,
+    "coordsText": "25.0528429, 121.520299",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0528429,121.520299"
   },
   {
     "id": "fm-tpe-411",
@@ -9249,10 +9249,10 @@
     "origName": "",
     "address": "臺北市信義區忠孝東路四段400號Ｂ1",
     "phone": "",
-    "lat": 25.04113,
-    "lng": 121.5579,
-    "coordsText": "25.04113, 121.55790",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04113,121.55790"
+    "lat": 25.0413749,
+    "lng": 121.5580424,
+    "coordsText": "25.0413749, 121.5580424",
+    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.0413749,121.5580424"
   },
   {
     "id": "fm-tpe-619",
@@ -10378,21 +10378,6 @@
     "lng": 121.5273,
     "coordsText": "25.09329, 121.52730",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.09329,121.52730"
-  },
-  {
-    "id": "fm-tpe-694",
-    "city": "臺北市",
-    "district": "大同區",
-    "name": "全家便利商店 全家便利商店 台北全翔店",
-    "rawName": "全家便利商店 台北全翔店",
-    "shortName": "全家便利商店 台北全翔店",
-    "origName": "",
-    "address": "台北市大同區承德路一段2之1號1樓1-0三號櫃位",
-    "phone": "",
-    "lat": 25.04952,
-    "lng": 121.51628,
-    "coordsText": "25.04952, 121.51628",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04952,121.51628"
   },
   {
     "id": "fm-tpe-695",
