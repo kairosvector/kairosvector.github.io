@@ -4224,22 +4224,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-268",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北新奇岩店",
-    "shortName": "新奇岩店",
-    "rawName": "台北新奇岩店",
-    "origName": "全家台北市 新奇岩店",
-    "address": "台北市北投區公館路230號",
-    "phone": "",
-    "lat": 25.12631,
-    "lng": 121.50794,
-    "coordsText": "25.12631, 121.50794",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12631,121.50794",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-269",
     "city": "臺北市",
     "district": "萬華區",
@@ -5165,22 +5149,6 @@
     "lng": 121.5506,
     "coordsText": "25.04074, 121.55060",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04074,121.55060",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-327",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 台北新稻江店",
-    "shortName": "新稻江店",
-    "rawName": "台北新稻江店",
-    "origName": "全家台北市 新稻江店",
-    "address": "台北市中山區農安街86號1樓",
-    "phone": "",
-    "lat": 25.06475,
-    "lng": 121.5293,
-    "coordsText": "25.06475, 121.52930",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06475,121.52930",
     "note": ""
   },
   {
@@ -8720,22 +8688,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-549",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北北榮店",
-    "shortName": "北榮店",
-    "rawName": "台北北榮店",
-    "origName": "全家台北市 北榮店",
-    "address": "台北市北投區石牌路二段201號",
-    "phone": "",
-    "lat": 25.11992,
-    "lng": 121.52135,
-    "coordsText": "25.11992, 121.52135",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11992,121.52135",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-550",
     "city": "臺北市",
     "district": "士林區",
@@ -10144,22 +10096,6 @@
     "note": "同地址共3店（新三總店、鑫三總店、興三總店）"
   },
   {
-    "id": "fm-tpe-640",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北溫泉店",
-    "shortName": "溫泉店",
-    "rawName": "台北溫泉店",
-    "origName": "全家台北市 溫泉店",
-    "address": "台北市北投區公館路61-1號1樓",
-    "phone": "",
-    "lat": 25.13262,
-    "lng": 121.5038,
-    "coordsText": "25.13262, 121.50380",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13262,121.50380",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-641",
     "city": "臺北市",
     "district": "中正區",
@@ -10189,22 +10125,6 @@
     "lng": 121.50993,
     "coordsText": "25.05510, 121.50993",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05510,121.50993",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-643",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北大心店",
-    "shortName": "大心店",
-    "rawName": "台北大心店",
-    "origName": "全家台北市 大心店",
-    "address": "台北市北投區大興街80之1號",
-    "phone": "",
-    "lat": 25.13081,
-    "lng": 121.50162,
-    "coordsText": "25.13081, 121.50162",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13081,121.50162",
     "note": ""
   },
   {
@@ -10672,22 +10592,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-677",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北北榮二門診店",
-    "shortName": "北榮二門診店",
-    "rawName": "台北北榮二門診店",
-    "origName": "全家台北市 北榮二門診店",
-    "address": "台北市北投區石牌路二中201號1樓（第2門診）",
-    "phone": "",
-    "lat": 25.11992,
-    "lng": 121.52135,
-    "coordsText": "25.11992, 121.52135",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.11992,121.52135",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-678",
     "city": "臺北市",
     "district": "北投區",
@@ -10829,22 +10733,6 @@
     "lng": 121.57534,
     "coordsText": "25.07629, 121.57534",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.07629,121.57534",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-687",
-    "city": "臺北市",
-    "district": "北投區",
-    "name": "全家便利商店 台北捷心店",
-    "shortName": "捷心店",
-    "rawName": "台北捷心店",
-    "origName": "全家台北市 捷心店",
-    "address": "台北市北投區大業路527巷88號Ｂ1",
-    "phone": "",
-    "lat": 25.13493,
-    "lng": 121.48396,
-    "coordsText": "25.13493, 121.48396",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.13493,121.48396",
     "note": ""
   },
   {
