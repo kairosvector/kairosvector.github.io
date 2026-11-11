@@ -64,22 +64,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-005",
-    "city": "臺北市",
-    "district": "中正區",
-    "name": "全家便利商店 台北新東門店",
-    "shortName": "新東門店",
-    "rawName": "台北新東門店",
-    "origName": "全家台北市 新東門店",
-    "address": "台北市中正區信義路一段1號",
-    "phone": "",
-    "lat": 25.0382,
-    "lng": 121.5193,
-    "coordsText": "25.03820, 121.51930",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.03820,121.51930",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-006",
     "city": "臺北市",
     "district": "大同區",
@@ -3981,22 +3965,6 @@
     "lng": 121.56337,
     "coordsText": "25.02844, 121.56337",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02844,121.56337",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-254",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 台北新林森北路店",
-    "shortName": "新林森北路店",
-    "rawName": "台北新林森北路店",
-    "origName": "全家台北市 新林森北路店",
-    "address": "台北市中山區林森北路119巷50號1樓",
-    "phone": "",
-    "lat": 25.05024,
-    "lng": 121.52687,
-    "coordsText": "25.05024, 121.52687",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.05024,121.52687",
     "note": ""
   },
   {
@@ -10208,22 +10176,6 @@
     "note": ""
   },
   {
-    "id": "fm-tpe-657",
-    "city": "臺北市",
-    "district": "大安區",
-    "name": "全家便利商店 台北台大舟山店",
-    "shortName": "台大舟山店",
-    "rawName": "台北台大舟山店",
-    "origName": "全家台北市 台大舟山店",
-    "address": "台北市大安區羅斯福路四段1號舟山路側Ｍ5建物場地",
-    "phone": "",
-    "lat": 25.01697,
-    "lng": 121.53369,
-    "coordsText": "25.01697, 121.53369",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.01697,121.53369",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-658",
     "city": "臺北市",
     "district": "士林區",
@@ -10381,22 +10333,6 @@
     "lng": 121.57116,
     "coordsText": "24.99498, 121.57116",
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=24.99498,121.57116",
-    "note": ""
-  },
-  {
-    "id": "fm-tpe-670",
-    "city": "臺北市",
-    "district": "中山區",
-    "name": "全家便利商店 台北葵爾特店",
-    "shortName": "葵爾特店",
-    "rawName": "台北葵爾特店",
-    "origName": "全家台北市 葵爾特店",
-    "address": "台北市中山區中山北路三段45之1號1樓",
-    "phone": "",
-    "lat": 25.06631,
-    "lng": 121.52255,
-    "coordsText": "25.06631, 121.52255",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06631,121.52255",
     "note": ""
   },
   {

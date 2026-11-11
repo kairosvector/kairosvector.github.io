@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "row_index": 341,
+    "timestamp": "2026-11-10T13:51:51.000Z",
+    "store_id": "coco-189",
+    "store_name": "CoCo都可 延平1號店",
+    "city": "新竹市",
+    "current_address": "300新竹市北區客雅里延平路一段270號",
+    "current_coords": "24.80515, 120.95263",
+    "reported_coords": "無（僅單純回報有誤）",
+    "diff_meters": 0,
+    "geo_status": "待補座標",
+    "user_note": "",
+    "report_type": "單純回報有誤"
+  }
+]
