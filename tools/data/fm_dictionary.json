@@ -9660,21 +9660,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.02466,121.52226"
   },
   {
-    "id": "fm-tpe-667",
-    "city": "臺北市",
-    "district": "大同區",
-    "name": "全家便利商店 全家便利商店 台北民承店",
-    "rawName": "全家便利商店 台北民承店",
-    "shortName": "全家便利商店 台北民承店",
-    "origName": "",
-    "address": "台北市大同區民族西路120號1樓",
-    "phone": "",
-    "lat": 25.06844,
-    "lng": 121.51676,
-    "coordsText": "25.06844, 121.51676",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.06844,121.51676"
-  },
-  {
     "id": "fm-tpe-668",
     "city": "臺北市",
     "district": "文山區",
