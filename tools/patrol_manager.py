@@ -329,6 +329,35 @@ def run_patrol(dry_run=False):
             processed_set.add(ts)
             continue
 
+        # 4. On-site Issue / Other Reports (e.g. 全家門市現場問題)
+        if "現場問題" in rtype or note.strip():
+            if any(k in note for k in ["無全家", "沒有", "找不到", "撤櫃", "已關", "拆除", "空屋", "不存在"]):
+                store = match_fm_store(name, city, fm_stores)
+                if store:
+                    if not any(p["id"] == store["id"] for p in pending_closed_stores):
+                        pending_closed_stores.append({
+                            "id": store["id"],
+                            "name": store["name"],
+                            "address": store["address"],
+                            "ts": ts
+                        })
+                else:
+                    flagged_anomalies.append({
+                        "type": f"{rtype} ({note})",
+                        "name": name,
+                        "note": note,
+                        "ts": ts
+                    })
+            else:
+                flagged_anomalies.append({
+                    "type": rtype or "其他回報",
+                    "name": name,
+                    "note": note,
+                    "ts": ts
+                })
+            processed_set.add(ts)
+            continue
+
         processed_set.add(ts)
 
     # 4. Evaluate Batch Closed Store Deletion Rule:
