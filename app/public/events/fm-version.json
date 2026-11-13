@@ -1,7 +1,7 @@
 {
-  "batch_id": 20,
-  "version": "1.20",
-  "updated_at": "11/12 23:22",
+  "batch_id": 21,
+  "version": "1.21",
+  "updated_at": "11/13 12:00",
   "store_count": 665,
-  "description": "下架已無營業之民承店（共 665 店）"
+  "description": "自動校正 1 間門市坐標"
 }
