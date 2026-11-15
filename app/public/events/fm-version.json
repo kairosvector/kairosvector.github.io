@@ -1,7 +1,7 @@
 {
-  "batch_id": 24,
-  "version": "1.24",
-  "updated_at": "11/15 23:43",
-  "store_count": 665,
-  "description": "自動校正 12 間門市坐標"
+  "batch_id": 25,
+  "version": "1.25",
+  "updated_at": "11/16 05:43",
+  "store_count": 664,
+  "description": "自動下架 1 間已歇業門市（共 664 店）"
 }
