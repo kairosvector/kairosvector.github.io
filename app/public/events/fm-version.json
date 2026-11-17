@@ -1,7 +1,7 @@
 {
-  "batch_id": 26,
-  "version": "1.26",
-  "updated_at": "11/16 23:43",
+  "batch_id": 27,
+  "version": "1.27",
+  "updated_at": "11/17 17:43",
   "store_count": 664,
-  "description": "自動校正 5 間門市坐標"
+  "description": "自動校正 1 間門市坐標"
 }
