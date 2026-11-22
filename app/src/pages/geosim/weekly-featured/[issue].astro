@@ -50,6 +50,25 @@ export async function getStaticPaths() {
 const { currentIssue, routeAlias } = Astro.props;
 const product = products.find((p) => p.id === 'geosim')!;
 
+const allIssues = locationsData.weeklyFeatured;
+const currentProductIssueId = (locationsData as any).currentProductIssueId || 'issue-13';
+const currentStagingIssueId = (locationsData as any).currentStagingIssueId || 'issue-14';
+
+// 尋找當前期在歷期中的位置（allIssues 依時間降冪排列，索引 0 為最新期）
+const currentIndex = allIssues.findIndex((x) => x.id === currentIssue.id);
+// 上一期（更早發布）：索引 + 1
+const olderIssue = currentIndex >= 0 && currentIndex < allIssues.length - 1 ? allIssues[currentIndex + 1] : null;
+// 下一期（更新發布）：索引 - 1
+const newerIssue = currentIndex > 0 ? allIssues[currentIndex - 1] : null;
+
+// 輔助函式：提取乾淨簡短主題名稱（如把「漫遊全球：精選【咖啡店】巡航特輯」縮短為「【咖啡店】特輯」）
+function getShortTheme(theme: string) {
+  if (!theme) return '';
+  const match = theme.match(/【(.*?)】/);
+  if (match) return `【${match[1]}】`;
+  return theme.length > 12 ? theme.slice(0, 12) + '…' : theme;
+}
+
 // 出處聚合：key = 存檔路徑。沒有出處檔的期別自動隱藏整區，
 // 所以舊期（Threads 截圖時代）不受影響。
 const creditSources = [...readSources('shrine')];
@@ -147,6 +166,86 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
           </a>
         </div>
       </header>
+
+      <!-- 歷期精選巡檢與快速切換列 -->
+      <nav class="issue-nav-bar" aria-label="歷期精選巡檢導航" data-animate>
+        <div class="issue-nav-bar__container">
+          <!-- 上一期按鈕 (往更早的歷史期數) -->
+          {olderIssue ? (
+            <a
+              href={`/geosim/weekly-featured/${olderIssue.id}`}
+              class="issue-nav-btn issue-nav-btn--prev"
+              title={`前往上一期：${olderIssue.issue} ${olderIssue.theme}`}
+            >
+              <span class="nav-btn__arrow">←</span>
+              <span class="nav-btn__content">
+                <span class="nav-btn__label">上一期</span>
+                <span class="nav-btn__title">{olderIssue.issue} {getShortTheme(olderIssue.theme)}</span>
+              </span>
+            </a>
+          ) : (
+            <div class="issue-nav-btn issue-nav-btn--disabled">
+              <span class="nav-btn__arrow">←</span>
+              <span class="nav-btn__content">
+                <span class="nav-btn__label">已是最初期</span>
+                <span class="nav-btn__title">特別企劃</span>
+              </span>
+            </div>
+          )}
+
+          <!-- 中央：期數快速下拉選單與總覽捷徑 -->
+          <div class="issue-nav-bar__center">
+            <div class="issue-select-wrapper">
+              <span class="issue-select-icon">📖</span>
+              <select id="issue-quick-picker" class="issue-quick-picker" aria-label="切換精選期數">
+                {allIssues.map((iss) => (
+                  <option
+                    value={iss.id}
+                    selected={iss.id === currentIssue.id}
+                  >
+                    {iss.id === currentProductIssueId ? '🌟 [當期主打] ' : ''}
+                    {iss.id === currentStagingIssueId ? '🛠️ [預覽 Staging] ' : ''}
+                    {iss.issue}：{iss.theme.length > 22 ? iss.theme.slice(0, 22) + '…' : iss.theme}
+                  </option>
+                ))}
+              </select>
+              <span class="issue-select-chevron">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </div>
+
+            <a href="/geosim/weekly-featured" class="issue-hub-badge-btn" title="查看全部 15 期精選專欄總覽庫">
+              <span class="hub-btn-icon">📚</span>
+              <span class="hub-btn-text">歷期專欄庫 ({allIssues.length} 期)</span>
+            </a>
+          </div>
+
+          <!-- 下一期按鈕 (往更新的期數) -->
+          {newerIssue ? (
+            <a
+              href={`/geosim/weekly-featured/${newerIssue.id}`}
+              class="issue-nav-btn issue-nav-btn--next"
+              title={`前往下一期：${newerIssue.issue} ${newerIssue.theme}`}
+            >
+              <span class="nav-btn__content">
+                <span class="nav-btn__label">下一期</span>
+                <span class="nav-btn__title">{newerIssue.issue} {getShortTheme(newerIssue.theme)}</span>
+              </span>
+              <span class="nav-btn__arrow">➔</span>
+            </a>
+          ) : (
+            <div class="issue-nav-btn issue-nav-btn--disabled">
+              <span class="nav-btn__content">
+                <span class="nav-btn__label">最新一期</span>
+                <span class="nav-btn__title">持續更新中</span>
+              </span>
+              <span class="nav-btn__arrow">➔</span>
+            </div>
+          )}
+        </div>
+      </nav>
 
       {currentIssue.coverImage && (
         <div class="issue-cover-banner" data-animate>
@@ -378,18 +477,36 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
         </div>
       </section>
 
-      <!-- Bottom Navigation Links -->
+      <!-- Bottom Navigation Links (歷期精選往期探索) -->
       <section class="weekly-bottom-nav" data-animate>
-        <div class="card weekly-promo-card">
-          <div class="weekly-promo-card__content">
-            <h3>想查看更多往期特輯？</h3>
-            <p>返回每周精選專欄總覽，隨時回顧全球各大城市、文化景觀與自然海濱專題路線。</p>
+        <div class="card weekly-nav-summary-card">
+          <div class="weekly-nav-summary-header">
+            <h3>🧭 探索更多歷期精選與往期特輯</h3>
+            <p>已為你整理全球各大城市、文化景觀、橋樑城堡與動漫主題，隨時翻閱下一篇特輯：</p>
           </div>
-          <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-            <a href="/geosim/weekly-featured" class="btn btn--primary btn--lg">
-              ← 返回專欄總覽列表
+
+          <div class="bottom-nav-cards-grid">
+            {olderIssue && (
+              <a href={`/geosim/weekly-featured/${olderIssue.id}`} class="bottom-nav-card bottom-nav-card--prev">
+                <div class="bottom-nav-card__badge">← 前往上一期專欄</div>
+                <div class="bottom-nav-card__issue">{olderIssue.issue} · {olderIssue.date}</div>
+                <div class="bottom-nav-card__title">{olderIssue.theme}</div>
+              </a>
+            )}
+            {newerIssue && (
+              <a href={`/geosim/weekly-featured/${newerIssue.id}`} class="bottom-nav-card bottom-nav-card--next">
+                <div class="bottom-nav-card__badge">前往下一期專欄 ➔</div>
+                <div class="bottom-nav-card__issue">{newerIssue.issue} · {newerIssue.date}</div>
+                <div class="bottom-nav-card__title">{newerIssue.theme}</div>
+              </a>
+            )}
+          </div>
+
+          <div class="bottom-nav-actions">
+            <a href="/geosim/weekly-featured" class="btn btn--primary btn--md">
+              📚 返回歷期專欄總覽庫 (共 {allIssues.length} 期)
             </a>
-            <a href="/geosim/spot-map" class="btn btn--outline btn--lg">
+            <a href="/geosim/spot-map" class="btn btn--outline btn--md">
               前往純點地圖庫 🗺️
             </a>
           </div>
@@ -814,6 +931,31 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
       }
     });
   }
+
+  // 5. Issue quick picker dropdown & keyboard navigation
+  const issueQuickPicker = document.getElementById('issue-quick-picker');
+  if (issueQuickPicker) {
+    issueQuickPicker.addEventListener('change', (e) => {
+      const targetId = e.target.value;
+      if (targetId) {
+        const isEmbed = document.documentElement.classList.contains('is-embed') || window.location.search.includes('embed=true');
+        const targetUrl = `/geosim/weekly-featured/${targetId}${isEmbed ? '?embed=true' : ''}`;
+        window.location.href = targetUrl;
+      }
+    });
+  }
+
+  // Keyboard navigation for power users (Left arrow / [ for prev, Right arrow / ] for next)
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+    if (e.key === 'ArrowLeft' || e.key === '[') {
+      const prevBtn = document.querySelector('.issue-nav-btn--prev');
+      if (prevBtn && prevBtn.href) window.location.href = prevBtn.href;
+    } else if (e.key === 'ArrowRight' || e.key === ']') {
+      const nextBtn = document.querySelector('.issue-nav-btn--next');
+      if (nextBtn && nextBtn.href) window.location.href = nextBtn.href;
+    }
+  });
 </script>
 
 <style>
@@ -821,6 +963,294 @@ const threadsDraft = currentIssue.socialShareDraft || `【GeoSim 每周精選 ${
     padding-top: calc(var(--nav-height) + var(--space-12));
     padding-bottom: var(--space-20);
     position: relative;
+  }
+
+  /* 歷期精選巡檢與快速切換列 */
+  .issue-nav-bar {
+    margin-bottom: var(--space-6);
+  }
+
+  .issue-nav-bar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: 10px 14px;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .issue-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    max-width: 240px;
+  }
+
+  .issue-nav-btn:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .issue-nav-btn--disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .nav-btn__arrow {
+    font-size: 16px;
+    color: var(--color-geosim);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .nav-btn__content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .nav-btn__label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .nav-btn__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f1f5f9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .issue-nav-bar__center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .issue-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    border-radius: 12px;
+    padding: 0 12px;
+    transition: all 0.2s ease;
+    flex: 1;
+    max-width: 440px;
+    min-width: 180px;
+  }
+
+  .issue-select-wrapper:hover,
+  .issue-select-wrapper:focus-within {
+    border-color: var(--color-geosim);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  }
+
+  .issue-select-icon {
+    font-size: 16px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .issue-quick-picker {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    color: #f8fafc;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 10px 24px 10px 0;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .issue-quick-picker option {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 8px;
+  }
+
+  .issue-select-chevron {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+  }
+
+  .issue-hub-badge-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 12px;
+    color: #fbbf24;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .issue-hub-badge-btn:hover {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: rgba(245, 158, 11, 0.6);
+    color: #fef08a;
+    transform: translateY(-1px);
+  }
+
+  /* 底部歷期巡檢卡片樣式 */
+  .weekly-nav-summary-card {
+    padding: 24px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+  }
+
+  .weekly-nav-summary-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    color: #f8fafc;
+  }
+
+  .weekly-nav-summary-header p {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  .bottom-nav-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .bottom-nav-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .bottom-nav-card:hover {
+    background: rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .bottom-nav-card__badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-geosim);
+    margin-bottom: 4px;
+  }
+
+  .bottom-nav-card__issue {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+  }
+
+  .bottom-nav-card__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f1f5f9;
+    line-height: 1.4;
+  }
+
+  .bottom-nav-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* RWD 手機版響應式 */
+  @media (max-width: 768px) {
+    .issue-nav-bar__container {
+      flex-wrap: wrap;
+      padding: 10px;
+      gap: 8px;
+    }
+
+    .issue-nav-bar__center {
+      order: 1;
+      width: 100%;
+      flex: 1 1 100%;
+      gap: 8px;
+    }
+
+    .issue-select-wrapper {
+      max-width: 100%;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .issue-hub-badge-btn {
+      padding: 9px 10px;
+    }
+    .hub-btn-text {
+      display: none;
+    }
+    .hub-btn-icon::after {
+      content: " 總覽";
+      font-size: 13px;
+    }
+
+    .issue-nav-btn--prev {
+      order: 2;
+      flex: 1;
+      max-width: none;
+      padding: 8px 10px;
+    }
+
+    .issue-nav-btn--next {
+      order: 3;
+      flex: 1;
+      max-width: none;
+      padding: 8px 10px;
+      justify-content: flex-end;
+    }
+
+    .nav-btn__title {
+      font-size: 12px;
+    }
   }
 
   .breadcrumb {

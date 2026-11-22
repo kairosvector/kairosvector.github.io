@@ -121,18 +121,15 @@ const defaultSchema = {
     html.is-embed .footer,
     html.is-embed .breadcrumb,
     html.is-embed .weekly-promo-card,
-    html.is-embed .weekly-bottom-nav,
     html.is-embed .back-to-geosim-wrap,
     html.is-embed a[href="/geosim"],
-    html.is-embed .issue-header-back,
     html.is-embed .btn--line-action,
     html.is-embed .btn--threads-action {
       display: none !important;
     }
 
-    html.is-embed .issue-header__badge-row a.badge--geosim {
-      pointer-events: none;
-      cursor: default;
+    html.is-embed .issue-header-back {
+      display: inline-flex !important;
     }
 
     html.is-embed body {
