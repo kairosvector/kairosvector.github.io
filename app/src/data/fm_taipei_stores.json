@@ -336,22 +336,6 @@
     "note": "同地址共2店（行勝店、大勝店）"
   },
   {
-    "id": "fm-tpe-023",
-    "city": "臺北市",
-    "district": "中正區",
-    "name": "全家便利商店 台北新衡陽店",
-    "shortName": "新衡陽店",
-    "rawName": "台北新衡陽店",
-    "origName": "全家台北市 新衡陽店",
-    "address": "台北市中正區衡陽路77號1樓",
-    "phone": "",
-    "lat": 25.04233,
-    "lng": 121.51107,
-    "coordsText": "25.04233, 121.51107",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04233,121.51107",
-    "note": ""
-  },
-  {
     "id": "fm-tpe-024",
     "city": "臺北市",
     "district": "南港區",

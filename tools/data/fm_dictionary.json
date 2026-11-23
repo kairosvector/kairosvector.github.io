@@ -315,21 +315,6 @@
     "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.12198,121.46748"
   },
   {
-    "id": "fm-tpe-023",
-    "city": "臺北市",
-    "district": "中正區",
-    "name": "全家便利商店 全家便利商店 台北新衡陽店",
-    "rawName": "全家便利商店 台北新衡陽店",
-    "shortName": "全家便利商店 台北新衡陽店",
-    "origName": "",
-    "address": "台北市中正區衡陽路77號1樓",
-    "phone": "",
-    "lat": 25.04233,
-    "lng": 121.51107,
-    "coordsText": "25.04233, 121.51107",
-    "gmapUrl": "https://www.google.com/maps/search/?api=1&query=25.04233,121.51107"
-  },
-  {
     "id": "fm-tpe-024",
     "city": "臺北市",
     "district": "南港區",
