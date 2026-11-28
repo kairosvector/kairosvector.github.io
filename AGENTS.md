@@ -37,8 +37,18 @@ The recommended workflow is:
 - Use gpt-image-2 for app icon, hero image, illustration, visual asset prompts
 - Use kb-retriever when reading local product documents
 
-## Project Documents
+## Project Documents & Operational Guides
 
+- **docs/HANDOFF.md: AI 專案維運與交接手冊（所有新 Session AI 接管時務必先讀取本手冊）**
 - docs/product.md: Product specification draft and final product source of truth
 - docs/prompts/01-complete-product-md.md: First prompt to complete product.md
 - docs/prompts/02-ui-ux-directions.md: Prompt to generate UI/UX directions
+
+## AI Agent Handover & Operations Protocol
+
+Any new AI session working on this repository must:
+1. Read `docs/HANDOFF.md` immediately upon start.
+2. Respect the 500m safety distance threshold for automated FamilyMart store calibrations.
+3. Obey the 5-store / 1-hour auto-deletion threshold for closed store reports.
+4. Keep communication concise, mobile-friendly, and in Traditional Chinese (繁體中文).
+5. Always push commits to both remotes (`origin main`) and deploy via `wrangler pages deploy`.
